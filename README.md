@@ -29,6 +29,19 @@ dependencies: [
 ]
 ```
 
+Add the product to your target:
+
+```swift
+.target(
+    name: "App",
+    dependencies: [
+        .product(name: "Stripe Types", package: "swift-stripe-types")
+    ]
+)
+```
+
+`Stripe Types` is the umbrella product. Each resource is also vended on its own — for example `Stripe Customers Types` and `Stripe Payment Intents Types` — so a target can depend only on the resources it uses.
+
 ## Quick Start
 
 ### Using the Types
