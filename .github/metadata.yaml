@@ -1,0 +1,9 @@
+# .github/metadata.yaml
+description: "Comprehensive, type-safe definitions for the Stripe API in Swift."
+topics:
+  - standards
+  - stripe
+  - payments
+homepage: "https://swift-institute.org"
+readme:
+  family: E
