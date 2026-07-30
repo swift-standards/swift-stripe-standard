@@ -20,7 +20,7 @@ struct CreditBalanceTransactionRouterTests {
         let api = Stripe.Billing.Credit.Balance.API.retrieve(id: transactionId)
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/billing/credit_balance_transactions/cbtxn_test123")
+        #expect(url.path == "/v1/billing/creditBalanceTransactions/cbtxn_test123")
 
         let urlRequest = try router.request(for: api)
         #expect(urlRequest.httpMethod == "GET")
@@ -39,7 +39,7 @@ struct CreditBalanceTransactionRouterTests {
         let api = Stripe.Billing.Credit.Balance.API.list(request: request)
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/billing/credit_balance_transactions")
+        #expect(url.path == "/v1/billing/creditBalanceTransactions")
 
         let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         let hasCustomer = urlComponents.queryItems?.contains {

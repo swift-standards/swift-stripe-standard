@@ -122,7 +122,7 @@ extension Stripe.Tax.Calculations.Create {
         public var product: Stripe.Products.Product.ID?
         /// The number of units of the item being purchased. Must be a positive integer.
         public var quantity: Int?
-        /// A custom identifier for this line item, which will be included in the calculation's line_items.
+        /// A custom identifier for this line item, which will be included in the calculation's lineItems.
         public var reference: String?
         /// Specifies whether the amount includes taxes. Defaults to exclusive.
         public var taxBehavior: TaxBehavior?
@@ -296,7 +296,7 @@ extension Stripe.Tax.Calculations.Create {
 }
 
 extension Stripe.Tax.Calculations.List {
-    // https://docs.stripe.com/api/tax/calculations/line_items.md
+    // https://docs.stripe.com/api/tax/calculations/lineItems.md
     public enum LineItems {}
 }
 

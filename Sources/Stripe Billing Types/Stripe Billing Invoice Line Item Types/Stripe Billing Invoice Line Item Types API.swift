@@ -116,7 +116,7 @@ extension Stripe.Billing.Invoice.LineItems.API {
                     Path.v1
                     Path.invoices
                     Path { Parse(.string) }
-                    Path.add_lines
+                    Path.addLines
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.Invoice.LineItems.AddLines.Request.self,
@@ -138,7 +138,7 @@ extension Stripe.Billing.Invoice.LineItems.API {
                     Path.v1
                     Path.invoices
                     Path { Parse(.string) }
-                    Path.update_lines
+                    Path.updateLines
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.Invoice.LineItems.UpdateLines.Request.self,
@@ -160,7 +160,7 @@ extension Stripe.Billing.Invoice.LineItems.API {
                     Path.v1
                     Path.invoices
                     Path { Parse(.string) }
-                    Path.remove_lines
+                    Path.removeLines
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.Invoice.LineItems.RemoveLines.Request.self,
@@ -181,19 +181,19 @@ extension Path<PathBuilder.Component<String>> {
         }
     }
 
-    public static var add_lines: Path<PathBuilder.Component<String>> {
+    public static var addLines: Path<PathBuilder.Component<String>> {
         Path {
             "add_lines"
         }
     }
 
-    public static var update_lines: Path<PathBuilder.Component<String>> {
+    public static var updateLines: Path<PathBuilder.Component<String>> {
         Path {
             "update_lines"
         }
     }
 
-    public static var remove_lines: Path<PathBuilder.Component<String>> {
+    public static var removeLines: Path<PathBuilder.Component<String>> {
         Path {
             "remove_lines"
         }

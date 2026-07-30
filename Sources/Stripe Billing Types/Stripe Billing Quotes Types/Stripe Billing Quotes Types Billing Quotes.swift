@@ -479,7 +479,7 @@ extension Stripe.Billing.Quotes.Finalize {
 }
 
 extension Stripe.Billing.Quotes.List {
-    // https://docs.stripe.com/api/quotes/line_items.md
+    // https://docs.stripe.com/api/quotes/lineItems.md
     public enum LineItems {}
 }
 
@@ -522,7 +522,7 @@ extension Stripe.Billing.Quotes.List.LineItems {
 }
 
 extension Stripe.Billing.Quotes.List {
-    // https://docs.stripe.com/api/quotes/computed_upfront_line_items.md
+    // https://docs.stripe.com/api/quotes/computedUpfrontLineItems.md
     public enum ComputedUpfrontLineItems {}
 }
 

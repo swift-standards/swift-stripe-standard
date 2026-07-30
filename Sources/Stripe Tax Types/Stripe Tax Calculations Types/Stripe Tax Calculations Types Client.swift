@@ -23,7 +23,7 @@ extension Stripe.Tax.Calculations {
             @Sendable (_ id: Stripe.Tax.Calculation.ID) async throws(any Swift.Error) ->
                 Stripe.Tax.Calculation
 
-        // https://docs.stripe.com/api/tax/calculations/line_items.md
+        // https://docs.stripe.com/api/tax/calculations/lineItems.md
         public var listLineItems:
             @Sendable (_ id: Stripe.Tax.Calculation.ID, _ request: List.LineItems.Request)
                 async throws(any Swift.Error) ->

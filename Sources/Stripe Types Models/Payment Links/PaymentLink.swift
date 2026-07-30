@@ -17,7 +17,7 @@ extension Stripe {
         public var id: Stripe.PaymentLink.ID
         /// Whether the payment link’s `url` is active. If `false`, customers visiting the URL will be shown a page saying that the link has been deactivated.
         public var active: Bool?
-        /// The line items representing what is being sold. This field is not included by default. To include it in the response, expand the `line_items` field.
+        /// The line items representing what is being sold. This field is not included by default. To include it in the response, expand the `lineItems` field.
         public var lineItems: Stripe.PaymentLink.LineItem.List?
         /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?

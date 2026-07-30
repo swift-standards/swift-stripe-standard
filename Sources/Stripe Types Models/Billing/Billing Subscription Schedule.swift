@@ -8,10 +8,10 @@
 import Foundation
 import Stripe_Types_Shared
 
-// https://docs.stripe.com/api/subscription_schedules/object.md
+// https://docs.stripe.com/api/subscriptionSchedules/object.md
 
 extension Stripe.Billing.Subscription {
-    /// The [Schedule Object](https://stripe.com/docs/api/subscription_schedules/object)
+    /// The [Schedule Object](https://stripe.com/docs/api/subscriptionSchedules/object)
     public struct Schedule: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
         /// Unique identifier for the object.

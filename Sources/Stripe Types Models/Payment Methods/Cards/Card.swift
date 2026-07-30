@@ -161,6 +161,8 @@ public enum CardFundingType: String, Codable, Sendable {
 public enum CardTokenizedMethod: String, Codable, Sendable {
     case androidPay = "android_pay"
     case applePay = "apple_pay"
+    // REASON: Mirrors Stripe's documented `masterpass` wire value (Mastercard's Masterpass wallet brand).
+    // swiftlint:disable:next inclusive_language
     case masterpass
     case visaCheckout = "visa_checkout"
 }

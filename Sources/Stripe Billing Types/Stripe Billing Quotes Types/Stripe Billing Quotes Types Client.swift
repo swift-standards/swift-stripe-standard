@@ -60,14 +60,14 @@ extension Stripe.Billing.Quotes {
         public var pdf:
             @Sendable (_ id: Stripe.Billing.Quotes.Quote.ID) async throws(any Swift.Error) -> Data
 
-        // https://docs.stripe.com/api/quotes/line_items.md
+        // https://docs.stripe.com/api/quotes/lineItems.md
         public var listLineItems:
             @Sendable (
                 _ id: Stripe.Billing.Quotes.Quote.ID,
                 _ request: Stripe.Billing.Quotes.List.LineItems.Request
             ) async throws(any Swift.Error) -> Stripe.Billing.Quotes.List.LineItems.Response
 
-        // https://docs.stripe.com/api/quotes/computed_upfront_line_items.md
+        // https://docs.stripe.com/api/quotes/computedUpfrontLineItems.md
         public var listComputedUpfrontLineItems:
             @Sendable (
                 _ id: Stripe.Billing.Quotes.Quote.ID,

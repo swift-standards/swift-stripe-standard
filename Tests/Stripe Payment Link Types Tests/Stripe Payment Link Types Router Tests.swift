@@ -112,7 +112,7 @@ struct PaymentLinkRouterTests {
         )
 
         let url = router.url(for: .lineItems(id: id, request: lineItemsRequest))
-        #expect(url.path == "/v1/payment_links/plink_123/line_items")
+        #expect(url.path == "/v1/payment_links/plink_123/lineItems")
 
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         let queryItems = components?.queryItems ?? []

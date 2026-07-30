@@ -15,7 +15,7 @@ extension Stripe.PaymentMethods {
 
 // MARK: - Create
 extension Stripe.PaymentMethods.PaymentMethods {
-    // https://docs.stripe.com/api/payment_methods/create.md
+    // https://docs.stripe.com/api/paymentMethods/create.md
     public enum Create {}
 }
 
@@ -124,7 +124,7 @@ extension Stripe.PaymentMethods.PaymentMethods.Create {
 
 // MARK: - Update
 extension Stripe.PaymentMethods.PaymentMethods {
-    // https://docs.stripe.com/api/payment_methods/update.md
+    // https://docs.stripe.com/api/paymentMethods/update.md
     public enum Update {}
 }
 
@@ -198,7 +198,7 @@ extension Stripe.PaymentMethods.PaymentMethods.Update {
 
 // MARK: - List
 extension Stripe.PaymentMethods.PaymentMethods {
-    // https://docs.stripe.com/api/payment_methods/list.md
+    // https://docs.stripe.com/api/paymentMethods/list.md
     public enum List {}
 }
 
@@ -250,7 +250,7 @@ extension Stripe.PaymentMethods.PaymentMethods.List {
 
 // MARK: - List Customer
 extension Stripe.PaymentMethods.PaymentMethods.List {
-    // https://docs.stripe.com/api/payment_methods/customer_list.md
+    // https://docs.stripe.com/api/paymentMethods/customer_list.md
     public enum Customer {}
 }
 
@@ -302,7 +302,7 @@ extension Stripe.PaymentMethods.PaymentMethods.List.Customer {
 
 // MARK: - Attach
 extension Stripe.PaymentMethods.PaymentMethods {
-    // https://docs.stripe.com/api/payment_methods/attach.md
+    // https://docs.stripe.com/api/paymentMethods/attach.md
     public enum Attach {}
 }
 

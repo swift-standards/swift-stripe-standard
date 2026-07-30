@@ -9,9 +9,9 @@ import Foundation
 import Stripe_Types_Shared
 import Tagged_Primitives
 
-// https://docs.stripe.com/api/credit_notes/object.md
+// https://docs.stripe.com/api/creditNotes/object.md
 
-/// The [Credit Note Object](https://stripe.com/docs/api/credit_notes/object) .
+/// The [Credit Note Object](https://stripe.com/docs/api/creditNotes/object) .
 extension Stripe.Billing.Credit {
     public struct Note: Codable, Hashable, Sendable {
         public typealias ID = Tagged<Self, String>

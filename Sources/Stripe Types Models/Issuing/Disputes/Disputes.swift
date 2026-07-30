@@ -17,7 +17,7 @@ public struct IssuingDispute: Codable, Hashable, Sendable, Identifiable {
     public var id: ID
     /// Disputed amount. Usually the amount of the `disputed_transaction`, but can differ (usually because of currency fluctuation or because only part of the order is disputed).
     public var amount: Int?
-    /// List of balance transactions associated with the dispute. This field is not included by default. To include it in the response, expand the `balance_transactions` field.
+    /// List of balance transactions associated with the dispute. This field is not included by default. To include it in the response, expand the `balanceTransactions` field.
     public var balanceTransactions: [Stripe.Balance.Transaction]?
     /// The currency the disputed_transaction was made in.
     public var currency: Stripe.Currency?

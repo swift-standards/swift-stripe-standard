@@ -13,40 +13,40 @@ import Stripe_Types_Shared
 extension Stripe.Billing.Subscription.Schedule {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/subscription_schedules/create.md
+        // https://docs.stripe.com/api/subscriptionSchedules/create.md
         public var create:
             @Sendable (_ request: Stripe.Billing.Subscription.Schedule.Create.Request)
                 async throws(any Swift.Error)
                 ->
                 Stripe.Billing.Subscription.Schedule
 
-        // https://docs.stripe.com/api/subscription_schedules/retrieve.md
+        // https://docs.stripe.com/api/subscriptionSchedules/retrieve.md
         public var retrieve:
             @Sendable (_ id: Stripe.Billing.Subscription.Schedule.ID) async throws(any Swift.Error)
                 ->
                 Stripe.Billing.Subscription.Schedule
 
-        // https://docs.stripe.com/api/subscription_schedules/update.md
+        // https://docs.stripe.com/api/subscriptionSchedules/update.md
         public var update:
             @Sendable (
                 _ id: Stripe.Billing.Subscription.Schedule.ID,
                 _ request: Stripe.Billing.Subscription.Schedule.Update.Request
             ) async throws(any Swift.Error) -> Stripe.Billing.Subscription.Schedule
 
-        // https://docs.stripe.com/api/subscription_schedules/list.md
+        // https://docs.stripe.com/api/subscriptionSchedules/list.md
         public var list:
             @Sendable (_ request: Stripe.Billing.Subscription.Schedule.List.Request)
                 async throws(any Swift.Error) ->
                 Stripe.Billing.Subscription.Schedule.List.Response
 
-        // https://docs.stripe.com/api/subscription_schedules/cancel.md
+        // https://docs.stripe.com/api/subscriptionSchedules/cancel.md
         public var cancel:
             @Sendable (
                 _ id: Stripe.Billing.Subscription.Schedule.ID,
                 _ request: Stripe.Billing.Subscription.Schedule.Cancel.Request
             ) async throws(any Swift.Error) -> Stripe.Billing.Subscription.Schedule
 
-        // https://docs.stripe.com/api/subscription_schedules/release.md
+        // https://docs.stripe.com/api/subscriptionSchedules/release.md
         public var release:
             @Sendable (
                 _ id: Stripe.Billing.Subscription.Schedule.ID,

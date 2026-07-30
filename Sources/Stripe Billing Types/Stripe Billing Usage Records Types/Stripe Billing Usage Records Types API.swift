@@ -7,12 +7,12 @@ import URLRouting
 extension Stripe.Billing.UsageRecords {
     @Cases
     public enum API: Equatable, Sendable {
-        // https://docs.stripe.com/api/usage_records/create
+        // https://docs.stripe.com/api/usageRecords/create
         case create(
             subscriptionItemId: Stripe.Billing.SubscriptionItems.SubscriptionItem.ID,
             request: Create.Request
         )
-        // https://docs.stripe.com/api/usage_records/list
+        // https://docs.stripe.com/api/usageRecords/list
         case list(
             subscriptionItemId: Stripe.Billing.SubscriptionItems.SubscriptionItem.ID,
             request: List.Request
@@ -35,7 +35,7 @@ extension Stripe.Billing.UsageRecords.API {
                 ) {
                     Method.post
                     Path.v1
-                    Path.subscription_items
+                    Path.subscriptionItems
                     Path {
                         Parse(
                             .string.representing(
@@ -43,7 +43,7 @@ extension Stripe.Billing.UsageRecords.API {
                             )
                         )
                     }
-                    Path.usage_records
+                    Path.usageRecords
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.UsageRecords.Create.Request.self,
@@ -62,7 +62,7 @@ extension Stripe.Billing.UsageRecords.API {
                 ) {
                     Method.get
                     Path.v1
-                    Path.subscription_items
+                    Path.subscriptionItems
                     Path {
                         Parse(
                             .string.representing(
@@ -70,7 +70,7 @@ extension Stripe.Billing.UsageRecords.API {
                             )
                         )
                     }
-                    Path.usage_records
+                    Path.usageRecords
                     Parse(
                         .convert(
                             apply: { ($0.0.0, $0.0.1, $0.1) },
@@ -102,7 +102,7 @@ extension Stripe.Billing.UsageRecords.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    package static var usage_records: Path<PathBuilder.Component<String>> {
+    package static var usageRecords: Path<PathBuilder.Component<String>> {
         Path { "usage_records" }
     }
 }

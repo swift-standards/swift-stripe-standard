@@ -16,7 +16,7 @@ extension Stripe.Billing {
         public typealias ID = Tagged<Self, String>
         /// Unique identifier for the object.
         public var id: ID
-        /// This field is not included by default. To include it in the response, expand the `line_items` field.
+        /// This field is not included by default. To include it in the response, expand the `lineItems` field.
         public var lineItems: Stripe.Billing.Quote.LineItem.List?
         /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?
@@ -361,7 +361,7 @@ extension Stripe.Billing.Quote.Computed {
         public var amountTotal: Int?
         /// The line items that will appear on the next invoice after this quote is accepted. This does not include pending invoice items that exist on the customer but may still be included in the next invoice.
         ///
-        /// This field is not included by default. To include it in the response, expand the `line_items` field.
+        /// This field is not included by default. To include it in the response, expand the `lineItems` field.
         public var lineItems: Stripe.Billing.Quote.LineItem.List?
         /// Tax and discount details for the computed total amount.
         public var totalDetails: Stripe.Billing.Quote.Computed.Upfront.TotalDetails?

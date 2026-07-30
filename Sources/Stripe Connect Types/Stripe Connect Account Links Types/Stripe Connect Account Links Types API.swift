@@ -6,7 +6,7 @@ import URLRouting
 extension Stripe.Connect.AccountLinks {
     @Cases
     public enum API: Equatable, Sendable {
-        // https://docs.stripe.com/api/account_links/create.md
+        // https://docs.stripe.com/api/accountLinks/create.md
         case create(request: Stripe.Connect.AccountLinks.Create.Request)
     }
 }
@@ -20,7 +20,7 @@ extension Stripe.Connect.AccountLinks.API {
                 Route(.case(Stripe.Connect.AccountLinks.API.cases.create)) {
                     Method.post
                     Path.v1
-                    Path.account_links
+                    Path.accountLinks
                     URLRouting.Body(
                         .form(
                             Stripe.Connect.AccountLinks.Create.Request.self,
@@ -35,7 +35,7 @@ extension Stripe.Connect.AccountLinks.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var account_links: Path<PathBuilder.Component<String>> {
+    public static var accountLinks: Path<PathBuilder.Component<String>> {
         Path {
             "account_links"
         }

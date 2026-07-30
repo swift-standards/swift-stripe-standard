@@ -9,7 +9,7 @@
 import Foundation
 import Stripe_Types_Shared
 
-// https://docs.stripe.com/api/balance_transactions/object.md
+// https://docs.stripe.com/api/balanceTransactions/object.md
 
 extension Stripe.Balance {
     /// The [Stripe.Balance Transaction Object](https://stripe.com/docs/api/balance/balance_transaction)

@@ -13,7 +13,7 @@ extension Stripe.Billing {
     public struct Client: Sendable {
         //    public let credit_Note: Billing_Credit_Note.Client
         //    public let customer_Balance_Transaction: Billing_Customer_Balance_Transaction.Client
-        public let customer_Portal_Session: Stripe.Billing.Customer.Portal.Session.Client
+        public let customerPortalSession: Stripe.Billing.Customer.Portal.Session.Client
         //    public let customer_Portal_Configuration: Billing_Customer_Portal_Configuration.Client
         //    public let invoices: Billing_Invoices.Client
         //    public let invoice_Items: Billing_Invoice_Items.Client
@@ -41,11 +41,11 @@ extension Stripe.Billing {
         //    public let usage_Record_Summary: Billing_Usage_Record_Summary.Client
 
         public init(
-            customer_Portal_Session: Stripe.Billing.Customer.Portal.Session.Client,
+            customerPortalSession: Stripe.Billing.Customer.Portal.Session.Client,
             subscriptions: Stripe.Billing.Subscriptions.Client,
             subscriptionSchedule: Stripe.Billing.Subscription.Schedule.Client
         ) {
-            self.customer_Portal_Session = customer_Portal_Session
+            self.customerPortalSession = customerPortalSession
             self.subscriptions = subscriptions
             self.subscriptionSchedule = subscriptionSchedule
         }

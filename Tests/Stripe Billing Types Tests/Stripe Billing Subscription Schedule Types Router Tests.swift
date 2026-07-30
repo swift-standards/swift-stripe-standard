@@ -30,7 +30,7 @@ struct BillingSubscriptionScheduleRouterTests {
         let api = Stripe.Billing.Subscription.Schedule.API.create(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/subscription_schedules")
+        #expect(url.path == "/v1/subscriptionSchedules")
     }
 
     @Test("Retrieve subscription schedule URL generation")
@@ -38,7 +38,7 @@ struct BillingSubscriptionScheduleRouterTests {
         let api = Stripe.Billing.Subscription.Schedule.API.retrieve(id: "sub_sched_123")
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/subscription_schedules/sub_sched_123")
+        #expect(url.path == "/v1/subscriptionSchedules/sub_sched_123")
     }
 
     @Test("Update subscription schedule URL generation")
@@ -52,7 +52,7 @@ struct BillingSubscriptionScheduleRouterTests {
         )
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/subscription_schedules/sub_sched_123")
+        #expect(url.path == "/v1/subscriptionSchedules/sub_sched_123")
     }
 
     @Test("List subscription schedules URL generation")
@@ -65,7 +65,7 @@ struct BillingSubscriptionScheduleRouterTests {
         let api = Stripe.Billing.Subscription.Schedule.API.list(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/subscription_schedules")
+        #expect(url.path == "/v1/subscriptionSchedules")
         #expect(url.query?.contains("customer=cus_123") == true)
         #expect(url.query?.contains("limit=10") == true)
         #expect(url.query?.contains("scheduled=true") == true)
@@ -83,7 +83,7 @@ struct BillingSubscriptionScheduleRouterTests {
         )
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/subscription_schedules/sub_sched_123/cancel")
+        #expect(url.path == "/v1/subscriptionSchedules/sub_sched_123/cancel")
     }
 
     @Test("Release subscription schedule URL generation")
@@ -97,7 +97,7 @@ struct BillingSubscriptionScheduleRouterTests {
         )
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/subscription_schedules/sub_sched_123/release")
+        #expect(url.path == "/v1/subscriptionSchedules/sub_sched_123/release")
     }
 
     @Test("Round-trip parsing for retrieve")

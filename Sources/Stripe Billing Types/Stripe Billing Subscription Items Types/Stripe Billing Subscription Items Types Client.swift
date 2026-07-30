@@ -13,31 +13,31 @@ import Stripe_Types_Shared
 extension Stripe.Billing.SubscriptionItems {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/subscription_items/create.md
+        // https://docs.stripe.com/api/subscriptionItems/create.md
         public var create:
             @Sendable (_ request: Stripe.Billing.SubscriptionItems.Create.Request)
                 async throws(any Swift.Error) ->
                 Stripe.Billing.Subscription.Item
 
-        // https://docs.stripe.com/api/subscription_items/update.md
+        // https://docs.stripe.com/api/subscriptionItems/update.md
         public var update:
             @Sendable (
                 _ id: Stripe.Billing.Subscription.Item.ID,
                 _ request: Stripe.Billing.SubscriptionItems.Update.Request
             ) async throws(any Swift.Error) -> Stripe.Billing.Subscription.Item
 
-        // https://docs.stripe.com/api/subscription_items/retrieve.md
+        // https://docs.stripe.com/api/subscriptionItems/retrieve.md
         public var retrieve:
             @Sendable (_ id: Stripe.Billing.Subscription.Item.ID) async throws(any Swift.Error) ->
                 Stripe.Billing.Subscription.Item
 
-        // https://docs.stripe.com/api/subscription_items/list.md
+        // https://docs.stripe.com/api/subscriptionItems/list.md
         public var list:
             @Sendable (_ request: Stripe.Billing.SubscriptionItems.List.Request)
                 async throws(any Swift.Error) ->
                 Stripe.Billing.SubscriptionItems.List.Response
 
-        // https://docs.stripe.com/api/subscription_items/delete.md
+        // https://docs.stripe.com/api/subscriptionItems/delete.md
         public var delete:
             @Sendable (_ id: Stripe.Billing.Subscription.Item.ID) async throws(any Swift.Error) ->
                 DeletedObject<

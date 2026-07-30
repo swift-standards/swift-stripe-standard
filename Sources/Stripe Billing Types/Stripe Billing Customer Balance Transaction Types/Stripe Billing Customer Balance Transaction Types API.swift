@@ -38,7 +38,7 @@ extension Stripe.Billing.Customer.Balance.API {
                     Path.v1
                     Path.customers
                     Path { Parse(.string.representing(Stripe.Customers.Customer.ID.self)) }
-                    Path.balance_transactions
+                    Path.balanceTransactions
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.Customer.Balance.Create.Request.self,
@@ -59,7 +59,7 @@ extension Stripe.Billing.Customer.Balance.API {
                     Path.v1
                     Path.customers
                     Path { Parse(.string.representing(Stripe.Customers.Customer.ID.self)) }
-                    Path.balance_transactions
+                    Path.balanceTransactions
                     Path {
                         Parse(
                             .string.representing(
@@ -80,7 +80,7 @@ extension Stripe.Billing.Customer.Balance.API {
                     Path.v1
                     Path.customers
                     Path { Parse(.string.representing(Stripe.Customers.Customer.ID.self)) }
-                    Path.balance_transactions
+                    Path.balanceTransactions
                     Path {
                         Parse(
                             .string.representing(
@@ -108,7 +108,7 @@ extension Stripe.Billing.Customer.Balance.API {
                     Path.v1
                     Path.customers
                     Path { Parse(.string.representing(Stripe.Customers.Customer.ID.self)) }
-                    Path.balance_transactions
+                    Path.balanceTransactions
                     Parse(
                         .convert(
                             apply: { ($0.0.0, $0.0.1, $0.1) },
@@ -141,7 +141,7 @@ extension Stripe.Billing.Customer.Balance.API {
 
 extension Path<PathBuilder.Component<String>> {
     package static var customers: Path<PathBuilder.Component<String>> { Path { "customers" } }
-    package static var balance_transactions: Path<PathBuilder.Component<String>> {
+    package static var balanceTransactions: Path<PathBuilder.Component<String>> {
         Path { "balance_transactions" }
     }
 }

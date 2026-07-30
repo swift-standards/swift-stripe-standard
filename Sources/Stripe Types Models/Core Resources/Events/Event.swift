@@ -155,11 +155,11 @@ extension Stripe.Events.Event {
                 self = try .cashBalance(CashBalance(from: decoder))
             case "bank_account":
                 self = try .bankAccount(BankAccount(from: decoder))
-            case "billing_portal.configuration":
+            case "billingPortal.configuration":
                 self = try .configuration(
                     Stripe.Billing.Customer.Portal.Configuration(from: decoder)
                 )
-            case "billing_portal.session":
+            case "billingPortal.session":
                 self = try .billingPortalSession(
                     Stripe.Billing.Customer.Portal.Session(from: decoder)
                 )
@@ -254,7 +254,7 @@ extension Stripe.Events.Event {
                 )
             case "tax_rate":
                 self = try .taxRate(Stripe.Tax.Rate(from: decoder))
-            case "test_helpers.test_clock":
+            case "testHelpers.test_clock":
                 self = try .testClock(Stripe.Billing.TestClocks.TestClock(from: decoder))
             case "terminal.reader":
                 self = try .reader(Stripe.Terminal.Readers.Reader(from: decoder))
@@ -430,11 +430,11 @@ extension Stripe.Events.Event {
         /// Occurs whenever your Stripe balance has been updated (e.g., when a charge is available to be paid out). By default, Stripe automatically transfers funds in your balance to your bank account on a daily basis.
         case balanceAvailable = "balance.available"
         /// Occurs whenever a portal configuration is created.
-        case billingPortalConfigurationCreated = "billing_portal.configuration.created"
+        case billingPortalConfigurationCreated = "billingPortal.configuration.created"
         /// Occurs whenever a portal configuration is updated.
-        case billingPortalConfigurationUpdated = "billing_portal.configuration.updated"
+        case billingPortalConfigurationUpdated = "billingPortal.configuration.updated"
         /// Occurs whenever a portal session is created.
-        case billingPortalSessionCreated = "billing_portal.session.created"
+        case billingPortalSessionCreated = "billingPortal.session.created"
         /// Occurs whenever a capability has new requirements or a new status.
         case capabilityUpdated = "capability.updated"
         case billingAlertTriggered = "billing.alert.triggered"
@@ -765,15 +765,15 @@ extension Stripe.Events.Event {
         /// Occurs whenever an action sent to a Terminal reader was successful.
         case terminalReaderActionSucceeded = "terminal.reader.action_succeeded"
         /// Occurs whenever a test clock starts advancing.
-        case testHelpersTestClockAdvancing = "test_helpers.test_clock.advancing"
+        case testHelpersTestClockAdvancing = "testHelpers.test_clock.advancing"
         /// Occurs whenever a test clock is created.
-        case testHelpersTestClockCreated = "test_helpers.test_clock.created"
+        case testHelpersTestClockCreated = "testHelpers.test_clock.created"
         /// Occurs whenever a test clock is deleted.
-        case testHelpersTestClockDeleted = "test_helpers.test_clock.deleted"
+        case testHelpersTestClockDeleted = "testHelpers.test_clock.deleted"
         /// Occurs whenever a test clock fails to advance its frozen time.
-        case testHelpersTestClockInternalFailure = "test_helpers.test_clock.internal_failure"
+        case testHelpersTestClockInternalFailure = "testHelpers.test_clock.internal_failure"
         /// Occurs whenever a test clock transitions to a ready status.
-        case testHelpersTestClockReady = "test_helpers.test_clock.ready"
+        case testHelpersTestClockReady = "testHelpers.test_clock.ready"
         /// Occurs whenever a top-up is canceled.
         case topupCanceled = "topup.canceled"
         /// Occurs whenever a top-up is created.

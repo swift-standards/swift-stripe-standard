@@ -30,7 +30,7 @@ struct BillingTestClocksRouterTests {
         let api = Stripe.Billing.TestClocks.API.create(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/test_helpers/test_clocks")
+        #expect(url.path == "/v1/testHelpers/testClocks")
     }
 
     @Test("Retrieve test clock URL generation")
@@ -38,7 +38,7 @@ struct BillingTestClocksRouterTests {
         let api = Stripe.Billing.TestClocks.API.retrieve(id: "clock_123")
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/test_helpers/test_clocks/clock_123")
+        #expect(url.path == "/v1/testHelpers/testClocks/clock_123")
     }
 
     @Test("List test clocks URL generation")
@@ -50,7 +50,7 @@ struct BillingTestClocksRouterTests {
         let api = Stripe.Billing.TestClocks.API.list(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/test_helpers/test_clocks")
+        #expect(url.path == "/v1/testHelpers/testClocks")
         #expect(url.query?.contains("limit=20") == true)
         #expect(url.query?.contains("starting_after=clock_456") == true)
     }
@@ -60,7 +60,7 @@ struct BillingTestClocksRouterTests {
         let api = Stripe.Billing.TestClocks.API.delete(id: "clock_789")
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/test_helpers/test_clocks/clock_789")
+        #expect(url.path == "/v1/testHelpers/testClocks/clock_789")
     }
 
     @Test("Advance test clock URL generation")
@@ -71,7 +71,7 @@ struct BillingTestClocksRouterTests {
         let api = Stripe.Billing.TestClocks.API.advance(id: "clock_999", request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/test_helpers/test_clocks/clock_999/advance")
+        #expect(url.path == "/v1/testHelpers/testClocks/clock_999/advance")
     }
 
     @Test("Round-trip parsing for create")

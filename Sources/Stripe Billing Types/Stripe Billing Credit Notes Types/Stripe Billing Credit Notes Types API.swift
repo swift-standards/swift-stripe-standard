@@ -13,30 +13,30 @@ import URLRouting
 extension Stripe.Billing.CreditNotes {
     @Cases
     public enum API: Equatable, Sendable {
-        // https://docs.stripe.com/api/credit_notes/create.md
+        // https://docs.stripe.com/api/creditNotes/create.md
         case create(request: Stripe.Billing.CreditNotes.Create.Request)
-        // https://docs.stripe.com/api/credit_notes/update.md
+        // https://docs.stripe.com/api/creditNotes/update.md
         case update(
             id: Stripe.Billing.Credit.Note.ID,
             request: Stripe.Billing.CreditNotes.Update.Request
         )
-        // https://docs.stripe.com/api/credit_notes/retrieve.md
+        // https://docs.stripe.com/api/creditNotes/retrieve.md
         case retrieve(id: Stripe.Billing.Credit.Note.ID)
-        // https://docs.stripe.com/api/credit_notes/list.md
+        // https://docs.stripe.com/api/creditNotes/list.md
         case list(request: Stripe.Billing.CreditNotes.List.Request)
-        // https://docs.stripe.com/api/credit_notes/preview.md
+        // https://docs.stripe.com/api/creditNotes/preview.md
         case preview(request: Stripe.Billing.CreditNotes.Preview.Request)
-        // https://docs.stripe.com/api/credit_notes/void.md
+        // https://docs.stripe.com/api/creditNotes/void.md
         case void(
             id: Stripe.Billing.Credit.Note.ID,
             request: Stripe.Billing.CreditNotes.Void.Request
         )
-        // https://docs.stripe.com/api/credit_notes/lines.md
+        // https://docs.stripe.com/api/creditNotes/lines.md
         case lines(
             id: Stripe.Billing.Credit.Note.ID,
             request: Stripe.Billing.CreditNotes.Lines.Request
         )
-        // https://docs.stripe.com/api/credit_notes/preview_lines.md
+        // https://docs.stripe.com/api/creditNotes/preview_lines.md
         case previewLines(request: Stripe.Billing.CreditNotes.PreviewLines.Request)
     }
 }
@@ -47,11 +47,11 @@ extension Stripe.Billing.CreditNotes.API {
 
         public var body: some URLRouting.Router<Stripe.Billing.CreditNotes.API> {
             OneOf {
-                // https://docs.stripe.com/api/credit_notes/create.md
+                // https://docs.stripe.com/api/creditNotes/create.md
                 URLRouting.Route(.case(Stripe.Billing.CreditNotes.API.cases.create)) {
                     Method.post
                     Path.v1
-                    Path.credit_notes
+                    Path.creditNotes
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.CreditNotes.Create.Request.self,
@@ -61,7 +61,7 @@ extension Stripe.Billing.CreditNotes.API {
                     )
                 }
 
-                // https://docs.stripe.com/api/credit_notes/update.md
+                // https://docs.stripe.com/api/creditNotes/update.md
                 URLRouting.Route(
                     .convert(
                         apply: { (id: $0.0, request: $0.1) },
@@ -71,7 +71,7 @@ extension Stripe.Billing.CreditNotes.API {
                 ) {
                     Method.post
                     Path.v1
-                    Path.credit_notes
+                    Path.creditNotes
                     Path { Parse(.string.representing(Stripe.Billing.Credit.Note.ID.self)) }
                     URLRouting.Body(
                         .form(
@@ -82,19 +82,19 @@ extension Stripe.Billing.CreditNotes.API {
                     )
                 }
 
-                // https://docs.stripe.com/api/credit_notes/retrieve.md
+                // https://docs.stripe.com/api/creditNotes/retrieve.md
                 URLRouting.Route(.case(Stripe.Billing.CreditNotes.API.cases.retrieve)) {
                     Method.get
                     Path.v1
-                    Path.credit_notes
+                    Path.creditNotes
                     Path { Parse(.string.representing(Stripe.Billing.Credit.Note.ID.self)) }
                 }
 
-                // https://docs.stripe.com/api/credit_notes/list.md
+                // https://docs.stripe.com/api/creditNotes/list.md
                 URLRouting.Route(.case(Stripe.Billing.CreditNotes.API.cases.list)) {
                     Method.get
                     Path.v1
-                    Path.credit_notes
+                    Path.creditNotes
                     Parse(
                         .convert(
                             apply: { ($0.0.0.0.0, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
@@ -136,11 +136,11 @@ extension Stripe.Billing.CreditNotes.API {
                     }
                 }
 
-                // https://docs.stripe.com/api/credit_notes/preview.md
+                // https://docs.stripe.com/api/creditNotes/preview.md
                 URLRouting.Route(.case(Stripe.Billing.CreditNotes.API.cases.preview)) {
                     Method.get
                     Path.v1
-                    Path.credit_notes
+                    Path.creditNotes
                     Path.preview
                     Parse(
                         .convert(
@@ -174,7 +174,7 @@ extension Stripe.Billing.CreditNotes.API {
                     }
                 }
 
-                // https://docs.stripe.com/api/credit_notes/void.md
+                // https://docs.stripe.com/api/creditNotes/void.md
                 URLRouting.Route(
                     .convert(
                         apply: { (id: $0.0, request: $0.1) },
@@ -184,7 +184,7 @@ extension Stripe.Billing.CreditNotes.API {
                 ) {
                     Method.post
                     Path.v1
-                    Path.credit_notes
+                    Path.creditNotes
                     Path { Parse(.string.representing(Stripe.Billing.Credit.Note.ID.self)) }
                     Path.voidPath
                     URLRouting.Body(
@@ -196,7 +196,7 @@ extension Stripe.Billing.CreditNotes.API {
                     )
                 }
 
-                // https://docs.stripe.com/api/credit_notes/lines.md
+                // https://docs.stripe.com/api/creditNotes/lines.md
                 URLRouting.Route(
                     .convert(
                         apply: { (id: $0.0, request: $0.1) },
@@ -206,7 +206,7 @@ extension Stripe.Billing.CreditNotes.API {
                 ) {
                     Method.get
                     Path.v1
-                    Path.credit_notes
+                    Path.creditNotes
                     Path { Parse(.string.representing(Stripe.Billing.Credit.Note.ID.self)) }
                     Path.lines
                     Parse(
@@ -235,11 +235,11 @@ extension Stripe.Billing.CreditNotes.API {
                     }
                 }
 
-                // https://docs.stripe.com/api/credit_notes/preview_lines.md
+                // https://docs.stripe.com/api/creditNotes/preview_lines.md
                 URLRouting.Route(.case(Stripe.Billing.CreditNotes.API.cases.previewLines)) {
                     Method.get
                     Path.v1
-                    Path.credit_notes
+                    Path.creditNotes
                     Path.preview
                     Path.lines
                     Parse(
@@ -289,7 +289,7 @@ extension Stripe.Billing.CreditNotes.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var credit_notes: Path<PathBuilder.Component<String>> {
+    public static var creditNotes: Path<PathBuilder.Component<String>> {
         Path {
             "credit_notes"
         }

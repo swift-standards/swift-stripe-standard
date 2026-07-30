@@ -28,7 +28,7 @@ struct BalanceTransactionsRouterTests {
         let api: Stripe.BalanceTransactions.API = .retrieve(id: id)
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/balance_transactions/txn_123")
+        #expect(url.path == "/v1/balanceTransactions/txn_123")
 
         // Round-trip test
         let match: Stripe.BalanceTransactions.API = try router.match(
@@ -52,7 +52,7 @@ struct BalanceTransactionsRouterTests {
         let api: Stripe.BalanceTransactions.API = .list(request: listRequest)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/balance_transactions")
+        #expect(url.path == "/v1/balanceTransactions")
 
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         let queryItems = components?.queryItems ?? []
@@ -79,7 +79,7 @@ struct BalanceTransactionsRouterTests {
         let api: Stripe.BalanceTransactions.API = .list(request: listRequest)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/balance_transactions")
+        #expect(url.path == "/v1/balanceTransactions")
 
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         let queryItems = components?.queryItems ?? []
@@ -104,7 +104,7 @@ struct BalanceTransactionsRouterTests {
         let api: Stripe.BalanceTransactions.API = .list(request: listRequest)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/balance_transactions")
+        #expect(url.path == "/v1/balanceTransactions")
 
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         let queryItems = components?.queryItems ?? []

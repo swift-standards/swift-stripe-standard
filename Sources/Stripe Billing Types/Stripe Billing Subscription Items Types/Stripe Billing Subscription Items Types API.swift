@@ -13,18 +13,18 @@ import URLRouting
 extension Stripe.Billing.SubscriptionItems {
     @Cases
     public enum API: Equatable, Sendable {
-        // https://docs.stripe.com/api/subscription_items/create.md
+        // https://docs.stripe.com/api/subscriptionItems/create.md
         case create(request: Stripe.Billing.SubscriptionItems.Create.Request)
-        // https://docs.stripe.com/api/subscription_items/update.md
+        // https://docs.stripe.com/api/subscriptionItems/update.md
         case update(
             id: Stripe.Billing.Subscription.Item.ID,
             request: Stripe.Billing.SubscriptionItems.Update.Request
         )
-        // https://docs.stripe.com/api/subscription_items/retrieve.md
+        // https://docs.stripe.com/api/subscriptionItems/retrieve.md
         case retrieve(id: Stripe.Billing.Subscription.Item.ID)
-        // https://docs.stripe.com/api/subscription_items/list.md
+        // https://docs.stripe.com/api/subscriptionItems/list.md
         case list(request: Stripe.Billing.SubscriptionItems.List.Request)
-        // https://docs.stripe.com/api/subscription_items/delete.md
+        // https://docs.stripe.com/api/subscriptionItems/delete.md
         case delete(id: Stripe.Billing.Subscription.Item.ID)
     }
 }
@@ -35,11 +35,11 @@ extension Stripe.Billing.SubscriptionItems.API {
 
         public var body: some URLRouting.Router<Stripe.Billing.SubscriptionItems.API> {
             OneOf {
-                // https://docs.stripe.com/api/subscription_items/create.md
+                // https://docs.stripe.com/api/subscriptionItems/create.md
                 URLRouting.Route(.case(Stripe.Billing.SubscriptionItems.API.cases.create)) {
                     Method.post
                     Path.v1
-                    Path.subscription_items
+                    Path.subscriptionItems
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.SubscriptionItems.Create.Request.self,
@@ -49,7 +49,7 @@ extension Stripe.Billing.SubscriptionItems.API {
                     )
                 }
 
-                // https://docs.stripe.com/api/subscription_items/update.md
+                // https://docs.stripe.com/api/subscriptionItems/update.md
                 URLRouting.Route(
                     .convert(
                         apply: { (id: $0.0, request: $0.1) },
@@ -59,7 +59,7 @@ extension Stripe.Billing.SubscriptionItems.API {
                 ) {
                     Method.post
                     Path.v1
-                    Path.subscription_items
+                    Path.subscriptionItems
                     Path { Parse(.string.representing(Stripe.Billing.Subscription.Item.ID.self)) }
                     URLRouting.Body(
                         .form(
@@ -70,19 +70,19 @@ extension Stripe.Billing.SubscriptionItems.API {
                     )
                 }
 
-                // https://docs.stripe.com/api/subscription_items/retrieve.md
+                // https://docs.stripe.com/api/subscriptionItems/retrieve.md
                 URLRouting.Route(.case(Stripe.Billing.SubscriptionItems.API.cases.retrieve)) {
                     Method.get
                     Path.v1
-                    Path.subscription_items
+                    Path.subscriptionItems
                     Path { Parse(.string.representing(Stripe.Billing.Subscription.Item.ID.self)) }
                 }
 
-                // https://docs.stripe.com/api/subscription_items/list.md
+                // https://docs.stripe.com/api/subscriptionItems/list.md
                 URLRouting.Route(.case(Stripe.Billing.SubscriptionItems.API.cases.list)) {
                     Method.get
                     Path.v1
-                    Path.subscription_items
+                    Path.subscriptionItems
                     Parse(
                         .convert(
                             apply: { ($0.0.0.0, $0.0.0.1, $0.0.1, $0.1) },
@@ -112,11 +112,11 @@ extension Stripe.Billing.SubscriptionItems.API {
                     }
                 }
 
-                // https://docs.stripe.com/api/subscription_items/delete.md
+                // https://docs.stripe.com/api/subscriptionItems/delete.md
                 URLRouting.Route(.case(Stripe.Billing.SubscriptionItems.API.cases.delete)) {
                     Method.delete
                     Path.v1
-                    Path.subscription_items
+                    Path.subscriptionItems
                     Path { Parse(.string.representing(Stripe.Billing.Subscription.Item.ID.self)) }
                 }
             }
@@ -125,7 +125,7 @@ extension Stripe.Billing.SubscriptionItems.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var subscription_items: Path<PathBuilder.Component<String>> {
+    public static var subscriptionItems: Path<PathBuilder.Component<String>> {
         Path {
             "subscription_items"
         }

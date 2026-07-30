@@ -9,10 +9,10 @@
 import Foundation
 import Stripe_Types_Shared
 
-// https://docs.stripe.com/api/subscription_items/object.md
+// https://docs.stripe.com/api/subscriptionItems/object.md
 
 extension Stripe.Billing.Subscription {
-    /// The [Subscription Item Object](https://stripe.com/docs/api/subscription_items/object) .
+    /// The [Subscription Item Object](https://stripe.com/docs/api/subscriptionItems/object) .
     public struct Item: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
         /// Unique identifier for the object.

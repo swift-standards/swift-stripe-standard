@@ -10,7 +10,7 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Billing.SubscriptionItems {
-    // https://docs.stripe.com/api/subscription_items/create.md
+    // https://docs.stripe.com/api/subscriptionItems/create.md
     public enum Create {}
 }
 
@@ -130,7 +130,7 @@ extension Stripe.Billing.SubscriptionItems.Create {
 }
 
 extension Stripe.Billing.SubscriptionItems {
-    // https://docs.stripe.com/api/subscription_items/update.md
+    // https://docs.stripe.com/api/subscriptionItems/update.md
     public enum Update {}
 }
 
@@ -182,7 +182,7 @@ extension Stripe.Billing.SubscriptionItems.Update {
 }
 
 extension Stripe.Billing.SubscriptionItems {
-    // https://docs.stripe.com/api/subscription_items/list.md
+    // https://docs.stripe.com/api/subscriptionItems/list.md
     public enum List {}
 }
 

@@ -6,24 +6,24 @@ import URLRouting
 extension Stripe.PaymentMethods.PaymentMethods {
     @Cases
     public enum API: Equatable, Sendable {
-        // https://docs.stripe.com/api/payment_methods/create.md
+        // https://docs.stripe.com/api/paymentMethods/create.md
         case create(request: Create.Request)
-        // https://docs.stripe.com/api/payment_methods/retrieve.md
+        // https://docs.stripe.com/api/paymentMethods/retrieve.md
         case retrieve(id: Stripe.PaymentMethods.PaymentMethod.ID)
-        // https://docs.stripe.com/api/payment_methods/retrieve_customer.md
+        // https://docs.stripe.com/api/paymentMethods/retrieve_customer.md
         case retrieveCustomer(
             customerId: Stripe.Customers.Customer.ID,
             paymentMethodId: Stripe.PaymentMethods.PaymentMethod.ID
         )
-        // https://docs.stripe.com/api/payment_methods/update.md
+        // https://docs.stripe.com/api/paymentMethods/update.md
         case update(id: Stripe.PaymentMethods.PaymentMethod.ID, request: Update.Request)
-        // https://docs.stripe.com/api/payment_methods/list.md
+        // https://docs.stripe.com/api/paymentMethods/list.md
         case list(request: List.Request)
-        // https://docs.stripe.com/api/payment_methods/customer_list.md
+        // https://docs.stripe.com/api/paymentMethods/customer_list.md
         case listCustomer(customerId: Stripe.Customers.Customer.ID, request: List.Customer.Request)
-        // https://docs.stripe.com/api/payment_methods/attach.md
+        // https://docs.stripe.com/api/paymentMethods/attach.md
         case attach(id: Stripe.PaymentMethods.PaymentMethod.ID, request: Attach.Request)
-        // https://docs.stripe.com/api/payment_methods/detach.md
+        // https://docs.stripe.com/api/paymentMethods/detach.md
         case detach(id: Stripe.PaymentMethods.PaymentMethod.ID)
     }
 }
@@ -37,7 +37,7 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                 Route(.case(Stripe.PaymentMethods.PaymentMethods.API.cases.create)) {
                     Method.post
                     Path.v1
-                    Path.payment_methods
+                    Path.paymentMethods
                     URLRouting.Body(
                         .form(
                             Stripe.PaymentMethods.PaymentMethods.Create.Request.self,
@@ -50,7 +50,7 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                 Route(.case(Stripe.PaymentMethods.PaymentMethods.API.cases.retrieve)) {
                     Method.get
                     Path.v1
-                    Path.payment_methods
+                    Path.paymentMethods
                     Path {
                         Parse(.string.representing(Stripe.PaymentMethods.PaymentMethod.ID.self))
                     }
@@ -67,7 +67,7 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                     Path.v1
                     Path.customers
                     Path { Parse(.string.representing(Stripe.Customers.Customer.ID.self)) }
-                    Path.payment_methods
+                    Path.paymentMethods
                     Path {
                         Parse(.string.representing(Stripe.PaymentMethods.PaymentMethod.ID.self))
                     }
@@ -82,7 +82,7 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                 ) {
                     Method.post
                     Path.v1
-                    Path.payment_methods
+                    Path.paymentMethods
                     Path {
                         Parse(.string.representing(Stripe.PaymentMethods.PaymentMethod.ID.self))
                     }
@@ -98,7 +98,7 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                 Route(.case(Stripe.PaymentMethods.PaymentMethods.API.cases.list)) {
                     Method.get
                     Path.v1
-                    Path.payment_methods
+                    Path.paymentMethods
                     Parse(
                         .convert(
                             apply: { ($0.0.0.0.0, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
@@ -149,7 +149,7 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                     Path.v1
                     Path.customers
                     Path { Parse(.string.representing(Stripe.Customers.Customer.ID.self)) }
-                    Path.payment_methods
+                    Path.paymentMethods
                     Parse(
                         .convert(
                             apply: { ($0.0.0.0.0, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
@@ -196,7 +196,7 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                 ) {
                     Method.post
                     Path.v1
-                    Path.payment_methods
+                    Path.paymentMethods
                     Path {
                         Parse(.string.representing(Stripe.PaymentMethods.PaymentMethod.ID.self))
                     }
@@ -213,7 +213,7 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                 Route(.case(Stripe.PaymentMethods.PaymentMethods.API.cases.detach)) {
                     Method.post
                     Path.v1
-                    Path.payment_methods
+                    Path.paymentMethods
                     Path {
                         Parse(.string.representing(Stripe.PaymentMethods.PaymentMethod.ID.self))
                     }
@@ -225,7 +225,7 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var payment_methods: Path<PathBuilder.Component<String>> {
+    public static var paymentMethods: Path<PathBuilder.Component<String>> {
         Path {
             "payment_methods"
         }

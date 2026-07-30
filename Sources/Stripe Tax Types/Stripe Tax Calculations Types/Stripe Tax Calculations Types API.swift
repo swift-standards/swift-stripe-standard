@@ -18,7 +18,7 @@ extension Stripe.Tax.Calculations {
         case create(request: Create.Request)
         // https://docs.stripe.com/api/tax/calculations/retrieve.md
         case retrieve(id: Stripe.Tax.Calculation.ID)
-        // https://docs.stripe.com/api/tax/calculations/line_items.md
+        // https://docs.stripe.com/api/tax/calculations/lineItems.md
         case listLineItems(id: Stripe.Tax.Calculation.ID, request: List.LineItems.Request)
     }
 }

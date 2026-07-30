@@ -29,7 +29,7 @@ struct PaymentMethodsRouterTests {
         let api = Stripe.PaymentMethods.PaymentMethods.API.create(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/payment_methods")
+        #expect(url.path == "/v1/paymentMethods")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -41,7 +41,7 @@ struct PaymentMethodsRouterTests {
         let api = Stripe.PaymentMethods.PaymentMethods.API.retrieve(id: "pm_123")
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/payment_methods/pm_123")
+        #expect(url.path == "/v1/paymentMethods/pm_123")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -56,7 +56,7 @@ struct PaymentMethodsRouterTests {
         )
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/customers/cus_123/payment_methods/pm_456")
+        #expect(url.path == "/v1/customers/cus_123/paymentMethods/pm_456")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -72,7 +72,7 @@ struct PaymentMethodsRouterTests {
         let api = Stripe.PaymentMethods.PaymentMethods.API.update(id: "pm_123", request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/payment_methods/pm_123")
+        #expect(url.path == "/v1/paymentMethods/pm_123")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -90,7 +90,7 @@ struct PaymentMethodsRouterTests {
         let api = Stripe.PaymentMethods.PaymentMethods.API.list(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/payment_methods")
+        #expect(url.path == "/v1/paymentMethods")
         #expect(url.query == "customer=cus_123&type=card&limit=10")
 
         // Round-trip test
@@ -111,7 +111,7 @@ struct PaymentMethodsRouterTests {
         )
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/customers/cus_123/payment_methods")
+        #expect(url.path == "/v1/customers/cus_123/paymentMethods")
         #expect(url.query == "type=card&limit=10")
 
         // Round-trip test
@@ -128,7 +128,7 @@ struct PaymentMethodsRouterTests {
         let api = Stripe.PaymentMethods.PaymentMethods.API.attach(id: "pm_123", request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/payment_methods/pm_123/attach")
+        #expect(url.path == "/v1/paymentMethods/pm_123/attach")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -140,7 +140,7 @@ struct PaymentMethodsRouterTests {
         let api = Stripe.PaymentMethods.PaymentMethods.API.detach(id: "pm_123")
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/payment_methods/pm_123/detach")
+        #expect(url.path == "/v1/paymentMethods/pm_123/detach")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))

@@ -27,7 +27,7 @@ struct ConnectAccountLinksRouterTests {
         let api = Stripe.Connect.AccountLinks.API.create(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/account_links")
+        #expect(url.path == "/v1/accountLinks")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -47,7 +47,7 @@ struct ConnectAccountLinksRouterTests {
         let api = Stripe.Connect.AccountLinks.API.create(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/account_links")
+        #expect(url.path == "/v1/accountLinks")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))

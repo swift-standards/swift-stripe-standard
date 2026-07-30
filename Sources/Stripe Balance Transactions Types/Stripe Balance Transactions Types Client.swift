@@ -13,12 +13,12 @@ import Stripe_Types_Shared
 extension Stripe.BalanceTransactions {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/balance_transactions/retrieve.md
+        // https://docs.stripe.com/api/balanceTransactions/retrieve.md
         public var retrieve:
             @Sendable (_ id: Stripe.Balance.Transaction.ID) async throws(any Swift.Error) ->
                 Stripe.Balance.Transaction
 
-        // https://docs.stripe.com/api/balance_transactions/list.md
+        // https://docs.stripe.com/api/balanceTransactions/list.md
         public var list:
             @Sendable (_ request: Stripe.BalanceTransactions.List.Request) async throws(any Swift
                 .Error) ->

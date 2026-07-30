@@ -10,7 +10,7 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Billing.Subscription.Schedule {
-    // https://docs.stripe.com/api/subscription_schedules/cancel.md
+    // https://docs.stripe.com/api/subscriptionSchedules/cancel.md
     public enum Cancel {}
 }
 

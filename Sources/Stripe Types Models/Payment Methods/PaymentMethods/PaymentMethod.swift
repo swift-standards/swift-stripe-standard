@@ -9,14 +9,14 @@ import Foundation
 import Stripe_Types_Shared
 import Tagged_Primitives
 
-// https://docs.stripe.com/api/payment_methods/object.md
+// https://docs.stripe.com/api/paymentMethods/object.md
 
 extension Stripe {
     public typealias PaymentMethod = Stripe.PaymentMethods.PaymentMethod
 }
 
 extension Stripe.PaymentMethods {
-    /// The [PaymentMethod Object](https://stripe.com/docs/api/payment_methods/object) .
+    /// The [PaymentMethod Object](https://stripe.com/docs/api/paymentMethods/object) .
     public struct PaymentMethod: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
 

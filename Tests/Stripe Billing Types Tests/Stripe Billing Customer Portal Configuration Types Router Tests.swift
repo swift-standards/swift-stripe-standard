@@ -31,7 +31,7 @@ struct CustomerPortalConfigurationRouterTests {
         let api = Stripe.Billing.Customer.Portal.Configuration.API.create(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing_portal/configurations")
+        #expect(url.path == "/v1/billingPortal/configurations")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -44,7 +44,7 @@ struct CustomerPortalConfigurationRouterTests {
         let api = Stripe.Billing.Customer.Portal.Configuration.API.retrieve(id: configId)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing_portal/configurations/bpc_123")
+        #expect(url.path == "/v1/billingPortal/configurations/bpc_123")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -64,7 +64,7 @@ struct CustomerPortalConfigurationRouterTests {
         )
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing_portal/configurations/bpc_123")
+        #expect(url.path == "/v1/billingPortal/configurations/bpc_123")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -81,7 +81,7 @@ struct CustomerPortalConfigurationRouterTests {
         let api = Stripe.Billing.Customer.Portal.Configuration.API.list(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing_portal/configurations")
+        #expect(url.path == "/v1/billingPortal/configurations")
         #expect(url.query == "active=true&limit=10")
 
         // Round-trip test
@@ -102,7 +102,7 @@ struct CustomerPortalConfigurationRouterTests {
         let api = Stripe.Billing.Customer.Portal.Configuration.API.list(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing_portal/configurations")
+        #expect(url.path == "/v1/billingPortal/configurations")
         #expect(url.query?.contains("active=false") == true)
         #expect(url.query?.contains("is_default=true") == true)
         #expect(url.query?.contains("ending_before=bpc_123") == true)

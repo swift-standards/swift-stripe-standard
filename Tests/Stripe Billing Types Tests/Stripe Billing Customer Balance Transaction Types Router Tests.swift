@@ -28,7 +28,7 @@ struct CustomerBalanceTransactionRouterTests {
         )
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/customers/cus_test123/balance_transactions")
+        #expect(url.path == "/v1/customers/cus_test123/balanceTransactions")
 
         let urlRequest = try router.request(for: api)
         #expect(urlRequest.httpMethod == "POST")
@@ -45,7 +45,7 @@ struct CustomerBalanceTransactionRouterTests {
         )
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/customers/cus_test123/balance_transactions/cbtxn_test456")
+        #expect(url.path == "/v1/customers/cus_test123/balanceTransactions/cbtxn_test456")
 
         let urlRequest = try router.request(for: api)
         #expect(urlRequest.httpMethod == "GET")
@@ -66,7 +66,7 @@ struct CustomerBalanceTransactionRouterTests {
         )
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/customers/cus_test123/balance_transactions/cbtxn_test456")
+        #expect(url.path == "/v1/customers/cus_test123/balanceTransactions/cbtxn_test456")
 
         let urlRequest = try router.request(for: api)
         #expect(urlRequest.httpMethod == "POST")
@@ -83,7 +83,7 @@ struct CustomerBalanceTransactionRouterTests {
         let api = Stripe.Billing.Customer.Balance.API.list(customerId: customerId, request: request)
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/customers/cus_test123/balance_transactions")
+        #expect(url.path == "/v1/customers/cus_test123/balanceTransactions")
 
         let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         let hasLimit = urlComponents.queryItems?.contains { $0.name == "limit" && $0.value == "20" }

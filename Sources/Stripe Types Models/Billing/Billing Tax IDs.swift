@@ -9,7 +9,7 @@ import Foundation
 import Stripe_Types_Shared
 import Tagged_Primitives
 
-// https://docs.stripe.com/api/tax_ids/object.md
+// https://docs.stripe.com/api/taxIds/object.md
 
 extension Stripe.Tax {
     /// The [Stripe.Tax ID Object](https://stripe.com/docs/api/customer_tax_ids/object) .

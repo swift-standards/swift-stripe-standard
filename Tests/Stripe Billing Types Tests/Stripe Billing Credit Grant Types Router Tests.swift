@@ -31,7 +31,7 @@ struct CreditGrantRouterTests {
         let api = Stripe.Billing.Credit.Grant.API.create(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing/credit_grants")
+        #expect(url.path == "/v1/billing/creditGrants")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -44,7 +44,7 @@ struct CreditGrantRouterTests {
         let api = Stripe.Billing.Credit.Grant.API.retrieve(id: id)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing/credit_grants/credgr_123")
+        #expect(url.path == "/v1/billing/creditGrants/credgr_123")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -61,7 +61,7 @@ struct CreditGrantRouterTests {
         let api = Stripe.Billing.Credit.Grant.API.update(id: id, request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing/credit_grants/credgr_123")
+        #expect(url.path == "/v1/billing/creditGrants/credgr_123")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -78,7 +78,7 @@ struct CreditGrantRouterTests {
         let api = Stripe.Billing.Credit.Grant.API.list(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing/credit_grants")
+        #expect(url.path == "/v1/billing/creditGrants")
         #expect(url.query == "customer=cus_123&limit=10")
 
         // Round-trip test
@@ -94,7 +94,7 @@ struct CreditGrantRouterTests {
         let api = Stripe.Billing.Credit.Grant.API.expire(id: id, request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing/credit_grants/credgr_123/expire")
+        #expect(url.path == "/v1/billing/creditGrants/credgr_123/expire")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -109,7 +109,7 @@ struct CreditGrantRouterTests {
         let api = Stripe.Billing.Credit.Grant.API.void(id: id, request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing/credit_grants/credgr_123/void")
+        #expect(url.path == "/v1/billing/creditGrants/credgr_123/void")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))

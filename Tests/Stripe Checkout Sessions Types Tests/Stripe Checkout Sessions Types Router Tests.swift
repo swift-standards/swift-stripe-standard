@@ -100,7 +100,7 @@ struct CheckoutSessionRouterTests {
         )
 
         let url = router.url(for: .lineItems(id: id, request: lineItemsRequest))
-        #expect(url.path == "/v1/checkout/sessions/cs_123/line_items")
+        #expect(url.path == "/v1/checkout/sessions/cs_123/lineItems")
 
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         let queryItems = components?.queryItems ?? []

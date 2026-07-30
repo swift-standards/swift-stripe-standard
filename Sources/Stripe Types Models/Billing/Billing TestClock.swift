@@ -8,7 +8,7 @@
 import Foundation
 import Stripe_Types_Shared
 
-// https://docs.stripe.com/api/test_clocks/object.md
+// https://docs.stripe.com/api/testClocks/object.md
 extension Stripe.Billing.TestClocks {
     public struct TestClock: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>

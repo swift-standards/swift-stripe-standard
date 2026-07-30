@@ -111,7 +111,7 @@ struct BillingQuotesRouterTests {
         let api = Stripe.Billing.Quotes.API.listLineItems(id: "qt_123", request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/quotes/qt_123/line_items")
+        #expect(url.path == "/v1/quotes/qt_123/lineItems")
         #expect(url.query?.contains("limit=10") == true)
     }
 
@@ -126,7 +126,7 @@ struct BillingQuotesRouterTests {
         )
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/quotes/qt_123/computed_upfront_line_items")
+        #expect(url.path == "/v1/quotes/qt_123/computedUpfrontLineItems")
         #expect(url.query?.contains("limit=10") == true)
     }
 

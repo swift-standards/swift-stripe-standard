@@ -96,7 +96,7 @@ extension Stripe.Billing {
         public var customerShipping: ShippingLabel?
         /// The customer’s tax exempt status. Until the invoice is finalized, this field will equal `customer.tax_exempt`. Once the invoice is finalized, this field will no longer be updated.
         public var customerTaxExempt: String?
-        /// The customer’s tax IDs. Until the invoice is finalized, this field will contain the same tax IDs as `customer.tax_ids`. Once the invoice is finalized, this field will no longer be updated.
+        /// The customer’s tax IDs. Until the invoice is finalized, this field will contain the same tax IDs as `customer.taxIds`. Once the invoice is finalized, this field will no longer be updated.
         public var customerTaxIds: [Stripe.Billing.Invoice.CustomerTaxId]?
         /// ID of the default payment method for the invoice. It must belong to the customer associated with the invoice. If not set, defaults to the subscription’s default payment method, if any, or to the default payment method in the customer’s invoice settings.
         @ExpandableOf<Stripe.PaymentMethods.PaymentMethod> public var defaultPaymentMethod

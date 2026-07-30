@@ -499,6 +499,8 @@ extension Stripe.Charges.Charge.PaymentMethod.Details {
         /// If this is a `google_pay` card wallet, this hash contains details about the wallet.
         public var googlePay: Stripe.Charges.Charge.PaymentMethod.Details.GooglePay?
         /// If this is a `masterpass` card wallet, this hash contains details about the wallet.
+        // REASON: Mirrors Stripe's documented `masterpass` field (Mastercard's Masterpass wallet brand).
+        // swiftlint:disable:next inclusive_language
         public var masterpass: Stripe.Charges.Charge.PaymentMethod.Details.Masterpass?
         /// If this is a `samsung_pay` card wallet, this hash contains details about the wallet.
         public var samsungPay: Stripe.Charges.Charge.PaymentMethod.Details.SamsungPay?
@@ -513,6 +515,8 @@ extension Stripe.Charges.Charge.PaymentMethod.Details {
             applePay: Stripe.Charges.Charge.PaymentMethod.Details.ApplePay? = nil,
             dynamicLast4: String? = nil,
             googlePay: Stripe.Charges.Charge.PaymentMethod.Details.GooglePay? = nil,
+            // REASON: Mirrors Stripe's documented `masterpass` field (Mastercard's Masterpass wallet brand).
+            // swiftlint:disable:next inclusive_language
             masterpass: Stripe.Charges.Charge.PaymentMethod.Details.Masterpass? = nil,
             samsungPay: Stripe.Charges.Charge.PaymentMethod.Details.SamsungPay? = nil,
             type: PaymentMethodDetailsCardWalletType? = nil,
@@ -553,6 +557,8 @@ extension Stripe.Charges.Charge.PaymentMethod.Details {
 
 // MARK: - Masterpass
 extension Stripe.Charges.Charge.PaymentMethod.Details {
+    // REASON: Mirrors Stripe's documented `masterpass` card wallet type (Mastercard's Masterpass wallet brand).
+    // swiftlint:disable:next inclusive_language
     public struct Masterpass: Codable, Hashable, Sendable {
         /// Owner’s verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
         public var billingAddress: Address?

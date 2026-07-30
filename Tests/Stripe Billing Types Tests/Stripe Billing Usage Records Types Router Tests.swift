@@ -33,7 +33,7 @@ struct UsageRecordsRouterTests {
         )
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/subscription_items/si_1234567890/usage_records")
+        #expect(url.path == "/v1/subscriptionItems/si_1234567890/usageRecords")
 
         let path = try router.print(api)
         #expect(path.method == .post)
@@ -55,7 +55,7 @@ struct UsageRecordsRouterTests {
         )
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/subscription_items/si_1234567890/usage_records")
+        #expect(url.path == "/v1/subscriptionItems/si_1234567890/usageRecords")
         #expect(url.query == "limit=10")
 
         let path = try router.print(api)
@@ -80,7 +80,7 @@ struct UsageRecordsRouterTests {
         )
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/subscription_items/si_1234567890/usage_records")
+        #expect(url.path == "/v1/subscriptionItems/si_1234567890/usageRecords")
         #expect(url.query?.contains("ending_before=ur_before") == true)
         #expect(url.query?.contains("limit=50") == true)
         #expect(url.query?.contains("starting_after=ur_after") == true)

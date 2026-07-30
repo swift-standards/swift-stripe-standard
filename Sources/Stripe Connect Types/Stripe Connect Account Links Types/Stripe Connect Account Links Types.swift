@@ -7,7 +7,7 @@ extension Stripe.Connect {
 }
 
 extension Stripe.Connect.AccountLinks {
-    // https://docs.stripe.com/api/account_links/create.md
+    // https://docs.stripe.com/api/accountLinks/create.md
     public enum Create {}
 }
 

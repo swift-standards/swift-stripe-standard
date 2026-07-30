@@ -8,10 +8,10 @@
 import Foundation
 import Stripe_Types_Shared
 
-// https://docs.stripe.com/api/credit_notes/line_item.md
+// https://docs.stripe.com/api/creditNotes/line_item.md
 
 extension Stripe.Billing.Credit.Note {
-    /// The [Credit Note Line Item](https://stripe.com/docs/api/credit_notes/line_item)
+    /// The [Credit Note Line Item](https://stripe.com/docs/api/creditNotes/line_item)
     public struct LineItem: Codable, Hashable, Sendable {
         /// Unique identifier for the object.
         public var id: ID

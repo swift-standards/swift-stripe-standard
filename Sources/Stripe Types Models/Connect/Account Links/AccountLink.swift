@@ -8,10 +8,10 @@
 import Foundation
 import Stripe_Types_Shared
 
-// https://docs.stripe.com/api/account_links/object.md
+// https://docs.stripe.com/api/accountLinks/object.md
 
 extension Stripe.Connect.Account {
-    /// The [Account Link Object](https://stripe.com/docs/api/account_links/object) .
+    /// The [Account Link Object](https://stripe.com/docs/api/accountLinks/object) .
     public struct Link: Codable, Hashable, Sendable {
         /// String representing the object’s type. Objects of the same type share the same value.
         public var object: String

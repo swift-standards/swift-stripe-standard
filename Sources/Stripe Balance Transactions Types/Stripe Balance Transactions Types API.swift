@@ -14,9 +14,9 @@ import URLRouting
 extension Stripe.BalanceTransactions {
     @Cases
     public enum API: Equatable, Sendable {
-        // https://docs.stripe.com/api/balance_transactions/retrieve.md
+        // https://docs.stripe.com/api/balanceTransactions/retrieve.md
         case retrieve(id: Stripe.Balance.Transaction.ID)
-        // https://docs.stripe.com/api/balance_transactions/list.md
+        // https://docs.stripe.com/api/balanceTransactions/list.md
         case list(request: Stripe.BalanceTransactions.List.Request)
     }
 }
@@ -27,7 +27,7 @@ extension Stripe.BalanceTransactions.API {
 
         public var body: some URLRouting.Router<Stripe.BalanceTransactions.API> {
             OneOf {
-                // https://docs.stripe.com/api/balance_transactions/retrieve.md
+                // https://docs.stripe.com/api/balanceTransactions/retrieve.md
                 URLRouting.Route(.case(Stripe.BalanceTransactions.API.cases.retrieve)) {
                     Method.get
                     Path.v1
@@ -35,7 +35,7 @@ extension Stripe.BalanceTransactions.API {
                     Path { Parse(.string.representing(Stripe.Balance.Transaction.ID.self)) }
                 }
 
-                // https://docs.stripe.com/api/balance_transactions/list.md
+                // https://docs.stripe.com/api/balanceTransactions/list.md
                 URLRouting.Route(.case(Stripe.BalanceTransactions.API.cases.list)) {
                     Method.get
                     Path.v1

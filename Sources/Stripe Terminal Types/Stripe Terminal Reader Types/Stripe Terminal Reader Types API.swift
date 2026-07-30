@@ -33,7 +33,7 @@ extension Stripe.Terminal.Readers {
         case refundPayment(id: Reader.ID, request: RefundPayment.Request)
         // https://docs.stripe.com/api/terminal/readers/set_reader_display.md
         case setReaderDisplay(id: Reader.ID, request: SetReaderDisplay.Request)
-        // https://docs.stripe.com/api/test_helpers/terminal/readers/present_payment_method.md
+        // https://docs.stripe.com/api/testHelpers/terminal/readers/present_payment_method.md
         case presentPaymentMethod(id: Reader.ID, request: PresentPaymentMethod.Request)
     }
 }

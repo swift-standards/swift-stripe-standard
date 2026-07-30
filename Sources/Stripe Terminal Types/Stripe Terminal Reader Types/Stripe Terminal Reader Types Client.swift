@@ -68,7 +68,7 @@ extension Stripe.Terminal.Readers {
             @Sendable (_ id: Reader.ID, _ request: SetReaderDisplay.Request) async throws(any Swift
                 .Error) -> Reader
 
-        // https://docs.stripe.com/api/test_helpers/terminal/readers/present_payment_method.md
+        // https://docs.stripe.com/api/testHelpers/terminal/readers/present_payment_method.md
         public var presentPaymentMethod:
             @Sendable (_ id: Reader.ID, _ request: PresentPaymentMethod.Request)
                 async throws(any Swift.Error) ->

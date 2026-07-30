@@ -73,7 +73,7 @@ struct TaxCalculationsRouterTests {
         let api = Stripe.Tax.Calculations.API.listLineItems(id: calculationId, request: request)
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/tax/calculations/taxcalc_123/line_items")
+        #expect(url.path == "/v1/tax/calculations/taxcalc_123/lineItems")
         #expect(url.query?.contains("limit=25") == true)
         #expect(url.query?.contains("starting_after=li_456") == true)
 
@@ -95,7 +95,7 @@ struct TaxCalculationsRouterTests {
         let api = Stripe.Tax.Calculations.API.listLineItems(id: calculationId, request: request)
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/tax/calculations/taxcalc_test/line_items")
+        #expect(url.path == "/v1/tax/calculations/taxcalc_test/lineItems")
         #expect(url.query?.contains("ending_before=li_before") == true)
         #expect(url.query?.contains("limit=50") == true)
         #expect(url.query?.contains("starting_after=li_after") == true)

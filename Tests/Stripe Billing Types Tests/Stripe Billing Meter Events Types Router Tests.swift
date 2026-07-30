@@ -28,7 +28,7 @@ struct BillingMeterEventsRouterTests {
         let api = Stripe.Billing.MeterEvents.API.create(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing/meter_events")
+        #expect(url.path == "/v1/billing/meterEvents")
     }
 
     @Test("Round-trip parsing for create")

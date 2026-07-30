@@ -125,7 +125,7 @@ struct ListResponseDecodingTests {
                     ],
                     "has_more": false,
                     "total_count": 1,
-                    "url": "/v1/subscription_items?subscription=sub_1RsPLWIWyk7pOzYYUtBL36iN"
+                    "url": "/v1/subscriptionItems?subscription=sub_1RsPLWIWyk7pOzYYUtBL36iN"
                   },
                   "latest_invoice": "in_1RsPLWIWyk7pOzYY4pf2T3Ve",
                   "livemode": false,

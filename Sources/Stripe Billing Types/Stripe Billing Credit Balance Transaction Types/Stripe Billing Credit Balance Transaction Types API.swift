@@ -23,7 +23,7 @@ extension Stripe.Billing.Credit.Balance.API {
                     Method.get
                     Path.v1
                     Path.billing
-                    Path.credit_balance_transactions
+                    Path.creditBalanceTransactions
                     Path {
                         Parse(
                             .string.representing(Stripe.Billing.Credit.Balance.Transaction.ID.self)
@@ -35,7 +35,7 @@ extension Stripe.Billing.Credit.Balance.API {
                     Method.get
                     Path.v1
                     Path.billing
-                    Path.credit_balance_transactions
+                    Path.creditBalanceTransactions
                     Parse(
                         .convert(
                             apply: { ($0.0.0.0.0, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
@@ -78,7 +78,7 @@ extension Stripe.Billing.Credit.Balance.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    package static var credit_balance_transactions: Path<PathBuilder.Component<String>> {
+    package static var creditBalanceTransactions: Path<PathBuilder.Component<String>> {
         Path { "credit_balance_transactions" }
     }
 }

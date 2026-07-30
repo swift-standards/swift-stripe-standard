@@ -153,7 +153,7 @@ extension Stripe.Billing.Invoice.LineItem {
     }
 
     public struct ProrationDetails: Codable, Hashable, Sendable {
-        /// For a credit proration `line_item`, the original debit `line_items` to which the credit proration applies.
+        /// For a credit proration `line_item`, the original debit `lineItems` to which the credit proration applies.
         public var creditedItems: CreditedItem?
 
         public init(

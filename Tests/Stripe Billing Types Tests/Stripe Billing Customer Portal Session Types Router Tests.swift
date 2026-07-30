@@ -22,7 +22,7 @@ struct BillingCustomerPortalSessionRouterTests {
         let api = Stripe.Billing.Customer.Portal.Session.API.create(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing_portal/sessions")
+        #expect(url.path == "/v1/billingPortal/sessions")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))
@@ -49,7 +49,7 @@ struct BillingCustomerPortalSessionRouterTests {
         let api = Stripe.Billing.Customer.Portal.Session.API.create(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing_portal/sessions")
+        #expect(url.path == "/v1/billingPortal/sessions")
 
         // Round-trip test
         let match = try router.match(request: try router.request(for: api))

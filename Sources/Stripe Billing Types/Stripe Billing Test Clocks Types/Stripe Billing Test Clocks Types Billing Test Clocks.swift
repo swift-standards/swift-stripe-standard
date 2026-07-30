@@ -41,7 +41,7 @@ import Stripe_Types_Shared
 // }
 
 extension Stripe.Billing.TestClocks {
-    // https://docs.stripe.com/api/test_clocks/create.md
+    // https://docs.stripe.com/api/testClocks/create.md
     public enum Create {}
 }
 
@@ -68,7 +68,7 @@ extension Stripe.Billing.TestClocks.Create {
 }
 
 extension Stripe.Billing.TestClocks {
-    // https://docs.stripe.com/api/test_clocks/list.md
+    // https://docs.stripe.com/api/testClocks/list.md
     public enum List {}
 }
 
@@ -114,7 +114,7 @@ extension Stripe.Billing.TestClocks.List {
 }
 
 extension Stripe.Billing.TestClocks {
-    // https://docs.stripe.com/api/test_clocks/advance.md
+    // https://docs.stripe.com/api/testClocks/advance.md
     public enum Advance {}
 }
 

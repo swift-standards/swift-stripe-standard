@@ -344,6 +344,8 @@ public enum StripeDeclineCode: String, Codable, Sendable {
     /// The payment has been declined because the card is reported lost.
     case lostCard = "lost_card"
     /// The payment has been declined because it matches a value on the Stripe user's blocklist.
+    // REASON: Mirrors Stripe's documented `merchant_blacklist` field; already lowerCamelCase.
+    // swiftlint:disable:next inclusive_language
     case merchantBlacklist = "merchant_blacklist"
     /// The card, or account the card is connected to, is invalid.
     case newAccountInformationAvailable = "new_account_information_available"

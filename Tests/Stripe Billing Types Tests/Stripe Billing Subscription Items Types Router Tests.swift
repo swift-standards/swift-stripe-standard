@@ -31,7 +31,7 @@ struct BillingSubscriptionItemsRouterTests {
         let api = Stripe.Billing.SubscriptionItems.API.create(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/subscription_items")
+        #expect(url.path == "/v1/subscriptionItems")
     }
 
     @Test("Update subscription item URL generation")
@@ -43,7 +43,7 @@ struct BillingSubscriptionItemsRouterTests {
         let api = Stripe.Billing.SubscriptionItems.API.update(id: "si_123", request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/subscription_items/si_123")
+        #expect(url.path == "/v1/subscriptionItems/si_123")
     }
 
     @Test("Retrieve subscription item URL generation")
@@ -51,7 +51,7 @@ struct BillingSubscriptionItemsRouterTests {
         let api = Stripe.Billing.SubscriptionItems.API.retrieve(id: "si_123")
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/subscription_items/si_123")
+        #expect(url.path == "/v1/subscriptionItems/si_123")
     }
 
     @Test("List subscription items URL generation")
@@ -63,7 +63,7 @@ struct BillingSubscriptionItemsRouterTests {
         let api = Stripe.Billing.SubscriptionItems.API.list(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/subscription_items")
+        #expect(url.path == "/v1/subscriptionItems")
         #expect(url.query?.contains("subscription=sub_123") == true)
         #expect(url.query?.contains("limit=10") == true)
     }
@@ -73,7 +73,7 @@ struct BillingSubscriptionItemsRouterTests {
         let api = Stripe.Billing.SubscriptionItems.API.delete(id: "si_123")
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/subscription_items/si_123")
+        #expect(url.path == "/v1/subscriptionItems/si_123")
     }
 
     @Test("Round-trip parsing for retrieve")

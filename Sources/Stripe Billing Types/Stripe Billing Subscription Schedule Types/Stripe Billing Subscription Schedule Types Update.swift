@@ -10,7 +10,7 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Billing.Subscription.Schedule {
-    // https://docs.stripe.com/api/subscription_schedules/update.md
+    // https://docs.stripe.com/api/subscriptionSchedules/update.md
     public enum Update {}
 }
 

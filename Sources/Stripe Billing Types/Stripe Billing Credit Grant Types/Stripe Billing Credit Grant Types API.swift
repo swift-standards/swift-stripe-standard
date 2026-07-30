@@ -31,7 +31,7 @@ extension Stripe.Billing.Credit.Grant.API {
                     Method.post
                     Path.v1
                     Path.billing
-                    Path.credit_grants
+                    Path.creditGrants
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.Credit.Grant.Create.Request.self,
@@ -45,7 +45,7 @@ extension Stripe.Billing.Credit.Grant.API {
                     Method.get
                     Path.v1
                     Path.billing
-                    Path.credit_grants
+                    Path.creditGrants
                     Path { Parse(.string.representing(Stripe.Billing.Credit.Grant.ID.self)) }
                 }
 
@@ -59,7 +59,7 @@ extension Stripe.Billing.Credit.Grant.API {
                     Method.post
                     Path.v1
                     Path.billing
-                    Path.credit_grants
+                    Path.creditGrants
                     Path { Parse(.string.representing(Stripe.Billing.Credit.Grant.ID.self)) }
                     URLRouting.Body(
                         .form(
@@ -74,7 +74,7 @@ extension Stripe.Billing.Credit.Grant.API {
                     Method.get
                     Path.v1
                     Path.billing
-                    Path.credit_grants
+                    Path.creditGrants
                     Parse(
                         .convert(
                             apply: { ($0.0.0.0, $0.0.0.1, $0.0.1, $0.1) },
@@ -116,7 +116,7 @@ extension Stripe.Billing.Credit.Grant.API {
                     Method.post
                     Path.v1
                     Path.billing
-                    Path.credit_grants
+                    Path.creditGrants
                     Path { Parse(.string.representing(Stripe.Billing.Credit.Grant.ID.self)) }
                     Path.expire
                     URLRouting.Body(
@@ -138,7 +138,7 @@ extension Stripe.Billing.Credit.Grant.API {
                     Method.post
                     Path.v1
                     Path.billing
-                    Path.credit_grants
+                    Path.creditGrants
                     Path { Parse(.string.representing(Stripe.Billing.Credit.Grant.ID.self)) }
                     Path.void
                     URLRouting.Body(
@@ -155,7 +155,7 @@ extension Stripe.Billing.Credit.Grant.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var credit_grants: Path<PathBuilder.Component<String>> {
+    public static var creditGrants: Path<PathBuilder.Component<String>> {
         Path {
             "credit_grants"
         }

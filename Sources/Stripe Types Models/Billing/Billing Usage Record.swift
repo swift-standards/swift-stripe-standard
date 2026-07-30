@@ -8,7 +8,7 @@
 import Foundation
 import Stripe_Types_Shared
 
-// https://docs.stripe.com/api/subscription_items/usage_record.md
+// https://docs.stripe.com/api/subscriptionItems/usage_record.md
 
 public struct UsageRecord: Codable, Hashable, Sendable, Identifiable {
     public typealias ID = Tagged<Self, String>

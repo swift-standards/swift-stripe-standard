@@ -436,20 +436,22 @@ public struct PaymentMethodCardThreeDSecureUsage: Codable, Hashable, Sendable {
 
 public struct PaymentMethodCardWallet: Codable, Hashable, Sendable {
     /// If this is a `amex_express_checkout` card wallet, this hash contains details about the wallet.
-    /// Stripe does not [provide any details](https://stripe.com/docs/api/payment_methods/object#payment_method_object-card-wallet-amex_express_checkout) about possible values so this will remain nil/unimplemented.
+    /// Stripe does not [provide any details](https://stripe.com/docs/api/paymentMethods/object#payment_method_object-card-wallet-amex_express_checkout) about possible values so this will remain nil/unimplemented.
     public var amexExpressCheckout: PaymentMethodCardWalletAmexExpressCheckout?
     /// If this is a `apple_pay` card wallet, this hash contains details about the wallet.
-    /// Stripe does not [provide any details](https://stripe.com/docs/api/payment_methods/object#payment_method_object-card-wallet-apple_pay) about possible values so this will remain nil/unimplemented.
+    /// Stripe does not [provide any details](https://stripe.com/docs/api/paymentMethods/object#payment_method_object-card-wallet-apple_pay) about possible values so this will remain nil/unimplemented.
     public var applePay: PaymentMethodCardWalletApplePay?
     /// (For tokenized numbers only.) The last four digits of the device account number.
     public var dynamicLast4: String?
     /// If this is a `google_pay` card wallet, this hash contains details about the wallet.
-    /// Stripe does not [provide any details](https://stripe.com/docs/api/payment_methods/object#payment_method_object-card-wallet-google_pay) about possible values so this will remain nil/unimplemented.
+    /// Stripe does not [provide any details](https://stripe.com/docs/api/paymentMethods/object#payment_method_object-card-wallet-google_pay) about possible values so this will remain nil/unimplemented.
     public var googlePay: PaymentMethodCardWalletGooglePay?
     /// If this is a `masterpass` card wallet, this hash contains details about the wallet.
+    // REASON: Mirrors Stripe's documented `masterpass` field (Mastercard's Masterpass wallet brand).
+    // swiftlint:disable:next inclusive_language
     public var masterpass: PaymentMethodCardWalletMasterPass?
     /// If this is a `samsung_pay` card wallet, this hash contains details about the wallet.
-    /// Stripe does not [provide any details](https://stripe.com/docs/api/payment_methods/object#payment_method_object-card-wallet-samsung_pay) about possible values so this will remain nil/unimplemented.
+    /// Stripe does not [provide any details](https://stripe.com/docs/api/paymentMethods/object#payment_method_object-card-wallet-samsung_pay) about possible values so this will remain nil/unimplemented.
     public var samsungPay: PaymentMethodCardWalletSamsungPay?
     /// The type of the card wallet, one of `amex_express_checkout`, `apple_pay`, `google_pay`, `masterpass`, `samsung_pay`, or `visa_checkout`. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.
     public var type: PaymentMethodDetailsCardWalletType?
@@ -461,6 +463,8 @@ public struct PaymentMethodCardWallet: Codable, Hashable, Sendable {
         applePay: PaymentMethodCardWalletApplePay? = nil,
         dynamicLast4: String? = nil,
         googlePay: PaymentMethodCardWalletGooglePay? = nil,
+        // REASON: Mirrors Stripe's documented `masterpass` field (Mastercard's Masterpass wallet brand).
+        // swiftlint:disable:next inclusive_language
         masterpass: PaymentMethodCardWalletMasterPass? = nil,
         samsungPay: PaymentMethodCardWalletSamsungPay? = nil,
         type: PaymentMethodDetailsCardWalletType? = nil,
@@ -495,6 +499,8 @@ public struct PaymentMethodCardWalletGooglePay: Codable, Hashable, Sendable {
     public init() {}
 }
 
+// REASON: Mirrors Stripe's documented `masterpass` card wallet type (Mastercard's Masterpass wallet brand).
+// swiftlint:disable:next inclusive_language
 public struct PaymentMethodCardWalletMasterPass: Codable, Hashable, Sendable {
     /// Owner’s verified billing address. Values are verified or provided by the wallet directly (if supported) at the time of authorization or settlement. They cannot be set or mutated.
     public var billingAddress: Address?
@@ -526,6 +532,8 @@ public enum PaymentMethodDetailsCardWalletType: String, Codable, Sendable {
     case amexExpressCheckout = "amex_express_checkout"
     case applePay = "apple_pay"
     case googlePay = "google_pay"
+    // REASON: Mirrors Stripe's documented `masterpass` wire value (Mastercard's Masterpass wallet brand).
+    // swiftlint:disable:next inclusive_language
     case masterpass
     case samsungPay = "samsung_pay"
     case visaCheckout = "visa_checkout"
@@ -1044,29 +1052,29 @@ public struct PaymentMethodUSBankAccountStatusDetailsBlocked: Codable, Hashable,
 
 public enum PaymentMethodUSBankAccountStatusDetailsBlockedNetwork: String, Codable, Sendable {
     /// Account Closed
-    case R02
+    case r02 = "R02"
     /// No Account, Unable to Locate Account
-    case R03
+    case r03 = "R03"
     /// Invalid Account Number Structure
-    case R04
+    case r04 = "R04"
     /// Unauthorized Debit to Consumer Account Using Corporate SEC Code
-    case R05
+    case r05 = "R05"
     /// Authorization Revoked By Consumer
-    case R07
+    case r07 = "R07"
     /// Payment Stopped
-    case R08
+    case r08 = "R08"
     /// Customer Advises Originator is Not Known to Receiver and/or Originator is Not Authorized by Receiver to Debit Receiver’s Account
-    case R10
+    case r10 = "R10"
     /// Customer Advises Entry Not in Accordance with the Terms of Authorization
-    case R11
+    case r11 = "R11"
     /// Account Frozen, Entry Returned Per OFAC Instructions
-    case R16
+    case r16 = "R16"
     /// Non-Transaction Account
-    case R20
+    case r20 = "R20"
     /// Corporate Customer Advises Not Authorized
-    case R29
+    case r29 = "R29"
     /// Permissible Return Entry (CCD and CTX only)
-    case R31
+    case r31 = "R31"
 }
 
 public enum PaymentMethodUSBankAccountStatusDetailsBlockedReason: String, Codable, Sendable {

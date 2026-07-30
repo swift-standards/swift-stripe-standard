@@ -13,15 +13,15 @@ import URLRouting
 extension Stripe.Billing.TestClocks {
     @Cases
     public enum API: Equatable, Sendable {
-        // https://docs.stripe.com/api/test_clocks/create.md
+        // https://docs.stripe.com/api/testClocks/create.md
         case create(request: Create.Request)
-        // https://docs.stripe.com/api/test_clocks/retrieve.md
+        // https://docs.stripe.com/api/testClocks/retrieve.md
         case retrieve(id: Stripe.Billing.TestClocks.TestClock.ID)
-        // https://docs.stripe.com/api/test_clocks/list.md
+        // https://docs.stripe.com/api/testClocks/list.md
         case list(request: List.Request)
-        // https://docs.stripe.com/api/test_clocks/delete.md
+        // https://docs.stripe.com/api/testClocks/delete.md
         case delete(id: Stripe.Billing.TestClocks.TestClock.ID)
-        // https://docs.stripe.com/api/test_clocks/advance.md
+        // https://docs.stripe.com/api/testClocks/advance.md
         case advance(id: Stripe.Billing.TestClocks.TestClock.ID, request: Advance.Request)
     }
 }
@@ -35,8 +35,8 @@ extension Stripe.Billing.TestClocks.API {
                 Route(.case(Stripe.Billing.TestClocks.API.cases.create)) {
                     Method.post
                     Path.v1
-                    Path.test_helpers
-                    Path.test_clocks
+                    Path.testHelpers
+                    Path.testClocks
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.TestClocks.Create.Request.self,
@@ -49,8 +49,8 @@ extension Stripe.Billing.TestClocks.API {
                 Route(.case(Stripe.Billing.TestClocks.API.cases.retrieve)) {
                     Method.get
                     Path.v1
-                    Path.test_helpers
-                    Path.test_clocks
+                    Path.testHelpers
+                    Path.testClocks
                     Path {
                         Parse(.string.representing(Stripe.Billing.TestClocks.TestClock.ID.self))
                     }
@@ -59,8 +59,8 @@ extension Stripe.Billing.TestClocks.API {
                 Route(.case(Stripe.Billing.TestClocks.API.cases.list)) {
                     Method.get
                     Path.v1
-                    Path.test_helpers
-                    Path.test_clocks
+                    Path.testHelpers
+                    Path.testClocks
                     Parse(
                         .convert(
                             apply: { ($0.0.0, $0.0.1, $0.1) },
@@ -90,8 +90,8 @@ extension Stripe.Billing.TestClocks.API {
                 Route(.case(Stripe.Billing.TestClocks.API.cases.delete)) {
                     Method.delete
                     Path.v1
-                    Path.test_helpers
-                    Path.test_clocks
+                    Path.testHelpers
+                    Path.testClocks
                     Path {
                         Parse(.string.representing(Stripe.Billing.TestClocks.TestClock.ID.self))
                     }
@@ -106,8 +106,8 @@ extension Stripe.Billing.TestClocks.API {
                 ) {
                     Method.post
                     Path.v1
-                    Path.test_helpers
-                    Path.test_clocks
+                    Path.testHelpers
+                    Path.testClocks
                     Path {
                         Parse(.string.representing(Stripe.Billing.TestClocks.TestClock.ID.self))
                     }
@@ -126,13 +126,13 @@ extension Stripe.Billing.TestClocks.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var test_helpers: Path<PathBuilder.Component<String>> {
+    public static var testHelpers: Path<PathBuilder.Component<String>> {
         Path {
             "test_helpers"
         }
     }
 
-    public static var test_clocks: Path<PathBuilder.Component<String>> {
+    public static var testClocks: Path<PathBuilder.Component<String>> {
         Path {
             "test_clocks"
         }

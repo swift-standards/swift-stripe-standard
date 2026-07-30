@@ -13,29 +13,29 @@ import Stripe_Types_Shared
 extension Stripe.Billing.TestClocks {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/test_clocks/create.md
+        // https://docs.stripe.com/api/testClocks/create.md
         public var create:
             @Sendable (_ request: Stripe.Billing.TestClocks.Create.Request) async throws(any Swift
                 .Error) ->
                 TestClock
 
-        // https://docs.stripe.com/api/test_clocks/retrieve.md
+        // https://docs.stripe.com/api/testClocks/retrieve.md
         public var retrieve:
             @Sendable (_ id: Stripe.Billing.TestClocks.TestClock.ID) async throws(any Swift.Error)
                 -> TestClock
 
-        // https://docs.stripe.com/api/test_clocks/list.md
+        // https://docs.stripe.com/api/testClocks/list.md
         public var list:
             @Sendable (_ request: Stripe.Billing.TestClocks.List.Request) async throws(any Swift
                 .Error) ->
                 List.Response
 
-        // https://docs.stripe.com/api/test_clocks/delete.md
+        // https://docs.stripe.com/api/testClocks/delete.md
         public var delete:
             @Sendable (_ id: Stripe.Billing.TestClocks.TestClock.ID) async throws(any Swift.Error)
                 -> TestClock
 
-        // https://docs.stripe.com/api/test_clocks/advance.md
+        // https://docs.stripe.com/api/testClocks/advance.md
         public var advance:
             @Sendable (
                 _ id: Stripe.Billing.TestClocks.TestClock.ID,

@@ -31,7 +31,7 @@ struct BillingCreditNotesRouterTests {
         let api = Stripe.Billing.CreditNotes.API.create(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/credit_notes")
+        #expect(url.path == "/v1/creditNotes")
     }
 
     @Test("Update credit note URL generation")
@@ -42,7 +42,7 @@ struct BillingCreditNotesRouterTests {
         let api = Stripe.Billing.CreditNotes.API.update(id: "cn_123", request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/credit_notes/cn_123")
+        #expect(url.path == "/v1/creditNotes/cn_123")
     }
 
     @Test("Retrieve credit note URL generation")
@@ -50,7 +50,7 @@ struct BillingCreditNotesRouterTests {
         let api = Stripe.Billing.CreditNotes.API.retrieve(id: "cn_123")
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/credit_notes/cn_123")
+        #expect(url.path == "/v1/creditNotes/cn_123")
     }
 
     @Test("List credit notes URL generation")
@@ -62,7 +62,7 @@ struct BillingCreditNotesRouterTests {
         let api = Stripe.Billing.CreditNotes.API.list(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/credit_notes")
+        #expect(url.path == "/v1/creditNotes")
         #expect(url.query?.contains("customer=cus_123") == true)
         #expect(url.query?.contains("limit=10") == true)
     }
@@ -76,7 +76,7 @@ struct BillingCreditNotesRouterTests {
         let api = Stripe.Billing.CreditNotes.API.preview(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/credit_notes/preview")
+        #expect(url.path == "/v1/creditNotes/preview")
         #expect(url.query?.contains("invoice=in_123") == true)
         #expect(url.query?.contains("amount=500") == true)
     }
@@ -87,7 +87,7 @@ struct BillingCreditNotesRouterTests {
         let api = Stripe.Billing.CreditNotes.API.void(id: "cn_123", request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/credit_notes/cn_123/void")
+        #expect(url.path == "/v1/creditNotes/cn_123/void")
     }
 
     @Test("List credit note lines URL generation")
@@ -96,7 +96,7 @@ struct BillingCreditNotesRouterTests {
         let api = Stripe.Billing.CreditNotes.API.lines(id: "cn_123", request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/credit_notes/cn_123/lines")
+        #expect(url.path == "/v1/creditNotes/cn_123/lines")
         #expect(url.query?.contains("limit=5") == true)
     }
 
@@ -109,7 +109,7 @@ struct BillingCreditNotesRouterTests {
         let api = Stripe.Billing.CreditNotes.API.previewLines(request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/credit_notes/preview/lines")
+        #expect(url.path == "/v1/creditNotes/preview/lines")
         #expect(url.query?.contains("invoice=in_123") == true)
         #expect(url.query?.contains("limit=10") == true)
     }

@@ -36,7 +36,7 @@ extension Stripe.Billing.MeterEventSummary.API {
                     Path.billing
                     Path.meters
                     Path { Parse(.string) }
-                    Path.event_summaries
+                    Path.eventSummaries
                     Parse(
                         .convert(
                             apply: {
@@ -94,7 +94,7 @@ extension Stripe.Billing.MeterEventSummary.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var event_summaries: Path<PathBuilder.Component<String>> {
+    public static var eventSummaries: Path<PathBuilder.Component<String>> {
         Path {
             "event_summaries"
         }

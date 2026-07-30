@@ -21,7 +21,7 @@ extension Stripe.Billing.CreditBalanceSummary.API {
                     Method.get
                     Path.v1
                     Path.billing
-                    Path.credit_balance_summary
+                    Path.creditBalanceSummary
                     // Note: The filter parameter has complex nested structure that requires special handling
                     // filter[type] is required and determines which other filter fields are present
                     // This simplified implementation focuses on the customer parameter
@@ -58,7 +58,7 @@ extension Stripe.Billing.CreditBalanceSummary.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    package static var credit_balance_summary: Path<PathBuilder.Component<String>> {
+    package static var creditBalanceSummary: Path<PathBuilder.Component<String>> {
         Path { "credit_balance_summary" }
     }
 }

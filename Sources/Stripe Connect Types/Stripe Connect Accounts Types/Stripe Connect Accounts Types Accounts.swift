@@ -286,7 +286,7 @@ extension Stripe.Connect.Accounts.Create {
             public var bancontactPayments: CapabilityParam?
             public var bankTransferPayments: CapabilityParam?
             public var blikPayments: CapabilityParam?
-            public var boleto_payments: CapabilityParam?
+            public var boletoPayments: CapabilityParam?
             public var cardIssuing: CapabilityParam?
             public var cardPayments: CapabilityParam?
             public var cartesBancairesPayments: CapabilityParam?
@@ -304,7 +304,7 @@ extension Stripe.Connect.Accounts.Create {
             public var konbiniPayments: CapabilityParam?
             public var linkPayments: CapabilityParam?
             public var mobilepayPayments: CapabilityParam?
-            public var multibanco_payments: CapabilityParam?
+            public var multibancoPayments: CapabilityParam?
             public var mxBankTransferPayments: CapabilityParam?
             public var oxxoPayments: CapabilityParam?
             public var p24Payments: CapabilityParam?
@@ -333,7 +333,7 @@ extension Stripe.Connect.Accounts.Create {
                 case bancontactPayments = "bancontact_payments"
                 case bankTransferPayments = "bank_transfer_payments"
                 case blikPayments = "blik_payments"
-                case boleto_payments
+                case boletoPayments = "boleto_payments"
                 case cardIssuing = "card_issuing"
                 case cardPayments = "card_payments"
                 case cartesBancairesPayments = "cartes_bancaires_payments"
@@ -351,7 +351,7 @@ extension Stripe.Connect.Accounts.Create {
                 case konbiniPayments = "konbini_payments"
                 case linkPayments = "link_payments"
                 case mobilepayPayments = "mobilepay_payments"
-                case multibanco_payments
+                case multibancoPayments = "multibanco_payments"
                 case mxBankTransferPayments = "mx_bank_transfer_payments"
                 case oxxoPayments = "oxxo_payments"
                 case p24Payments = "p24_payments"

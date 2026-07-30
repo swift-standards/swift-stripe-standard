@@ -10,7 +10,7 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Billing.CreditNotes {
-    // https://docs.stripe.com/api/credit_notes/create.md
+    // https://docs.stripe.com/api/creditNotes/create.md
     public enum Create {}
 }
 
@@ -132,7 +132,7 @@ extension Stripe.Billing.CreditNotes.Create {
 }
 
 extension Stripe.Billing.CreditNotes {
-    // https://docs.stripe.com/api/credit_notes/update.md
+    // https://docs.stripe.com/api/creditNotes/update.md
     public enum Update {}
 }
 
@@ -159,7 +159,7 @@ extension Stripe.Billing.CreditNotes.Update {
 }
 
 extension Stripe.Billing.CreditNotes {
-    // https://docs.stripe.com/api/credit_notes/list.md
+    // https://docs.stripe.com/api/creditNotes/list.md
     public enum List {}
 }
 
@@ -215,7 +215,7 @@ extension Stripe.Billing.CreditNotes.List {
 }
 
 extension Stripe.Billing.CreditNotes {
-    // https://docs.stripe.com/api/credit_notes/preview.md
+    // https://docs.stripe.com/api/creditNotes/preview.md
     public enum Preview {}
 }
 
@@ -257,7 +257,7 @@ extension Stripe.Billing.CreditNotes.Preview {
 }
 
 extension Stripe.Billing.CreditNotes {
-    // https://docs.stripe.com/api/credit_notes/void.md
+    // https://docs.stripe.com/api/creditNotes/void.md
     public enum Void {}
 }
 
@@ -268,7 +268,7 @@ extension Stripe.Billing.CreditNotes.Void {
 }
 
 extension Stripe.Billing.CreditNotes {
-    // https://docs.stripe.com/api/credit_notes/lines.md
+    // https://docs.stripe.com/api/creditNotes/lines.md
     public enum Lines {}
 }
 
@@ -314,7 +314,7 @@ extension Stripe.Billing.CreditNotes.Lines {
 }
 
 extension Stripe.Billing.CreditNotes {
-    // https://docs.stripe.com/api/credit_notes/preview_lines.md
+    // https://docs.stripe.com/api/creditNotes/preview_lines.md
     public enum PreviewLines {}
 }
 

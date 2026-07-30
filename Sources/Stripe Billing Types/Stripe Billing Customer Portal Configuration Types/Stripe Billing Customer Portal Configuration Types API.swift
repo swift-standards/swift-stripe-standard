@@ -27,7 +27,7 @@ extension Stripe.Billing.Customer.Portal.Configuration.API {
                 Route(.case(Stripe.Billing.Customer.Portal.Configuration.API.cases.create)) {
                     Method.post
                     Path.v1
-                    Path.billing_portal
+                    Path.billingPortal
                     Path.configurations
                     URLRouting.Body(
                         .form(
@@ -41,7 +41,7 @@ extension Stripe.Billing.Customer.Portal.Configuration.API {
                 Route(.case(Stripe.Billing.Customer.Portal.Configuration.API.cases.retrieve)) {
                     Method.get
                     Path.v1
-                    Path.billing_portal
+                    Path.billingPortal
                     Path.configurations
                     Path {
                         Parse(
@@ -61,7 +61,7 @@ extension Stripe.Billing.Customer.Portal.Configuration.API {
                 ) {
                     Method.post
                     Path.v1
-                    Path.billing_portal
+                    Path.billingPortal
                     Path.configurations
                     Path {
                         Parse(
@@ -82,7 +82,7 @@ extension Stripe.Billing.Customer.Portal.Configuration.API {
                 Route(.case(Stripe.Billing.Customer.Portal.Configuration.API.cases.list)) {
                     Method.get
                     Path.v1
-                    Path.billing_portal
+                    Path.billingPortal
                     Path.configurations
                     Parse(
                         .convert(

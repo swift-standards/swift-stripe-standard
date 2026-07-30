@@ -7,7 +7,7 @@ import URLRouting
 extension Stripe.Billing.UsageRecordSummary {
     @Cases
     public enum API: Equatable, Sendable {
-        // https://docs.stripe.com/api/usage_records/subscription_item_summary_list
+        // https://docs.stripe.com/api/usageRecords/subscription_item_summary_list
         case list(
             subscriptionItemId: Stripe.Billing.SubscriptionItems.SubscriptionItem.ID,
             request: List.Request
@@ -30,7 +30,7 @@ extension Stripe.Billing.UsageRecordSummary.API {
                 ) {
                     Method.get
                     Path.v1
-                    Path.subscription_items
+                    Path.subscriptionItems
                     Path {
                         Parse(
                             .string.representing(
@@ -38,7 +38,7 @@ extension Stripe.Billing.UsageRecordSummary.API {
                             )
                         )
                     }
-                    Path.usage_record_summaries
+                    Path.usageRecordSummaries
                     Parse(
                         .convert(
                             apply: { ($0.0.0, $0.0.1, $0.1) },
@@ -70,7 +70,7 @@ extension Stripe.Billing.UsageRecordSummary.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    package static var usage_record_summaries: Path<PathBuilder.Component<String>> {
+    package static var usageRecordSummaries: Path<PathBuilder.Component<String>> {
         Path { "usage_record_summaries" }
     }
 }

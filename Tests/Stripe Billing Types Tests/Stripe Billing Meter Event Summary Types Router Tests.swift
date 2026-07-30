@@ -32,7 +32,7 @@ struct BillingMeterEventSummaryRouterTests {
         let api = Stripe.Billing.MeterEventSummary.API.list(meterId: "mtr_123", request: request)
         let url = router.url(for: api)
 
-        #expect(url.path == "/v1/billing/meters/mtr_123/event_summaries")
+        #expect(url.path == "/v1/billing/meters/mtr_123/eventSummaries")
         #expect(url.query?.contains("customer=cus_123") == true)
         #expect(url.query?.contains("start_time=1609459200") == true)
         #expect(url.query?.contains("end_time=1609545600") == true)

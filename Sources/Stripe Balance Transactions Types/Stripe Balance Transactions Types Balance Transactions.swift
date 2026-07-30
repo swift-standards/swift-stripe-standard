@@ -10,11 +10,11 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.BalanceTransactions {
-    // https://docs.stripe.com/api/balance_transactions/list.md
+    // https://docs.stripe.com/api/balanceTransactions/list.md
     public enum List {}
 }
 
-// https://docs.stripe.com/api/balance_transactions/list.md
+// https://docs.stripe.com/api/balanceTransactions/list.md
 extension Stripe.BalanceTransactions.List {
     public struct Request: Codable, Equatable, Sendable {
         /// For automatic Stripe payouts only, only returns transactions that were paid out on the specified payout ID.

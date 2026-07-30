@@ -20,7 +20,7 @@ extension Stripe.Billing.Customer.Portal.Session.API {
                 URLRouting.Route(.case(Stripe.Billing.Customer.Portal.Session.API.cases.create)) {
                     Method.post
                     Path.v1
-                    Path.billing_portal
+                    Path.billingPortal
                     Path.sessions
                     URLRouting.Body(
                         .form(
@@ -37,7 +37,7 @@ extension Stripe.Billing.Customer.Portal.Session.API {
 
 // MARK: - Path Extensions
 extension Path<PathBuilder.Component<String>> {
-    public static var billing_portal: Path<PathBuilder.Component<String>> {
+    public static var billingPortal: Path<PathBuilder.Component<String>> {
         Path {
             "billing_portal"
         }

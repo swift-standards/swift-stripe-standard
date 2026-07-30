@@ -37,10 +37,10 @@ extension Stripe.Billing.Quotes {
         // https://docs.stripe.com/api/quotes/pdf.md
         case pdf(id: Stripe.Billing.Quotes.Quote.ID)
 
-        // https://docs.stripe.com/api/quotes/line_items.md
+        // https://docs.stripe.com/api/quotes/lineItems.md
         case listLineItems(id: Stripe.Billing.Quotes.Quote.ID, request: List.LineItems.Request)
 
-        // https://docs.stripe.com/api/quotes/computed_upfront_line_items.md
+        // https://docs.stripe.com/api/quotes/computedUpfrontLineItems.md
         case listComputedUpfrontLineItems(
             id: Stripe.Billing.Quotes.Quote.ID,
             request: List.ComputedUpfrontLineItems.Request
@@ -176,7 +176,7 @@ extension Stripe.Billing.Quotes.API {
                     Path.v1
                     Path.quotes
                     Path { Parse(.string.representing(Stripe.Billing.Quotes.Quote.ID.self)) }
-                    Path.quotes_cancel
+                    Path.quotesCancel
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.Quotes.Cancel.Request.self,
@@ -197,7 +197,7 @@ extension Stripe.Billing.Quotes.API {
                     Path.v1
                     Path.quotes
                     Path { Parse(.string.representing(Stripe.Billing.Quotes.Quote.ID.self)) }
-                    Path.quotes_finalize
+                    Path.quotesFinalize
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.Quotes.Finalize.Request.self,
@@ -226,7 +226,7 @@ extension Stripe.Billing.Quotes.API {
                     Path.v1
                     Path.quotes
                     Path { Parse(.string.representing(Stripe.Billing.Quotes.Quote.ID.self)) }
-                    Path.line_items
+                    Path.lineItems
                     Parse(
                         .convert(
                             apply: { ($0.0.0, $0.0.1, $0.1) },
@@ -264,7 +264,7 @@ extension Stripe.Billing.Quotes.API {
                     Path.v1
                     Path.quotes
                     Path { Parse(.string.representing(Stripe.Billing.Quotes.Quote.ID.self)) }
-                    Path.computed_upfront_line_items
+                    Path.computedUpfrontLineItems
                     Parse(
                         .convert(
                             apply: { ($0.0.0, $0.0.1, $0.1) },
@@ -308,13 +308,13 @@ extension Path<PathBuilder.Component<String>> {
         }
     }
 
-    public static var quotes_cancel: Path<PathBuilder.Component<String>> {
+    public static var quotesCancel: Path<PathBuilder.Component<String>> {
         Path {
             "cancel"
         }
     }
 
-    public static var quotes_finalize: Path<PathBuilder.Component<String>> {
+    public static var quotesFinalize: Path<PathBuilder.Component<String>> {
         Path {
             "finalize"
         }
@@ -326,13 +326,13 @@ extension Path<PathBuilder.Component<String>> {
         }
     }
 
-    public static var line_items: Path<PathBuilder.Component<String>> {
+    public static var lineItems: Path<PathBuilder.Component<String>> {
         Path {
             "line_items"
         }
     }
 
-    public static var computed_upfront_line_items: Path<PathBuilder.Component<String>> {
+    public static var computedUpfrontLineItems: Path<PathBuilder.Component<String>> {
         Path {
             "computed_upfront_line_items"
         }

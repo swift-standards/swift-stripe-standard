@@ -28,7 +28,7 @@ extension Stripe.Billing.MeterEventAdjustments.API {
                     Method.post
                     Path.v1
                     Path.billing
-                    Path.meter_event_adjustments
+                    Path.meterEventAdjustments
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.MeterEventAdjustments.Create.Request.self,
@@ -43,7 +43,7 @@ extension Stripe.Billing.MeterEventAdjustments.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var meter_event_adjustments: Path<PathBuilder.Component<String>> {
+    public static var meterEventAdjustments: Path<PathBuilder.Component<String>> {
         Path {
             "meter_event_adjustments"
         }

@@ -35,7 +35,7 @@ extension Stripe.Billing.TaxIDs.API {
                     Path.v1
                     Path.customers
                     Path { Parse(.string.representing(Stripe.Customers.Customer.ID.self)) }
-                    Path.tax_ids
+                    Path.taxIds
                     URLRouting.Body(
                         .form(
                             Stripe.Billing.TaxIDs.Create.Request.self,
@@ -56,7 +56,7 @@ extension Stripe.Billing.TaxIDs.API {
                     Path.v1
                     Path.customers
                     Path { Parse(.string.representing(Stripe.Customers.Customer.ID.self)) }
-                    Path.tax_ids
+                    Path.taxIds
                     Path { Parse(.string.representing(Stripe.Billing.TaxIDs.TaxID.ID.self)) }
                 }
 
@@ -71,7 +71,7 @@ extension Stripe.Billing.TaxIDs.API {
                     Path.v1
                     Path.customers
                     Path { Parse(.string.representing(Stripe.Customers.Customer.ID.self)) }
-                    Path.tax_ids
+                    Path.taxIds
                     Path { Parse(.string.representing(Stripe.Billing.TaxIDs.TaxID.ID.self)) }
                 }
 
@@ -86,7 +86,7 @@ extension Stripe.Billing.TaxIDs.API {
                     Path.v1
                     Path.customers
                     Path { Parse(.string.representing(Stripe.Customers.Customer.ID.self)) }
-                    Path.tax_ids
+                    Path.taxIds
                     Parse(
                         .convert(
                             apply: { ($0.0.0, $0.0.1, $0.1) },
@@ -118,5 +118,5 @@ extension Stripe.Billing.TaxIDs.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    package static var tax_ids: Path<PathBuilder.Component<String>> { Path { "tax_ids" } }
+    package static var taxIds: Path<PathBuilder.Component<String>> { Path { "tax_ids" } }
 }

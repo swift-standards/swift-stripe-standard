@@ -15,7 +15,7 @@ extension Stripe.Billing {
     public enum API: Equatable, Sendable {
         //    case credit_Note(Stripe.Billing.Credit_Note.API)
         //    case customer_Balance_Transaction(Stripe.Billing.Customer_Balance_Transaction.API)
-        case customer_Portal_Session(Stripe.Billing.Customer.Portal.Session.API)
+        case customerPortalSession(Stripe.Billing.Customer.Portal.Session.API)
         //    case customer_Portal_Configuration(Stripe.Billing.Customer_Portal_Configuration.API)
         //    case invoices(Stripe.Billing.Invoices.API)
         //    case invoice_Items(Stripe.Billing.Invoice_Items.API)
@@ -54,7 +54,7 @@ extension Stripe.Billing.API {
                     Stripe.Billing.Subscriptions.API.Router()
                 }
 
-                URLRouting.Route(.case(Stripe.Billing.API.cases.customer_Portal_Session)) {
+                URLRouting.Route(.case(Stripe.Billing.API.cases.customerPortalSession)) {
                     Stripe.Billing.Customer.Portal.Session.API.Router()
                 }
 
