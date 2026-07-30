@@ -18,11 +18,9 @@ extension Stripe.Connect.Account.ExternalAccounts {
     public struct List: Codable, Hashable, Sendable {
         /// String representing the object’s type. Objects of the same type share the same value. Always has the value list.
         public var object: String
-        /**
-         Needs to be a string because the result can be an array of 2 possible types ``Card`` and/or ``BankAccount``.
-         We'll actually decode the array of accounts seperately based on type and filtered based on object. See the initializer.
-         The `data` key is still needed in the `CodingKeys` and for decoding that property from the Stripe API, so we still have to declare it even though the type is unused.
-         */
+        /// Needs to be a string because the result can be an array of 2 possible types ``Card`` and/or ``BankAccount``.
+        /// We'll actually decode the array of accounts seperately based on type and filtered based on object. See the initializer.
+        /// The `data` key is still needed in the `CodingKeys` and for decoding that property from the Stripe API, so we still have to declare it even though the type is unused.
         private var data: String?
         /// True if this list has another page of items after this one that can be fetched.
         public var hasMore: Bool?

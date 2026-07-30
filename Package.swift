@@ -168,8 +168,9 @@ let package = Package(
         .library(name: .stripeTypesModels, targets: [.stripeTypesModels]),
     ],
     dependencies: [
-        // swift-dependencies, swift-dual, and swift-html-form-coder have no tagged release yet
-        // (org: swift-foundations); pinned to branch until upstream cuts a version.
+        // swift-dependencies, swift-dual, swift-html-form-coder, and swift-url-routing have no
+        // tagged release yet carrying the products this package requires (org: swift-foundations);
+        // pinned to branch until upstream cuts a version.
         // BRANCH-PIN-001 exemption tracked pending a tag.
         .package(
             url: "https://github.com/swift-foundations/swift-dependencies.git",
@@ -180,7 +181,9 @@ let package = Package(
             from: "0.10.0"
         ),
         .package(url: "https://github.com/swift-foundations/swift-dual.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-url-routing.git", from: "0.6.2"),
+        // "URL Routing Foundation Integration" and "URL Routing Test Support" post-date the
+        // 0.6.2 tag and only exist on main; from: "0.6.2" resolves to a version that lacks them.
+        .package(url: "https://github.com/swift-foundations/swift-url-routing.git", branch: "main"),
         .package(
             url: "https://github.com/swift-foundations/swift-html-form-coder.git",
             branch: "main"
