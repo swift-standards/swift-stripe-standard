@@ -560,6 +560,7 @@ extension Stripe.Connect.Accounts.Create {
                             switch self {
                             case .minimum:
                                 try container.encode("minimum")
+
                             case .days(let days):
                                 try container.encode(days)
                             }

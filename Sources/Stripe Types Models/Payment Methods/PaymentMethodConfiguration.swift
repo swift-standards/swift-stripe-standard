@@ -305,10 +305,10 @@ extension Stripe.PaymentMethodConfigurations {
     /// Display preference values.
     public enum Preference: String, Codable, CaseIterable, Sendable {
         /// Don't display the payment method.
-        case none = "none"
+        case none
         /// Payment method is disabled.
-        case off = "off"
+        case off
         /// Payment method is enabled.
-        case on = "on"
+        case on
     }
 }

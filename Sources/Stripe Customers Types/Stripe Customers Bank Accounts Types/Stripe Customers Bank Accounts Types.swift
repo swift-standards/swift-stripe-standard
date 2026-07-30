@@ -42,6 +42,7 @@ extension Stripe.Customers.BankAccounts.Create {
                 switch self {
                 case .token(let token):
                     try container.encode(token)
+
                 case .bankAccount(let details):
                     try container.encode(details)
                 }

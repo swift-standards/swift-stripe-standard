@@ -56,10 +56,10 @@ extension Stripe.Connect.Account.ExternalAccounts {
 
             // Merge cardAccounts and bankAccounts into a single array
             var accounts: [AnyEncodable] = []
-            if let cardAccounts = cardAccounts {
+            if let cardAccounts {
                 accounts.append(contentsOf: cardAccounts.map { AnyEncodable($0) })
             }
-            if let bankAccounts = bankAccounts {
+            if let bankAccounts {
                 accounts.append(contentsOf: bankAccounts.map { AnyEncodable($0) })
             }
 

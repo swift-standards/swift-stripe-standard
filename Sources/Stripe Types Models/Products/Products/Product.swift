@@ -133,9 +133,9 @@ extension Stripe.Products.Product {
     /// The type of the product.
     public enum ProductType: String, Codable, Hashable, Sendable {
         /// A service product.
-        case service = "service"
+        case service
         /// A physical good product.
-        case good = "good"
+        case good
     }
 }
 

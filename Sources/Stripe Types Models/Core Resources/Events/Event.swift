@@ -145,123 +145,177 @@ extension Stripe.Events.Event {
             switch object {
             case "account":
                 self = try .account(Stripe.Connect.Account(from: decoder))
+
             case "application":
                 self = try .application(Stripe.Connect.Application(from: decoder))
+
             case "application_fee":
                 self = try .applicationFee(Stripe.Connect.Application.Fee(from: decoder))
+
             case "card":
                 self = try .card(Card(from: decoder))
+
             case "cash_balance":
                 self = try .cashBalance(CashBalance(from: decoder))
+
             case "bank_account":
                 self = try .bankAccount(BankAccount(from: decoder))
+
             case "billingPortal.configuration":
                 self = try .configuration(
                     Stripe.Billing.Customer.Portal.Configuration(from: decoder)
                 )
+
             case "billingPortal.session":
                 self = try .billingPortalSession(
                     Stripe.Billing.Customer.Portal.Session(from: decoder)
                 )
+
             case "fee_refund":
                 self = try .applicationFeeRefund(
                     Stripe.Connect.Application.Fee.Refund(from: decoder)
                 )
+
             case "balance":
                 self = try .balance(Stripe.Balance(from: decoder))
+
             case "capability":
                 self = try .capability(Stripe.Connect.Capability(from: decoder))
+
             case "charge":
                 self = try .charge(Stripe.Charges.Charge(from: decoder))
+
             case "dispute":
                 self = try .dispute(Stripe.Disputes.Dispute(from: decoder))
+
             case "refund":
                 self = try .refund(Stripe.Refunds.Refund(from: decoder))
+
             case "checkout.session":
                 self = try .checkoutSession(Stripe.Checkout.Session(from: decoder))
+
             case "coupon":
                 self = try .coupon(Stripe.Products.Coupon(from: decoder))
+
             case "credit_note":
                 self = try .creditNote(Stripe.Billing.Credit.Note(from: decoder))
+
             case "customer":
                 self = try .customer(Stripe.Customers.Customer(from: decoder))
+
             case "discount":
                 self = try .discount(Stripe.Products.Discount(from: decoder))
+
             case "subscription":
                 self = try .subscription(Stripe.Billing.Subscription(from: decoder))
+
             case "tax_id":
                 self = try .taxId(Stripe.Tax.ID(from: decoder))
+
             case "file":
                 self = try .file(Stripe.Files.File(from: decoder))
+
             case "identity.verification_session":
                 self = try .verificationSession(VerificationSession(from: decoder))
+
             case "invoice":
                 self = try .invoice(Stripe.Billing.Invoice(from: decoder))
+
             case "invoice_payment":
                 // invoice_payment is a legacy event type that contains an invoice
                 self = try .invoice(Stripe.Billing.Invoice(from: decoder))
+
             case "invoiceitem":
                 self = try .invoiceItem(Stripe.Billing.Invoice.Item(from: decoder))
+
             case "issuing.authorization":
                 self = try .issuingAuthorization(Authorization(from: decoder))
+
             case "issuing.card":
                 self = try .issuingCard(IssuingCard(from: decoder))
+
             case "issuing.cardholder":
                 self = try .issuingCardHolder(Cardholder(from: decoder))
+
             case "issuing.dispute":
                 self = try .issuingDispute(IssuingDispute(from: decoder))
+
             case "issuing.transaction":
                 self = try .issuingTransaction(Transaction(from: decoder))
+
             case "mandate":
                 self = try .mandate(Stripe.Mandates.Mandate(from: decoder))
+
             case "payment_intent":
                 self = try .paymentIntent(Stripe.PaymentIntents.PaymentIntent(from: decoder))
+
             case "payment_link":
                 self = try .paymentLink(Stripe.PaymentLink(from: decoder))
+
             case "payment_method":
                 self = try .paymentMethod(Stripe.PaymentMethods.PaymentMethod(from: decoder))
+
             case "payout":
                 self = try .payout(Stripe.Payouts.Payout(from: decoder))
+
             case "person":
                 self = try .person(Stripe.Connect.Person(from: decoder))
+
             case "plan":
                 self = try .plan(Stripe.Billing.Plan(from: decoder))
+
             case "price":
                 self = try .price(Stripe.Products.Price(from: decoder))
+
             case "product":
                 self = try .product(Stripe.Products.Product(from: decoder))
+
             case "promotion_code":
                 self = try .promotionCode(Promotion.Code(from: decoder))
+
             case "radar.early_fraud_warning":
                 self = try .earlyFraudWarning(
                     Stripe.Fraud.EarlyFraudWarnings.EarlyFraudWarning(from: decoder)
                 )
+
             case "quote":
                 self = try .quote(Stripe.Billing.Quote(from: decoder))
+
             case "reporting.report_run":
                 self = try .reportRun(ReportRun(from: decoder))
+
             case "reporting.report_type":
                 self = try .reportType(ReportType(from: decoder))
+
             case "review":
                 self = try .review(Stripe.Fraud.Reviews.Review(from: decoder))
+
             case "setup_intent":
                 self = try .setupIntent(Stripe.Setup.Intent(from: decoder))
+
             case "scheduled_query_run":
                 self = try .scheduledQueryRun(ScheduledQueryRun(from: decoder))
+
             case "subscription_schedule":
                 self = try .subscriptionSchedule(
                     Stripe.Billing.Subscription.Schedule(from: decoder)
                 )
+
             case "tax_rate":
                 self = try .taxRate(Stripe.Tax.Rate(from: decoder))
+
             case "testHelpers.test_clock":
                 self = try .testClock(Stripe.Billing.TestClocks.TestClock(from: decoder))
+
             case "terminal.reader":
                 self = try .reader(Stripe.Terminal.Readers.Reader(from: decoder))
+
             case "topup":
                 self = try .topup(Stripe.Connect.TopUp(from: decoder))
+
             case "transfer":
                 self = try .transfer(Stripe.Connect.Transfer(from: decoder))
+
             default:
                 throw DecodingError.keyNotFound(
                     CodingKeys.object,
@@ -277,108 +331,160 @@ extension Stripe.Events.Event {
             switch self {
             case .account(let connectAccount):
                 try connectAccount.encode(to: encoder)
+
             case .application(let connectApplication):
                 try connectApplication.encode(to: encoder)
+
             case .card(let card):
                 try card.encode(to: encoder)
+
             case .cashBalance(let cashBalance):
                 try cashBalance.encode(to: encoder)
+
             case .bankAccount(let bankAccount):
                 try bankAccount.encode(to: encoder)
+
             case .billingPortalSession(let portalSession):
                 try portalSession.encode(to: encoder)
+
             case .applicationFee(let applicationFee):
                 try applicationFee.encode(to: encoder)
+
             case .applicationFeeRefund(let applicationFeeRefund):
                 try applicationFeeRefund.encode(to: encoder)
+
             case .balance(let balance):
                 try balance.encode(to: encoder)
+
             case .capability(let capability):
                 try capability.encode(to: encoder)
+
             case .charge(let charge):
                 try charge.encode(to: encoder)
+
             case .dispute(let dispute):
                 try dispute.encode(to: encoder)
+
             case .refund(let refund):
                 try refund.encode(to: encoder)
+
             case .checkoutSession(let session):
                 try session.encode(to: encoder)
+
             case .configuration(let portalConfiguration):
                 try portalConfiguration.encode(to: encoder)
+
             case .coupon(let coupon):
                 try coupon.encode(to: encoder)
+
             case .creditNote(let creditNote):
                 try creditNote.encode(to: encoder)
+
             case .customer(let customer):
                 try customer.encode(to: encoder)
+
             case .discount(let discount):
                 try discount.encode(to: encoder)
+
             case .subscription(let subscription):
                 try subscription.encode(to: encoder)
+
             case .taxId(let taxID):
                 try taxID.encode(to: encoder)
+
             case .file(let file):
                 try file.encode(to: encoder)
+
             case .invoice(let invoice):
                 try invoice.encode(to: encoder)
+
             case .invoiceItem(let invoiceItem):
                 try invoiceItem.encode(to: encoder)
+
             case .issuingAuthorization(let authorization):
                 try authorization.encode(to: encoder)
+
             case .issuingCard(let issuingCard):
                 try issuingCard.encode(to: encoder)
+
             case .issuingCardHolder(let cardholder):
                 try cardholder.encode(to: encoder)
+
             case .issuingDispute(let issuingDispute):
                 try issuingDispute.encode(to: encoder)
+
             case .issuingTransaction(let transaction):
                 try transaction.encode(to: encoder)
+
             case .mandate(let mandate):
                 try mandate.encode(to: encoder)
+
             case .paymentIntent(let paymentIntent):
                 try paymentIntent.encode(to: encoder)
+
             case .paymentLink(let paymentLink):
                 try paymentLink.encode(to: encoder)
+
             case .paymentMethod(let paymentMethod):
                 try paymentMethod.encode(to: encoder)
+
             case .payout(let payout):
                 try payout.encode(to: encoder)
+
             case .person(let person):
                 try person.encode(to: encoder)
+
             case .plan(let plan):
                 try plan.encode(to: encoder)
+
             case .price(let price):
                 try price.encode(to: encoder)
+
             case .product(let product):
                 try product.encode(to: encoder)
+
             case .promotionCode(let promotionCode):
                 try promotionCode.encode(to: encoder)
+
             case .earlyFraudWarning(let earlyFraudWarning):
                 try earlyFraudWarning.encode(to: encoder)
+
             case .quote(let quote):
                 try quote.encode(to: encoder)
+
             case .reportRun(let reportRun):
                 try reportRun.encode(to: encoder)
+
             case .reportType(let reportType):
                 try reportType.encode(to: encoder)
+
             case .review(let review):
                 try review.encode(to: encoder)
+
             case .setupIntent(let setupIntent):
                 try setupIntent.encode(to: encoder)
+
             case .scheduledQueryRun(let scheduledQueryRun):
                 try scheduledQueryRun.encode(to: encoder)
+
             case .subscriptionSchedule(let subscriptionSchedule):
                 try subscriptionSchedule.encode(to: encoder)
+
             case .taxRate(let taxRate):
                 try taxRate.encode(to: encoder)
+
             case .topup(let topUp):
                 try topUp.encode(to: encoder)
+
             case .transfer(let transfer):
                 try transfer.encode(to: encoder)
+
             case .testClock(let testClock):
                 try testClock.encode(to: encoder)
+
             case .reader(let terminalReader):
                 try terminalReader.encode(to: encoder)
+
             case .verificationSession(let verificationSession):
                 try verificationSession.encode(to: encoder)
             }

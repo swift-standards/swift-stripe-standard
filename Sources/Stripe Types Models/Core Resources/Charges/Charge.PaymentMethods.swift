@@ -498,10 +498,11 @@ extension Stripe.Charges.Charge.PaymentMethod.Details {
         public var dynamicLast4: String?
         /// If this is a `google_pay` card wallet, this hash contains details about the wallet.
         public var googlePay: Stripe.Charges.Charge.PaymentMethod.Details.GooglePay?
-        /// If this is a `masterpass` card wallet, this hash contains details about the wallet.
         // REASON: Mirrors Stripe's documented `masterpass` field (Mastercard's Masterpass wallet brand).
-        // swiftlint:disable:next inclusive_language
+        // swiftlint:disable inclusive_language
+        /// If this is a `masterpass` card wallet, this hash contains details about the wallet.
         public var masterpass: Stripe.Charges.Charge.PaymentMethod.Details.Masterpass?
+        // swiftlint:enable inclusive_language
         /// If this is a `samsung_pay` card wallet, this hash contains details about the wallet.
         public var samsungPay: Stripe.Charges.Charge.PaymentMethod.Details.SamsungPay?
         /// The type of the card wallet, one of `amex_express_checkout`, `apple_pay`, `google_pay`, `masterpass`, `samsung_pay`, or `visa_checkout`. An additional hash is included on the Wallet subhash with a name matching this value. It contains additional information specific to the card wallet type.

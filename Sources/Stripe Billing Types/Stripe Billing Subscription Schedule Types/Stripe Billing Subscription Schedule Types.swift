@@ -50,6 +50,7 @@ extension Stripe.Billing.Subscription.Schedule.StartDate: Codable {
         switch self {
         case .now:
             try container.encode("now")
+
         case .date(let date):
             // Stripe expects Unix timestamp as integer
             try container.encode(Int(date.timeIntervalSince1970))

@@ -446,10 +446,11 @@ public struct PaymentMethodCardWallet: Codable, Hashable, Sendable {
     /// If this is a `google_pay` card wallet, this hash contains details about the wallet.
     /// Stripe does not [provide any details](https://stripe.com/docs/api/paymentMethods/object#payment_method_object-card-wallet-google_pay) about possible values so this will remain nil/unimplemented.
     public var googlePay: PaymentMethodCardWalletGooglePay?
-    /// If this is a `masterpass` card wallet, this hash contains details about the wallet.
     // REASON: Mirrors Stripe's documented `masterpass` field (Mastercard's Masterpass wallet brand).
-    // swiftlint:disable:next inclusive_language
+    // swiftlint:disable inclusive_language
+    /// If this is a `masterpass` card wallet, this hash contains details about the wallet.
     public var masterpass: PaymentMethodCardWalletMasterPass?
+    // swiftlint:enable inclusive_language
     /// If this is a `samsung_pay` card wallet, this hash contains details about the wallet.
     /// Stripe does not [provide any details](https://stripe.com/docs/api/paymentMethods/object#payment_method_object-card-wallet-samsung_pay) about possible values so this will remain nil/unimplemented.
     public var samsungPay: PaymentMethodCardWalletSamsungPay?

@@ -211,23 +211,27 @@ struct ListResponseDecodingTests {
                     print(
                         "Coding path: \(context.codingPath.map { $0.stringValue }.joined(separator: " -> "))"
                     )
+
                 case .typeMismatch(let type, let context):
                     print("Type mismatch: \(type)")
                     print("Context: \(context.debugDescription)")
                     print(
                         "Coding path: \(context.codingPath.map { $0.stringValue }.joined(separator: " -> "))"
                     )
+
                 case .valueNotFound(let type, let context):
                     print("Value not found: \(type)")
                     print("Context: \(context.debugDescription)")
                     print(
                         "Coding path: \(context.codingPath.map { $0.stringValue }.joined(separator: " -> "))"
                     )
+
                 case .dataCorrupted(let context):
                     print("Data corrupted: \(context.debugDescription)")
                     print(
                         "Coding path: \(context.codingPath.map { $0.stringValue }.joined(separator: " -> "))"
                     )
+
                 @unknown default:
                     print("Unknown decoding error")
                 }

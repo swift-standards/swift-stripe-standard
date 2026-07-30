@@ -120,6 +120,7 @@ extension Stripe.Billing.Plans.Create {
             switch self {
             case .id(let id):
                 try container.encode(id)
+
             case .data(let data):
                 try container.encode(data)
             }
@@ -237,6 +238,7 @@ extension Stripe.Billing.Plans.Create {
             switch self {
             case .inf:
                 try container.encode("inf")
+
             case .value(let value):
                 try container.encode(value)
             }

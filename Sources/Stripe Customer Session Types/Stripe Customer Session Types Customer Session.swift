@@ -40,8 +40,10 @@ extension Stripe.Customers.Customer.Sessions.Create.Request {
             switch self {
             case .buyButton(let config):
                 try container.encode(config, forKey: .buyButton)
+
             case .paymentElement(let config):
                 try container.encode(config, forKey: .paymentElement)
+
             case .pricingTable(let config):
                 try container.encode(config, forKey: .pricingTable)
             }

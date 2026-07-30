@@ -343,10 +343,11 @@ public enum StripeDeclineCode: String, Codable, Sendable {
     case issuerNotAvailable = "issuer_not_available"
     /// The payment has been declined because the card is reported lost.
     case lostCard = "lost_card"
-    /// The payment has been declined because it matches a value on the Stripe user's blocklist.
     // REASON: Mirrors Stripe's documented `merchant_blacklist` field; already lowerCamelCase.
-    // swiftlint:disable:next inclusive_language
+    // swiftlint:disable inclusive_language
+    /// The payment has been declined because it matches a value on the Stripe user's blocklist.
     case merchantBlacklist = "merchant_blacklist"
+    // swiftlint:enable inclusive_language
     /// The card, or account the card is connected to, is invalid.
     case newAccountInformationAvailable = "new_account_information_available"
     /// The card has been declined for an unknown reason.
@@ -391,91 +392,130 @@ public enum StripeDeclineCode: String, Codable, Sendable {
         case .approveWithId:
             return
                 "The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer."
+
         case .callIssuer:
             return "The customer needs to contact their card issuer for more information."
+
         case .cardNotSupported:
             return
                 "The customer needs to contact their card issuer to make sure their card can be used to make this type of purchase."
+
         case .cardVelocityExceeded:
             return "The customer should contact their card issuer for more information"
+
         case .currencyNotSupported:
             return
                 "The customer needs to check with the issuer whether the card can be used for the type of currency specified."
+
         case .doNotHonor:
             return "The customer needs to contact their card issuer for more information."
+
         case .doNotTryAgain:
             return "The customer needs to contact their card issuer for more information."
+
         case .duplicateTransaction: return "Check to see if a recent payment already exists."
         case .expiredCard: return "The customer should use another card."
+
         case .fradulent:
             return
                 "Do not report more detailed information to your customer. Instead, present as you would the `generic_decline` described below."
+
         case .genericDecline:
             return "The customer needs to contact their card issuer for more information."
+
         case .incorrectNumber: return "The customer should try again using the correct card number."
         case .incorrectCVC: return "The customer should try again using the correct CVC."
         case .incorrectPin: return "The customer should try again using the correct PIN."
+
         case .incorrectZip:
             return "The customer should try again using the correct billing ZIP/postal code."
+
         case .insufficientFunds: return "The customer should use an alternative payment method."
+
         case .invalidAccount:
             return
                 "The customer needs to contact their card issuer to check that the card is working correctly."
+
         case .invalidAmount:
             return
                 "If the amount appears to be correct, the customer needs to check with their card issuer that they can make purchases of that amount."
+
         case .invalidCVC: return "The customer should try again using the correct CVC."
+
         case .invalidExpiryYear:
             return "The customer should try again using the correct expiration date."
+
         case .invalidNumber: return "The customer should try again using the correct card number."
         case .invalidPin: return "The customer should try again using the correct PIN."
+
         case .issuerNotAvailable:
             return
                 "The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer."
+
         case .lostCard:
             return
                 "The specific reason for the decline should not be reported to the customer. Instead, it needs to be presented as a generic decline."
+
         case .merchantBlacklist:
             return
                 "Do not report more detailed information to your customer. Instead, present as you would the generic_decline described above."
+
         case .newAccountInformationAvailable:
             return "The customer needs to contact their card issuer for more information."
+
         case .noActionTaken:
             return "The customer should contact their card issuer for more information."
+
         case .notPermitted:
             return "The customer needs to contact their card issuer for more information."
+
         case .pickupCard:
             return "The customer needs to contact their card issuer for more information."
+
         case .pinTryExceeded: return "The customer must use another card or method of payment."
+
         case .processingError:
             return
                 "The payment should be attempted again. If it still cannot be processed, try again later."
+
         case .reenterTransaction:
             return
                 "The payment should be attempted again. If it still cannot be processed, the customer needs to contact their card issuer."
+
         case .restrictedCard:
             return "The customer needs to contact their card issuer for more information."
+
         case .revocationOfAllAuthorizations:
             return "The customer should contact their card issuer for more information."
+
         case .revocationOfAuthorization:
             return "The customer should contact their card issuer for more information."
+
         case .securityViolation:
             return "The customer should contact their card issuer for more information."
+
         case .serviceNotAllowed:
             return "The customer should contact their card issuer for more information."
+
         case .stolenCard:
             return
                 "The specific reason for the decline should not be reported to the customer. Instead, it needs to be presented as a generic decline."
+
         case .stopPaymentOrder:
             return "The customer should contact their card issuer for more information."
+
         case .testmodeDecline: return "A genuine card must be used to make a payment."
+
         case .transactionNotAllowed:
             return "The customer needs to contact their card issuer for more information."
+
         case .tryAgainLater:
             return
                 "Ask the customer to attempt the payment again. If subsequent payments are declined, the customer should contact their card issuer for more information."
+
         case .withdrawalCountLimitExceeded:
             return "The customer should use an alternative payment method."
+
         case .testModeLiveCard:
             return "The customer should use a test card https://stripe.com/docs/testing#cards"
         }

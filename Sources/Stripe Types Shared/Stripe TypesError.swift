@@ -16,6 +16,7 @@ extension Stripe {
             switch self {
             case .invalidResponse:
                 return "Invalid response from server"
+
             case .httpError(let statusCode, let message):
                 return "HTTP error \(statusCode): \(message)"
             }

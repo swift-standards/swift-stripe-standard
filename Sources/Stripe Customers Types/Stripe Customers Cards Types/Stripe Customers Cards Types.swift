@@ -40,6 +40,7 @@ extension Stripe.Customers.Cards.Create {
                 switch self {
                 case .token(let token):
                     try container.encode(token)
+
                 case .card(let details):
                     try container.encode(details)
                 }

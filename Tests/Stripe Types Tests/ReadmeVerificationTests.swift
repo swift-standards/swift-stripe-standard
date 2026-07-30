@@ -163,16 +163,16 @@ struct ReadmeVerificationTests {
                     created: Date()
                 )
             },
-            update: { (_, _) async throws(Witness.Unimplemented.Error) in
+            update: { _, _ async throws(Witness.Unimplemented.Error) in
                 throw unimplemented("update")
             },
-            retrieve: { (_) async throws(Witness.Unimplemented.Error) in
+            retrieve: { _ async throws(Witness.Unimplemented.Error) in
                 throw unimplemented("retrieve")
             },
-            list: { (_) async throws(Witness.Unimplemented.Error) in throw unimplemented("list") },
-            delete: { (_) async throws(Witness.Unimplemented.Error) in throw unimplemented("delete")
+            list: { _ async throws(Witness.Unimplemented.Error) in throw unimplemented("list") },
+            delete: { _ async throws(Witness.Unimplemented.Error) in throw unimplemented("delete")
             },
-            search: { (_) async throws(Witness.Unimplemented.Error) in throw unimplemented("search")
+            search: { _ async throws(Witness.Unimplemented.Error) in throw unimplemented("search")
             },
             bankAccounts: .unimplemented(),
             cards: .unimplemented(),

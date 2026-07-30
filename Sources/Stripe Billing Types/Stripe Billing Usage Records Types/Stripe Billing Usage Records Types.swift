@@ -32,6 +32,7 @@ public enum Either<A: Codable & Equatable & Sendable, B: Codable & Equatable & S
         switch self {
         case .left(let a):
             try container.encode(a)
+
         case .right(let b):
             try container.encode(b)
         }

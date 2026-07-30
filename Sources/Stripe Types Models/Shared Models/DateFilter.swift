@@ -74,16 +74,16 @@ extension Stripe {
         public var rawValue: String {
             var components: [String] = []
 
-            if let gt = gt {
+            if let gt {
                 components.append("gt:\(gt)")
             }
-            if let gte = gte {
+            if let gte {
                 components.append("gte:\(gte)")
             }
-            if let lt = lt {
+            if let lt {
                 components.append("lt:\(lt)")
             }
-            if let lte = lte {
+            if let lte {
                 components.append("lte:\(lte)")
             }
 

@@ -60,7 +60,7 @@ extension Stripe.StatementDescriptor {
 }
 
 extension Stripe.StatementDescriptor {
-    public enum ValidationError: Error {
+    public enum ValidationError: Swift.Error {
         case tooLong
         case invalidCharacters
         case onlyNumbers
@@ -70,10 +70,13 @@ extension Stripe.StatementDescriptor {
             switch self {
             case .tooLong:
                 return "Statement descriptor must not exceed 22 characters"
+
             case .invalidCharacters:
                 return "Statement descriptor contains invalid characters"
+
             case .onlyNumbers:
                 return "Statement descriptor must not consist solely of numbers"
+
             case .empty:
                 return "Statement descriptor cannot be empty"
             }

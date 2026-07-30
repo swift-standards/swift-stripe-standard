@@ -110,8 +110,10 @@ public struct Expandable<Model: Codable, ID: Codable & Hashable & Sendable>: Cod
         switch _state {
         case .unexpanded(let id):
             try container.encode(id)
+
         case .expanded(let model):
             try container.encode(model)
+
         default:
             try container.encodeNil()
         }
@@ -121,6 +123,7 @@ public struct Expandable<Model: Codable, ID: Codable & Hashable & Sendable>: Cod
         switch _state {
         case .unexpanded(let id):
             return id
+
         case .expanded, .empty:
             return nil
         }
@@ -130,6 +133,7 @@ public struct Expandable<Model: Codable, ID: Codable & Hashable & Sendable>: Cod
         switch _state {
         case .unexpanded, .empty:
             return nil
+
         case .expanded(let model):
             return model
         }
@@ -159,9 +163,11 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
             case .unexpanded(let id):
                 hasher.combine(0)  // Discriminator for unexpanded
                 hasher.combine(id)
+
             case .expanded(let either):
                 hasher.combine(1)  // Discriminator for expanded
                 hasher.combine(either)
+
             case .empty:
                 hasher.combine(2)  // Discriminator for empty
             }
@@ -172,10 +178,13 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
             switch (lhs, rhs) {
             case (.unexpanded(let l), .unexpanded(let r)):
                 return l == r
+
             case (.expanded(let l), .expanded(let r)):
                 return l == r
+
             case (.empty, .empty):
                 return true
+
             default:
                 return false
             }
@@ -203,6 +212,7 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
                 switch self {
                 case .left(let a):
                     try container.encode(a)
+
                 case .right(let b):
                     try container.encode(b)
                 }
@@ -269,13 +279,16 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
         switch _state {
         case .unexpanded(let id):
             try container.encode(id)
+
         case .expanded(let either):
             switch either {
             case .left(let a):
                 try container.encode(a)
+
             case .right(let b):
                 try container.encode(b)
             }
+
         case .empty:
             try container.encodeNil()
         }
@@ -285,6 +298,7 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
         switch _state {
         case .unexpanded(let id):
             return id
+
         case .expanded, .empty:
             return nil
         }
@@ -296,10 +310,12 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
         switch _state {
         case .unexpanded, .empty:
             return nil
+
         case .expanded(let either):
             switch either {
             case .left(let a):
                 return a as? T
+
             case .right(let b):
                 return b as? T
             }
@@ -362,8 +378,10 @@ public struct ExpandableCollection<Model: Codable>: Codable {
         switch _state {
         case .unexpanded(let ids):
             try container.encode(ids)
+
         case .expanded(let models):
             try container.encode(models)
+
         default:
             try container.encodeNil()
         }
@@ -373,6 +391,7 @@ public struct ExpandableCollection<Model: Codable>: Codable {
         switch _state {
         case .unexpanded(let ids):
             return ids
+
         case .expanded, .empty:
             return nil
         }
@@ -382,6 +401,7 @@ public struct ExpandableCollection<Model: Codable>: Codable {
         switch _state {
         case .unexpanded, .empty:
             return nil
+
         case .expanded(let models):
             return models
         }

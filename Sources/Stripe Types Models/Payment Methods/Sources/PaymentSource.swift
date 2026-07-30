@@ -25,10 +25,13 @@ public enum StripePaymentSource: Codable, Hashable, Sendable {
         switch object {
         case "bank_account":
             self = try .bankAccount(BankAccount(from: decoder))
+
         case "card":
             self = try .card(Card(from: decoder))
+
         case "source":
             self = try .source(Source(from: decoder))
+
         default:
             throw DecodingError.dataCorruptedError(
                 forKey: CodingKeys.object,
@@ -42,8 +45,10 @@ public enum StripePaymentSource: Codable, Hashable, Sendable {
         switch self {
         case .bankAccount(let bankAccount):
             try bankAccount.encode(to: encoder)
+
         case .card(let card):
             try card.encode(to: encoder)
+
         case .source(let source):
             try source.encode(to: encoder)
         }
@@ -80,8 +85,10 @@ extension StripePaymentSource {
         switch self {
         case .bankAccount(let bankAccount):
             return .init(bankAccount.id.rawValue)
+
         case .card(let card):
             return .init(card.id.rawValue)
+
         case .source(let source):
             return .init(source.id.rawValue)
         }
@@ -91,8 +98,10 @@ extension StripePaymentSource {
         switch self {
         case .bankAccount(let bankAccount):
             return bankAccount.object
+
         case .card(let card):
             return card.object
+
         case .source(let source):
             return source.object
         }
