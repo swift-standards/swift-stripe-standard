@@ -14,7 +14,10 @@ import URL_Routing_Foundation_Integration
 @testable import Stripe_Payment_Intents_Types
 @testable import Stripe_Types_Models
 
-@Suite("Payment Intents Router Tests", .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4"))
+@Suite(
+    "Payment Intents Router Tests",
+    .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4")
+)
 struct PaymentIntentsRouterTests {
 
     @Test("Creates correct URL for payment intent creation")
@@ -111,7 +114,10 @@ struct PaymentIntentsRouterTests {
         )
         #expect(match.is(\.cancel))
         #expect(Stripe.PaymentIntents.API.cases.cancel.extract(match)?.id == id)
-        #expect(Stripe.PaymentIntents.API.cases.cancel.extract(match)?.request.cancellationReason == .abandoned)
+        #expect(
+            Stripe.PaymentIntents.API.cases.cancel.extract(match)?.request.cancellationReason
+                == .abandoned
+        )
     }
 
     @Test("Creates correct URL for capturing payment intent")
@@ -217,7 +223,7 @@ struct PaymentIntentsRouterTests {
 // `.disabled(if:)`, not `withKnownIssue`, because the crash kills the runner).
 // Auto-retires at the 6.4 toolchain move.
 #if compiler(<6.4)
-private let taggedMetadataSIGSEGV = true
+    private let taggedMetadataSIGSEGV = true
 #else
-private let taggedMetadataSIGSEGV = false
+    private let taggedMetadataSIGSEGV = false
 #endif

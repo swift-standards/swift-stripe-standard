@@ -74,11 +74,13 @@ extension Stripe.Billing.Quotes.API {
                     Path { Parse(.string.representing(Stripe.Billing.Quotes.Quote.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Quotes.API.cases.update))) {
+                    .map(.case(Stripe.Billing.Quotes.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.quotes
@@ -98,13 +100,20 @@ extension Stripe.Billing.Quotes.API {
                     Path.quotes
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1)
+                            },
                             unapply: { ((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Billing.Quotes.List.Request.init,
-                                { ($0.customer, $0.status, $0.testClock, $0.endingBefore, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.customer, $0.status, $0.testClock, $0.endingBefore,
+                                        $0.limit, $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -135,11 +144,13 @@ extension Stripe.Billing.Quotes.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Quotes.API.cases.accept))) {
+                    .map(.case(Stripe.Billing.Quotes.API.cases.accept))
+                ) {
                     Method.post
                     Path.v1
                     Path.quotes
@@ -154,11 +165,13 @@ extension Stripe.Billing.Quotes.API {
                     )
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Quotes.API.cases.cancel))) {
+                    .map(.case(Stripe.Billing.Quotes.API.cases.cancel))
+                ) {
                     Method.post
                     Path.v1
                     Path.quotes
@@ -173,11 +186,13 @@ extension Stripe.Billing.Quotes.API {
                     )
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Quotes.API.cases.finalize))) {
+                    .map(.case(Stripe.Billing.Quotes.API.cases.finalize))
+                ) {
                     Method.post
                     Path.v1
                     Path.quotes
@@ -200,11 +215,13 @@ extension Stripe.Billing.Quotes.API {
                     Path.pdf
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Quotes.API.cases.listLineItems))) {
+                    .map(.case(Stripe.Billing.Quotes.API.cases.listLineItems))
+                ) {
                     Method.get
                     Path.v1
                     Path.quotes
@@ -236,11 +253,13 @@ extension Stripe.Billing.Quotes.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Quotes.API.cases.listComputedUpfrontLineItems))) {
+                    .map(.case(Stripe.Billing.Quotes.API.cases.listComputedUpfrontLineItems))
+                ) {
                     Method.get
                     Path.v1
                     Path.quotes
@@ -252,7 +271,10 @@ extension Stripe.Billing.Quotes.API {
                             unapply: { (($0.0, $0.1), $0.2) }
                         )
                         .map(
-                            .memberwise(Stripe.Billing.Quotes.List.ComputedUpfrontLineItems.Request.init, { ($0.endingBefore, $0.limit, $0.startingAfter) })
+                            .memberwise(
+                                Stripe.Billing.Quotes.List.ComputedUpfrontLineItems.Request.init,
+                                { ($0.endingBefore, $0.limit, $0.startingAfter) }
+                            )
                         )
                     ) {
                         Query {
@@ -274,31 +296,45 @@ extension Stripe.Billing.Quotes.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var quotes: Path<PathBuilder.Component<String>> { Path {
-        "quotes"
-    } }
+    public static var quotes: Path<PathBuilder.Component<String>> {
+        Path {
+            "quotes"
+        }
+    }
 
-    public static var accept: Path<PathBuilder.Component<String>> { Path {
-        "accept"
-    } }
+    public static var accept: Path<PathBuilder.Component<String>> {
+        Path {
+            "accept"
+        }
+    }
 
-    public static var quotes_cancel: Path<PathBuilder.Component<String>> { Path {
-        "cancel"
-    } }
+    public static var quotes_cancel: Path<PathBuilder.Component<String>> {
+        Path {
+            "cancel"
+        }
+    }
 
-    public static var quotes_finalize: Path<PathBuilder.Component<String>> { Path {
-        "finalize"
-    } }
+    public static var quotes_finalize: Path<PathBuilder.Component<String>> {
+        Path {
+            "finalize"
+        }
+    }
 
-    public static var pdf: Path<PathBuilder.Component<String>> { Path {
-        "pdf"
-    } }
+    public static var pdf: Path<PathBuilder.Component<String>> {
+        Path {
+            "pdf"
+        }
+    }
 
-    public static var line_items: Path<PathBuilder.Component<String>> { Path {
-        "line_items"
-    } }
+    public static var line_items: Path<PathBuilder.Component<String>> {
+        Path {
+            "line_items"
+        }
+    }
 
-    public static var computed_upfront_line_items: Path<PathBuilder.Component<String>> { Path {
-        "computed_upfront_line_items"
-    } }
+    public static var computed_upfront_line_items: Path<PathBuilder.Component<String>> {
+        Path {
+            "computed_upfront_line_items"
+        }
+    }
 }

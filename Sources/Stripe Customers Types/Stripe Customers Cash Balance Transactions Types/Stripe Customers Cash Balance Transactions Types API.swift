@@ -23,11 +23,13 @@ extension Stripe.Customers.CashBalanceTransactions.API {
 
         public var body: some URLRouting.Router<Stripe.Customers.CashBalanceTransactions.API> {
             OneOf {
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, transactionId: $0.1) },
                         unapply: { ($0.customerId, $0.transactionId) }
                     )
-                    .map(.case(Stripe.Customers.CashBalanceTransactions.API.cases.retrieve))) {
+                    .map(.case(Stripe.Customers.CashBalanceTransactions.API.cases.retrieve))
+                ) {
                     Method.get
                     Path.v1
                     Path.customers
@@ -36,11 +38,13 @@ extension Stripe.Customers.CashBalanceTransactions.API {
                     Path { Parse(.string.representing(CashBalanceTransaction.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, request: $0.1) },
                         unapply: { ($0.customerId, $0.request) }
                     )
-                    .map(.case(Stripe.Customers.CashBalanceTransactions.API.cases.list))) {
+                    .map(.case(Stripe.Customers.CashBalanceTransactions.API.cases.list))
+                ) {
                     Method.get
                     Path.v1
                     Path.customers
@@ -77,7 +81,9 @@ extension Stripe.Customers.CashBalanceTransactions.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var cashBalanceTransactions: Path<PathBuilder.Component<String>> { Path {
-        "cash_balance_transactions"
-    } }
+    public static var cashBalanceTransactions: Path<PathBuilder.Component<String>> {
+        Path {
+            "cash_balance_transactions"
+        }
+    }
 }

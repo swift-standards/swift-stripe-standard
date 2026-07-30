@@ -8,7 +8,10 @@ import URL_Routing_Foundation_Integration
 @testable import Stripe_Products_Types
 @testable import Stripe_Types_Models
 
-@Suite("Products Products Router Tests", .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4"))
+@Suite(
+    "Products Products Router Tests",
+    .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4")
+)
 struct ProductsProductsRouterTests {
 
     @Test("Creates correct URL for product creation")
@@ -117,7 +120,7 @@ struct ProductsProductsRouterTests {
 // `.disabled(if:)`, not `withKnownIssue`, because the crash kills the runner).
 // Auto-retires at the 6.4 toolchain move.
 #if compiler(<6.4)
-private let taggedMetadataSIGSEGV = true
+    private let taggedMetadataSIGSEGV = true
 #else
-private let taggedMetadataSIGSEGV = false
+    private let taggedMetadataSIGSEGV = false
 #endif

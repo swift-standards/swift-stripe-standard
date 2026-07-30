@@ -44,11 +44,13 @@ extension Stripe.Connect.Transfers.API {
                     Path { Parse(.string.representing(Stripe.Connect.Transfer.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Connect.Transfers.API.cases.update))) {
+                    .map(.case(Stripe.Connect.Transfers.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.transfers
@@ -68,13 +70,20 @@ extension Stripe.Connect.Transfers.API {
                     Path.transfers
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1)
+                            },
                             unapply: { ((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Connect.Transfers.List.Request.init,
-                                { ($0.created, $0.destination, $0.endingBefore, $0.limit, $0.startingAfter, $0.transferGroup) }
+                                {
+                                    (
+                                        $0.created, $0.destination, $0.endingBefore, $0.limit,
+                                        $0.startingAfter, $0.transferGroup
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -110,7 +119,9 @@ extension Stripe.Connect.Transfers.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var transfers: Path<PathBuilder.Component<String>> { Path {
-        "transfers"
-    } }
+    public static var transfers: Path<PathBuilder.Component<String>> {
+        Path {
+            "transfers"
+        }
+    }
 }

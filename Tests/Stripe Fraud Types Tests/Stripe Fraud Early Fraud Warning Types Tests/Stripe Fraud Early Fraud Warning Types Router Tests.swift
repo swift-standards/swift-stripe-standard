@@ -46,11 +46,15 @@ extension Stripe.Fraud.EarlyFraudWarnings.API.Tests.Unit {
 
         let retrieveMatch = try router.match(request: try router.request(for: retrieve))
         #expect(retrieveMatch.is(\.retrieve))
-        #expect(Stripe.Fraud.EarlyFraudWarnings.API.cases.retrieve.extract(retrieveMatch) == warningID)
+        #expect(
+            Stripe.Fraud.EarlyFraudWarnings.API.cases.retrieve.extract(retrieveMatch) == warningID
+        )
 
         // .list — the case whose route was commented out (F-004).
         let chargeID = try #require(Stripe.Charges.Charge.ID(rawValue: "ch_123"))
-        let paymentIntentID = try #require(Stripe.PaymentIntents.PaymentIntent.ID(rawValue: "pi_123"))
+        let paymentIntentID = try #require(
+            Stripe.PaymentIntents.PaymentIntent.ID(rawValue: "pi_123")
+        )
         let listRequest = Stripe.Fraud.EarlyFraudWarnings.API.List.Request(
             charge: chargeID,
             paymentIntent: paymentIntentID,
@@ -77,7 +81,9 @@ extension Stripe.Fraud.EarlyFraudWarnings.API.Tests.Unit {
 
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         let queryItems = components?.queryItems ?? []
-        let queryDict = [String: String?](uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
+        let queryDict = [String: String?](
+            uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) }
+        )
         #expect(queryDict["limit"] == "10")
     }
 
@@ -105,7 +111,7 @@ extension Stripe.Fraud.EarlyFraudWarnings.API.Tests.Unit {
 // isolation case (the pre-existing, untouched-by-F-004 case alone) — see
 // REPORT.md section (d) for the captured crash logs.
 #if compiler(<6.4)
-private let taggedMetadataSIGSEGV = true
+    private let taggedMetadataSIGSEGV = true
 #else
-private let taggedMetadataSIGSEGV = false
+    private let taggedMetadataSIGSEGV = false
 #endif

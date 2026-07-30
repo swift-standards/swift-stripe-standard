@@ -7,7 +7,8 @@ extension Stripe.PaymentLinks {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/payment-link/create.md
         public var create:
-            @Sendable (_ request: Stripe.PaymentLinks.Create.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.PaymentLinks.Create.Request) async throws(any Swift.Error)
+                ->
                 Stripe.PaymentLink
 
         // https://docs.stripe.com/api/payment-link/update.md
@@ -17,7 +18,8 @@ extension Stripe.PaymentLinks {
 
         // https://docs.stripe.com/api/payment-link/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.PaymentLink.ID) async throws(any Swift.Error) -> Stripe.PaymentLink
+            @Sendable (_ id: Stripe.PaymentLink.ID) async throws(any Swift.Error) ->
+                Stripe.PaymentLink
 
         // https://docs.stripe.com/api/payment-link/list.md
         public var list:

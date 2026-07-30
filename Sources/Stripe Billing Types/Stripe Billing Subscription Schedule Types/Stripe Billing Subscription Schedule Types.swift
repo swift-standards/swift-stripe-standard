@@ -102,7 +102,7 @@ extension Stripe.Billing.Subscription.Schedule {
     }
 }
 //
-//extension Stripe.Billing.Subscription.Schedule {
+// extension Stripe.Billing.Subscription.Schedule {
 //    public struct InvoiceSettings: Codable, Equatable, Sendable {
 //        /// Number of days within which a customer must pay invoices
 //        public var daysUntilDue: Int?
@@ -115,18 +115,18 @@ extension Stripe.Billing.Subscription.Schedule {
 //            case daysUntilDue = "days_until_due"
 //        }
 //    }
-//}
+// }
 //
-//extension Stripe.Billing.Subscription.Schedule {
+// extension Stripe.Billing.Subscription.Schedule {
 //    public enum CollectionMethod: String, Codable, Equatable, Sendable {
 //        case chargeAutomatically = "charge_automatically"
 //        case sendInvoice = "send_invoice"
 //    }
-//}
+// }
 //
-//extension Stripe.Billing.Subscription.Schedule {
+// extension Stripe.Billing.Subscription.Schedule {
 //    public enum EndBehavior: String, Codable, Equatable, Sendable {
 //        case release
 //        case cancel
 //    }
-//}
+// }

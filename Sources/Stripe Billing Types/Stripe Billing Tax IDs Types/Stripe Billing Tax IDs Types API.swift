@@ -24,11 +24,13 @@ extension Stripe.Billing.TaxIDs.API {
 
         public var body: some URLRouting.Router<Stripe.Billing.TaxIDs.API> {
             OneOf {
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (customerId: $0.0, request: $0.1) },
                         unapply: { ($0.customerId, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.TaxIDs.API.cases.create))) {
+                    .map(.case(Stripe.Billing.TaxIDs.API.cases.create))
+                ) {
                     Method.post
                     Path.v1
                     Path.customers
@@ -43,11 +45,13 @@ extension Stripe.Billing.TaxIDs.API {
                     )
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (customerId: $0.0, id: $0.1) },
                         unapply: { ($0.customerId, $0.id) }
                     )
-                    .map(.case(Stripe.Billing.TaxIDs.API.cases.retrieve))) {
+                    .map(.case(Stripe.Billing.TaxIDs.API.cases.retrieve))
+                ) {
                     Method.get
                     Path.v1
                     Path.customers
@@ -56,11 +60,13 @@ extension Stripe.Billing.TaxIDs.API {
                     Path { Parse(.string.representing(Stripe.Billing.TaxIDs.TaxID.ID.self)) }
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (customerId: $0.0, id: $0.1) },
                         unapply: { ($0.customerId, $0.id) }
                     )
-                    .map(.case(Stripe.Billing.TaxIDs.API.cases.delete))) {
+                    .map(.case(Stripe.Billing.TaxIDs.API.cases.delete))
+                ) {
                     Method.delete
                     Path.v1
                     Path.customers
@@ -69,11 +75,13 @@ extension Stripe.Billing.TaxIDs.API {
                     Path { Parse(.string.representing(Stripe.Billing.TaxIDs.TaxID.ID.self)) }
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (customerId: $0.0, request: $0.1) },
                         unapply: { ($0.customerId, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.TaxIDs.API.cases.list))) {
+                    .map(.case(Stripe.Billing.TaxIDs.API.cases.list))
+                ) {
                     Method.get
                     Path.v1
                     Path.customers

@@ -15,7 +15,8 @@ extension Stripe.Disputes {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/disputes/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Disputes.Dispute.ID) async throws(any Swift.Error) -> Stripe.Disputes.Dispute
+            @Sendable (_ id: Stripe.Disputes.Dispute.ID) async throws(any Swift.Error) ->
+                Stripe.Disputes.Dispute
 
         // https://docs.stripe.com/api/disputes/update.md
         public var update:
@@ -29,6 +30,7 @@ extension Stripe.Disputes {
 
         // https://docs.stripe.com/api/disputes/close.md
         public var close:
-            @Sendable (_ id: Stripe.Disputes.Dispute.ID) async throws(any Swift.Error) -> Stripe.Disputes.Dispute
+            @Sendable (_ id: Stripe.Disputes.Dispute.ID) async throws(any Swift.Error) ->
+                Stripe.Disputes.Dispute
     }
 }

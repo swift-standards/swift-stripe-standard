@@ -61,7 +61,12 @@ extension Stripe.Files.API {
                         .map(
                             .memberwise(
                                 Stripe.Files.List.Request.init,
-                                { ($0.created, $0.endingBefore, $0.limit, $0.purpose, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.created, $0.endingBefore, $0.limit, $0.purpose,
+                                        $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -94,7 +99,9 @@ extension Stripe.Files.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var files: Path<PathBuilder.Component<String>> { Path {
-        "files"
-    } }
+    public static var files: Path<PathBuilder.Component<String>> {
+        Path {
+            "files"
+        }
+    }
 }

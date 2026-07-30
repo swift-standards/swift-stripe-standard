@@ -16,7 +16,10 @@ extension Stripe.PaymentMethods.Sources {
         // https://docs.stripe.com/api/sources/attach.md
         case attach(customerId: Stripe.Customers.Customer.ID, source: Stripe_Types_Models.Source.ID)
         // https://docs.stripe.com/api/sources/detach.md
-        case detach(customerId: Stripe.Customers.Customer.ID, sourceId: Stripe_Types_Models.Source.ID)
+        case detach(
+            customerId: Stripe.Customers.Customer.ID,
+            sourceId: Stripe_Types_Models.Source.ID
+        )
     }
 }
 
@@ -46,11 +49,13 @@ extension Stripe.PaymentMethods.Sources.API {
                     Path { Parse(.string.representing(Stripe_Types_Models.Source.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentMethods.Sources.API.cases.update))) {
+                    .map(.case(Stripe.PaymentMethods.Sources.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.sources
@@ -64,26 +69,32 @@ extension Stripe.PaymentMethods.Sources.API {
                     )
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, source: $0.1) },
                         unapply: { ($0.customerId, $0.source) }
                     )
-                    .map(.case(Stripe.PaymentMethods.Sources.API.cases.attach))) {
+                    .map(.case(Stripe.PaymentMethods.Sources.API.cases.attach))
+                ) {
                     Method.post
                     Path.v1
                     Path.customers
                     Path { Parse(.string.representing(Stripe.Customers.Customer.ID.self)) }
                     Path.sources
                     Query {
-                        Field("source") { Parse(.string.representing(Stripe_Types_Models.Source.ID.self)) }
+                        Field("source") {
+                            Parse(.string.representing(Stripe_Types_Models.Source.ID.self))
+                        }
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, sourceId: $0.1) },
                         unapply: { ($0.customerId, $0.sourceId) }
                     )
-                    .map(.case(Stripe.PaymentMethods.Sources.API.cases.detach))) {
+                    .map(.case(Stripe.PaymentMethods.Sources.API.cases.detach))
+                ) {
                     Method.delete
                     Path.v1
                     Path.customers
@@ -97,7 +108,9 @@ extension Stripe.PaymentMethods.Sources.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var sources: Path<PathBuilder.Component<String>> { Path {
-        "sources"
-    } }
+    public static var sources: Path<PathBuilder.Component<String>> {
+        Path {
+            "sources"
+        }
+    }
 }

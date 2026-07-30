@@ -13,7 +13,8 @@ extension Stripe.Billing.Customer.Portal.Configuration {
 
         // https://docs.stripe.com/api/customer_portal/configurations/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Billing.Customer.Portal.Configuration.ID) async throws(any Swift.Error) ->
+            @Sendable (_ id: Stripe.Billing.Customer.Portal.Configuration.ID) async throws(any Swift
+                .Error) ->
                 Stripe.Billing.Customer.Portal.Configuration
 
         // https://docs.stripe.com/api/customer_portal/configurations/update.md

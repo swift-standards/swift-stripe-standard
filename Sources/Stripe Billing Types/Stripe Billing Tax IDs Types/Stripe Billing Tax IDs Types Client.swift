@@ -14,12 +14,14 @@ extension Stripe.Billing.TaxIDs {
 
         // https://docs.stripe.com/api/customer_tax_ids/retrieve
         public var retrieve:
-            @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ id: TaxID.ID) async throws(any Swift.Error) ->
+            @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ id: TaxID.ID)
+                async throws(any Swift.Error) ->
                 TaxID
 
         // https://docs.stripe.com/api/customer_tax_ids/delete
         public var delete:
-            @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ id: TaxID.ID) async throws(any Swift.Error) ->
+            @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ id: TaxID.ID)
+                async throws(any Swift.Error) ->
                 DeletedObject<Stripe.Customers.Customer>
 
         // https://docs.stripe.com/api/customer_tax_ids/list

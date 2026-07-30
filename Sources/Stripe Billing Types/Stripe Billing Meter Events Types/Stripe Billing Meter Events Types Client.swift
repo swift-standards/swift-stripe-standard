@@ -15,7 +15,8 @@ extension Stripe.Billing.MeterEvents {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/billing/meter-event/create.md
         public var create:
-            @Sendable (_ request: Stripe.Billing.MeterEvents.Create.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.MeterEvents.Create.Request) async throws(any Swift
+                .Error) ->
                 MeterEvent
     }
 }

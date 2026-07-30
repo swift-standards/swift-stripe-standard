@@ -44,11 +44,13 @@ extension Stripe.Products.TaxRates.API {
                     Path { Parse(.string.representing(Stripe.Tax.Rate.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Products.TaxRates.API.cases.update))) {
+                    .map(.case(Stripe.Products.TaxRates.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.taxRates
@@ -68,13 +70,20 @@ extension Stripe.Products.TaxRates.API {
                     Path.taxRates
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1)
+                            },
                             unapply: { ((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Products.TaxRates.List.Request.init,
-                                { ($0.active, $0.created, $0.endingBefore, $0.inclusive, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.active, $0.created, $0.endingBefore, $0.inclusive,
+                                        $0.limit, $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -108,7 +117,9 @@ extension Stripe.Products.TaxRates.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var taxRates: Path<PathBuilder.Component<String>> { Path {
-        "tax_rates"
-    } }
+    public static var taxRates: Path<PathBuilder.Component<String>> {
+        Path {
+            "tax_rates"
+        }
+    }
 }

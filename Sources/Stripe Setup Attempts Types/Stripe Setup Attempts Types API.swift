@@ -37,7 +37,12 @@ extension Stripe.Setup.Attempts.API {
                         .map(
                             .memberwise(
                                 Stripe.Setup.Attempts.List.Request.init,
-                                { ($0.setupIntent, $0.created, $0.endingBefore, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.setupIntent, $0.created, $0.endingBefore, $0.limit,
+                                        $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -68,7 +73,9 @@ extension Stripe.Setup.Attempts.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var setupAttempts: Path<PathBuilder.Component<String>> { Path {
-        "setup_attempts"
-    } }
+    public static var setupAttempts: Path<PathBuilder.Component<String>> {
+        Path {
+            "setup_attempts"
+        }
+    }
 }

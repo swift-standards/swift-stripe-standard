@@ -15,7 +15,8 @@ extension Stripe.Billing.InvoiceItems {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/invoiceitems/create.md
         public var create:
-            @Sendable (_ request: Stripe.Billing.InvoiceItems.Create.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.InvoiceItems.Create.Request) async throws(any Swift
+                .Error) ->
                 Stripe.Billing.Invoice.Item
 
         // https://docs.stripe.com/api/invoiceitems/retrieve.md
@@ -32,13 +33,15 @@ extension Stripe.Billing.InvoiceItems {
 
         // https://docs.stripe.com/api/invoiceitems/list.md
         public var list:
-            @Sendable (_ request: Stripe.Billing.InvoiceItems.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.InvoiceItems.List.Request) async throws(any Swift
+                .Error) ->
                 Stripe.Billing.InvoiceItems.List.Response
 
         // https://docs.stripe.com/api/invoiceitems/delete.md
         public var delete:
-            @Sendable (_ id: Stripe.Billing.Invoice.Item.ID) async throws(any Swift.Error) -> DeletedObject<
-                Stripe.Billing.Invoice.Item
-            >
+            @Sendable (_ id: Stripe.Billing.Invoice.Item.ID) async throws(any Swift.Error) ->
+                DeletedObject<
+                    Stripe.Billing.Invoice.Item
+                >
     }
 }

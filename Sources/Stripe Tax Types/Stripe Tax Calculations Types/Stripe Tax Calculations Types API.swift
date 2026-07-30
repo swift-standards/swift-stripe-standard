@@ -51,11 +51,13 @@ extension Stripe.Tax.Calculations.API {
                     Path { Parse(.string.representing(Stripe.Tax.Calculation.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Tax.Calculations.API.cases.listLineItems))) {
+                    .map(.case(Stripe.Tax.Calculations.API.cases.listLineItems))
+                ) {
                     Method.get
                     Path.v1
                     Path.tax
@@ -93,15 +95,21 @@ extension Stripe.Tax.Calculations.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var tax: Path<PathBuilder.Component<String>> { Path {
-        "tax"
-    } }
+    public static var tax: Path<PathBuilder.Component<String>> {
+        Path {
+            "tax"
+        }
+    }
 
-    public static var calculations: Path<PathBuilder.Component<String>> { Path {
-        "calculations"
-    } }
+    public static var calculations: Path<PathBuilder.Component<String>> {
+        Path {
+            "calculations"
+        }
+    }
 
-    public static var lineItems: Path<PathBuilder.Component<String>> { Path {
-        "line_items"
-    } }
+    public static var lineItems: Path<PathBuilder.Component<String>> {
+        Path {
+            "line_items"
+        }
+    }
 }

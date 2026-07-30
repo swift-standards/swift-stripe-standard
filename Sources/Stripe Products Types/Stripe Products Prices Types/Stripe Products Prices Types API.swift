@@ -40,11 +40,13 @@ extension Stripe.Products.Prices.API {
                     Path { Parse(.string.representing(Stripe.Products.Price.ID.self)) }
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Products.Prices.API.cases.update))) {
+                    .map(.case(Stripe.Products.Prices.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.prices
@@ -64,13 +66,34 @@ extension Stripe.Products.Prices.API {
                     Path.prices
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0.0.0.0, $0.0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.1, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
-                            unapply: { ((((((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6), $0.7), $0.8), $0.9) }
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0.0.0.0, $0.0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.0.1,
+                                    $0.0.0.0.0.0.0.1, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1,
+                                    $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
+                            unapply: {
+                                (
+                                    (
+                                        (
+                                            (((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6),
+                                            $0.7
+                                        ), $0.8
+                                    ), $0.9
+                                )
+                            }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Products.Prices.List.Request.init,
-                                { ($0.active, $0.currency, $0.created, $0.endingBefore, $0.limit, $0.lookupKeys, $0.product, $0.recurring, $0.startingAfter, $0.type) }
+                                {
+                                    (
+                                        $0.active, $0.currency, $0.created, $0.endingBefore,
+                                        $0.limit, $0.lookupKeys, $0.product, $0.recurring,
+                                        $0.startingAfter, $0.type
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -100,7 +123,9 @@ extension Stripe.Products.Prices.API {
                                     // parse wraps the whole field value as a single element; print joins
                                     // (identical to the original `Many { Parse(.string) }` degenerate
                                     // no-separator behavior over a field value).
-                                    Parse(.string).map(.convert(apply: { [$0] }, unapply: { $0.joined() }))
+                                    Parse(.string).map(
+                                        .convert(apply: { [$0] }, unapply: { $0.joined() })
+                                    )
                                 }
                             }
                             Optionally {
@@ -156,7 +181,9 @@ extension Stripe.Products.Prices.API {
 
 // Add path extensions for Prices
 extension Path<PathBuilder.Component<String>> {
-    public static var prices: Path<PathBuilder.Component<String>> { Path {
-        "prices"
-    } }
+    public static var prices: Path<PathBuilder.Component<String>> {
+        Path {
+            "prices"
+        }
+    }
 }

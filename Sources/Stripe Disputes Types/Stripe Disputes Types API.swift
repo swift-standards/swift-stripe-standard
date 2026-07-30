@@ -40,11 +40,13 @@ extension Stripe.Disputes.API {
                 }
 
                 // https://docs.stripe.com/api/disputes/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Disputes.API.cases.update))) {
+                    .map(.case(Stripe.Disputes.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.disputes
@@ -65,13 +67,20 @@ extension Stripe.Disputes.API {
                     Path.disputes
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1)
+                            },
                             unapply: { ((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Disputes.List.Request.init,
-                                { ($0.charge, $0.paymentIntent, $0.created, $0.endingBefore, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.charge, $0.paymentIntent, $0.created, $0.endingBefore,
+                                        $0.limit, $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -122,7 +131,9 @@ extension Stripe.Disputes.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var disputes: Path<PathBuilder.Component<String>> { Path {
-        "disputes"
-    } }
+    public static var disputes: Path<PathBuilder.Component<String>> {
+        Path {
+            "disputes"
+        }
+    }
 }

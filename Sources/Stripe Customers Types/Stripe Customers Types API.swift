@@ -52,11 +52,13 @@ extension Stripe.Customers.API {
                     Path { Parse(.string.representing(Stripe.Customers.Customer.ID.self)) }
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Customers.API.cases.update))) {
+                    .map(.case(Stripe.Customers.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.customers
@@ -76,13 +78,20 @@ extension Stripe.Customers.API {
                     Path.customers
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1)
+                            },
                             unapply: { ((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Customers.List.Request.init,
-                                { ($0.created, $0.email, $0.endingBefore, $0.limit, $0.startingAfter, $0.testClock) }
+                                {
+                                    (
+                                        $0.created, $0.email, $0.endingBefore, $0.limit,
+                                        $0.startingAfter, $0.testClock
+                                    )
+                                }
                             )
                         )
                     ) {

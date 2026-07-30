@@ -15,13 +15,15 @@ extension Stripe.Billing.Subscription.Schedule {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/subscription_schedules/create.md
         public var create:
-            @Sendable (_ request: Stripe.Billing.Subscription.Schedule.Create.Request) async throws(any Swift.Error)
+            @Sendable (_ request: Stripe.Billing.Subscription.Schedule.Create.Request)
+                async throws(any Swift.Error)
                 ->
                 Stripe.Billing.Subscription.Schedule
 
         // https://docs.stripe.com/api/subscription_schedules/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Billing.Subscription.Schedule.ID) async throws(any Swift.Error) ->
+            @Sendable (_ id: Stripe.Billing.Subscription.Schedule.ID) async throws(any Swift.Error)
+                ->
                 Stripe.Billing.Subscription.Schedule
 
         // https://docs.stripe.com/api/subscription_schedules/update.md
@@ -33,7 +35,8 @@ extension Stripe.Billing.Subscription.Schedule {
 
         // https://docs.stripe.com/api/subscription_schedules/list.md
         public var list:
-            @Sendable (_ request: Stripe.Billing.Subscription.Schedule.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.Subscription.Schedule.List.Request)
+                async throws(any Swift.Error) ->
                 Stripe.Billing.Subscription.Schedule.List.Response
 
         // https://docs.stripe.com/api/subscription_schedules/cancel.md

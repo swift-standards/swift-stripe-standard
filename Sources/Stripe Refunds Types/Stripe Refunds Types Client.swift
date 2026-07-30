@@ -20,7 +20,8 @@ extension Stripe.Refunds {
 
         // https://docs.stripe.com/api/refunds/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Refunds.Refund.ID) async throws(any Swift.Error) -> Stripe.Refunds.Refund
+            @Sendable (_ id: Stripe.Refunds.Refund.ID) async throws(any Swift.Error) ->
+                Stripe.Refunds.Refund
 
         // https://docs.stripe.com/api/refunds/update.md
         public var update:
@@ -34,6 +35,7 @@ extension Stripe.Refunds {
 
         // https://docs.stripe.com/api/refunds/cancel.md
         public var cancel:
-            @Sendable (_ id: Stripe.Refunds.Refund.ID) async throws(any Swift.Error) -> Stripe.Refunds.Refund
+            @Sendable (_ id: Stripe.Refunds.Refund.ID) async throws(any Swift.Error) ->
+                Stripe.Refunds.Refund
     }
 }

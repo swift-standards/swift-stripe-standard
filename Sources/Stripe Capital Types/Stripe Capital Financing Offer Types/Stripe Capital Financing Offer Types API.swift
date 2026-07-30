@@ -37,13 +37,20 @@ extension Stripe.Capital.FinancingOffer.API {
                     Path.financingOffers
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1)
+                            },
                             unapply: { ((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Capital.FinancingOffer.List.Request.init,
-                                { ($0.connectedAccount, $0.created, $0.status, $0.limit, $0.startingAfter, $0.endingBefore) }
+                                {
+                                    (
+                                        $0.connectedAccount, $0.created, $0.status, $0.limit,
+                                        $0.startingAfter, $0.endingBefore
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -84,13 +91,19 @@ extension Stripe.Capital.FinancingOffer.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var capital: Path<PathBuilder.Component<String>> { Path {
-        "capital"
-    } }
-    public static var financingOffers: Path<PathBuilder.Component<String>> { Path {
-        "financing_offers"
-    } }
-    public static var markDelivered: Path<PathBuilder.Component<String>> { Path {
-        "mark_delivered"
-    } }
+    public static var capital: Path<PathBuilder.Component<String>> {
+        Path {
+            "capital"
+        }
+    }
+    public static var financingOffers: Path<PathBuilder.Component<String>> {
+        Path {
+            "financing_offers"
+        }
+    }
+    public static var markDelivered: Path<PathBuilder.Component<String>> {
+        Path {
+            "mark_delivered"
+        }
+    }
 }

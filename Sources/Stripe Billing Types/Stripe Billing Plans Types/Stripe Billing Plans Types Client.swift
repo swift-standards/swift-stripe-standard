@@ -15,12 +15,14 @@ extension Stripe.Billing.Plans {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/plans/create.md
         public var create:
-            @Sendable (_ request: Stripe.Billing.Plans.Create.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.Plans.Create.Request) async throws(any Swift.Error)
+                ->
                 Stripe.Billing.Plan
 
         // https://docs.stripe.com/api/plans/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Billing.Plan.ID) async throws(any Swift.Error) -> Stripe.Billing.Plan
+            @Sendable (_ id: Stripe.Billing.Plan.ID) async throws(any Swift.Error) ->
+                Stripe.Billing.Plan
 
         // https://docs.stripe.com/api/plans/update.md
         public var update:
@@ -29,7 +31,8 @@ extension Stripe.Billing.Plans {
 
         // https://docs.stripe.com/api/plans/list.md
         public var list:
-            @Sendable (_ request: Stripe.Billing.Plans.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.Plans.List.Request) async throws(any Swift.Error)
+                ->
                 Stripe.Billing.Plans.List.Response
 
         // https://docs.stripe.com/api/plans/delete.md

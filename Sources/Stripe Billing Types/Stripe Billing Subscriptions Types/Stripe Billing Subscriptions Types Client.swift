@@ -15,7 +15,8 @@ extension Stripe.Billing.Subscriptions {
 
         // https://docs.stripe.com/api/subscriptions/create.md
         public var create:
-            @Sendable (_ request: Stripe.Billing.Subscriptions.Create.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.Subscriptions.Create.Request)
+                async throws(any Swift.Error) ->
                 Stripe.Billing.Subscription
 
         // https://docs.stripe.com/api/subscriptions/update.md
@@ -32,7 +33,8 @@ extension Stripe.Billing.Subscriptions {
 
         // https://docs.stripe.com/api/subscriptions/list.md
         public var list:
-            @Sendable (_ request: Stripe.Billing.Subscriptions.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.Subscriptions.List.Request) async throws(any Swift
+                .Error) ->
                 Stripe.Billing.Subscriptions.List.Response
 
         // https://docs.stripe.com/api/subscriptions/cancel.md

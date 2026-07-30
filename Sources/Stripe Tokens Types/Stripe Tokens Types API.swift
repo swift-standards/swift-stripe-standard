@@ -50,7 +50,9 @@ extension Stripe.Tokens.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var tokens: Path<PathBuilder.Component<String>> { Path {
-        "tokens"
-    } }
+    public static var tokens: Path<PathBuilder.Component<String>> {
+        Path {
+            "tokens"
+        }
+    }
 }

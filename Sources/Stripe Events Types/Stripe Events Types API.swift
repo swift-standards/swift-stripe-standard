@@ -42,13 +42,23 @@ extension Stripe.Events.API {
                     Path.events
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1,
+                                    $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
                             unapply: { (((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Events.List.Request.init,
-                                { ($0.created, $0.deliverySuccess, $0.endingBefore, $0.limit, $0.startingAfter, $0.type, $0.types) }
+                                {
+                                    (
+                                        $0.created, $0.deliverySuccess, $0.endingBefore, $0.limit,
+                                        $0.startingAfter, $0.type, $0.types
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -77,7 +87,9 @@ extension Stripe.Events.API {
                             // types array is not parsed here - handled separately
                             // (pointfree `Always(value)` dissolved onto the vended constant pair:
                             // `Parser.Always` + `Parser.Conversion.Fixed`, per URI.Route's own spelling)
-                            Parser.Always<RFC_3986.URI.Request.Fields, Void>(()).map(.fixed([String]?.none))
+                            Parser.Always<RFC_3986.URI.Request.Fields, Void>(()).map(
+                                .fixed([String]?.none)
+                            )
 
                             // TRIED BUT DOESNT WORK
                             //                            Optionally {
@@ -104,7 +116,9 @@ extension Stripe.Events.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var events: Path<PathBuilder.Component<String>> { Path {
-        "events"
-    } }
+    public static var events: Path<PathBuilder.Component<String>> {
+        Path {
+            "events"
+        }
+    }
 }

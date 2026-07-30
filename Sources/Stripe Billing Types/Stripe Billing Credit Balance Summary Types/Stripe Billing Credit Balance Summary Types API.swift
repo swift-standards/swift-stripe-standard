@@ -58,5 +58,7 @@ extension Stripe.Billing.CreditBalanceSummary.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    package static var credit_balance_summary: Path<PathBuilder.Component<String>> { Path { "credit_balance_summary" } }
+    package static var credit_balance_summary: Path<PathBuilder.Component<String>> {
+        Path { "credit_balance_summary" }
+    }
 }

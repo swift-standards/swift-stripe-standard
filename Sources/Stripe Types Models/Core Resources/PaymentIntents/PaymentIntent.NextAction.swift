@@ -30,7 +30,7 @@ extension Stripe.PaymentIntents.PaymentIntent {
         /// The field that contains PayNow QR code info
         public var paynowDisplayQrCode:
             Stripe.PaymentIntents.PaymentIntent.NextAction.Paynow.DisplayQRCode?
-        /// The field that contains Pix QR code info
+        // The field that contains Pix QR code info
         // public var pixDisplayQrCode: Stripe.PaymentIntents.PaymentIntent.NextAction.PaynowDisplayQRCode? TODO: - Add preview feature when it's ready.https://stripe.com/docs/api/payment_intents/object#payment_intent_object-next_action-pix_display_qr_code
         /// The field that contains PromptPay QR code info
         public var promptpayDisplayQrCode:

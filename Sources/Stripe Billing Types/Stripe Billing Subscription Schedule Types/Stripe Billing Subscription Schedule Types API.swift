@@ -69,11 +69,13 @@ extension Stripe.Billing.Subscription.Schedule.API {
                 }
 
                 // https://docs.stripe.com/api/subscription_schedules/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Subscription.Schedule.API.cases.update))) {
+                    .map(.case(Stripe.Billing.Subscription.Schedule.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.subscription_schedules
@@ -96,13 +98,26 @@ extension Stripe.Billing.Subscription.Schedule.API {
                     Path.subscription_schedules
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0.0.0, $0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.1, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
-                            unapply: { (((((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6), $0.7), $0.8) }
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0.0.0, $0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.1,
+                                    $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
+                            unapply: {
+                                (((((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6), $0.7), $0.8)
+                            }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Billing.Subscription.Schedule.List.Request.init,
-                                { ($0.canceledAt, $0.completedAt, $0.created, $0.customer, $0.endingBefore, $0.limit, $0.releasedAt, $0.scheduled, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.canceledAt, $0.completedAt, $0.created, $0.customer,
+                                        $0.endingBefore, $0.limit, $0.releasedAt, $0.scheduled,
+                                        $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -149,11 +164,13 @@ extension Stripe.Billing.Subscription.Schedule.API {
                 }
 
                 // https://docs.stripe.com/api/subscription_schedules/cancel.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Subscription.Schedule.API.cases.cancel))) {
+                    .map(.case(Stripe.Billing.Subscription.Schedule.API.cases.cancel))
+                ) {
                     Method.post
                     Path.v1
                     Path.subscription_schedules
@@ -171,11 +188,13 @@ extension Stripe.Billing.Subscription.Schedule.API {
                 }
 
                 // https://docs.stripe.com/api/subscription_schedules/release.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Subscription.Schedule.API.cases.release))) {
+                    .map(.case(Stripe.Billing.Subscription.Schedule.API.cases.release))
+                ) {
                     Method.post
                     Path.v1
                     Path.subscription_schedules
@@ -197,15 +216,21 @@ extension Stripe.Billing.Subscription.Schedule.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var subscription_schedules: Path<PathBuilder.Component<String>> { Path {
-        "subscription_schedules"
-    } }
+    public static var subscription_schedules: Path<PathBuilder.Component<String>> {
+        Path {
+            "subscription_schedules"
+        }
+    }
 
-    public static var cancel: Path<PathBuilder.Component<String>> { Path {
-        "cancel"
-    } }
+    public static var cancel: Path<PathBuilder.Component<String>> {
+        Path {
+            "cancel"
+        }
+    }
 
-    public static var release: Path<PathBuilder.Component<String>> { Path {
-        "release"
-    } }
+    public static var release: Path<PathBuilder.Component<String>> {
+        Path {
+            "release"
+        }
+    }
 }

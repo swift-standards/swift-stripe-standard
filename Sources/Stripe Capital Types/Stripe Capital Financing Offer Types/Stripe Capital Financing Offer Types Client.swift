@@ -12,7 +12,8 @@ extension Stripe.Capital.FinancingOffer {
                 Stripe.Capital.FinancingOffer
 
         // https://docs.stripe.com/api/capital/financing_offers/list.md
-        public var list: @Sendable (_ request: List.Request) async throws(any Swift.Error) -> List.Response
+        public var list:
+            @Sendable (_ request: List.Request) async throws(any Swift.Error) -> List.Response
 
         // https://docs.stripe.com/api/capital/financing_offers/mark_delivered.md
         public var markDelivered:

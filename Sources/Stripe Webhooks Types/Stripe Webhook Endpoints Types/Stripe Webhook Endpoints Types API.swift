@@ -50,11 +50,13 @@ extension Stripe.WebhookEndpoint.API {
                     Path { Parse(.string.representing(Stripe.WebhookEndpoint.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.WebhookEndpoint.API.cases.update))) {
+                    .map(.case(Stripe.WebhookEndpoint.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.webhookEndpoints
@@ -110,7 +112,9 @@ extension Stripe.WebhookEndpoint.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var webhookEndpoints: Path<PathBuilder.Component<String>> { Path {
-        "webhook_endpoints"
-    } }
+    public static var webhookEndpoints: Path<PathBuilder.Component<String>> {
+        Path {
+            "webhook_endpoints"
+        }
+    }
 }

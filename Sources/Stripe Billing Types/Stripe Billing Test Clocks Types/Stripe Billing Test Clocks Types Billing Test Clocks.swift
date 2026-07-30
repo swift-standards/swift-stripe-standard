@@ -9,7 +9,7 @@ import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
-//extension Stripe.Billing.TestClocks {
+// extension Stripe.Billing.TestClocks {
 //    public struct TestClock: Codable, Equatable, Sendable {
 //        public typealias ID = Tagged<Self, String>
 //        public let id: ID
@@ -38,7 +38,7 @@ import Stripe_Types_Shared
 //            case status
 //        }
 //    }
-//}
+// }
 
 extension Stripe.Billing.TestClocks {
     // https://docs.stripe.com/api/test_clocks/create.md

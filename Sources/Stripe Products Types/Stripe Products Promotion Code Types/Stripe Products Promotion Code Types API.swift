@@ -44,11 +44,13 @@ extension Stripe.Products.PromotionCodes.API {
                     Path { Parse(.string.representing(Promotion.Code.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Products.PromotionCodes.API.cases.update))) {
+                    .map(.case(Stripe.Products.PromotionCodes.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.promotionCodes
@@ -68,13 +70,25 @@ extension Stripe.Products.PromotionCodes.API {
                     Path.promotionCodes
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0.0, $0.0.0.0.0.0.0.1, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
-                            unapply: { ((((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6), $0.7) }
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0.0, $0.0.0.0.0.0.0.1, $0.0.0.0.0.0.1,
+                                    $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
+                            unapply: {
+                                ((((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6), $0.7)
+                            }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Products.PromotionCodes.List.Request.init,
-                                { ($0.active, $0.code, $0.coupon, $0.created, $0.customer, $0.endingBefore, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.active, $0.code, $0.coupon, $0.created, $0.customer,
+                                        $0.endingBefore, $0.limit, $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -118,7 +132,9 @@ extension Stripe.Products.PromotionCodes.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var promotionCodes: Path<PathBuilder.Component<String>> { Path {
-        "promotion_codes"
-    } }
+    public static var promotionCodes: Path<PathBuilder.Component<String>> {
+        Path {
+            "promotion_codes"
+        }
+    }
 }

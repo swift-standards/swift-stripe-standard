@@ -52,11 +52,13 @@ extension Stripe.Billing.Customer.Portal.Configuration.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Customer.Portal.Configuration.API.cases.update))) {
+                    .map(.case(Stripe.Billing.Customer.Portal.Configuration.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.billing_portal
@@ -88,7 +90,15 @@ extension Stripe.Billing.Customer.Portal.Configuration.API {
                             unapply: { (((($0.0, $0.1), $0.2), $0.3), $0.4) }
                         )
                         .map(
-                            .memberwise(Stripe.Billing.Customer.Portal.Configuration.List.Request.init, { ($0.active, $0.isDefault, $0.endingBefore, $0.startingAfter, $0.limit) })
+                            .memberwise(
+                                Stripe.Billing.Customer.Portal.Configuration.List.Request.init,
+                                {
+                                    (
+                                        $0.active, $0.isDefault, $0.endingBefore, $0.startingAfter,
+                                        $0.limit
+                                    )
+                                }
+                            )
                         )
                     ) {
                         Query {
@@ -116,7 +126,9 @@ extension Stripe.Billing.Customer.Portal.Configuration.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var configurations: Path<PathBuilder.Component<String>> { Path {
-        "configurations"
-    } }
+    public static var configurations: Path<PathBuilder.Component<String>> {
+        Path {
+            "configurations"
+        }
+    }
 }

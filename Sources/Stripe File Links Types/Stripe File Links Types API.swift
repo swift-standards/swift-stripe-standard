@@ -54,11 +54,13 @@ extension Stripe.FileLinks.API {
                 }
 
                 // https://docs.stripe.com/api/file_links/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.FileLinks.API.cases.update))) {
+                    .map(.case(Stripe.FileLinks.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.fileLinks
@@ -79,13 +81,20 @@ extension Stripe.FileLinks.API {
                     Path.fileLinks
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1)
+                            },
                             unapply: { ((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.FileLinks.List.Request.init,
-                                { ($0.created, $0.endingBefore, $0.expired, $0.file, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.created, $0.endingBefore, $0.expired, $0.file, $0.limit,
+                                        $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -119,7 +128,9 @@ extension Stripe.FileLinks.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var fileLinks: Path<PathBuilder.Component<String>> { Path {
-        "file_links"
-    } }
+    public static var fileLinks: Path<PathBuilder.Component<String>> {
+        Path {
+            "file_links"
+        }
+    }
 }

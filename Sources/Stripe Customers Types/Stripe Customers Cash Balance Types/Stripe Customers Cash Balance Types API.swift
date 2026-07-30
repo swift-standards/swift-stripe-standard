@@ -28,11 +28,13 @@ extension Stripe.Customers.CashBalance.API {
                     Path.cashBalance
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, request: $0.1) },
                         unapply: { ($0.customerId, $0.request) }
                     )
-                    .map(.case(Stripe.Customers.CashBalance.API.cases.update))) {
+                    .map(.case(Stripe.Customers.CashBalance.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.customers
@@ -52,7 +54,9 @@ extension Stripe.Customers.CashBalance.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var cashBalance: Path<PathBuilder.Component<String>> { Path {
-        "cash_balance"
-    } }
+    public static var cashBalance: Path<PathBuilder.Component<String>> {
+        Path {
+            "cash_balance"
+        }
+    }
 }

@@ -8,13 +8,15 @@ extension Stripe.PaymentMethods.PaymentMethods {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/payment_methods/create.md
         public var create:
-            @Sendable (_ request: Stripe.PaymentMethods.PaymentMethods.Create.Request) async throws(any Swift.Error)
+            @Sendable (_ request: Stripe.PaymentMethods.PaymentMethods.Create.Request)
+                async throws(any Swift.Error)
                 ->
                 Stripe.PaymentMethods.PaymentMethod
 
         // https://docs.stripe.com/api/payment_methods/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.PaymentMethods.PaymentMethod.ID) async throws(any Swift.Error) ->
+            @Sendable (_ id: Stripe.PaymentMethods.PaymentMethod.ID) async throws(any Swift.Error)
+                ->
                 Stripe.PaymentMethods.PaymentMethod
 
         // https://docs.stripe.com/api/payment_methods/retrieve_customer.md
@@ -32,7 +34,8 @@ extension Stripe.PaymentMethods.PaymentMethods {
             ) async throws(any Swift.Error) -> Stripe.PaymentMethods.PaymentMethod
 
         // https://docs.stripe.com/api/payment_methods/list.md
-        public var list: @Sendable (_ request: List.Request) async throws(any Swift.Error) -> List.Response
+        public var list:
+            @Sendable (_ request: List.Request) async throws(any Swift.Error) -> List.Response
 
         // https://docs.stripe.com/api/payment_methods/customer_list.md
         public var listCustomer:
@@ -50,7 +53,8 @@ extension Stripe.PaymentMethods.PaymentMethods {
 
         // https://docs.stripe.com/api/payment_methods/detach.md
         public var detach:
-            @Sendable (_ id: Stripe.PaymentMethods.PaymentMethod.ID) async throws(any Swift.Error) ->
+            @Sendable (_ id: Stripe.PaymentMethods.PaymentMethod.ID) async throws(any Swift.Error)
+                ->
                 Stripe.PaymentMethods.PaymentMethod
     }
 }

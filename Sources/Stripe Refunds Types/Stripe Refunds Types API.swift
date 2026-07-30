@@ -52,11 +52,13 @@ extension Stripe.Refunds.API {
                     Path { Parse(.string.representing(Stripe.Refunds.Refund.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Refunds.API.cases.update))) {
+                    .map(.case(Stripe.Refunds.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.refunds
@@ -76,13 +78,20 @@ extension Stripe.Refunds.API {
                     Path.refunds
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1)
+                            },
                             unapply: { ((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Refunds.List.Request.init,
-                                { ($0.charge, $0.created, $0.endingBefore, $0.limit, $0.paymentIntent, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.charge, $0.created, $0.endingBefore, $0.limit,
+                                        $0.paymentIntent, $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -132,10 +141,14 @@ extension Stripe.Refunds.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var refunds: Path<PathBuilder.Component<String>> { Path {
-        "refunds"
-    } }
-    public static var cancel: Path<PathBuilder.Component<String>> { Path {
-        "cancel"
-    } }
+    public static var refunds: Path<PathBuilder.Component<String>> {
+        Path {
+            "refunds"
+        }
+    }
+    public static var cancel: Path<PathBuilder.Component<String>> {
+        Path {
+            "cancel"
+        }
+    }
 }

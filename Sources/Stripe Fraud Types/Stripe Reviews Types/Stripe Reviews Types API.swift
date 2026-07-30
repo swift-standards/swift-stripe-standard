@@ -50,11 +50,13 @@ extension Stripe.Fraud.Reviews.API {
                 //                    .query(Stripe.Fraud.Reviews.API.List.Request?.self)
                 //                }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Fraud.Reviews.API.cases.approve))) {
+                    .map(.case(Stripe.Fraud.Reviews.API.cases.approve))
+                ) {
                     Method.post
                     Path.v1
                     Path { "reviews" }
@@ -74,11 +76,15 @@ extension Stripe.Fraud.Reviews.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var reviews: Path<PathBuilder.Component<String>> { Path {
-        "reviews"
-    } }
+    public static var reviews: Path<PathBuilder.Component<String>> {
+        Path {
+            "reviews"
+        }
+    }
 
-    public static var approve: Path<PathBuilder.Component<String>> { Path {
-        "approve"
-    } }
+    public static var approve: Path<PathBuilder.Component<String>> {
+        Path {
+            "approve"
+        }
+    }
 }

@@ -15,7 +15,14 @@ import URL_Routing_Foundation_Integration
 @testable import Stripe_Tax_Types
 @testable import Stripe_Types_Models
 
-@Suite("Tax Calculations Router Tests", .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4"))
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
+
+@Suite(
+    "Tax Calculations Router Tests",
+    .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4")
+)
 struct TaxCalculationsRouterTests {
     let router = Stripe.Tax.Calculations.API.Router()
 
@@ -107,7 +114,7 @@ struct TaxCalculationsRouterTests {
 // `.disabled(if:)`, not `withKnownIssue`, because the crash kills the runner).
 // Auto-retires at the 6.4 toolchain move.
 #if compiler(<6.4)
-private let taggedMetadataSIGSEGV = true
+    private let taggedMetadataSIGSEGV = true
 #else
-private let taggedMetadataSIGSEGV = false
+    private let taggedMetadataSIGSEGV = false
 #endif

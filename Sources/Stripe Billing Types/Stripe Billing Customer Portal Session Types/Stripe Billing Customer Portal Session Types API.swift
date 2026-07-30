@@ -37,11 +37,15 @@ extension Stripe.Billing.Customer.Portal.Session.API {
 
 // MARK: - Path Extensions
 extension Path<PathBuilder.Component<String>> {
-    public static var billing_portal: Path<PathBuilder.Component<String>> { Path {
-        "billing_portal"
-    } }
+    public static var billing_portal: Path<PathBuilder.Component<String>> {
+        Path {
+            "billing_portal"
+        }
+    }
 
-    public static var sessions: Path<PathBuilder.Component<String>> { Path {
-        "sessions"
-    } }
+    public static var sessions: Path<PathBuilder.Component<String>> {
+        Path {
+            "sessions"
+        }
+    }
 }

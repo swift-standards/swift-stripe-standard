@@ -67,7 +67,12 @@ extension Stripe.Billing.Alerts.API {
                         .map(
                             .memberwise(
                                 Stripe.Billing.Alerts.List.Request.init,
-                                { ($0.alertType, $0.endingBefore, $0.limit, $0.meter, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.alertType, $0.endingBefore, $0.limit, $0.meter,
+                                        $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -130,15 +135,21 @@ extension Stripe.Billing.Alerts.API {
 
 // MARK: - Path Extensions
 extension Path<PathBuilder.Component<String>> {
-    public static var alerts: Path<PathBuilder.Component<String>> { Path {
-        "alerts"
-    } }
+    public static var alerts: Path<PathBuilder.Component<String>> {
+        Path {
+            "alerts"
+        }
+    }
 
-    public static var activate: Path<PathBuilder.Component<String>> { Path {
-        "activate"
-    } }
+    public static var activate: Path<PathBuilder.Component<String>> {
+        Path {
+            "activate"
+        }
+    }
 
-    public static var archive: Path<PathBuilder.Component<String>> { Path {
-        "archive"
-    } }
+    public static var archive: Path<PathBuilder.Component<String>> {
+        Path {
+            "archive"
+        }
+    }
 }

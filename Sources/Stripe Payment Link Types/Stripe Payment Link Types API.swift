@@ -40,11 +40,13 @@ extension Stripe.PaymentLinks.API {
                 }
 
                 // https://docs.stripe.com/api/payment-link/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentLinks.API.cases.update))) {
+                    .map(.case(Stripe.PaymentLinks.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.paymentLinks
@@ -101,11 +103,13 @@ extension Stripe.PaymentLinks.API {
                 }
 
                 // https://docs.stripe.com/api/payment-link/retrieve-line-items.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentLinks.API.cases.lineItems))) {
+                    .map(.case(Stripe.PaymentLinks.API.cases.lineItems))
+                ) {
                     Method.get
                     Path.v1
                     Path.paymentLinks
@@ -142,7 +146,9 @@ extension Stripe.PaymentLinks.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var paymentLinks: Path<PathBuilder.Component<String>> { Path {
-        "payment_links"
-    } }
+    public static var paymentLinks: Path<PathBuilder.Component<String>> {
+        Path {
+            "payment_links"
+        }
+    }
 }

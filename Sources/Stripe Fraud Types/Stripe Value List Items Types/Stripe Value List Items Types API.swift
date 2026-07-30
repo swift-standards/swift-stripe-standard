@@ -95,7 +95,9 @@ extension Stripe.Fraud.ValueListItems.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var valueListItems: Path<PathBuilder.Component<String>> { Path {
-        "value_list_items"
-    } }
+    public static var valueListItems: Path<PathBuilder.Component<String>> {
+        Path {
+            "value_list_items"
+        }
+    }
 }

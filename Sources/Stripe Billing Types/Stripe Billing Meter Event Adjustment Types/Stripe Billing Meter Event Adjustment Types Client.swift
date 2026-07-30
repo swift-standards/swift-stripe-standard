@@ -15,7 +15,8 @@ extension Stripe.Billing.MeterEventAdjustments {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/billing/meter-event-adjustment/create.md
         public var create:
-            @Sendable (_ request: Stripe.Billing.MeterEventAdjustments.Create.Request) async throws(any Swift.Error)
+            @Sendable (_ request: Stripe.Billing.MeterEventAdjustments.Create.Request)
+                async throws(any Swift.Error)
                 ->
                 MeterEventAdjustment
     }

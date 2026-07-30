@@ -20,7 +20,8 @@ extension Stripe.Charges {
 
         // https://docs.stripe.com/api/charges/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Charges.Charge.ID) async throws(any Swift.Error) -> Stripe.Charges.Charge
+            @Sendable (_ id: Stripe.Charges.Charge.ID) async throws(any Swift.Error) ->
+                Stripe.Charges.Charge
 
         // https://docs.stripe.com/api/charges/update.md
         public var update:

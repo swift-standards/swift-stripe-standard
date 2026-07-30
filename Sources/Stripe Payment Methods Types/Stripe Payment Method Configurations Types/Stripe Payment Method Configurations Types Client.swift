@@ -21,7 +21,8 @@ extension Stripe.PaymentMethodConfigurations {
 
         // https://docs.stripe.com/api/payment_method_configurations/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.PaymentMethodConfigurations.Configuration.ID) async throws(any Swift.Error) ->
+            @Sendable (_ id: Stripe.PaymentMethodConfigurations.Configuration.ID)
+                async throws(any Swift.Error) ->
                 Stripe.PaymentMethodConfigurations.Configuration
 
         // https://docs.stripe.com/api/payment_method_configurations/update.md
@@ -31,6 +32,7 @@ extension Stripe.PaymentMethodConfigurations {
             ) async throws(any Swift.Error) -> Stripe.PaymentMethodConfigurations.Configuration
 
         // https://docs.stripe.com/api/payment_method_configurations/list.md
-        public var list: @Sendable (_ request: List.Request) async throws(any Swift.Error) -> List.Response
+        public var list:
+            @Sendable (_ request: List.Request) async throws(any Swift.Error) -> List.Response
     }
 }

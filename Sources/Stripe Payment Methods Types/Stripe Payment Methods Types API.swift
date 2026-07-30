@@ -23,7 +23,8 @@ extension Stripe.PaymentMethods.API {
                     Stripe.PaymentMethods.PaymentMethods.API.Router()
                 }
 
-                URLRouting.Route(.case(Stripe.PaymentMethods.API.cases.paymentMethodConfigurations)) {
+                URLRouting.Route(.case(Stripe.PaymentMethods.API.cases.paymentMethodConfigurations))
+                {
                     Stripe.PaymentMethodConfigurations.API.Router()
                 }
 
@@ -40,7 +41,9 @@ extension Stripe.PaymentMethods.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var paymentMethods: Path<PathBuilder.Component<String>> { Path {
-        "payment_methods"
-    } }
+    public static var paymentMethods: Path<PathBuilder.Component<String>> {
+        Path {
+            "payment_methods"
+        }
+    }
 }

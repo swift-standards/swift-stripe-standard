@@ -21,11 +21,13 @@ extension Stripe.Billing.UsageRecordSummary.API {
 
         public var body: some URLRouting.Router<Stripe.Billing.UsageRecordSummary.API> {
             OneOf {
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (subscriptionItemId: $0.0, request: $0.1) },
                         unapply: { ($0.subscriptionItemId, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.UsageRecordSummary.API.cases.list))) {
+                    .map(.case(Stripe.Billing.UsageRecordSummary.API.cases.list))
+                ) {
                     Method.get
                     Path.v1
                     Path.subscription_items
@@ -68,5 +70,7 @@ extension Stripe.Billing.UsageRecordSummary.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    package static var usage_record_summaries: Path<PathBuilder.Component<String>> { Path { "usage_record_summaries" } }
+    package static var usage_record_summaries: Path<PathBuilder.Component<String>> {
+        Path { "usage_record_summaries" }
+    }
 }

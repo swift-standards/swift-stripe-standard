@@ -63,11 +63,13 @@ extension Stripe.Setup.Intents.API {
                 }
 
                 // https://docs.stripe.com/api/setup_intents/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Setup.Intents.API.cases.update))) {
+                    .map(.case(Stripe.Setup.Intents.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.setupIntents
@@ -88,13 +90,23 @@ extension Stripe.Setup.Intents.API {
                     Path.setupIntents
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1,
+                                    $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
                             unapply: { (((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Setup.Intents.List.Request.init,
-                                { ($0.attachToSelf, $0.created, $0.customer, $0.endingBefore, $0.limit, $0.paymentMethod, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.attachToSelf, $0.created, $0.customer, $0.endingBefore,
+                                        $0.limit, $0.paymentMethod, $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -135,11 +147,13 @@ extension Stripe.Setup.Intents.API {
                 }
 
                 // https://docs.stripe.com/api/setup_intents/confirm.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Setup.Intents.API.cases.confirm))) {
+                    .map(.case(Stripe.Setup.Intents.API.cases.confirm))
+                ) {
                     Method.post
                     Path.v1
                     Path.setupIntents
@@ -155,11 +169,13 @@ extension Stripe.Setup.Intents.API {
                 }
 
                 // https://docs.stripe.com/api/setup_intents/cancel.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Setup.Intents.API.cases.cancel))) {
+                    .map(.case(Stripe.Setup.Intents.API.cases.cancel))
+                ) {
                     Method.post
                     Path.v1
                     Path.setupIntents
@@ -175,11 +191,13 @@ extension Stripe.Setup.Intents.API {
                 }
 
                 // https://docs.stripe.com/api/setup_intents/verify_microdeposits.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Setup.Intents.API.cases.verifyMicrodeposits))) {
+                    .map(.case(Stripe.Setup.Intents.API.cases.verifyMicrodeposits))
+                ) {
                     Method.post
                     Path.v1
                     Path.setupIntents
@@ -199,7 +217,9 @@ extension Stripe.Setup.Intents.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var setupIntents: Path<PathBuilder.Component<String>> { Path {
-        "setup_intents"
-    } }
+    public static var setupIntents: Path<PathBuilder.Component<String>> {
+        Path {
+            "setup_intents"
+        }
+    }
 }

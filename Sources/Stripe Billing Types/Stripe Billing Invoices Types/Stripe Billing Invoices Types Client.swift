@@ -15,17 +15,20 @@ extension Stripe.Billing.Invoices {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/invoices/create.md
         public var create:
-            @Sendable (_ request: Stripe.Billing.Invoices.Create.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.Invoices.Create.Request) async throws(any Swift
+                .Error) ->
                 Stripe.Billing.Invoice
 
         // https://docs.stripe.com/api/invoices/create_preview.md
         public var createPreview:
-            @Sendable (_ request: Stripe.Billing.Invoices.CreatePreview.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.Invoices.CreatePreview.Request)
+                async throws(any Swift.Error) ->
                 Stripe.Billing.Invoice
 
         // https://docs.stripe.com/api/invoices/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Billing.Invoice.ID) async throws(any Swift.Error) -> Stripe.Billing.Invoice
+            @Sendable (_ id: Stripe.Billing.Invoice.ID) async throws(any Swift.Error) ->
+                Stripe.Billing.Invoice
 
         // https://docs.stripe.com/api/invoices/update.md
         public var update:
@@ -36,14 +39,16 @@ extension Stripe.Billing.Invoices {
 
         // https://docs.stripe.com/api/invoices/list.md
         public var list:
-            @Sendable (_ request: Stripe.Billing.Invoices.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.Invoices.List.Request) async throws(any Swift
+                .Error) ->
                 Stripe.Billing.Invoices.List.Response
 
         // https://docs.stripe.com/api/invoices/delete.md
         public var delete:
-            @Sendable (_ id: Stripe.Billing.Invoice.ID) async throws(any Swift.Error) -> DeletedObject<
-                Stripe.Billing.Invoice
-            >
+            @Sendable (_ id: Stripe.Billing.Invoice.ID) async throws(any Swift.Error) ->
+                DeletedObject<
+                    Stripe.Billing.Invoice
+                >
 
         // https://docs.stripe.com/api/invoices/finalize_invoice.md
         public var finalize:

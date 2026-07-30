@@ -13,10 +13,12 @@ import Stripe_Types_Shared
 extension Stripe.Customers {
     public struct Client: Sendable {
         public var create:
-            @Sendable (_ request: Stripe.Customers.Create.Request) async throws(any Swift.Error) -> Customer
+            @Sendable (_ request: Stripe.Customers.Create.Request) async throws(any Swift.Error) ->
+                Customer
 
         public var update:
-            @Sendable (_ id: Customer.ID, _ request: Stripe.Customers.Update.Request) async throws(any Swift.Error)
+            @Sendable (_ id: Customer.ID, _ request: Stripe.Customers.Update.Request)
+                async throws(any Swift.Error)
                 ->
                 Customer
 
@@ -26,7 +28,8 @@ extension Stripe.Customers {
             @Sendable (_ request: Stripe.Customers.List.Request) async throws(any Swift.Error) ->
                 Stripe.Customers.List.Response
 
-        public var delete: @Sendable (_ id: Customer.ID) async throws(any Swift.Error) -> DeletedObject<Customer>
+        public var delete:
+            @Sendable (_ id: Customer.ID) async throws(any Swift.Error) -> DeletedObject<Customer>
 
         public var search:
             @Sendable (_ request: Stripe.Customers.Search.Request) async throws(any Swift.Error) ->
@@ -39,18 +42,24 @@ extension Stripe.Customers {
 
         public init(
             create:
-                @escaping @Sendable (_ request: Stripe.Customers.Create.Request) async throws(any Swift.Error) ->
+                @escaping @Sendable (_ request: Stripe.Customers.Create.Request)
+                async throws(any Swift.Error) ->
                 Customer,
             update:
                 @escaping @Sendable (_ id: Customer.ID, _ request: Stripe.Customers.Update.Request)
                 async throws(any Swift.Error) -> Customer,
-            retrieve: @escaping @Sendable (_ id: Customer.ID) async throws(any Swift.Error) -> Customer,
+            retrieve:
+                @escaping @Sendable (_ id: Customer.ID) async throws(any Swift.Error) -> Customer,
             list:
-                @escaping @Sendable (_ request: Stripe.Customers.List.Request) async throws(any Swift.Error) ->
+                @escaping @Sendable (_ request: Stripe.Customers.List.Request)
+                async throws(any Swift.Error) ->
                 Stripe.Customers.List.Response,
-            delete: @escaping @Sendable (_ id: Customer.ID) async throws(any Swift.Error) -> DeletedObject<Customer>,
+            delete:
+                @escaping @Sendable (_ id: Customer.ID) async throws(any Swift.Error) ->
+                DeletedObject<Customer>,
             search:
-                @escaping @Sendable (_ request: Stripe.Customers.Search.Request) async throws(any Swift.Error) ->
+                @escaping @Sendable (_ request: Stripe.Customers.Search.Request)
+                async throws(any Swift.Error) ->
                 Stripe.Customers.Search.Response,
             bankAccounts: Stripe.Customers.BankAccounts.Client,
             cards: Stripe.Customers.Cards.Client,

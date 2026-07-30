@@ -67,7 +67,7 @@ extension Stripe.Events.Event {
         public var object: Stripe.Events.Event.Object
 
         // TODO: - Figure out how to decode this.
-        /// Object containing the names of the attributes that have changed, and their previous values (sent along only with *.updated events).
+        // Object containing the names of the attributes that have changed, and their previous values (sent along only with *.updated events).
         // public var previousAttributes: [String: Any]?
 
         public init(

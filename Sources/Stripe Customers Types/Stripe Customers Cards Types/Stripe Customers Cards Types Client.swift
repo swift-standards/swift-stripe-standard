@@ -15,7 +15,8 @@ extension Stripe.Customers.Cards {
 
         // https://docs.stripe.com/api/cards/retrieve.md
         public var retrieve:
-            @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ cardId: Card.ID) async throws(any Swift.Error)
+            @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ cardId: Card.ID)
+                async throws(any Swift.Error)
                 -> Card
 
         // https://docs.stripe.com/api/cards/update.md
@@ -33,7 +34,8 @@ extension Stripe.Customers.Cards {
 
         // https://docs.stripe.com/api/cards/delete.md
         public var delete:
-            @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ cardId: Card.ID) async throws(any Swift.Error)
+            @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ cardId: Card.ID)
+                async throws(any Swift.Error)
                 ->
                 DeletedObject<Card>
     }

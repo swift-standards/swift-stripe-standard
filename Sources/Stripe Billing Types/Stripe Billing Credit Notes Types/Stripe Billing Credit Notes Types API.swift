@@ -62,11 +62,13 @@ extension Stripe.Billing.CreditNotes.API {
                 }
 
                 // https://docs.stripe.com/api/credit_notes/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.CreditNotes.API.cases.update))) {
+                    .map(.case(Stripe.Billing.CreditNotes.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.credit_notes
@@ -101,7 +103,12 @@ extension Stripe.Billing.CreditNotes.API {
                         .map(
                             .memberwise(
                                 Stripe.Billing.CreditNotes.List.Request.init,
-                                { ($0.customer, $0.invoice, $0.limit, $0.startingAfter, $0.endingBefore) }
+                                {
+                                    (
+                                        $0.customer, $0.invoice, $0.limit, $0.startingAfter,
+                                        $0.endingBefore
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -168,11 +175,13 @@ extension Stripe.Billing.CreditNotes.API {
                 }
 
                 // https://docs.stripe.com/api/credit_notes/void.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.CreditNotes.API.cases.void))) {
+                    .map(.case(Stripe.Billing.CreditNotes.API.cases.void))
+                ) {
                     Method.post
                     Path.v1
                     Path.credit_notes
@@ -188,11 +197,13 @@ extension Stripe.Billing.CreditNotes.API {
                 }
 
                 // https://docs.stripe.com/api/credit_notes/lines.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.CreditNotes.API.cases.lines))) {
+                    .map(.case(Stripe.Billing.CreditNotes.API.cases.lines))
+                ) {
                     Method.get
                     Path.v1
                     Path.credit_notes
@@ -233,13 +244,20 @@ extension Stripe.Billing.CreditNotes.API {
                     Path.lines
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1)
+                            },
                             unapply: { ((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Billing.CreditNotes.PreviewLines.Request.init,
-                                { ($0.invoice, $0.amount, $0.creditAmount, $0.limit, $0.startingAfter, $0.endingBefore) }
+                                {
+                                    (
+                                        $0.invoice, $0.amount, $0.creditAmount, $0.limit,
+                                        $0.startingAfter, $0.endingBefore
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -271,15 +289,21 @@ extension Stripe.Billing.CreditNotes.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var credit_notes: Path<PathBuilder.Component<String>> { Path {
-        "credit_notes"
-    } }
+    public static var credit_notes: Path<PathBuilder.Component<String>> {
+        Path {
+            "credit_notes"
+        }
+    }
 
-    public static var preview: Path<PathBuilder.Component<String>> { Path {
-        "preview"
-    } }
+    public static var preview: Path<PathBuilder.Component<String>> {
+        Path {
+            "preview"
+        }
+    }
 
-    public static var voidPath: Path<PathBuilder.Component<String>> { Path {
-        "void"
-    } }
+    public static var voidPath: Path<PathBuilder.Component<String>> {
+        Path {
+            "void"
+        }
+    }
 }

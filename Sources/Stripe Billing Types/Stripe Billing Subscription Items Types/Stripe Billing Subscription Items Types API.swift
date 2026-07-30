@@ -50,11 +50,13 @@ extension Stripe.Billing.SubscriptionItems.API {
                 }
 
                 // https://docs.stripe.com/api/subscription_items/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.SubscriptionItems.API.cases.update))) {
+                    .map(.case(Stripe.Billing.SubscriptionItems.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.subscription_items
@@ -123,7 +125,9 @@ extension Stripe.Billing.SubscriptionItems.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var subscription_items: Path<PathBuilder.Component<String>> { Path {
-        "subscription_items"
-    } }
+    public static var subscription_items: Path<PathBuilder.Component<String>> {
+        Path {
+            "subscription_items"
+        }
+    }
 }

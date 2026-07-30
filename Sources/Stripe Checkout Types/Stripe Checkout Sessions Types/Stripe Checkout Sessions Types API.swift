@@ -49,11 +49,13 @@ extension Stripe.Checkout.Sessions.API {
                     Path { Parse(.string.representing(Stripe.Checkout.Session.ID.self)) }
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Checkout.Sessions.API.cases.update))) {
+                    .map(.case(Stripe.Checkout.Sessions.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.checkout
@@ -81,7 +83,12 @@ extension Stripe.Checkout.Sessions.API {
                         .map(
                             .memberwise(
                                 Stripe.Checkout.Sessions.List.Request.init,
-                                { ($0.paymentIntent, $0.subscription, $0.startingAfter, $0.endingBefore, $0.limit) }
+                                {
+                                    (
+                                        $0.paymentIntent, $0.subscription, $0.startingAfter,
+                                        $0.endingBefore, $0.limit
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -122,11 +129,13 @@ extension Stripe.Checkout.Sessions.API {
                     Path { "expire" }
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Checkout.Sessions.API.cases.lineItems))) {
+                    .map(.case(Stripe.Checkout.Sessions.API.cases.lineItems))
+                ) {
                     Method.get
                     Path.v1
                     Path.checkout
@@ -165,11 +174,15 @@ extension Stripe.Checkout.Sessions.API {
 
 // Add path extensions for Sessions
 extension Path<PathBuilder.Component<String>> {
-    public static var sessions: Path<PathBuilder.Component<String>> { Path {
-        "sessions"
-    } }
+    public static var sessions: Path<PathBuilder.Component<String>> {
+        Path {
+            "sessions"
+        }
+    }
 
-    public static var checkout: Path<PathBuilder.Component<String>> { Path {
-        "checkout"
-    } }
+    public static var checkout: Path<PathBuilder.Component<String>> {
+        Path {
+            "checkout"
+        }
+    }
 }

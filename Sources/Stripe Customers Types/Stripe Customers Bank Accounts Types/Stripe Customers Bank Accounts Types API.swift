@@ -36,11 +36,13 @@ extension Stripe.Customers.BankAccounts.API {
 
         public var body: some URLRouting.Router<Stripe.Customers.BankAccounts.API> {
             OneOf {
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, request: $0.1) },
                         unapply: { ($0.customerId, $0.request) }
                     )
-                    .map(.case(Stripe.Customers.BankAccounts.API.cases.create))) {
+                    .map(.case(Stripe.Customers.BankAccounts.API.cases.create))
+                ) {
                     Method.post
                     Path.v1
                     Path.customers
@@ -55,11 +57,13 @@ extension Stripe.Customers.BankAccounts.API {
                     )
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, bankAccountId: $0.1) },
                         unapply: { ($0.customerId, $0.bankAccountId) }
                     )
-                    .map(.case(Stripe.Customers.BankAccounts.API.cases.retrieve))) {
+                    .map(.case(Stripe.Customers.BankAccounts.API.cases.retrieve))
+                ) {
                     Method.get
                     Path.v1
                     Path.customers
@@ -68,11 +72,13 @@ extension Stripe.Customers.BankAccounts.API {
                     Path { Parse(.string.representing(BankAccount.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0.0, bankAccountId: $0.0.1, request: $0.1) },
                         unapply: { (($0.customerId, $0.bankAccountId), $0.request) }
                     )
-                    .map(.case(Stripe.Customers.BankAccounts.API.cases.update))) {
+                    .map(.case(Stripe.Customers.BankAccounts.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.customers
@@ -88,11 +94,13 @@ extension Stripe.Customers.BankAccounts.API {
                     )
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, request: $0.1) },
                         unapply: { ($0.customerId, $0.request) }
                     )
-                    .map(.case(Stripe.Customers.BankAccounts.API.cases.list))) {
+                    .map(.case(Stripe.Customers.BankAccounts.API.cases.list))
+                ) {
                     Method.get
                     Path.v1
                     Path.customers
@@ -124,11 +132,13 @@ extension Stripe.Customers.BankAccounts.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, bankAccountId: $0.1) },
                         unapply: { ($0.customerId, $0.bankAccountId) }
                     )
-                    .map(.case(Stripe.Customers.BankAccounts.API.cases.delete))) {
+                    .map(.case(Stripe.Customers.BankAccounts.API.cases.delete))
+                ) {
                     Method.delete
                     Path.v1
                     Path.customers
@@ -137,11 +147,13 @@ extension Stripe.Customers.BankAccounts.API {
                     Path { Parse(.string.representing(BankAccount.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0.0, bankAccountId: $0.0.1, request: $0.1) },
                         unapply: { (($0.customerId, $0.bankAccountId), $0.request) }
                     )
-                    .map(.case(Stripe.Customers.BankAccounts.API.cases.verify))) {
+                    .map(.case(Stripe.Customers.BankAccounts.API.cases.verify))
+                ) {
                     Method.post
                     Path.v1
                     Path.customers
@@ -163,15 +175,21 @@ extension Stripe.Customers.BankAccounts.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var bankAccounts: Path<PathBuilder.Component<String>> { Path {
-        "bank_accounts"
-    } }
+    public static var bankAccounts: Path<PathBuilder.Component<String>> {
+        Path {
+            "bank_accounts"
+        }
+    }
 
-    public static var sources: Path<PathBuilder.Component<String>> { Path {
-        "sources"
-    } }
+    public static var sources: Path<PathBuilder.Component<String>> {
+        Path {
+            "sources"
+        }
+    }
 
-    public static var verify: Path<PathBuilder.Component<String>> { Path {
-        "verify"
-    } }
+    public static var verify: Path<PathBuilder.Component<String>> {
+        Path {
+            "verify"
+        }
+    }
 }

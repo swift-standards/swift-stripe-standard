@@ -66,11 +66,13 @@ extension Stripe.Terminal.Readers.API {
                     Path { Parse(.string.representing(Stripe.Terminal.Readers.Reader.ID.self)) }
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Terminal.Readers.API.cases.update))) {
+                    .map(.case(Stripe.Terminal.Readers.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.terminal
@@ -110,11 +112,13 @@ extension Stripe.Terminal.Readers.API {
                     Path.cancelAction
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Terminal.Readers.API.cases.processPaymentIntent))) {
+                    .map(.case(Stripe.Terminal.Readers.API.cases.processPaymentIntent))
+                ) {
                     Method.post
                     Path.v1
                     Path.terminal
@@ -130,11 +134,13 @@ extension Stripe.Terminal.Readers.API {
                     )
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Terminal.Readers.API.cases.processSetupIntent))) {
+                    .map(.case(Stripe.Terminal.Readers.API.cases.processSetupIntent))
+                ) {
                     Method.post
                     Path.v1
                     Path.terminal
@@ -150,11 +156,13 @@ extension Stripe.Terminal.Readers.API {
                     )
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Terminal.Readers.API.cases.collectInputs))) {
+                    .map(.case(Stripe.Terminal.Readers.API.cases.collectInputs))
+                ) {
                     Method.post
                     Path.v1
                     Path.terminal
@@ -170,11 +178,13 @@ extension Stripe.Terminal.Readers.API {
                     )
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Terminal.Readers.API.cases.confirmPaymentIntent))) {
+                    .map(.case(Stripe.Terminal.Readers.API.cases.confirmPaymentIntent))
+                ) {
                     Method.post
                     Path.v1
                     Path.terminal
@@ -190,11 +200,13 @@ extension Stripe.Terminal.Readers.API {
                     )
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Terminal.Readers.API.cases.collectPaymentMethod))) {
+                    .map(.case(Stripe.Terminal.Readers.API.cases.collectPaymentMethod))
+                ) {
                     Method.post
                     Path.v1
                     Path.terminal
@@ -210,11 +222,13 @@ extension Stripe.Terminal.Readers.API {
                     )
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Terminal.Readers.API.cases.refundPayment))) {
+                    .map(.case(Stripe.Terminal.Readers.API.cases.refundPayment))
+                ) {
                     Method.post
                     Path.v1
                     Path.terminal
@@ -230,11 +244,13 @@ extension Stripe.Terminal.Readers.API {
                     )
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Terminal.Readers.API.cases.setReaderDisplay))) {
+                    .map(.case(Stripe.Terminal.Readers.API.cases.setReaderDisplay))
+                ) {
                     Method.post
                     Path.v1
                     Path.terminal
@@ -250,11 +266,13 @@ extension Stripe.Terminal.Readers.API {
                     )
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Terminal.Readers.API.cases.presentPaymentMethod))) {
+                    .map(.case(Stripe.Terminal.Readers.API.cases.presentPaymentMethod))
+                ) {
                     Method.post
                     Path.v1
                     Path.testHelpers
@@ -276,51 +294,75 @@ extension Stripe.Terminal.Readers.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var terminal: Path<PathBuilder.Component<String>> { Path {
-        "terminal"
-    } }
+    public static var terminal: Path<PathBuilder.Component<String>> {
+        Path {
+            "terminal"
+        }
+    }
 
-    public static var readers: Path<PathBuilder.Component<String>> { Path {
-        "readers"
-    } }
+    public static var readers: Path<PathBuilder.Component<String>> {
+        Path {
+            "readers"
+        }
+    }
 
-    public static var cancelAction: Path<PathBuilder.Component<String>> { Path {
-        "cancel_action"
-    } }
+    public static var cancelAction: Path<PathBuilder.Component<String>> {
+        Path {
+            "cancel_action"
+        }
+    }
 
-    public static var processPaymentIntent: Path<PathBuilder.Component<String>> { Path {
-        "process_payment_intent"
-    } }
+    public static var processPaymentIntent: Path<PathBuilder.Component<String>> {
+        Path {
+            "process_payment_intent"
+        }
+    }
 
-    public static var processSetupIntent: Path<PathBuilder.Component<String>> { Path {
-        "process_setup_intent"
-    } }
+    public static var processSetupIntent: Path<PathBuilder.Component<String>> {
+        Path {
+            "process_setup_intent"
+        }
+    }
 
-    public static var collectInputs: Path<PathBuilder.Component<String>> { Path {
-        "collect_inputs"
-    } }
+    public static var collectInputs: Path<PathBuilder.Component<String>> {
+        Path {
+            "collect_inputs"
+        }
+    }
 
-    public static var confirmPaymentIntent: Path<PathBuilder.Component<String>> { Path {
-        "confirm_payment_intent"
-    } }
+    public static var confirmPaymentIntent: Path<PathBuilder.Component<String>> {
+        Path {
+            "confirm_payment_intent"
+        }
+    }
 
-    public static var collectPaymentMethod: Path<PathBuilder.Component<String>> { Path {
-        "collect_payment_method"
-    } }
+    public static var collectPaymentMethod: Path<PathBuilder.Component<String>> {
+        Path {
+            "collect_payment_method"
+        }
+    }
 
-    public static var refundPayment: Path<PathBuilder.Component<String>> { Path {
-        "refund_payment"
-    } }
+    public static var refundPayment: Path<PathBuilder.Component<String>> {
+        Path {
+            "refund_payment"
+        }
+    }
 
-    public static var setReaderDisplay: Path<PathBuilder.Component<String>> { Path {
-        "set_reader_display"
-    } }
+    public static var setReaderDisplay: Path<PathBuilder.Component<String>> {
+        Path {
+            "set_reader_display"
+        }
+    }
 
-    public static var testHelpers: Path<PathBuilder.Component<String>> { Path {
-        "test_helpers"
-    } }
+    public static var testHelpers: Path<PathBuilder.Component<String>> {
+        Path {
+            "test_helpers"
+        }
+    }
 
-    public static var presentPaymentMethod: Path<PathBuilder.Component<String>> { Path {
-        "present_payment_method"
-    } }
+    public static var presentPaymentMethod: Path<PathBuilder.Component<String>> {
+        Path {
+            "present_payment_method"
+        }
+    }
 }

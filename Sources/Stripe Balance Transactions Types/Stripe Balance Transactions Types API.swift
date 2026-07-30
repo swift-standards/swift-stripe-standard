@@ -42,13 +42,23 @@ extension Stripe.BalanceTransactions.API {
                     Path.balanceTransactions
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1,
+                                    $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
                             unapply: { (((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.BalanceTransactions.List.Request.init,
-                                { ($0.payout, $0.type, $0.created, $0.currency, $0.endingBefore, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.payout, $0.type, $0.created, $0.currency,
+                                        $0.endingBefore, $0.limit, $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -89,7 +99,9 @@ extension Stripe.BalanceTransactions.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var balanceTransactions: Path<PathBuilder.Component<String>> { Path {
-        "balance_transactions"
-    } }
+    public static var balanceTransactions: Path<PathBuilder.Component<String>> {
+        Path {
+            "balance_transactions"
+        }
+    }
 }

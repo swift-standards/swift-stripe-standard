@@ -59,11 +59,13 @@ extension Stripe.Billing.Subscriptions.API {
                     Path { Parse(.string.representing(Stripe.Billing.Subscription.ID.self)) }
                 }
                 // https://docs.stripe.com/api/subscriptions/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Subscriptions.API.cases.update))) {
+                    .map(.case(Stripe.Billing.Subscriptions.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.subscriptions
@@ -83,13 +85,44 @@ extension Stripe.Billing.Subscriptions.API {
                     Path.subscriptions
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0.0.0.0.0.0, $0.0.0.0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.1, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
-                            unapply: { ((((((((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6), $0.7), $0.8), $0.9), $0.10), $0.11) }
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0.0.0.0.0.0, $0.0.0.0.0.0.0.0.0.0.0.1,
+                                    $0.0.0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.0.0.1,
+                                    $0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.1, $0.0.0.0.0.0.1,
+                                    $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
+                            unapply: {
+                                (
+                                    (
+                                        (
+                                            (
+                                                (
+                                                    (
+                                                        (
+                                                            (((($0.0, $0.1), $0.2), $0.3), $0.4),
+                                                            $0.5
+                                                        ), $0.6
+                                                    ), $0.7
+                                                ), $0.8
+                                            ), $0.9
+                                        ), $0.10
+                                    ), $0.11
+                                )
+                            }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Billing.Subscriptions.List.Request.init,
-                                { ($0.automaticTax, $0.collectionMethod, $0.created, $0.currentPeriodEnd, $0.currentPeriodStart, $0.customer, $0.endingBefore, $0.limit, $0.price, $0.startingAfter, $0.status, $0.testClock) }
+                                {
+                                    (
+                                        $0.automaticTax, $0.collectionMethod, $0.created,
+                                        $0.currentPeriodEnd, $0.currentPeriodStart, $0.customer,
+                                        $0.endingBefore, $0.limit, $0.price, $0.startingAfter,
+                                        $0.status, $0.testClock
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -158,11 +191,13 @@ extension Stripe.Billing.Subscriptions.API {
                     }
                 }
                 // https://docs.stripe.com/api/subscriptions/cancel.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Subscriptions.API.cases.cancel))) {
+                    .map(.case(Stripe.Billing.Subscriptions.API.cases.cancel))
+                ) {
                     Method.delete
                     Path.v1
                     Path.subscriptions
@@ -181,5 +216,7 @@ extension Stripe.Billing.Subscriptions.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    package static var subscriptions: Path<PathBuilder.Component<String>> { Path { "subscriptions" } }
+    package static var subscriptions: Path<PathBuilder.Component<String>> {
+        Path { "subscriptions" }
+    }
 }

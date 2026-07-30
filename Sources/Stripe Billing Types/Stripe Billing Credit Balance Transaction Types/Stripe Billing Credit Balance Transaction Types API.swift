@@ -44,7 +44,12 @@ extension Stripe.Billing.Credit.Balance.API {
                         .map(
                             .memberwise(
                                 Stripe.Billing.Credit.Balance.List.Request.init,
-                                { ($0.customer, $0.creditGrant, $0.endingBefore, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.customer, $0.creditGrant, $0.endingBefore, $0.limit,
+                                        $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -73,5 +78,7 @@ extension Stripe.Billing.Credit.Balance.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    package static var credit_balance_transactions: Path<PathBuilder.Component<String>> { Path { "credit_balance_transactions" } }
+    package static var credit_balance_transactions: Path<PathBuilder.Component<String>> {
+        Path { "credit_balance_transactions" }
+    }
 }

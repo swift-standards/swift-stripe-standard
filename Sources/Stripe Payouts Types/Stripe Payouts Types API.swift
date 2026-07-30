@@ -54,11 +54,13 @@ extension Stripe.Payouts.API {
                     Path { Parse(.string.representing(Stripe.Payouts.Payout.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Payouts.API.cases.update))) {
+                    .map(.case(Stripe.Payouts.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.payouts
@@ -78,13 +80,23 @@ extension Stripe.Payouts.API {
                     Path.payouts
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1,
+                                    $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
                             unapply: { (((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Payouts.List.Request.init,
-                                { ($0.arrivalDate, $0.created, $0.destination, $0.endingBefore, $0.limit, $0.startingAfter, $0.status) }
+                                {
+                                    (
+                                        $0.arrivalDate, $0.created, $0.destination, $0.endingBefore,
+                                        $0.limit, $0.startingAfter, $0.status
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -128,11 +140,13 @@ extension Stripe.Payouts.API {
                     Path.cancel
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Payouts.API.cases.reverse))) {
+                    .map(.case(Stripe.Payouts.API.cases.reverse))
+                ) {
                     Method.post
                     Path.v1
                     Path.payouts
@@ -152,15 +166,21 @@ extension Stripe.Payouts.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var payouts: Path<PathBuilder.Component<String>> { Path {
-        "payouts"
-    } }
+    public static var payouts: Path<PathBuilder.Component<String>> {
+        Path {
+            "payouts"
+        }
+    }
 
-    public static var cancel: Path<PathBuilder.Component<String>> { Path {
-        "cancel"
-    } }
+    public static var cancel: Path<PathBuilder.Component<String>> {
+        Path {
+            "cancel"
+        }
+    }
 
-    public static var reverse: Path<PathBuilder.Component<String>> { Path {
-        "reverse"
-    } }
+    public static var reverse: Path<PathBuilder.Component<String>> {
+        Path {
+            "reverse"
+        }
+    }
 }

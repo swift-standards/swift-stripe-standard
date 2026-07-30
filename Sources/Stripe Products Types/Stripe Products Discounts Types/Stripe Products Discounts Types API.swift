@@ -48,15 +48,21 @@ extension Stripe.Products.Discounts.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var discount: Path<PathBuilder.Component<String>> { Path {
-        "discount"
-    } }
+    public static var discount: Path<PathBuilder.Component<String>> {
+        Path {
+            "discount"
+        }
+    }
 
-    public static var customers: Path<PathBuilder.Component<String>> { Path {
-        "customers"
-    } }
+    public static var customers: Path<PathBuilder.Component<String>> {
+        Path {
+            "customers"
+        }
+    }
 
-    public static var subscriptions: Path<PathBuilder.Component<String>> { Path {
-        "subscriptions"
-    } }
+    public static var subscriptions: Path<PathBuilder.Component<String>> {
+        Path {
+            "subscriptions"
+        }
+    }
 }

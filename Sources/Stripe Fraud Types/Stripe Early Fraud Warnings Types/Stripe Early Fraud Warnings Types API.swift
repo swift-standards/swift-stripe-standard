@@ -47,7 +47,12 @@ extension Stripe.Fraud.EarlyFraudWarnings.API {
                         .map(
                             .memberwise(
                                 Stripe.Fraud.EarlyFraudWarnings.API.List.Request.init,
-                                { ($0.charge, $0.paymentIntent, $0.endingBefore, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.charge, $0.paymentIntent, $0.endingBefore, $0.limit,
+                                        $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -84,11 +89,15 @@ extension Stripe.Fraud.EarlyFraudWarnings.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var radar: Path<PathBuilder.Component<String>> { Path {
-        "radar"
-    } }
+    public static var radar: Path<PathBuilder.Component<String>> {
+        Path {
+            "radar"
+        }
+    }
 
-    public static var earlyFraudWarnings: Path<PathBuilder.Component<String>> { Path {
-        "early_fraud_warnings"
-    } }
+    public static var earlyFraudWarnings: Path<PathBuilder.Component<String>> {
+        Path {
+            "early_fraud_warnings"
+        }
+    }
 }

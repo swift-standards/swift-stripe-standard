@@ -27,11 +27,13 @@ extension Stripe.Billing.Customer.Balance.API {
 
         public var body: some URLRouting.Router<Stripe.Billing.Customer.Balance.API> {
             OneOf {
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (customerId: $0.0, request: $0.1) },
                         unapply: { ($0.customerId, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Customer.Balance.API.cases.create))) {
+                    .map(.case(Stripe.Billing.Customer.Balance.API.cases.create))
+                ) {
                     Method.post
                     Path.v1
                     Path.customers
@@ -46,11 +48,13 @@ extension Stripe.Billing.Customer.Balance.API {
                     )
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (customerId: $0.0, id: $0.1) },
                         unapply: { ($0.customerId, $0.id) }
                     )
-                    .map(.case(Stripe.Billing.Customer.Balance.API.cases.retrieve))) {
+                    .map(.case(Stripe.Billing.Customer.Balance.API.cases.retrieve))
+                ) {
                     Method.get
                     Path.v1
                     Path.customers
@@ -65,11 +69,13 @@ extension Stripe.Billing.Customer.Balance.API {
                     }
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (customerId: $0.0.0, id: $0.0.1, request: $0.1) },
                         unapply: { (($0.customerId, $0.id), $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Customer.Balance.API.cases.update))) {
+                    .map(.case(Stripe.Billing.Customer.Balance.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.customers
@@ -91,11 +97,13 @@ extension Stripe.Billing.Customer.Balance.API {
                     )
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (customerId: $0.0, request: $0.1) },
                         unapply: { ($0.customerId, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Customer.Balance.API.cases.list))) {
+                    .map(.case(Stripe.Billing.Customer.Balance.API.cases.list))
+                ) {
                     Method.get
                     Path.v1
                     Path.customers
@@ -133,5 +141,7 @@ extension Stripe.Billing.Customer.Balance.API {
 
 extension Path<PathBuilder.Component<String>> {
     package static var customers: Path<PathBuilder.Component<String>> { Path { "customers" } }
-    package static var balance_transactions: Path<PathBuilder.Component<String>> { Path { "balance_transactions" } }
+    package static var balance_transactions: Path<PathBuilder.Component<String>> {
+        Path { "balance_transactions" }
+    }
 }

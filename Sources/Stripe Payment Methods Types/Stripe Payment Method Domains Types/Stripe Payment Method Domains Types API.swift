@@ -46,11 +46,13 @@ extension Stripe.PaymentMethodDomains.API {
                     Path { Parse(.string.representing(Stripe.PaymentMethodDomain.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentMethodDomains.API.cases.update))) {
+                    .map(.case(Stripe.PaymentMethodDomains.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.paymentMethodDomains
@@ -76,7 +78,12 @@ extension Stripe.PaymentMethodDomains.API {
                         .map(
                             .memberwise(
                                 Stripe.PaymentMethodDomains.List.Request.init,
-                                { ($0.domainName, $0.enabled, $0.endingBefore, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.domainName, $0.enabled, $0.endingBefore, $0.limit,
+                                        $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -113,11 +120,15 @@ extension Stripe.PaymentMethodDomains.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var paymentMethodDomains: Path<PathBuilder.Component<String>> { Path {
-        "payment_method_domains"
-    } }
+    public static var paymentMethodDomains: Path<PathBuilder.Component<String>> {
+        Path {
+            "payment_method_domains"
+        }
+    }
 
-    public static var validate: Path<PathBuilder.Component<String>> { Path {
-        "validate"
-    } }
+    public static var validate: Path<PathBuilder.Component<String>> {
+        Path {
+            "validate"
+        }
+    }
 }

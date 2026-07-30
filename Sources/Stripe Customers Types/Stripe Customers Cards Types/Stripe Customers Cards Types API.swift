@@ -30,11 +30,13 @@ extension Stripe.Customers.Cards.API {
 
         public var body: some URLRouting.Router<Stripe.Customers.Cards.API> {
             OneOf {
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, request: $0.1) },
                         unapply: { ($0.customerId, $0.request) }
                     )
-                    .map(.case(Stripe.Customers.Cards.API.cases.create))) {
+                    .map(.case(Stripe.Customers.Cards.API.cases.create))
+                ) {
                     Method.post
                     Path.v1
                     Path.customers
@@ -49,11 +51,13 @@ extension Stripe.Customers.Cards.API {
                     )
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, cardId: $0.1) },
                         unapply: { ($0.customerId, $0.cardId) }
                     )
-                    .map(.case(Stripe.Customers.Cards.API.cases.retrieve))) {
+                    .map(.case(Stripe.Customers.Cards.API.cases.retrieve))
+                ) {
                     Method.get
                     Path.v1
                     Path.customers
@@ -62,11 +66,13 @@ extension Stripe.Customers.Cards.API {
                     Path { Parse(.string.representing(Card.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0.0, cardId: $0.0.1, request: $0.1) },
                         unapply: { (($0.customerId, $0.cardId), $0.request) }
                     )
-                    .map(.case(Stripe.Customers.Cards.API.cases.update))) {
+                    .map(.case(Stripe.Customers.Cards.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.customers
@@ -82,11 +88,13 @@ extension Stripe.Customers.Cards.API {
                     )
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, request: $0.1) },
                         unapply: { ($0.customerId, $0.request) }
                     )
-                    .map(.case(Stripe.Customers.Cards.API.cases.list))) {
+                    .map(.case(Stripe.Customers.Cards.API.cases.list))
+                ) {
                     Method.get
                     Path.v1
                     Path.customers
@@ -118,11 +126,13 @@ extension Stripe.Customers.Cards.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, cardId: $0.1) },
                         unapply: { ($0.customerId, $0.cardId) }
                     )
-                    .map(.case(Stripe.Customers.Cards.API.cases.delete))) {
+                    .map(.case(Stripe.Customers.Cards.API.cases.delete))
+                ) {
                     Method.delete
                     Path.v1
                     Path.customers
@@ -136,7 +146,9 @@ extension Stripe.Customers.Cards.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var cards: Path<PathBuilder.Component<String>> { Path {
-        "cards"
-    } }
+    public static var cards: Path<PathBuilder.Component<String>> {
+        Path {
+            "cards"
+        }
+    }
 }

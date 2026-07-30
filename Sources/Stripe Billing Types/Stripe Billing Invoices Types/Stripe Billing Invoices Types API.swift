@@ -83,11 +83,13 @@ extension Stripe.Billing.Invoices.API {
                 }
 
                 // https://docs.stripe.com/api/invoices/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Invoices.API.cases.update))) {
+                    .map(.case(Stripe.Billing.Invoices.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.invoices
@@ -108,13 +110,26 @@ extension Stripe.Billing.Invoices.API {
                     Path.invoices
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0.0.0, $0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.1, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
-                            unapply: { (((((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6), $0.7), $0.8) }
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0.0.0, $0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.1,
+                                    $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
+                            unapply: {
+                                (((((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6), $0.7), $0.8)
+                            }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Billing.Invoices.List.Request.init,
-                                { ($0.collectionMethod, $0.created, $0.customer, $0.dueDate, $0.endingBefore, $0.limit, $0.startingAfter, $0.status, $0.subscription) }
+                                {
+                                    (
+                                        $0.collectionMethod, $0.created, $0.customer, $0.dueDate,
+                                        $0.endingBefore, $0.limit, $0.startingAfter, $0.status,
+                                        $0.subscription
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -175,11 +190,13 @@ extension Stripe.Billing.Invoices.API {
                 }
 
                 // https://docs.stripe.com/api/invoices/finalize_invoice.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Invoices.API.cases.finalize))) {
+                    .map(.case(Stripe.Billing.Invoices.API.cases.finalize))
+                ) {
                     Method.post
                     Path.v1
                     Path.invoices
@@ -195,11 +212,13 @@ extension Stripe.Billing.Invoices.API {
                 }
 
                 // https://docs.stripe.com/api/invoices/pay.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Invoices.API.cases.pay))) {
+                    .map(.case(Stripe.Billing.Invoices.API.cases.pay))
+                ) {
                     Method.post
                     Path.v1
                     Path.invoices
@@ -215,11 +234,13 @@ extension Stripe.Billing.Invoices.API {
                 }
 
                 // https://docs.stripe.com/api/invoices/send.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Invoices.API.cases.send))) {
+                    .map(.case(Stripe.Billing.Invoices.API.cases.send))
+                ) {
                     Method.post
                     Path.v1
                     Path.invoices
@@ -235,11 +256,13 @@ extension Stripe.Billing.Invoices.API {
                 }
 
                 // https://docs.stripe.com/api/invoices/void.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Invoices.API.cases.void))) {
+                    .map(.case(Stripe.Billing.Invoices.API.cases.void))
+                ) {
                     Method.post
                     Path.v1
                     Path.invoices
@@ -259,27 +282,39 @@ extension Stripe.Billing.Invoices.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var invoices: Path<PathBuilder.Component<String>> { Path {
-        "invoices"
-    } }
+    public static var invoices: Path<PathBuilder.Component<String>> {
+        Path {
+            "invoices"
+        }
+    }
 
-    public static var createPreview: Path<PathBuilder.Component<String>> { Path {
-        "create_preview"
-    } }
+    public static var createPreview: Path<PathBuilder.Component<String>> {
+        Path {
+            "create_preview"
+        }
+    }
 
-    public static var finalize: Path<PathBuilder.Component<String>> { Path {
-        "finalize"
-    } }
+    public static var finalize: Path<PathBuilder.Component<String>> {
+        Path {
+            "finalize"
+        }
+    }
 
-    public static var pay: Path<PathBuilder.Component<String>> { Path {
-        "pay"
-    } }
+    public static var pay: Path<PathBuilder.Component<String>> {
+        Path {
+            "pay"
+        }
+    }
 
-    public static var send: Path<PathBuilder.Component<String>> { Path {
-        "send"
-    } }
+    public static var send: Path<PathBuilder.Component<String>> {
+        Path {
+            "send"
+        }
+    }
 
-    public static var void: Path<PathBuilder.Component<String>> { Path {
-        "void"
-    } }
+    public static var void: Path<PathBuilder.Component<String>> {
+        Path {
+            "void"
+        }
+    }
 }

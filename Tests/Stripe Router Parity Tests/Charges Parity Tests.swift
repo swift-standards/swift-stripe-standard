@@ -44,7 +44,7 @@ struct ChargesParity {
                 "capture",
                 .capture(id: chargeID, request: .init(amount: 1500))
             ),
-            ("search", .search(request: .init(query: "amount>999", limit: 2)))
+            ("search", .search(request: .init(query: "amount>999", limit: 2))),
         ]
         try assertParity(try Parity.corpus(of: routes, via: router), fixture: "Charges")
         for (_, route) in routes {

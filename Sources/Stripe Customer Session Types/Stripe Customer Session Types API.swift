@@ -37,7 +37,9 @@ extension Stripe.Customers.Customer.Sessions.API {
 
 // Add path extensions for Customer Sessions
 extension Path<PathBuilder.Component<String>> {
-    public static var customerSessions: Path<PathBuilder.Component<String>> { Path {
-        "customer_sessions"
-    } }
+    public static var customerSessions: Path<PathBuilder.Component<String>> {
+        Path {
+            "customer_sessions"
+        }
+    }
 }

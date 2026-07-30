@@ -38,7 +38,9 @@ extension Stripe.Mandates.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var mandates: Path<PathBuilder.Component<String>> { Path {
-        "mandates"
-    } }
+    public static var mandates: Path<PathBuilder.Component<String>> {
+        Path {
+            "mandates"
+        }
+    }
 }

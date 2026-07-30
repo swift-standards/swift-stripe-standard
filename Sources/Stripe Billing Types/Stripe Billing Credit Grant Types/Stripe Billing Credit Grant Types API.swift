@@ -49,11 +49,13 @@ extension Stripe.Billing.Credit.Grant.API {
                     Path { Parse(.string.representing(Stripe.Billing.Credit.Grant.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Credit.Grant.API.cases.update))) {
+                    .map(.case(Stripe.Billing.Credit.Grant.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.billing
@@ -104,11 +106,13 @@ extension Stripe.Billing.Credit.Grant.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Credit.Grant.API.cases.expire))) {
+                    .map(.case(Stripe.Billing.Credit.Grant.API.cases.expire))
+                ) {
                     Method.post
                     Path.v1
                     Path.billing
@@ -124,11 +128,13 @@ extension Stripe.Billing.Credit.Grant.API {
                     )
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Credit.Grant.API.cases.void))) {
+                    .map(.case(Stripe.Billing.Credit.Grant.API.cases.void))
+                ) {
                     Method.post
                     Path.v1
                     Path.billing
@@ -149,10 +155,14 @@ extension Stripe.Billing.Credit.Grant.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var credit_grants: Path<PathBuilder.Component<String>> { Path {
-        "credit_grants"
-    } }
-    public static var expire: Path<PathBuilder.Component<String>> { Path {
-        "expire"
-    } }
+    public static var credit_grants: Path<PathBuilder.Component<String>> {
+        Path {
+            "credit_grants"
+        }
+    }
+    public static var expire: Path<PathBuilder.Component<String>> {
+        Path {
+            "expire"
+        }
+    }
 }

@@ -53,11 +53,13 @@ extension Stripe.Connect.Accounts.API {
                     Path { Parse(.string.representing(Stripe.Connect.Account.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Connect.Accounts.API.cases.update))) {
+                    .map(.case(Stripe.Connect.Accounts.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.accounts
@@ -83,7 +85,12 @@ extension Stripe.Connect.Accounts.API {
                         .map(
                             .memberwise(
                                 Stripe.Connect.Accounts.List.Request.init,
-                                { ($0.created, $0.endingBefore, $0.expand, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.created, $0.endingBefore, $0.expand, $0.limit,
+                                        $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -102,7 +109,9 @@ extension Stripe.Connect.Accounts.API {
                                     // parse wraps the whole field value as a single element; print joins
                                     // (identical to the original `Many { Parse(.string) }` degenerate
                                     // no-separator behavior over a field value).
-                                    Parse(.string).map(.convert(apply: { [$0] }, unapply: { $0.joined() }))
+                                    Parse(.string).map(
+                                        .convert(apply: { [$0] }, unapply: { $0.joined() })
+                                    )
                                 }
                             }
                             Optionally {
@@ -122,11 +131,13 @@ extension Stripe.Connect.Accounts.API {
                     Path { Parse(.string.representing(Stripe.Connect.Account.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Connect.Accounts.API.cases.reject))) {
+                    .map(.case(Stripe.Connect.Accounts.API.cases.reject))
+                ) {
                     Method.post
                     Path.v1
                     Path.accounts
@@ -152,11 +163,15 @@ extension Stripe.Connect.Accounts.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    static var accounts: Path<PathBuilder.Component<String>> { Path {
-        "accounts"
-    } }
+    static var accounts: Path<PathBuilder.Component<String>> {
+        Path {
+            "accounts"
+        }
+    }
 
-    static var reject: Path<PathBuilder.Component<String>> { Path {
-        "reject"
-    } }
+    static var reject: Path<PathBuilder.Component<String>> {
+        Path {
+            "reject"
+        }
+    }
 }

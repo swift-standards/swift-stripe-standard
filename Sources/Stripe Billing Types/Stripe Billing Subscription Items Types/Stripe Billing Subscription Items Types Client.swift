@@ -15,7 +15,8 @@ extension Stripe.Billing.SubscriptionItems {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/subscription_items/create.md
         public var create:
-            @Sendable (_ request: Stripe.Billing.SubscriptionItems.Create.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.SubscriptionItems.Create.Request)
+                async throws(any Swift.Error) ->
                 Stripe.Billing.Subscription.Item
 
         // https://docs.stripe.com/api/subscription_items/update.md
@@ -32,13 +33,15 @@ extension Stripe.Billing.SubscriptionItems {
 
         // https://docs.stripe.com/api/subscription_items/list.md
         public var list:
-            @Sendable (_ request: Stripe.Billing.SubscriptionItems.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.SubscriptionItems.List.Request)
+                async throws(any Swift.Error) ->
                 Stripe.Billing.SubscriptionItems.List.Response
 
         // https://docs.stripe.com/api/subscription_items/delete.md
         public var delete:
-            @Sendable (_ id: Stripe.Billing.Subscription.Item.ID) async throws(any Swift.Error) -> DeletedObject<
-                Stripe.Billing.Subscription.Item
-            >
+            @Sendable (_ id: Stripe.Billing.Subscription.Item.ID) async throws(any Swift.Error) ->
+                DeletedObject<
+                    Stripe.Billing.Subscription.Item
+                >
     }
 }

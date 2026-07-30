@@ -20,7 +20,8 @@ extension Stripe.FileLinks {
 
         // https://docs.stripe.com/api/file_links/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.FileLinks.FileLink.ID) async throws(any Swift.Error) -> Stripe.FileLinks.FileLink
+            @Sendable (_ id: Stripe.FileLinks.FileLink.ID) async throws(any Swift.Error) ->
+                Stripe.FileLinks.FileLink
 
         // https://docs.stripe.com/api/file_links/update.md
         public var update:

@@ -87,11 +87,13 @@ extension Stripe.PaymentIntents.API {
                 }
 
                 // https://docs.stripe.com/api/payment_intents/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentIntents.API.cases.update))) {
+                    .map(.case(Stripe.PaymentIntents.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.paymentIntents
@@ -120,7 +122,12 @@ extension Stripe.PaymentIntents.API {
                         .map(
                             .memberwise(
                                 Stripe.PaymentIntents.List.Request.init,
-                                { ($0.created, $0.customer, $0.endingBefore, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.created, $0.customer, $0.endingBefore, $0.limit,
+                                        $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -149,11 +156,13 @@ extension Stripe.PaymentIntents.API {
                 }
 
                 // https://docs.stripe.com/api/payment_intents/cancel.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentIntents.API.cases.cancel))) {
+                    .map(.case(Stripe.PaymentIntents.API.cases.cancel))
+                ) {
                     Method.post
                     Path.v1
                     Path.paymentIntents
@@ -171,11 +180,13 @@ extension Stripe.PaymentIntents.API {
                 }
 
                 // https://docs.stripe.com/api/payment_intents/capture.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentIntents.API.cases.capture))) {
+                    .map(.case(Stripe.PaymentIntents.API.cases.capture))
+                ) {
                     Method.post
                     Path.v1
                     Path.paymentIntents
@@ -193,11 +204,13 @@ extension Stripe.PaymentIntents.API {
                 }
 
                 // https://docs.stripe.com/api/payment_intents/confirm.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentIntents.API.cases.confirm))) {
+                    .map(.case(Stripe.PaymentIntents.API.cases.confirm))
+                ) {
                     Method.post
                     Path.v1
                     Path.paymentIntents
@@ -215,11 +228,13 @@ extension Stripe.PaymentIntents.API {
                 }
 
                 // https://docs.stripe.com/api/payment_intents/increment_authorization.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentIntents.API.cases.incrementAuthorization))) {
+                    .map(.case(Stripe.PaymentIntents.API.cases.incrementAuthorization))
+                ) {
                     Method.post
                     Path.v1
                     Path.paymentIntents
@@ -278,11 +293,13 @@ extension Stripe.PaymentIntents.API {
                 }
 
                 // https://docs.stripe.com/api/payment_intents/verify_microdeposits.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentIntents.API.cases.verifyMicrodeposits))) {
+                    .map(.case(Stripe.PaymentIntents.API.cases.verifyMicrodeposits))
+                ) {
                     Method.post
                     Path.v1
                     Path.paymentIntents
@@ -304,7 +321,9 @@ extension Stripe.PaymentIntents.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var paymentIntents: Path<PathBuilder.Component<String>> { Path {
-        "payment_intents"
-    } }
+    public static var paymentIntents: Path<PathBuilder.Component<String>> {
+        Path {
+            "payment_intents"
+        }
+    }
 }

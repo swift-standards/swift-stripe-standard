@@ -48,11 +48,13 @@ extension Stripe.Fraud.ValueLists.API {
                     Path { Parse(.string.representing(Stripe.Fraud.ValueLists.ValueList.ID.self)) }
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Fraud.ValueLists.API.cases.update))) {
+                    .map(.case(Stripe.Fraud.ValueLists.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.radar
@@ -108,7 +110,9 @@ extension Stripe.Fraud.ValueLists.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var valueLists: Path<PathBuilder.Component<String>> { Path {
-        "value_lists"
-    } }
+    public static var valueLists: Path<PathBuilder.Component<String>> {
+        Path {
+            "value_lists"
+        }
+    }
 }

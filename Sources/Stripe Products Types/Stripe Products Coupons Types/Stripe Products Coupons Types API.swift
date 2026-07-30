@@ -46,11 +46,13 @@ extension Stripe.Products.Coupons.API {
                     Path { Parse(.string.representing(Stripe.Products.Coupon.ID.self)) }
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Products.Coupons.API.cases.update))) {
+                    .map(.case(Stripe.Products.Coupons.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.coupons
@@ -112,7 +114,9 @@ extension Stripe.Products.Coupons.API {
 
 // Add path extensions for Coupons
 extension Path<PathBuilder.Component<String>> {
-    public static var coupons: Path<PathBuilder.Component<String>> { Path {
-        "coupons"
-    } }
+    public static var coupons: Path<PathBuilder.Component<String>> {
+        Path {
+            "coupons"
+        }
+    }
 }

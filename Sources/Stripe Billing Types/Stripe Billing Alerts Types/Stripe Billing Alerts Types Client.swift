@@ -7,13 +7,15 @@ extension Stripe.Billing.Alerts {
     @Witness
     public struct Client: Sendable {
         // https://docs.stripe.com/api/billing/alert/create.md
-        public var create: @Sendable (_ request: Create.Request) async throws(any Swift.Error) -> Alert
+        public var create:
+            @Sendable (_ request: Create.Request) async throws(any Swift.Error) -> Alert
 
         // https://docs.stripe.com/api/billing/alert/retrieve.md
         public var retrieve: @Sendable (_ id: Alert.ID) async throws(any Swift.Error) -> Alert
 
         // https://docs.stripe.com/api/billing/alert/list.md
-        public var list: @Sendable (_ request: List.Request) async throws(any Swift.Error) -> List.Response
+        public var list:
+            @Sendable (_ request: List.Request) async throws(any Swift.Error) -> List.Response
 
         // https://docs.stripe.com/api/billing/alert/activate.md
         public var activate: @Sendable (_ id: Alert.ID) async throws(any Swift.Error) -> Alert

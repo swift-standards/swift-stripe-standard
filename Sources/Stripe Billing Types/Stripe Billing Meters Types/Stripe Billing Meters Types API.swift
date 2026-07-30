@@ -61,11 +61,13 @@ extension Stripe.Billing.Meters.API {
                     Path { Parse(.string.representing(Stripe.Billing.Meters.Meter.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Meters.API.cases.update))) {
+                    .map(.case(Stripe.Billing.Meters.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.billing
@@ -116,11 +118,13 @@ extension Stripe.Billing.Meters.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Meters.API.cases.deactivate))) {
+                    .map(.case(Stripe.Billing.Meters.API.cases.deactivate))
+                ) {
                     Method.post
                     Path.v1
                     Path.billing
@@ -136,11 +140,13 @@ extension Stripe.Billing.Meters.API {
                     )
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Meters.API.cases.reactivate))) {
+                    .map(.case(Stripe.Billing.Meters.API.cases.reactivate))
+                ) {
                     Method.post
                     Path.v1
                     Path.billing
@@ -161,19 +167,27 @@ extension Stripe.Billing.Meters.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var billing: Path<PathBuilder.Component<String>> { Path {
-        "billing"
-    } }
+    public static var billing: Path<PathBuilder.Component<String>> {
+        Path {
+            "billing"
+        }
+    }
 
-    public static var meters: Path<PathBuilder.Component<String>> { Path {
-        "meters"
-    } }
+    public static var meters: Path<PathBuilder.Component<String>> {
+        Path {
+            "meters"
+        }
+    }
 
-    public static var deactivate: Path<PathBuilder.Component<String>> { Path {
-        "deactivate"
-    } }
+    public static var deactivate: Path<PathBuilder.Component<String>> {
+        Path {
+            "deactivate"
+        }
+    }
 
-    public static var reactivate: Path<PathBuilder.Component<String>> { Path {
-        "reactivate"
-    } }
+    public static var reactivate: Path<PathBuilder.Component<String>> {
+        Path {
+            "reactivate"
+        }
+    }
 }

@@ -43,7 +43,9 @@ extension Stripe.Billing.MeterEvents.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var meter_events: Path<PathBuilder.Component<String>> { Path {
-        "meter_events"
-    } }
+    public static var meter_events: Path<PathBuilder.Component<String>> {
+        Path {
+            "meter_events"
+        }
+    }
 }

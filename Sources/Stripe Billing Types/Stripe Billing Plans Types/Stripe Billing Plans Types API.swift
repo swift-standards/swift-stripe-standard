@@ -56,11 +56,13 @@ extension Stripe.Billing.Plans.API {
                 }
 
                 // https://docs.stripe.com/api/plans/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Plans.API.cases.update))) {
+                    .map(.case(Stripe.Billing.Plans.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.plans
@@ -81,13 +83,20 @@ extension Stripe.Billing.Plans.API {
                     Path.plans
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1)
+                            },
                             unapply: { ((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Billing.Plans.List.Request.init,
-                                { ($0.active, $0.created, $0.endingBefore, $0.limit, $0.product, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.active, $0.created, $0.endingBefore, $0.limit,
+                                        $0.product, $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -131,7 +140,9 @@ extension Stripe.Billing.Plans.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var plans: Path<PathBuilder.Component<String>> { Path {
-        "plans"
-    } }
+    public static var plans: Path<PathBuilder.Component<String>> {
+        Path {
+            "plans"
+        }
+    }
 }

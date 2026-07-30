@@ -24,11 +24,13 @@ extension Stripe.Billing.MeterEventSummary.API {
 
         public var body: some URLRouting.Router<Stripe.Billing.MeterEventSummary.API> {
             OneOf {
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (meterId: $0.0, request: $0.1) },
                         unapply: { ($0.meterId, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.MeterEventSummary.API.cases.list))) {
+                    .map(.case(Stripe.Billing.MeterEventSummary.API.cases.list))
+                ) {
                     Method.get
                     Path.v1
                     Path.billing
@@ -37,13 +39,24 @@ extension Stripe.Billing.MeterEventSummary.API {
                     Path.event_summaries
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1,
+                                    $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
                             unapply: { (((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Billing.MeterEventSummary.List.Request.init,
-                                { ($0.customer, $0.startTime, $0.endTime, $0.valueGroupingWindow, $0.endingBefore, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.customer, $0.startTime, $0.endTime,
+                                        $0.valueGroupingWindow, $0.endingBefore, $0.limit,
+                                        $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -81,7 +94,9 @@ extension Stripe.Billing.MeterEventSummary.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var event_summaries: Path<PathBuilder.Component<String>> { Path {
-        "event_summaries"
-    } }
+    public static var event_summaries: Path<PathBuilder.Component<String>> {
+        Path {
+            "event_summaries"
+        }
+    }
 }

@@ -97,11 +97,13 @@ extension Stripe.Billing.TestClocks.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.TestClocks.API.cases.advance))) {
+                    .map(.case(Stripe.Billing.TestClocks.API.cases.advance))
+                ) {
                     Method.post
                     Path.v1
                     Path.test_helpers
@@ -124,15 +126,21 @@ extension Stripe.Billing.TestClocks.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var test_helpers: Path<PathBuilder.Component<String>> { Path {
-        "test_helpers"
-    } }
+    public static var test_helpers: Path<PathBuilder.Component<String>> {
+        Path {
+            "test_helpers"
+        }
+    }
 
-    public static var test_clocks: Path<PathBuilder.Component<String>> { Path {
-        "test_clocks"
-    } }
+    public static var test_clocks: Path<PathBuilder.Component<String>> {
+        Path {
+            "test_clocks"
+        }
+    }
 
-    public static var advance: Path<PathBuilder.Component<String>> { Path {
-        "advance"
-    } }
+    public static var advance: Path<PathBuilder.Component<String>> {
+        Path {
+            "advance"
+        }
+    }
 }

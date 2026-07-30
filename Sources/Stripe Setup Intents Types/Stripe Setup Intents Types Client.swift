@@ -15,12 +15,14 @@ extension Stripe.Setup.Intents {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/setup_intents/create.md
         public var create:
-            @Sendable (_ request: Stripe.Setup.Intents.Create.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Setup.Intents.Create.Request) async throws(any Swift.Error)
+                ->
                 Stripe.Setup.Intent
 
         // https://docs.stripe.com/api/setup_intents/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Setup.Intent.ID) async throws(any Swift.Error) -> Stripe.Setup.Intent
+            @Sendable (_ id: Stripe.Setup.Intent.ID) async throws(any Swift.Error) ->
+                Stripe.Setup.Intent
 
         // https://docs.stripe.com/api/setup_intents/update.md
         public var update:
@@ -29,7 +31,8 @@ extension Stripe.Setup.Intents {
 
         // https://docs.stripe.com/api/setup_intents/list.md
         public var list:
-            @Sendable (_ request: Stripe.Setup.Intents.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Setup.Intents.List.Request) async throws(any Swift.Error)
+                ->
                 Stripe.Setup.Intents.List.Response
 
         // https://docs.stripe.com/api/setup_intents/confirm.md

@@ -44,11 +44,13 @@ extension Stripe.Products.ShippingRates.API {
                     Path { Parse(.string.representing(Stripe.Products.Shipping.Rate.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Products.ShippingRates.API.cases.update))) {
+                    .map(.case(Stripe.Products.ShippingRates.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.shippingRates
@@ -68,13 +70,20 @@ extension Stripe.Products.ShippingRates.API {
                     Path.shippingRates
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                ($0.0.0.0.0.0, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1)
+                            },
                             unapply: { ((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Products.ShippingRates.List.Request.init,
-                                { ($0.active, $0.created, $0.currency, $0.endingBefore, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.active, $0.created, $0.currency, $0.endingBefore,
+                                        $0.limit, $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -110,7 +119,9 @@ extension Stripe.Products.ShippingRates.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var shippingRates: Path<PathBuilder.Component<String>> { Path {
-        "shipping_rates"
-    } }
+    public static var shippingRates: Path<PathBuilder.Component<String>> {
+        Path {
+            "shipping_rates"
+        }
+    }
 }

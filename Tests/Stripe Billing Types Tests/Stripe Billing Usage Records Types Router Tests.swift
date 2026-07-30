@@ -6,7 +6,10 @@ import URL_Routing_Foundation_Integration
 
 @testable import Stripe_Billing_Types
 
-@Suite("Usage Records Router Tests", .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4"))
+@Suite(
+    "Usage Records Router Tests",
+    .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4")
+)
 struct UsageRecordsRouterTests {
     let router = Stripe.Billing.UsageRecords.API.Router()
     let subscriptionItemId: Stripe.Billing.SubscriptionItems.SubscriptionItem.ID
@@ -95,7 +98,7 @@ struct UsageRecordsRouterTests {
 // `.disabled(if:)`, not `withKnownIssue`, because the crash kills the runner).
 // Auto-retires at the 6.4 toolchain move.
 #if compiler(<6.4)
-private let taggedMetadataSIGSEGV = true
+    private let taggedMetadataSIGSEGV = true
 #else
-private let taggedMetadataSIGSEGV = false
+    private let taggedMetadataSIGSEGV = false
 #endif

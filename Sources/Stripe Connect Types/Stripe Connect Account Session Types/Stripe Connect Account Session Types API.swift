@@ -43,7 +43,9 @@ extension Stripe.Connect.Account.Session.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var accountSessions: Path<PathBuilder.Component<String>> { Path {
-        "account_sessions"
-    } }
+    public static var accountSessions: Path<PathBuilder.Component<String>> {
+        Path {
+            "account_sessions"
+        }
+    }
 }

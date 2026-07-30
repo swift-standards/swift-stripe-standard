@@ -97,8 +97,12 @@ extension Target.Dependency {
 
 extension Target.Dependency {
     static var dependencies: Self { .product(name: "Dependencies", package: "swift-dependencies") }
-    static var dependenciesTestSupport: Self { .product(name: "Dependencies Test Support", package: "swift-dependencies") }
-    static var tagged: Self { .product(name: "Tagged Primitives", package: "swift-tagged-primitives") }
+    static var dependenciesTestSupport: Self {
+        .product(name: "Dependencies Test Support", package: "swift-dependencies")
+    }
+    static var tagged: Self {
+        .product(name: "Tagged Primitives", package: "swift-tagged-primitives")
+    }
     static var dual: Self { .product(name: "Dual", package: "swift-dual") }
     static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
     static var htmlFormCoder: Self {
@@ -116,7 +120,7 @@ let package = Package(
         .iOS(.v26),
         .tvOS(.v26),
         .watchOS(.v26),
-        .visionOS(.v26)
+        .visionOS(.v26),
     ],
     products: [
         .library(name: .stripeTypes, targets: [.stripeTypes]),
@@ -161,14 +165,23 @@ let package = Package(
         .library(name: .stripeWebhooks, targets: [.stripeWebhooks]),
         .library(name: .stripeWebElements, targets: [.stripeWebElements]),
         .library(name: .stripeTypesShared, targets: [.stripeTypesShared]),
-        .library(name: .stripeTypesModels, targets: [.stripeTypesModels])
+        .library(name: .stripeTypesModels, targets: [.stripeTypesModels]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-foundations/swift-dependencies.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-tagged-primitives.git", branch: "main"),
+        .package(
+            url: "https://github.com/swift-foundations/swift-dependencies.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-primitives/swift-tagged-primitives.git",
+            branch: "main"
+        ),
         .package(url: "https://github.com/swift-foundations/swift-dual.git", branch: "main"),
         .package(url: "https://github.com/swift-foundations/swift-url-routing.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-html-form-coder.git", branch: "main"),
+        .package(
+            url: "https://github.com/swift-foundations/swift-html-form-coder.git",
+            branch: "main"
+        ),
         .package(url: "https://github.com/swift-standards/swift-html-standard.git", branch: "main"),
     ],
     targets: [
@@ -190,7 +203,7 @@ let package = Package(
                 .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-                .stripeTypesShared
+                .stripeTypesShared,
             ]
         ),
         .target(
@@ -242,14 +255,14 @@ let package = Package(
                 .stripeClimate,
                 .stripeForwarding,
                 .stripeWebhooks,
-                .stripeWebElements
+                .stripeWebElements,
             ]
         ),
         .testTarget(
             name: "Stripe Router Parity Tests",
             dependencies: [
                 .stripeTypes,
-                .product(name: "URL Routing Test Support", package: "swift-url-routing")
+                .product(name: "URL Routing Test Support", package: "swift-url-routing"),
             ],
             path: "Tests/Stripe Router Parity Tests",
             exclude: ["__Corpus__"]
@@ -259,7 +272,7 @@ let package = Package(
             dependencies: [
                 .stripeTypesShared,
                 .dependenciesTestSupport,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -267,7 +280,7 @@ let package = Package(
             dependencies: [
                 .stripeTypesModels,
                 .stripeTypesShared,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .testTarget(
@@ -275,7 +288,7 @@ let package = Package(
             dependencies: [
                 .stripeTypes,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -287,7 +300,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -295,7 +308,7 @@ let package = Package(
             dependencies: [
                 .stripeBalance,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -307,7 +320,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -315,7 +328,7 @@ let package = Package(
             dependencies: [
                 .stripeBalanceTransactions,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -327,7 +340,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -335,7 +348,7 @@ let package = Package(
             dependencies: [
                 .stripeCharges,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -347,7 +360,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -355,7 +368,7 @@ let package = Package(
             dependencies: [
                 .stripeCustomers,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -367,7 +380,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -375,7 +388,7 @@ let package = Package(
             dependencies: [
                 .stripeCustomerSession,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -387,7 +400,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -395,7 +408,7 @@ let package = Package(
             dependencies: [
                 .stripeDisputes,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -407,7 +420,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -415,7 +428,7 @@ let package = Package(
             dependencies: [
                 .stripeEvents,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -427,14 +440,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Event Destinations Types Tests",
             dependencies: [
                 .stripeEventDestinations,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -446,7 +459,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -454,7 +467,7 @@ let package = Package(
             dependencies: [
                 .stripeFiles,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -466,7 +479,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -474,7 +487,7 @@ let package = Package(
             dependencies: [
                 .stripeFileLinks,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -486,14 +499,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Mandates Types Tests",
             dependencies: [
                 .stripeMandates,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -505,7 +518,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -513,7 +526,7 @@ let package = Package(
             dependencies: [
                 .stripePaymentIntents,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -525,14 +538,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Setup Intents Types Tests",
             dependencies: [
                 .stripeSetupIntents,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -544,14 +557,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Setup Attempts Types Tests",
             dependencies: [
                 .stripeSetupAttempts,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -563,7 +576,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -571,7 +584,7 @@ let package = Package(
             dependencies: [
                 .stripePayouts,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -583,7 +596,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -591,7 +604,7 @@ let package = Package(
             dependencies: [
                 .stripeRefunds,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -603,7 +616,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -611,7 +624,7 @@ let package = Package(
             dependencies: [
                 .stripeConfirmationToken,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -623,14 +636,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Tokens Types Tests",
             dependencies: [
                 .stripeTokens,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -642,7 +655,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -650,7 +663,7 @@ let package = Package(
             dependencies: [
                 .stripePaymentMethods,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -662,7 +675,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -670,7 +683,7 @@ let package = Package(
             dependencies: [
                 .stripeProducts,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -682,14 +695,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Checkout Types Tests",
             dependencies: [
                 .stripeCheckout,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -701,7 +714,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -709,7 +722,7 @@ let package = Package(
             dependencies: [
                 .stripePaymentLink,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -721,7 +734,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -729,7 +742,7 @@ let package = Package(
             dependencies: [
                 .stripeBilling,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -741,7 +754,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -749,7 +762,7 @@ let package = Package(
             dependencies: [
                 .stripeCapital,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -761,7 +774,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -769,7 +782,7 @@ let package = Package(
             dependencies: [
                 .stripeConnect,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -781,7 +794,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -789,7 +802,7 @@ let package = Package(
             dependencies: [
                 .stripeFraud,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -801,14 +814,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Issuing Types Tests",
             dependencies: [
                 .stripeIssuing,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -820,14 +833,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Terminal Types Tests",
             dependencies: [
                 .stripeTerminal,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -839,14 +852,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Treasury Types Tests",
             dependencies: [
                 .stripeTreasury,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -858,14 +871,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Entitlements Types Tests",
             dependencies: [
                 .stripeEntitlements,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -877,14 +890,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Sigma Types Tests",
             dependencies: [
                 .stripeSigma,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -896,14 +909,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Reporting Types Tests",
             dependencies: [
                 .stripeReporting,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -915,14 +928,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Financial Connections Types Tests",
             dependencies: [
                 .stripeFinancialConnections,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -934,7 +947,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -942,7 +955,7 @@ let package = Package(
             dependencies: [
                 .stripeTax,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -954,14 +967,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Identity Types Tests",
             dependencies: [
                 .stripeIdentity,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -973,14 +986,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Crypto Types Tests",
             dependencies: [
                 .stripeCrypto,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -992,14 +1005,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Climate Types Tests",
             dependencies: [
                 .stripeClimate,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -1011,14 +1024,14 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Forwarding Types Tests",
             dependencies: [
                 .stripeForwarding,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -1030,7 +1043,7 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
@@ -1038,7 +1051,7 @@ let package = Package(
             dependencies: [
                 .stripeWebhooks,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing")
+                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -1050,16 +1063,16 @@ let package = Package(
                 .dual,
                 .urlRouting,
                 .htmlFormCoder,
-                .tagged
+                .tagged,
             ]
         ),
         .testTarget(
             name: "Stripe Web Elements Types Tests",
             dependencies: [
                 .stripeWebElements,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
-        )
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
@@ -1068,7 +1081,7 @@ let swiftSettings: [SwiftSetting] = [
     .enableUpcomingFeature("MemberImportVisibility"),
     .enableUpcomingFeature("StrictUnsafe"),
     .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
-//    .unsafeFlags(["-warnings-as-errors"]),
+    //    .unsafeFlags(["-warnings-as-errors"]),
     // .unsafeFlags([
     //   "-Xfrontend",
     //   "-warn-long-function-bodies=50",
@@ -1078,5 +1091,6 @@ let swiftSettings: [SwiftSetting] = [
 ]
 
 for index in package.targets.indices {
-    package.targets[index].swiftSettings = (package.targets[index].swiftSettings ?? []) + swiftSettings
+    package.targets[index].swiftSettings =
+        (package.targets[index].swiftSettings ?? []) + swiftSettings
 }

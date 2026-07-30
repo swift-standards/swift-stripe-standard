@@ -15,10 +15,12 @@ extension Stripe.Billing.Quotes {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/quotes/create.md
         public var create:
-            @Sendable (_ request: Stripe.Billing.Quotes.Create.Request) async throws(any Swift.Error) -> Quote
+            @Sendable (_ request: Stripe.Billing.Quotes.Create.Request) async throws(any Swift
+                .Error) -> Quote
 
         // https://docs.stripe.com/api/quotes/retrieve.md
-        public var retrieve: @Sendable (_ id: Stripe.Billing.Quote.ID) async throws(any Swift.Error) -> Quote
+        public var retrieve:
+            @Sendable (_ id: Stripe.Billing.Quote.ID) async throws(any Swift.Error) -> Quote
 
         // https://docs.stripe.com/api/quotes/update.md
         public var update:
@@ -29,7 +31,8 @@ extension Stripe.Billing.Quotes {
 
         // https://docs.stripe.com/api/quotes/list.md
         public var list:
-            @Sendable (_ request: Stripe.Billing.Quotes.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.Quotes.List.Request) async throws(any Swift.Error)
+                ->
                 Stripe.Billing.Quotes.List.Response
 
         // https://docs.stripe.com/api/quotes/accept.md
@@ -54,7 +57,8 @@ extension Stripe.Billing.Quotes {
             ) async throws(any Swift.Error) -> Quote
 
         // https://docs.stripe.com/api/quotes/pdf.md
-        public var pdf: @Sendable (_ id: Stripe.Billing.Quotes.Quote.ID) async throws(any Swift.Error) -> Data
+        public var pdf:
+            @Sendable (_ id: Stripe.Billing.Quotes.Quote.ID) async throws(any Swift.Error) -> Data
 
         // https://docs.stripe.com/api/quotes/line_items.md
         public var listLineItems:
@@ -68,6 +72,7 @@ extension Stripe.Billing.Quotes {
             @Sendable (
                 _ id: Stripe.Billing.Quotes.Quote.ID,
                 _ request: Stripe.Billing.Quotes.List.ComputedUpfrontLineItems.Request
-            ) async throws(any Swift.Error) -> Stripe.Billing.Quotes.List.ComputedUpfrontLineItems.Response
+            ) async throws(any Swift.Error) ->
+                Stripe.Billing.Quotes.List.ComputedUpfrontLineItems.Response
     }
 }

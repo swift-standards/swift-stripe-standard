@@ -7,7 +7,10 @@ import URL_Routing_Foundation_Integration
 @testable import Stripe_Billing_Types
 @testable import Stripe_Types_Models
 
-@Suite("Credit Grant Router Tests", .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4"))
+@Suite(
+    "Credit Grant Router Tests",
+    .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4")
+)
 struct CreditGrantRouterTests {
     let router = Stripe.Billing.Credit.Grant.API.Router()
 
@@ -122,7 +125,7 @@ struct CreditGrantRouterTests {
 // `.disabled(if:)`, not `withKnownIssue`, because the crash kills the runner).
 // Auto-retires at the 6.4 toolchain move.
 #if compiler(<6.4)
-private let taggedMetadataSIGSEGV = true
+    private let taggedMetadataSIGSEGV = true
 #else
-private let taggedMetadataSIGSEGV = false
+    private let taggedMetadataSIGSEGV = false
 #endif

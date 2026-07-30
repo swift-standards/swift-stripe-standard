@@ -60,7 +60,9 @@ struct Tests {
         @Test("Round-trips an expanded-object payload through encode")
         func encodesExpandedModelWithTaggedID() throws {
             let expectedID = try #require(Fixture.ID(rawValue: "fx_123"))
-            let expanded = Expandable<Fixture, Fixture.ID>(model: Fixture(id: expectedID, name: "Widget"))
+            let expanded = Expandable<Fixture, Fixture.ID>(
+                model: Fixture(id: expectedID, name: "Widget")
+            )
 
             let data = try JSONEncoder().encode(expanded)
             let decoded = try JSONDecoder().decode(ExpandableOf<Fixture>.self, from: data)

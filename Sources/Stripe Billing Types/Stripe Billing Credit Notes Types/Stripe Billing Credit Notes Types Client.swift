@@ -15,7 +15,8 @@ extension Stripe.Billing.CreditNotes {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/credit_notes/create.md
         public var create:
-            @Sendable (_ request: Stripe.Billing.CreditNotes.Create.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.CreditNotes.Create.Request) async throws(any Swift
+                .Error) ->
                 Stripe.Billing.Credit.Note
 
         // https://docs.stripe.com/api/credit_notes/update.md
@@ -32,12 +33,14 @@ extension Stripe.Billing.CreditNotes {
 
         // https://docs.stripe.com/api/credit_notes/list.md
         public var list:
-            @Sendable (_ request: Stripe.Billing.CreditNotes.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.CreditNotes.List.Request) async throws(any Swift
+                .Error) ->
                 Stripe.Billing.CreditNotes.List.Response
 
         // https://docs.stripe.com/api/credit_notes/preview.md
         public var preview:
-            @Sendable (_ request: Stripe.Billing.CreditNotes.Preview.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.CreditNotes.Preview.Request) async throws(any Swift
+                .Error) ->
                 Stripe.Billing.Credit.Note
 
         // https://docs.stripe.com/api/credit_notes/void.md
@@ -56,7 +59,8 @@ extension Stripe.Billing.CreditNotes {
 
         // https://docs.stripe.com/api/credit_notes/preview_lines.md
         public var previewLines:
-            @Sendable (_ request: Stripe.Billing.CreditNotes.PreviewLines.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.CreditNotes.PreviewLines.Request)
+                async throws(any Swift.Error) ->
                 Stripe.Billing.CreditNotes.PreviewLines.Response
     }
 }

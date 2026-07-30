@@ -12,8 +12,8 @@ import Foundation
 import Testing
 import URL_Routing_Test_Support
 
-@testable import Stripe_Customers_Types
 @testable import Stripe_Checkout_Types
+@testable import Stripe_Customers_Types
 
 @Suite("Compat Micro Parity")
 struct CompatMicroParity {
@@ -43,7 +43,9 @@ struct CompatMicroParity {
             mode: .payment
         )
         let corpus = try Parity.corpus(
-            of: [("checkout.sessions.create", Stripe.Checkout.Sessions.API.create(request: request))],
+            of: [
+                ("checkout.sessions.create", Stripe.Checkout.Sessions.API.create(request: request))
+            ],
             via: router
         )
         try assertParity(corpus, fixture: "Compat.CheckoutSessions")

@@ -20,7 +20,8 @@ extension Stripe.Payouts {
 
         // https://docs.stripe.com/api/payouts/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Payouts.Payout.ID) async throws(any Swift.Error) -> Stripe.Payouts.Payout
+            @Sendable (_ id: Stripe.Payouts.Payout.ID) async throws(any Swift.Error) ->
+                Stripe.Payouts.Payout
 
         // https://docs.stripe.com/api/payouts/update.md
         public var update:
@@ -34,7 +35,8 @@ extension Stripe.Payouts {
 
         // https://docs.stripe.com/api/payouts/cancel.md
         public var cancel:
-            @Sendable (_ id: Stripe.Payouts.Payout.ID) async throws(any Swift.Error) -> Stripe.Payouts.Payout
+            @Sendable (_ id: Stripe.Payouts.Payout.ID) async throws(any Swift.Error) ->
+                Stripe.Payouts.Payout
 
         // https://docs.stripe.com/api/payouts/reverse.md
         public var reverse:

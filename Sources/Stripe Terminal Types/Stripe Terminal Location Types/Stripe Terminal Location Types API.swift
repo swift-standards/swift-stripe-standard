@@ -48,11 +48,13 @@ extension Stripe.Terminal.Locations.API {
                     Path { Parse(.string.representing(Stripe.Terminal.Locations.Location.ID.self)) }
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Terminal.Locations.API.cases.update))) {
+                    .map(.case(Stripe.Terminal.Locations.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.terminal
@@ -88,7 +90,9 @@ extension Stripe.Terminal.Locations.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var locations: Path<PathBuilder.Component<String>> { Path {
-        "locations"
-    } }
+    public static var locations: Path<PathBuilder.Component<String>> {
+        Path {
+            "locations"
+        }
+    }
 }

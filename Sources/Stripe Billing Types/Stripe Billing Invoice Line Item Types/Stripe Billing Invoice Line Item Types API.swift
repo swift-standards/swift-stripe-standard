@@ -43,11 +43,13 @@ extension Stripe.Billing.Invoice.LineItems.API {
         public var body: some URLRouting.Router<Stripe.Billing.Invoice.LineItems.API> {
             OneOf {
                 // https://docs.stripe.com/api/invoice-line-item/retrieve.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (invoiceId: $0.0, request: $0.1) },
                         unapply: { ($0.invoiceId, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Invoice.LineItems.API.cases.list))) {
+                    .map(.case(Stripe.Billing.Invoice.LineItems.API.cases.list))
+                ) {
                     Method.get
                     Path.v1
                     Path.invoices
@@ -80,11 +82,13 @@ extension Stripe.Billing.Invoice.LineItems.API {
                 }
 
                 // https://docs.stripe.com/api/invoice-line-item/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (invoiceId: $0.0.0, lineItemId: $0.0.1, request: $0.1) },
                         unapply: { (($0.invoiceId, $0.lineItemId), $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Invoice.LineItems.API.cases.update))) {
+                    .map(.case(Stripe.Billing.Invoice.LineItems.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.invoices
@@ -101,11 +105,13 @@ extension Stripe.Billing.Invoice.LineItems.API {
                 }
 
                 // https://docs.stripe.com/api/invoice-line-item/bulk.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (invoiceId: $0.0, request: $0.1) },
                         unapply: { ($0.invoiceId, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Invoice.LineItems.API.cases.addLines))) {
+                    .map(.case(Stripe.Billing.Invoice.LineItems.API.cases.addLines))
+                ) {
                     Method.post
                     Path.v1
                     Path.invoices
@@ -121,11 +127,13 @@ extension Stripe.Billing.Invoice.LineItems.API {
                 }
 
                 // https://docs.stripe.com/api/invoice-line-item/bulk-update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (invoiceId: $0.0, request: $0.1) },
                         unapply: { ($0.invoiceId, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Invoice.LineItems.API.cases.updateLines))) {
+                    .map(.case(Stripe.Billing.Invoice.LineItems.API.cases.updateLines))
+                ) {
                     Method.post
                     Path.v1
                     Path.invoices
@@ -141,11 +149,13 @@ extension Stripe.Billing.Invoice.LineItems.API {
                 }
 
                 // https://docs.stripe.com/api/invoice-line-item/invoices/remove-lines/bulk.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (invoiceId: $0.0, request: $0.1) },
                         unapply: { ($0.invoiceId, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.Invoice.LineItems.API.cases.removeLines))) {
+                    .map(.case(Stripe.Billing.Invoice.LineItems.API.cases.removeLines))
+                ) {
                     Method.post
                     Path.v1
                     Path.invoices
@@ -165,19 +175,27 @@ extension Stripe.Billing.Invoice.LineItems.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var lines: Path<PathBuilder.Component<String>> { Path {
-        "lines"
-    } }
+    public static var lines: Path<PathBuilder.Component<String>> {
+        Path {
+            "lines"
+        }
+    }
 
-    public static var add_lines: Path<PathBuilder.Component<String>> { Path {
-        "add_lines"
-    } }
+    public static var add_lines: Path<PathBuilder.Component<String>> {
+        Path {
+            "add_lines"
+        }
+    }
 
-    public static var update_lines: Path<PathBuilder.Component<String>> { Path {
-        "update_lines"
-    } }
+    public static var update_lines: Path<PathBuilder.Component<String>> {
+        Path {
+            "update_lines"
+        }
+    }
 
-    public static var remove_lines: Path<PathBuilder.Component<String>> { Path {
-        "remove_lines"
-    } }
+    public static var remove_lines: Path<PathBuilder.Component<String>> {
+        Path {
+            "remove_lines"
+        }
+    }
 }

@@ -51,11 +51,13 @@ extension Stripe.Products.Products.API {
                     Path { Parse(.string.representing(Stripe.Products.Product.ID.self)) }
                 }
 
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Products.Products.API.cases.update))) {
+                    .map(.case(Stripe.Products.Products.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.products
@@ -75,13 +77,25 @@ extension Stripe.Products.Products.API {
                     Path.products
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0.0.0, $0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.1, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
-                            unapply: { (((((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6), $0.7), $0.8) }
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0.0.0, $0.0.0.0.0.0.0.0.1, $0.0.0.0.0.0.0.1,
+                                    $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
+                            unapply: {
+                                (((((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6), $0.7), $0.8)
+                            }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Products.Products.List.Request.init,
-                                { ($0.active, $0.created, $0.endingBefore, $0.ids, $0.limit, $0.shippable, $0.startingAfter, $0.type, $0.url) }
+                                {
+                                    (
+                                        $0.active, $0.created, $0.endingBefore, $0.ids, $0.limit,
+                                        $0.shippable, $0.startingAfter, $0.type, $0.url
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -103,7 +117,9 @@ extension Stripe.Products.Products.API {
                                     // parse wraps the whole field value as a single element; print joins
                                     // (identical to the original `Many { Parse(.string) }` degenerate
                                     // no-separator behavior over a field value).
-                                    Parse(.string).map(.convert(apply: { [$0] }, unapply: { $0.joined() }))
+                                    Parse(.string).map(
+                                        .convert(apply: { [$0] }, unapply: { $0.joined() })
+                                    )
                                 }
                             }
                             Optionally {

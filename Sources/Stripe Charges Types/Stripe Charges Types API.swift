@@ -58,11 +58,13 @@ extension Stripe.Charges.API {
                 }
 
                 // https://docs.stripe.com/api/charges/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Charges.API.cases.update))) {
+                    .map(.case(Stripe.Charges.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.charges
@@ -83,13 +85,23 @@ extension Stripe.Charges.API {
                     Path.charges
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1,
+                                    $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
                             unapply: { (((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Charges.List.Request.init,
-                                { ($0.created, $0.customer, $0.paymentIntent, $0.transferGroup, $0.endingBefore, $0.limit, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.created, $0.customer, $0.paymentIntent, $0.transferGroup,
+                                        $0.endingBefore, $0.limit, $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -130,11 +142,13 @@ extension Stripe.Charges.API {
                 }
 
                 // https://docs.stripe.com/api/charges/capture.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Charges.API.cases.capture))) {
+                    .map(.case(Stripe.Charges.API.cases.capture))
+                ) {
                     Method.post
                     Path.v1
                     Path.charges
@@ -184,7 +198,9 @@ extension Stripe.Charges.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var charges: Path<PathBuilder.Component<String>> { Path {
-        "charges"
-    } }
+    public static var charges: Path<PathBuilder.Component<String>> {
+        Path {
+            "charges"
+        }
+    }
 }

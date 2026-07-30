@@ -20,9 +20,9 @@ import URL_Routing_Test_Support
 // 6.4 toolchain move, at which point the first run RECORDS the Batch-0 corpus
 // into `__Corpus__/` (Parity.fixture record-when-absent semantics).
 #if compiler(<6.4)
-let taggedMetadataSIGSEGV = true
+    let taggedMetadataSIGSEGV = true
 #else
-let taggedMetadataSIGSEGV = false
+    let taggedMetadataSIGSEGV = false
 #endif
 
 /// Compares a corpus against `__Corpus__/<name>.txt`, recording on first run.

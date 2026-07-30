@@ -9,7 +9,10 @@ import URL_Routing_Foundation_Integration
 @testable import Stripe_Types
 @testable import Stripe_Types_Models
 
-@Suite("README Code Examples Validation", .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4"))
+@Suite(
+    "README Code Examples Validation",
+    .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4")
+)
 struct ReadmeVerificationTests {
 
     // MARK: - Quick Start Examples (README lines 34-51)
@@ -140,7 +143,12 @@ struct ReadmeVerificationTests {
             Witness.Unimplemented.Error(
                 witness: "Stripe.Customers.Client",
                 operation: operation,
-                location: Source_Primitives.Source.Location(fileID: fileID, filePath: filePath, line: line, column: column)
+                location: Source_Primitives.Source.Location(
+                    fileID: fileID,
+                    filePath: filePath,
+                    line: line,
+                    column: column
+                )
             )
         }
 
@@ -155,11 +163,17 @@ struct ReadmeVerificationTests {
                     created: Date()
                 )
             },
-            update: { (_, _) async throws(Witness.Unimplemented.Error) in throw unimplemented("update") },
-            retrieve: { (_) async throws(Witness.Unimplemented.Error) in throw unimplemented("retrieve") },
+            update: { (_, _) async throws(Witness.Unimplemented.Error) in
+                throw unimplemented("update")
+            },
+            retrieve: { (_) async throws(Witness.Unimplemented.Error) in
+                throw unimplemented("retrieve")
+            },
             list: { (_) async throws(Witness.Unimplemented.Error) in throw unimplemented("list") },
-            delete: { (_) async throws(Witness.Unimplemented.Error) in throw unimplemented("delete") },
-            search: { (_) async throws(Witness.Unimplemented.Error) in throw unimplemented("search") },
+            delete: { (_) async throws(Witness.Unimplemented.Error) in throw unimplemented("delete")
+            },
+            search: { (_) async throws(Witness.Unimplemented.Error) in throw unimplemented("search")
+            },
             bankAccounts: .unimplemented(),
             cards: .unimplemented(),
             cashBalance: .unimplemented(),
@@ -186,7 +200,7 @@ struct ReadmeVerificationTests {
 // `.disabled(if:)`, not `withKnownIssue`, because the crash kills the runner).
 // Auto-retires at the 6.4 toolchain move.
 #if compiler(<6.4)
-private let taggedMetadataSIGSEGV = true
+    private let taggedMetadataSIGSEGV = true
 #else
-private let taggedMetadataSIGSEGV = false
+    private let taggedMetadataSIGSEGV = false
 #endif

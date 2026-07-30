@@ -37,11 +37,13 @@ extension Stripe.Connect.Transfer.Reversals.API {
 
         public var body: some URLRouting.Router<Stripe.Connect.Transfer.Reversals.API> {
             OneOf {
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (transferId: $0.0, request: $0.1) },
                         unapply: { ($0.transferId, $0.request) }
                     )
-                    .map(.case(Stripe.Connect.Transfer.Reversals.API.cases.create))) {
+                    .map(.case(Stripe.Connect.Transfer.Reversals.API.cases.create))
+                ) {
                     Method.post
                     Path.v1
                     Path.transfers
@@ -56,11 +58,13 @@ extension Stripe.Connect.Transfer.Reversals.API {
                     )
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (transferId: $0.0, reversalId: $0.1) },
                         unapply: { ($0.transferId, $0.reversalId) }
                     )
-                    .map(.case(Stripe.Connect.Transfer.Reversals.API.cases.retrieve))) {
+                    .map(.case(Stripe.Connect.Transfer.Reversals.API.cases.retrieve))
+                ) {
                     Method.get
                     Path.v1
                     Path.transfers
@@ -69,11 +73,13 @@ extension Stripe.Connect.Transfer.Reversals.API {
                     Path { Parse(.string.representing(Stripe.Connect.Transfer.Reversal.ID.self)) }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (transferId: $0.0.0, reversalId: $0.0.1, request: $0.1) },
                         unapply: { (($0.transferId, $0.reversalId), $0.request) }
                     )
-                    .map(.case(Stripe.Connect.Transfer.Reversals.API.cases.update))) {
+                    .map(.case(Stripe.Connect.Transfer.Reversals.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.transfers
@@ -89,11 +95,13 @@ extension Stripe.Connect.Transfer.Reversals.API {
                     )
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (transferId: $0.0, request: $0.1) },
                         unapply: { ($0.transferId, $0.request) }
                     )
-                    .map(.case(Stripe.Connect.Transfer.Reversals.API.cases.list))) {
+                    .map(.case(Stripe.Connect.Transfer.Reversals.API.cases.list))
+                ) {
                     Method.get
                     Path.v1
                     Path.transfers

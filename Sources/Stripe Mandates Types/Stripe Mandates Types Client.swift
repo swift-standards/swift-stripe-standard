@@ -15,6 +15,7 @@ extension Stripe.Mandates {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/mandates/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Mandates.Mandate.ID) async throws(any Swift.Error) -> Stripe.Mandates.Mandate
+            @Sendable (_ id: Stripe.Mandates.Mandate.ID) async throws(any Swift.Error) ->
+                Stripe.Mandates.Mandate
     }
 }

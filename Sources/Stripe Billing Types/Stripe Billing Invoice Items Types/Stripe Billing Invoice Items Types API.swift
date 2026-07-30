@@ -58,11 +58,13 @@ extension Stripe.Billing.InvoiceItems.API {
                 }
 
                 // https://docs.stripe.com/api/invoiceitems/update.md
-                URLRouting.Route(.convert(
+                URLRouting.Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.Billing.InvoiceItems.API.cases.update))) {
+                    .map(.case(Stripe.Billing.InvoiceItems.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.invoiceitems
@@ -83,13 +85,23 @@ extension Stripe.Billing.InvoiceItems.API {
                     Path.invoiceitems
                     Parse(
                         .convert(
-                            apply: { ($0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1, $0.0.0.1, $0.0.1, $0.1) },
+                            apply: {
+                                (
+                                    $0.0.0.0.0.0.0, $0.0.0.0.0.0.1, $0.0.0.0.0.1, $0.0.0.0.1,
+                                    $0.0.0.1, $0.0.1, $0.1
+                                )
+                            },
                             unapply: { (((((($0.0, $0.1), $0.2), $0.3), $0.4), $0.5), $0.6) }
                         )
                         .map(
                             .memberwise(
                                 Stripe.Billing.InvoiceItems.List.Request.init,
-                                { ($0.created, $0.customer, $0.endingBefore, $0.invoice, $0.limit, $0.pending, $0.startingAfter) }
+                                {
+                                    (
+                                        $0.created, $0.customer, $0.endingBefore, $0.invoice,
+                                        $0.limit, $0.pending, $0.startingAfter
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -138,7 +150,9 @@ extension Stripe.Billing.InvoiceItems.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var invoiceitems: Path<PathBuilder.Component<String>> { Path {
-        "invoiceitems"
-    } }
+    public static var invoiceitems: Path<PathBuilder.Component<String>> {
+        Path {
+            "invoiceitems"
+        }
+    }
 }

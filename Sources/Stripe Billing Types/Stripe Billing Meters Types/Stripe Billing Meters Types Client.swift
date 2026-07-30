@@ -15,7 +15,8 @@ extension Stripe.Billing.Meters {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/billing/meter/create.md
         public var create:
-            @Sendable (_ request: Stripe.Billing.Meters.Create.Request) async throws(any Swift.Error) -> Meter
+            @Sendable (_ request: Stripe.Billing.Meters.Create.Request) async throws(any Swift
+                .Error) -> Meter
 
         // https://docs.stripe.com/api/billing/meter/retrieve.md
         public var retrieve:
@@ -31,7 +32,8 @@ extension Stripe.Billing.Meters {
 
         // https://docs.stripe.com/api/billing/meter/list.md
         public var list:
-            @Sendable (_ request: Stripe.Billing.Meters.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Billing.Meters.List.Request) async throws(any Swift.Error)
+                ->
                 Stripe.Billing.Meters.List.Response
 
         // https://docs.stripe.com/api/billing/meter/deactivate.md

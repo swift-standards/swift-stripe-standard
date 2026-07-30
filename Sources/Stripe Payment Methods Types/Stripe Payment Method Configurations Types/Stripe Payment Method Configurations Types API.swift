@@ -60,11 +60,13 @@ extension Stripe.PaymentMethodConfigurations.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentMethodConfigurations.API.cases.update))) {
+                    .map(.case(Stripe.PaymentMethodConfigurations.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.paymentMethodConfigurations
@@ -113,7 +115,9 @@ extension Stripe.PaymentMethodConfigurations.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var paymentMethodConfigurations: Path<PathBuilder.Component<String>> { Path {
-        "payment_method_configurations"
-    } }
+    public static var paymentMethodConfigurations: Path<PathBuilder.Component<String>> {
+        Path {
+            "payment_method_configurations"
+        }
+    }
 }

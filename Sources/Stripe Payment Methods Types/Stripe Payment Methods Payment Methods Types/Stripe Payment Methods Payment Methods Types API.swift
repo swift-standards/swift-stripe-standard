@@ -56,11 +56,13 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, paymentMethodId: $0.1) },
                         unapply: { ($0.customerId, $0.paymentMethodId) }
                     )
-                    .map(.case(Stripe.PaymentMethods.PaymentMethods.API.cases.retrieveCustomer))) {
+                    .map(.case(Stripe.PaymentMethods.PaymentMethods.API.cases.retrieveCustomer))
+                ) {
                     Method.get
                     Path.v1
                     Path.customers
@@ -71,11 +73,13 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentMethods.PaymentMethods.API.cases.update))) {
+                    .map(.case(Stripe.PaymentMethods.PaymentMethods.API.cases.update))
+                ) {
                     Method.post
                     Path.v1
                     Path.payment_methods
@@ -103,7 +107,12 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                         .map(
                             .memberwise(
                                 Stripe.PaymentMethods.PaymentMethods.List.Request.init,
-                                { ($0.customer, $0.type, $0.endingBefore, $0.startingAfter, $0.limit) }
+                                {
+                                    (
+                                        $0.customer, $0.type, $0.endingBefore, $0.startingAfter,
+                                        $0.limit
+                                    )
+                                }
                             )
                         )
                     ) {
@@ -129,11 +138,13 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (customerId: $0.0, request: $0.1) },
                         unapply: { ($0.customerId, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentMethods.PaymentMethods.API.cases.listCustomer))) {
+                    .map(.case(Stripe.PaymentMethods.PaymentMethods.API.cases.listCustomer))
+                ) {
                     Method.get
                     Path.v1
                     Path.customers
@@ -145,7 +156,15 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                             unapply: { (((($0.0, $0.1), $0.2), $0.3), $0.4) }
                         )
                         .map(
-                            .memberwise(Stripe.PaymentMethods.PaymentMethods.List.Customer.Request.init, { ($0.type, $0.endingBefore, $0.startingAfter, $0.limit, $0.allowRedisplay) })
+                            .memberwise(
+                                Stripe.PaymentMethods.PaymentMethods.List.Customer.Request.init,
+                                {
+                                    (
+                                        $0.type, $0.endingBefore, $0.startingAfter, $0.limit,
+                                        $0.allowRedisplay
+                                    )
+                                }
+                            )
                         )
                     ) {
                         Query {
@@ -168,11 +187,13 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
                     }
                 }
 
-                Route(.convert(
+                Route(
+                    .convert(
                         apply: { (id: $0.0, request: $0.1) },
                         unapply: { ($0.id, $0.request) }
                     )
-                    .map(.case(Stripe.PaymentMethods.PaymentMethods.API.cases.attach))) {
+                    .map(.case(Stripe.PaymentMethods.PaymentMethods.API.cases.attach))
+                ) {
                     Method.post
                     Path.v1
                     Path.payment_methods
@@ -204,16 +225,24 @@ extension Stripe.PaymentMethods.PaymentMethods.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var payment_methods: Path<PathBuilder.Component<String>> { Path {
-        "payment_methods"
-    } }
-    public static var customers: Path<PathBuilder.Component<String>> { Path {
-        "customers"
-    } }
-    public static var attach: Path<PathBuilder.Component<String>> { Path {
-        "attach"
-    } }
-    public static var detach: Path<PathBuilder.Component<String>> { Path {
-        "detach"
-    } }
+    public static var payment_methods: Path<PathBuilder.Component<String>> {
+        Path {
+            "payment_methods"
+        }
+    }
+    public static var customers: Path<PathBuilder.Component<String>> {
+        Path {
+            "customers"
+        }
+    }
+    public static var attach: Path<PathBuilder.Component<String>> {
+        Path {
+            "attach"
+        }
+    }
+    public static var detach: Path<PathBuilder.Component<String>> {
+        Path {
+            "detach"
+        }
+    }
 }

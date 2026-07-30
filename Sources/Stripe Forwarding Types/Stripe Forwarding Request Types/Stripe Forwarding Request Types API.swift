@@ -67,11 +67,15 @@ extension Stripe.Forwarding.Request.API {
 }
 
 extension Path<PathBuilder.Component<String>> {
-    public static var forwarding: Path<PathBuilder.Component<String>> { Path {
-        "forwarding"
-    } }
+    public static var forwarding: Path<PathBuilder.Component<String>> {
+        Path {
+            "forwarding"
+        }
+    }
 
-    public static var requests: Path<PathBuilder.Component<String>> { Path {
-        "requests"
-    } }
+    public static var requests: Path<PathBuilder.Component<String>> {
+        Path {
+            "requests"
+        }
+    }
 }
