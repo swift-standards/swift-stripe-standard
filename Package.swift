@@ -168,21 +168,24 @@ let package = Package(
         .library(name: .stripeTypesModels, targets: [.stripeTypesModels]),
     ],
     dependencies: [
+        // swift-dependencies, swift-dual, and swift-html-form-coder have no tagged release yet
+        // (org: swift-foundations); pinned to branch until upstream cuts a version.
+        // BRANCH-PIN-001 exemption tracked pending a tag.
         .package(
             url: "https://github.com/swift-foundations/swift-dependencies.git",
             branch: "main"
         ),
         .package(
             url: "https://github.com/swift-primitives/swift-tagged-primitives.git",
-            branch: "main"
+            from: "0.10.0"
         ),
         .package(url: "https://github.com/swift-foundations/swift-dual.git", branch: "main"),
-        .package(url: "https://github.com/swift-foundations/swift-url-routing.git", branch: "main"),
+        .package(url: "https://github.com/swift-foundations/swift-url-routing.git", from: "0.6.2"),
         .package(
             url: "https://github.com/swift-foundations/swift-html-form-coder.git",
             branch: "main"
         ),
-        .package(url: "https://github.com/swift-standards/swift-html-standard.git", branch: "main"),
+        .package(url: "https://github.com/swift-standards/swift-html-standard.git", from: "0.1.6"),
     ],
     targets: [
         .target(
