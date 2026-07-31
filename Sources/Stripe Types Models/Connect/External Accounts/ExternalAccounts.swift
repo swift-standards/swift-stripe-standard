@@ -48,6 +48,10 @@ extension Stripe.Connect.Account.ExternalAccounts {
             }
         }
 
+        // REASON: `encode(to: any Encoder)` is the exact Encodable protocol requirement
+        // signature (Swift.Encodable); the existential is fixed by the standard library
+        // and cannot be replaced with a generic or concrete type.
+        // swiftlint:disable:next no_any_protocol_existential
         public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(object, forKey: .object)
