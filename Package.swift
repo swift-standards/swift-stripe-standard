@@ -114,7 +114,7 @@ extension Target.Dependency {
 }
 
 let package = Package(
-    name: "swift-stripe-types",
+    name: "swift-stripe-standard",
     platforms: [
         .macOS(.v26),
         .iOS(.v26),
