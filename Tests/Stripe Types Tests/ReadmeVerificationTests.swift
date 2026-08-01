@@ -166,16 +166,25 @@ struct ReadmeVerificationTests {
                     created: Date()
                 )
             },
-            update: { _, _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Update.Error>) in
+            update: {
+                _,
+                _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Update.Error>) in
                 throw .unimplemented(unimplemented("update"))
             },
-            retrieve: { _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Retrieve.Error>) in
+            retrieve: {
+                _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Retrieve.Error>) in
                 throw .unimplemented(unimplemented("retrieve"))
             },
-            list: { _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.List.Error>) in throw .unimplemented(unimplemented("list")) },
-            delete: { _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Delete.Error>) in throw .unimplemented(unimplemented("delete"))
+            list: { _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.List.Error>) in
+                throw .unimplemented(unimplemented("list"))
             },
-            search: { _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Search.Error>) in throw .unimplemented(unimplemented("search"))
+            delete: {
+                _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Delete.Error>) in
+                throw .unimplemented(unimplemented("delete"))
+            },
+            search: {
+                _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Search.Error>) in
+                throw .unimplemented(unimplemented("search"))
             },
             bankAccounts: .unimplemented(),
             cards: .unimplemented(),
