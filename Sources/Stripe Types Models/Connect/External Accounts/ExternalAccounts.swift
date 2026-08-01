@@ -31,9 +31,14 @@ extension Stripe.Connect.Account.ExternalAccounts {
         /// An array of `StripeBankAccount`s associated with the account.
         public var bankAccounts: [BankAccount]?
 
+        // REASON: every failure this can produce originates in a `Decoder`/`Encoder` standard
+        // library call, whose requirements are declared with untyped `throws`. Narrowing the
+        // thrown type here would misdescribe the standard library's error domain.
+        // swiftlint:disable typed_throws_required
         public init(
             from decoder: Decoder
         ) throws {
+            // swiftlint:enable typed_throws_required
             let container = try decoder.container(keyedBy: CodingKeys.self)
             object = try container.decode(String.self, forKey: .object)
             hasMore = try container.decodeIfPresent(Bool.self, forKey: .hasMore)
@@ -48,10 +53,10 @@ extension Stripe.Connect.Account.ExternalAccounts {
             }
         }
 
-        // REASON: `encode(to: any Encoder)` is the exact Encodable protocol requirement
-        // signature (Swift.Encodable); the existential is fixed by the standard library
-        // and cannot be replaced with a generic or concrete type.
-        // swiftlint:disable:next no_any_protocol_existential
+        // REASON: `encode(to: any Encoder) throws` is the exact Encodable protocol requirement
+        // signature (Swift.Encodable); both the existential and the untyped `throws` are fixed
+        // by the standard library and cannot be narrowed here without failing to satisfy it.
+        // swiftlint:disable:next no_any_protocol_existential typed_throws_required
         public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(object, forKey: .object)
@@ -95,12 +100,20 @@ extension Stripe.Connect.Account.ExternalAccounts {
 
         // A helper type to encode heterogeneous elements
         struct AnyEncodable: Encodable {
+            // REASON: every failure this can produce originates in a `Decoder`/`Encoder` standard
+            // library call, whose requirements are declared with untyped `throws`. Narrowing the
+            // thrown type here would misdescribe the standard library's error domain.
+            // swiftlint:disable:next typed_throws_required
             private let _encode: (Encoder) throws -> Void
 
             init<T: Encodable>(_ encodable: T) {
                 _encode = encodable.encode
             }
 
+            // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+            // signature. The standard library declares the requirement with untyped `throws`, so
+            // the thrown type cannot be narrowed here without failing to satisfy it.
+            // swiftlint:disable:next typed_throws_required
             func encode(to encoder: Encoder) throws {
                 try _encode(encoder)
             }

@@ -35,6 +35,10 @@ extension Stripe.Customers.Customer.Sessions.Create.Request {
             case pricingTable = "pricing_table"
         }
 
+        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+        // signature. The standard library declares the requirement with untyped `throws`, so
+        // the thrown type cannot be narrowed here without failing to satisfy it.
+        // swiftlint:disable:next typed_throws_required
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             switch self {
@@ -49,6 +53,10 @@ extension Stripe.Customers.Customer.Sessions.Create.Request {
             }
         }
 
+        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+        // signature. The standard library declares the requirement with untyped `throws`, so
+        // the thrown type cannot be narrowed here without failing to satisfy it.
+        // swiftlint:disable:next typed_throws_required
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 

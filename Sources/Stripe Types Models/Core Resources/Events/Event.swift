@@ -135,9 +135,14 @@ extension Stripe.Events.Event {
         case reader(Stripe.Terminal.Readers.Reader)
         case verificationSession(Stripe_Types_Models.VerificationSession)
 
+        // REASON: every failure this can produce originates in a `Decoder`/`Encoder` standard
+        // library call, whose requirements are declared with untyped `throws`. Narrowing the
+        // thrown type here would misdescribe the standard library's error domain.
+        // swiftlint:disable typed_throws_required
         public init(
             from decoder: Decoder
         ) throws {
+            // swiftlint:enable typed_throws_required
             let object =
                 try decoder
                 .container(keyedBy: CodingKeys.self)
@@ -327,6 +332,10 @@ extension Stripe.Events.Event {
             }
         }
 
+        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+        // signature. The standard library declares the requirement with untyped `throws`, so
+        // the thrown type cannot be narrowed here without failing to satisfy it.
+        // swiftlint:disable:next typed_throws_required
         public func encode(to encoder: Encoder) throws {
             switch self {
             case .account(let connectAccount):

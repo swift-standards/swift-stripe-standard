@@ -115,6 +115,10 @@ extension Stripe.Billing.Plans.Create {
         case id(String)
         case data(ProductData)
 
+        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+        // signature. The standard library declares the requirement with untyped `throws`, so
+        // the thrown type cannot be narrowed here without failing to satisfy it.
+        // swiftlint:disable:next typed_throws_required
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -126,10 +130,22 @@ extension Stripe.Billing.Plans.Create {
             }
         }
 
+        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+        // signature. The standard library declares the requirement with untyped `throws`, so
+        // the thrown type cannot be narrowed here without failing to satisfy it.
+        // swiftlint:disable:next typed_throws_required
         public init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
+            // REASON: probing a decoding container for an alternative payload shape. `decode` throws
+            // the standard library's untyped error domain, and a failed probe is control flow here —
+            // the next shape is attempted — not an error this type can classify.
+            // swiftlint:disable:next no_try_optional
             if let id = try? container.decode(String.self) {
                 self = .id(id)
+                // REASON: probing a decoding container for an alternative payload shape. `decode` throws
+                // the standard library's untyped error domain, and a failed probe is control flow here —
+                // the next shape is attempted — not an error this type can classify.
+                // swiftlint:disable:next no_try_optional
             } else if let data = try? container.decode(ProductData.self) {
                 self = .data(data)
             } else {
@@ -233,6 +249,10 @@ extension Stripe.Billing.Plans.Create {
         case inf
         case value(Int)
 
+        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+        // signature. The standard library declares the requirement with untyped `throws`, so
+        // the thrown type cannot be narrowed here without failing to satisfy it.
+        // swiftlint:disable:next typed_throws_required
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -244,10 +264,22 @@ extension Stripe.Billing.Plans.Create {
             }
         }
 
+        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+        // signature. The standard library declares the requirement with untyped `throws`, so
+        // the thrown type cannot be narrowed here without failing to satisfy it.
+        // swiftlint:disable:next typed_throws_required
         public init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
+            // REASON: probing a decoding container for an alternative payload shape. `decode` throws
+            // the standard library's untyped error domain, and a failed probe is control flow here —
+            // the next shape is attempted — not an error this type can classify.
+            // swiftlint:disable:next no_try_optional
             if let string = try? container.decode(String.self), string == "inf" {
                 self = .inf
+                // REASON: probing a decoding container for an alternative payload shape. `decode` throws
+                // the standard library's untyped error domain, and a failed probe is control flow here —
+                // the next shape is attempted — not an error this type can classify.
+                // swiftlint:disable:next no_try_optional
             } else if let value = try? container.decode(Int.self) {
                 self = .value(value)
             } else {

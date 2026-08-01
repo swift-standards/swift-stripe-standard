@@ -19,6 +19,10 @@ public enum StripePaymentSource: Codable, Hashable, Sendable {
     case card(Card)
     case source(Source)
 
+    // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+    // signature. The standard library declares the requirement with untyped `throws`, so
+    // the thrown type cannot be narrowed here without failing to satisfy it.
+    // swiftlint:disable:next typed_throws_required
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let object = try container.decode(String.self, forKey: .object)
@@ -41,6 +45,10 @@ public enum StripePaymentSource: Codable, Hashable, Sendable {
         }
     }
 
+    // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+    // signature. The standard library declares the requirement with untyped `throws`, so
+    // the thrown type cannot be narrowed here without failing to satisfy it.
+    // swiftlint:disable:next typed_throws_required
     public func encode(to encoder: Encoder) throws {
         switch self {
         case .bankAccount(let bankAccount):

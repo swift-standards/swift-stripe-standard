@@ -12,12 +12,12 @@ extension Stripe {
     public struct StatementDescriptor: Codable, Hashable, Sendable {
         public let rawValue: String
 
-        public init(_ string: String) throws {
+        public init(_ string: String) throws(ValidationError) {
             try StatementDescriptor.validate(string)
             self.rawValue = string
         }
 
-        private static func validate(_ string: String) throws {
+        private static func validate(_ string: String) throws(ValidationError) {
             guard !string.isEmpty else {
                 throw ValidationError.empty
             }
@@ -42,17 +42,29 @@ extension Stripe {
 
 extension Stripe.StatementDescriptor: RawRepresentable {
     public init?(rawValue: String) {
-        try? self.init(rawValue)
+        do throws(Stripe.StatementDescriptor.ValidationError) {
+            try self.init(rawValue)
+        } catch {
+            return nil
+        }
     }
 }
 
 extension Stripe.StatementDescriptor {
+    // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+    // signature. The standard library declares the requirement with untyped `throws`, so
+    // the thrown type cannot be narrowed here without failing to satisfy it.
+    // swiftlint:disable:next typed_throws_required
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self)
         try self.init(string)
     }
 
+    // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+    // signature. The standard library declares the requirement with untyped `throws`, so
+    // the thrown type cannot be narrowed here without failing to satisfy it.
+    // swiftlint:disable:next typed_throws_required
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(self.rawValue)

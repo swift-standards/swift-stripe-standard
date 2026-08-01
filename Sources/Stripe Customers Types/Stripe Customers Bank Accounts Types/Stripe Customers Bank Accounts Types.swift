@@ -37,6 +37,10 @@ extension Stripe.Customers.BankAccounts.Create {
             case token(String)
             case bankAccount(BankAccountDetails)
 
+            // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+            // signature. The standard library declares the requirement with untyped `throws`, so
+            // the thrown type cannot be narrowed here without failing to satisfy it.
+            // swiftlint:disable:next typed_throws_required
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
@@ -48,8 +52,16 @@ extension Stripe.Customers.BankAccounts.Create {
                 }
             }
 
+            // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+            // signature. The standard library declares the requirement with untyped `throws`, so
+            // the thrown type cannot be narrowed here without failing to satisfy it.
+            // swiftlint:disable:next typed_throws_required
             public init(from decoder: Decoder) throws {
                 let container = try decoder.singleValueContainer()
+                // REASON: probing a decoding container for an alternative payload shape. `decode` throws
+                // the standard library's untyped error domain, and a failed probe is control flow here —
+                // the next shape is attempted — not an error this type can classify.
+                // swiftlint:disable:next no_try_optional
                 if let token = try? container.decode(String.self) {
                     self = .token(token)
                 } else {
@@ -99,6 +111,10 @@ extension Stripe.Customers.BankAccounts.Create {
                 self.routingNumber = routingNumber
             }
 
+            // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+            // signature. The standard library declares the requirement with untyped `throws`, so
+            // the thrown type cannot be narrowed here without failing to satisfy it.
+            // swiftlint:disable:next typed_throws_required
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 try container.encode("bank_account", forKey: .object)
@@ -110,6 +126,10 @@ extension Stripe.Customers.BankAccounts.Create {
                 try container.encodeIfPresent(routingNumber, forKey: .routingNumber)
             }
 
+            // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+            // signature. The standard library declares the requirement with untyped `throws`, so
+            // the thrown type cannot be narrowed here without failing to satisfy it.
+            // swiftlint:disable:next typed_throws_required
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 self.accountNumber = try container.decode(String.self, forKey: .accountNumber)
