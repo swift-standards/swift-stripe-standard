@@ -21,6 +21,10 @@ import URL_Routing_Foundation_Integration
 @testable import Stripe_Fraud_Types
 @testable import Stripe_Types_Models
 
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
+
 extension Stripe.Fraud.EarlyFraudWarnings.API {
     @Suite(
         "Early Fraud Warnings API Router",

@@ -14,6 +14,10 @@ import URL_Routing_Foundation_Integration
 @testable import Stripe_Billing_Types
 @testable import Stripe_Types_Models
 
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
+
 @Suite("Billing Meter Events Router Tests")
 struct BillingMeterEventsRouterTests {
     let router = Stripe.Billing.MeterEvents.API.Router()

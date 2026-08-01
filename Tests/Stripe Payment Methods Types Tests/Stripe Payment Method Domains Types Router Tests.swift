@@ -8,6 +8,10 @@ import URL_Routing_Foundation_Integration
 @testable import Stripe_Payment_Methods_Types
 @testable import Stripe_Types_Models
 
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
+
 @Suite(
     "Payment Method Domains Router Tests",
     .disabled(if: taggedMetadataSIGSEGV, "catalog §A9: Tagged metadata SIGSEGV on Swift <6.4")

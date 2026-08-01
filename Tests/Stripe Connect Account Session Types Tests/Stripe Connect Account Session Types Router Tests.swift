@@ -13,6 +13,10 @@ import URLRouting
 @testable import Stripe_Connect_Types
 @testable import Stripe_Types_Models
 
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
+
 @Suite("Connect Account Session Router Tests")
 struct ConnectAccountSessionRouterTests {
     let router = Stripe.Connect.Account.Session.API.Router()

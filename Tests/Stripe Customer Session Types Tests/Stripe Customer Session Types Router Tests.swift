@@ -14,6 +14,10 @@ import URL_Routing_Foundation_Integration
 @testable import Stripe_Customer_Session_Types
 @testable import Stripe_Types_Models
 
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
+
 @Suite("Customer Session Router Tests")
 struct CustomerSessionRouterTests {
 

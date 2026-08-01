@@ -14,6 +14,10 @@ import URL_Routing_Foundation_Integration
 @testable import Stripe_Balance_Types
 @testable import Stripe_Types_Models
 
+#if canImport(FoundationNetworking)
+    import FoundationNetworking
+#endif
+
 @Suite("Balance Router Tests")
 struct BalanceRouterTests {
 

@@ -39,11 +39,3 @@ extension Stripe.PaymentMethods.API {
         }
     }
 }
-
-extension Path<PathBuilder.Component<String>> {
-    public static var paymentMethods: Path<PathBuilder.Component<String>> {
-        Path {
-            "payment_methods"
-        }
-    }
-}
