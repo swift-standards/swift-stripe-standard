@@ -92,7 +92,7 @@ struct BillingInvoiceLineItemRouterTests {
         )
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/invoices/in_123/addLines")
+        #expect(url.path == "/v1/invoices/in_123/add_lines")
 
         // Round-trip test
         let httpRequest = try router.request(for: api)
@@ -116,7 +116,7 @@ struct BillingInvoiceLineItemRouterTests {
         )
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/invoices/in_123/updateLines")
+        #expect(url.path == "/v1/invoices/in_123/update_lines")
 
         // Round-trip test
         let httpRequest = try router.request(for: api)
@@ -136,7 +136,7 @@ struct BillingInvoiceLineItemRouterTests {
         )
 
         let url = router.url(for: api)
-        #expect(url.path == "/v1/invoices/in_123/removeLines")
+        #expect(url.path == "/v1/invoices/in_123/remove_lines")
 
         // Round-trip test
         let httpRequest = try router.request(for: api)
