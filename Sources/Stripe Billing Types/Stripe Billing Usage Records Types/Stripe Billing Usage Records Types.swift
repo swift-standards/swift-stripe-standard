@@ -3,42 +3,6 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 import Tagged_Primitives
 
-// Helper type for timestamp that can be either an integer or "now"
-public enum Either<A: Codable & Equatable & Sendable, B: Codable & Equatable & Sendable>: Codable,
-    Equatable, Sendable
-{
-    case left(A)
-    case right(B)
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let a = try? container.decode(A.self) {
-            self = .left(a)
-        } else if let b = try? container.decode(B.self) {
-            self = .right(b)
-        } else {
-            throw DecodingError.typeMismatch(
-                Either.self,
-                DecodingError.Context(
-                    codingPath: decoder.codingPath,
-                    debugDescription: "Could not decode Either"
-                )
-            )
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .left(let a):
-            try container.encode(a)
-
-        case .right(let b):
-            try container.encode(b)
-        }
-    }
-}
-
 extension Stripe.Billing.UsageRecords {
     public struct UsageRecord: Codable, Equatable, Sendable, Identifiable {
         public let id: ID
@@ -94,6 +58,67 @@ extension Stripe.Billing.UsageRecords.Create {
             self.quantity = quantity
             self.timestamp = timestamp
             self.action = action
+        }
+    }
+}
+
+extension Stripe.Billing.UsageRecords.Create.Request {
+    /// Flat single-value coding union for the usage-record timestamp.
+    ///
+    /// Stripe encodes this field as a bare integer or the bare string `now`, not as
+    /// a tagged object, so this type owns its own single-value `Codable` shape. It
+    /// deliberately does NOT reuse `Either_Primitives.Either`, whose synthesized
+    /// `Codable` conformance is keyed rather than flat, and it is nested here rather
+    /// than declared at module scope so it cannot shadow that primitive.
+    public enum Either<A: Codable & Equatable & Sendable, B: Codable & Equatable & Sendable>:
+        Codable,
+        Equatable, Sendable
+    {
+        case left(A)
+        case right(B)
+
+        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+        // signature. The standard library declares the requirement with untyped `throws`, so
+        // the thrown type cannot be narrowed here without failing to satisfy it.
+        // swiftlint:disable:next typed_throws_required
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            // REASON: probing a decoding container for an alternative payload shape. `decode` throws
+            // the standard library's untyped error domain, and a failed probe is control flow here —
+            // the next shape is attempted — not an error this type can classify.
+            // swiftlint:disable:next no_try_optional
+            if let a = try? container.decode(A.self) {
+                self = .left(a)
+                // REASON: probing a decoding container for an alternative payload shape. `decode` throws
+                // the standard library's untyped error domain, and a failed probe is control flow here —
+                // the next shape is attempted — not an error this type can classify.
+                // swiftlint:disable:next no_try_optional
+            } else if let b = try? container.decode(B.self) {
+                self = .right(b)
+            } else {
+                throw DecodingError.typeMismatch(
+                    Either.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Could not decode Either"
+                    )
+                )
+            }
+        }
+
+        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
+        // signature. The standard library declares the requirement with untyped `throws`, so
+        // the thrown type cannot be narrowed here without failing to satisfy it.
+        // swiftlint:disable:next typed_throws_required
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .left(let a):
+                try container.encode(a)
+
+            case .right(let b):
+                try container.encode(b)
+            }
         }
     }
 }

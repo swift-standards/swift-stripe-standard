@@ -1,4 +1,6 @@
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -8,7 +10,9 @@ extension Stripe.Billing.CreditBalanceSummary {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/billing/credit-balance-summary/retrieve.md
         public var retrieve:
-            @Sendable (_ request: Retrieve.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Retrieve.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Billing.CreditBalanceSummary.Retrieve.Error
+            >) ->
                 Stripe.Billing.Credit.Balance.Summary
     }
 }

@@ -5,7 +5,9 @@
 //  Created by Coen ten Thije Boonkkamp on 13/01/2025.
 //
 
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -16,13 +18,17 @@ extension Stripe.Billing.Subscription.Schedule {
         // https://docs.stripe.com/api/subscriptionSchedules/create.md
         public var create:
             @Sendable (_ request: Stripe.Billing.Subscription.Schedule.Create.Request)
-                async throws(any Swift.Error)
+                async throws(Either<
+                    Async.Lifecycle.Error, Stripe.Billing.Subscription.Schedule.Create.Error
+                >)
                 ->
                 Stripe.Billing.Subscription.Schedule
 
         // https://docs.stripe.com/api/subscriptionSchedules/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Billing.Subscription.Schedule.ID) async throws(any Swift.Error)
+            @Sendable (_ id: Stripe.Billing.Subscription.Schedule.ID) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Billing.Subscription.Schedule.Retrieve.Error
+            >)
                 ->
                 Stripe.Billing.Subscription.Schedule
 
@@ -31,12 +37,16 @@ extension Stripe.Billing.Subscription.Schedule {
             @Sendable (
                 _ id: Stripe.Billing.Subscription.Schedule.ID,
                 _ request: Stripe.Billing.Subscription.Schedule.Update.Request
-            ) async throws(any Swift.Error) -> Stripe.Billing.Subscription.Schedule
+            ) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Billing.Subscription.Schedule.Update.Error
+            >) -> Stripe.Billing.Subscription.Schedule
 
         // https://docs.stripe.com/api/subscriptionSchedules/list.md
         public var list:
             @Sendable (_ request: Stripe.Billing.Subscription.Schedule.List.Request)
-                async throws(any Swift.Error) ->
+                async throws(Either<
+                    Async.Lifecycle.Error, Stripe.Billing.Subscription.Schedule.List.Error
+                >) ->
                 Stripe.Billing.Subscription.Schedule.List.Response
 
         // https://docs.stripe.com/api/subscriptionSchedules/cancel.md
@@ -44,13 +54,17 @@ extension Stripe.Billing.Subscription.Schedule {
             @Sendable (
                 _ id: Stripe.Billing.Subscription.Schedule.ID,
                 _ request: Stripe.Billing.Subscription.Schedule.Cancel.Request
-            ) async throws(any Swift.Error) -> Stripe.Billing.Subscription.Schedule
+            ) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Billing.Subscription.Schedule.Cancel.Error
+            >) -> Stripe.Billing.Subscription.Schedule
 
         // https://docs.stripe.com/api/subscriptionSchedules/release.md
         public var release:
             @Sendable (
                 _ id: Stripe.Billing.Subscription.Schedule.ID,
                 _ request: Stripe.Billing.Subscription.Schedule.Release.Request
-            ) async throws(any Swift.Error) -> Stripe.Billing.Subscription.Schedule
+            ) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Billing.Subscription.Schedule.Release.Error
+            >) -> Stripe.Billing.Subscription.Schedule
     }
 }

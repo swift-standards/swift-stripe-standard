@@ -5,7 +5,9 @@
 //  Created by Coen ten Thije Boonkkamp on 13/01/2025.
 //
 
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -16,7 +18,9 @@ extension Stripe.Billing.MeterEventAdjustments {
         // https://docs.stripe.com/api/billing/meter-event-adjustment/create.md
         public var create:
             @Sendable (_ request: Stripe.Billing.MeterEventAdjustments.Create.Request)
-                async throws(any Swift.Error)
+                async throws(Either<
+                    Async.Lifecycle.Error, Stripe.Billing.MeterEventAdjustments.Create.Error
+                >)
                 ->
                 MeterEventAdjustment
     }

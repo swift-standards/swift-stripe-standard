@@ -1,4 +1,6 @@
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -12,12 +14,16 @@ extension Stripe.Customers.CashBalanceTransactions {
             @Sendable (
                 _ customerId: Stripe.Customers.Customer.ID,
                 _ transactionId: CashBalanceTransaction.ID
-            ) async throws(any Swift.Error) -> CashBalanceTransaction
+            ) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Customers.CashBalanceTransactions.Retrieve.Error
+            >) -> CashBalanceTransaction
 
         // https://docs.stripe.com/api/cash_balance_transactions/list.md
         public var list:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ request: List.Request)
-                async throws(any Swift.Error)
+                async throws(Either<
+                    Async.Lifecycle.Error, Stripe.Customers.CashBalanceTransactions.List.Error
+                >)
                 -> List.Response
     }
 }

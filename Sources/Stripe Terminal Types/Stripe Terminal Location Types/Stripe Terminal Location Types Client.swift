@@ -1,4 +1,6 @@
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -8,22 +10,33 @@ extension Stripe.Terminal.Locations {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/terminal/locations/create.md
         public var create:
-            @Sendable (_ request: Create.Request) async throws(any Swift.Error) -> Location
+            @Sendable (_ request: Create.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Terminal.Locations.Create.Error
+            >) -> Location
 
         // https://docs.stripe.com/api/terminal/locations/retrieve.md
-        public var retrieve: @Sendable (_ id: Location.ID) async throws(any Swift.Error) -> Location
+        public var retrieve:
+            @Sendable (_ id: Location.ID) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Terminal.Locations.Retrieve.Error
+            >) -> Location
 
         // https://docs.stripe.com/api/terminal/locations/update.md
         public var update:
-            @Sendable (_ id: Location.ID, _ request: Update.Request) async throws(any Swift.Error)
+            @Sendable (_ id: Location.ID, _ request: Update.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Terminal.Locations.Update.Error
+            >)
                 -> Location
 
         // https://docs.stripe.com/api/terminal/locations/list.md
         public var list:
-            @Sendable (_ request: List.Request) async throws(any Swift.Error) -> List.Response
+            @Sendable (_ request: List.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Terminal.Locations.List.Error
+            >) -> List.Response
 
         // https://docs.stripe.com/api/terminal/locations/delete.md
         public var delete:
-            @Sendable (_ id: Location.ID) async throws(any Swift.Error) -> DeletedObject<Location>
+            @Sendable (_ id: Location.ID) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Terminal.Locations.Delete.Error
+            >) -> DeletedObject<Location>
     }
 }

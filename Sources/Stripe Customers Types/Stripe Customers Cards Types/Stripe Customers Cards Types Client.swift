@@ -1,4 +1,6 @@
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -10,13 +12,13 @@ extension Stripe.Customers.Cards {
         // https://docs.stripe.com/api/cards/create.md
         public var create:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ request: Create.Request)
-                async throws(any Swift.Error)
+                async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Cards.Create.Error>)
                 -> Card
 
         // https://docs.stripe.com/api/cards/retrieve.md
         public var retrieve:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ cardId: Card.ID)
-                async throws(any Swift.Error)
+                async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Cards.Retrieve.Error>)
                 -> Card
 
         // https://docs.stripe.com/api/cards/update.md
@@ -24,18 +26,19 @@ extension Stripe.Customers.Cards {
             @Sendable (
                 _ customerId: Stripe.Customers.Customer.ID, _ cardId: Card.ID,
                 _ request: Update.Request
-            ) async throws(any Swift.Error) -> Card
+            ) async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Cards.Update.Error>) ->
+                Card
 
         // https://docs.stripe.com/api/cards/list.md
         public var list:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ request: List.Request)
-                async throws(any Swift.Error)
+                async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Cards.List.Error>)
                 -> List.Response
 
         // https://docs.stripe.com/api/cards/delete.md
         public var delete:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ cardId: Card.ID)
-                async throws(any Swift.Error)
+                async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Cards.Delete.Error>)
                 ->
                 DeletedObject<Card>
     }

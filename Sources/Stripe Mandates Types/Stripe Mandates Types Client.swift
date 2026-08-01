@@ -5,7 +5,9 @@
 //  Created by Coen ten Thije Boonkkamp on 13/01/2025.
 //
 
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -15,7 +17,9 @@ extension Stripe.Mandates {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/mandates/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Mandates.Mandate.ID) async throws(any Swift.Error) ->
+            @Sendable (_ id: Stripe.Mandates.Mandate.ID) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Mandates.Retrieve.Error
+            >) ->
                 Stripe.Mandates.Mandate
     }
 }

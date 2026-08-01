@@ -5,7 +5,9 @@
 //  Created on 2025-01-14.
 //
 
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -15,20 +17,27 @@ extension Stripe.Products.TaxRates {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/tax_rates/create.md
         public var create:
-            @Sendable (_ request: Create.Request) async throws(any Swift.Error) -> Stripe.Tax.Rate
+            @Sendable (_ request: Create.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Products.TaxRates.Create.Error
+            >) -> Stripe.Tax.Rate
 
         // https://docs.stripe.com/api/tax_rates/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Tax.Rate.ID) async throws(any Swift.Error) -> Stripe.Tax.Rate
+            @Sendable (_ id: Stripe.Tax.Rate.ID) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Products.TaxRates.Retrieve.Error
+            >) -> Stripe.Tax.Rate
 
         // https://docs.stripe.com/api/tax_rates/update.md
         public var update:
-            @Sendable (_ id: Stripe.Tax.Rate.ID, _ request: Update.Request) async throws(any Swift
-                .Error) ->
+            @Sendable (_ id: Stripe.Tax.Rate.ID, _ request: Update.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Products.TaxRates.Update.Error
+            >) ->
                 Stripe.Tax.Rate
 
         // https://docs.stripe.com/api/tax_rates/list.md
         public var list:
-            @Sendable (_ request: List.Request) async throws(any Swift.Error) -> List.Response
+            @Sendable (_ request: List.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Products.TaxRates.List.Error
+            >) -> List.Response
     }
 }

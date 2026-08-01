@@ -1,3 +1,5 @@
+import Async_Lifecycle_Primitives
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -26,34 +28,46 @@ extension Stripe.PaymentMethods {
 extension Stripe.PaymentMethods.Client {
     public func create(
         _ request: Stripe.PaymentMethods.PaymentMethods.Create.Request
-    ) async throws -> Stripe.PaymentMethods.PaymentMethod {
+    ) async throws(Either<Async.Lifecycle.Error, Stripe.PaymentMethods.PaymentMethods.Create.Error>)
+        -> Stripe.PaymentMethods.PaymentMethod
+    {
         try await self.paymentMethods.create(request)
     }
     public func retrieve(
         _ id: Stripe.PaymentMethods.PaymentMethod.ID
-    ) async throws -> Stripe.PaymentMethods.PaymentMethod {
+    ) async throws(Either<
+        Async.Lifecycle.Error, Stripe.PaymentMethods.PaymentMethods.Retrieve.Error
+    >) -> Stripe.PaymentMethods.PaymentMethod {
         try await self.paymentMethods.retrieve(id)
     }
     public func update(
         _ id: Stripe.PaymentMethods.PaymentMethod.ID,
         _ request: Stripe.PaymentMethods.PaymentMethods.Update.Request
-    ) async throws -> Stripe.PaymentMethods.PaymentMethod {
+    ) async throws(Either<Async.Lifecycle.Error, Stripe.PaymentMethods.PaymentMethods.Update.Error>)
+        -> Stripe.PaymentMethods.PaymentMethod
+    {
         try await self.paymentMethods.update(id, request)
     }
     public func list(
         _ request: Stripe.PaymentMethods.PaymentMethods.List.Request
-    ) async throws -> Stripe.PaymentMethods.PaymentMethods.List.Response {
+    ) async throws(Either<Async.Lifecycle.Error, Stripe.PaymentMethods.PaymentMethods.List.Error>)
+        -> Stripe.PaymentMethods.PaymentMethods.List.Response
+    {
         try await self.paymentMethods.list(request)
     }
     public func attach(
         _ id: Stripe.PaymentMethods.PaymentMethod.ID,
         _ request: Stripe.PaymentMethods.PaymentMethods.Attach.Request
-    ) async throws -> Stripe.PaymentMethods.PaymentMethod {
+    ) async throws(Either<Async.Lifecycle.Error, Stripe.PaymentMethods.PaymentMethods.Attach.Error>)
+        -> Stripe.PaymentMethods.PaymentMethod
+    {
         try await self.paymentMethods.attach(id, request)
     }
     public func detach(
         _ id: Stripe.PaymentMethods.PaymentMethod.ID
-    ) async throws -> Stripe.PaymentMethods.PaymentMethod {
+    ) async throws(Either<Async.Lifecycle.Error, Stripe.PaymentMethods.PaymentMethods.Detach.Error>)
+        -> Stripe.PaymentMethods.PaymentMethod
+    {
         try await self.paymentMethods.detach(id)
     }
 }

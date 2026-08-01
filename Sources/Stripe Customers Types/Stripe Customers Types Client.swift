@@ -5,7 +5,9 @@
 //  Created by Coen ten Thije Boonkkamp on 05/01/2025.
 //
 
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -13,26 +15,37 @@ import Stripe_Types_Shared
 extension Stripe.Customers {
     public struct Client: Sendable {
         public var create:
-            @Sendable (_ request: Stripe.Customers.Create.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Customers.Create.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Customers.Create.Error
+            >) ->
                 Customer
 
         public var update:
             @Sendable (_ id: Customer.ID, _ request: Stripe.Customers.Update.Request)
-                async throws(any Swift.Error)
+                async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Update.Error>)
                 ->
                 Customer
 
-        public var retrieve: @Sendable (_ id: Customer.ID) async throws(any Swift.Error) -> Customer
+        public var retrieve:
+            @Sendable (_ id: Customer.ID) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Customers.Retrieve.Error
+            >) -> Customer
 
         public var list:
-            @Sendable (_ request: Stripe.Customers.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Customers.List.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Customers.List.Error
+            >) ->
                 Stripe.Customers.List.Response
 
         public var delete:
-            @Sendable (_ id: Customer.ID) async throws(any Swift.Error) -> DeletedObject<Customer>
+            @Sendable (_ id: Customer.ID) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Customers.Delete.Error
+            >) -> DeletedObject<Customer>
 
         public var search:
-            @Sendable (_ request: Stripe.Customers.Search.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Customers.Search.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Customers.Search.Error
+            >) ->
                 Stripe.Customers.Search.Response
 
         public var bankAccounts: Stripe.Customers.BankAccounts.Client
@@ -43,23 +56,28 @@ extension Stripe.Customers {
         public init(
             create:
                 @escaping @Sendable (_ request: Stripe.Customers.Create.Request)
-                async throws(any Swift.Error) ->
+                async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Create.Error>) ->
                 Customer,
             update:
                 @escaping @Sendable (_ id: Customer.ID, _ request: Stripe.Customers.Update.Request)
-                async throws(any Swift.Error) -> Customer,
+                async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Update.Error>) ->
+                Customer,
             retrieve:
-                @escaping @Sendable (_ id: Customer.ID) async throws(any Swift.Error) -> Customer,
+                @escaping @Sendable (_ id: Customer.ID) async throws(Either<
+                    Async.Lifecycle.Error, Stripe.Customers.Retrieve.Error
+                >) -> Customer,
             list:
                 @escaping @Sendable (_ request: Stripe.Customers.List.Request)
-                async throws(any Swift.Error) ->
+                async throws(Either<Async.Lifecycle.Error, Stripe.Customers.List.Error>) ->
                 Stripe.Customers.List.Response,
             delete:
-                @escaping @Sendable (_ id: Customer.ID) async throws(any Swift.Error) ->
+                @escaping @Sendable (_ id: Customer.ID) async throws(Either<
+                    Async.Lifecycle.Error, Stripe.Customers.Delete.Error
+                >) ->
                 DeletedObject<Customer>,
             search:
                 @escaping @Sendable (_ request: Stripe.Customers.Search.Request)
-                async throws(any Swift.Error) ->
+                async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Search.Error>) ->
                 Stripe.Customers.Search.Response,
             bankAccounts: Stripe.Customers.BankAccounts.Client,
             cards: Stripe.Customers.Cards.Client,

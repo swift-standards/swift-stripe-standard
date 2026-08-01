@@ -1,4 +1,6 @@
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -8,20 +10,27 @@ extension Stripe.Products.PromotionCodes {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/promotion_codes/create.md
         public var create:
-            @Sendable (_ request: Create.Request) async throws(any Swift.Error) -> Promotion.Code
+            @Sendable (_ request: Create.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Products.PromotionCodes.Create.Error
+            >) -> Promotion.Code
 
         // https://docs.stripe.com/api/promotion_codes/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Promotion.Code.ID) async throws(any Swift.Error) -> Promotion.Code
+            @Sendable (_ id: Promotion.Code.ID) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Products.PromotionCodes.Retrieve.Error
+            >) -> Promotion.Code
 
         // https://docs.stripe.com/api/promotion_codes/update.md
         public var update:
-            @Sendable (_ id: Promotion.Code.ID, _ request: Update.Request) async throws(any Swift
-                .Error) ->
+            @Sendable (_ id: Promotion.Code.ID, _ request: Update.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Products.PromotionCodes.Update.Error
+            >) ->
                 Promotion.Code
 
         // https://docs.stripe.com/api/promotion_codes/list.md
         public var list:
-            @Sendable (_ request: List.Request) async throws(any Swift.Error) -> List.Response
+            @Sendable (_ request: List.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Products.PromotionCodes.List.Error
+            >) -> List.Response
     }
 }

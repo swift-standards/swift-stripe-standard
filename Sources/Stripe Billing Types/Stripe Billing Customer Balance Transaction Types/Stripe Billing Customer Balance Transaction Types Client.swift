@@ -1,4 +1,6 @@
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -9,13 +11,17 @@ extension Stripe.Billing.Customer.Balance {
         // https://docs.stripe.com/api/customer_balance_transactions/create.md
         public var create:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ request: Create.Request)
-                async throws(any Swift.Error)
+                async throws(Either<
+                    Async.Lifecycle.Error, Stripe.Billing.Customer.Balance.Create.Error
+                >)
                 -> Transaction
 
         // https://docs.stripe.com/api/customer_balance_transactions/retrieve.md
         public var retrieve:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ id: Transaction.ID)
-                async throws(any Swift.Error) ->
+                async throws(Either<
+                    Async.Lifecycle.Error, Stripe.Billing.Customer.Balance.Retrieve.Error
+                >) ->
                 Transaction
 
         // https://docs.stripe.com/api/customer_balance_transactions/update.md
@@ -23,12 +29,16 @@ extension Stripe.Billing.Customer.Balance {
             @Sendable (
                 _ customerId: Stripe.Customers.Customer.ID, _ id: Transaction.ID,
                 _ request: Update.Request
-            ) async throws(any Swift.Error) -> Transaction
+            ) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Billing.Customer.Balance.Update.Error
+            >) -> Transaction
 
         // https://docs.stripe.com/api/customer_balance_transactions/list.md
         public var list:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ request: List.Request)
-                async throws(any Swift.Error)
+                async throws(Either<
+                    Async.Lifecycle.Error, Stripe.Billing.Customer.Balance.List.Error
+                >)
                 -> Transaction.List
     }
 }

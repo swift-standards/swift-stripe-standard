@@ -5,7 +5,9 @@
 //  Created on 2025-01-14.
 //
 
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -16,7 +18,9 @@ extension Stripe.Connect.Transfer.Reversals {
         // https://docs.stripe.com/api/transfer_reversals/create.md
         public var create:
             @Sendable (_ transferId: Stripe.Connect.Transfer.ID, _ request: Create.Request)
-                async throws(any Swift.Error)
+                async throws(Either<
+                    Async.Lifecycle.Error, Stripe.Connect.Transfer.Reversals.Create.Error
+                >)
                 -> Stripe.Connect.Transfer.Reversal
 
         // https://docs.stripe.com/api/transfer_reversals/retrieve.md
@@ -24,7 +28,9 @@ extension Stripe.Connect.Transfer.Reversals {
             @Sendable (
                 _ transferId: Stripe.Connect.Transfer.ID,
                 _ reversalId: Stripe.Connect.Transfer.Reversal.ID
-            ) async throws(any Swift.Error) -> Stripe.Connect.Transfer.Reversal
+            ) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Connect.Transfer.Reversals.Retrieve.Error
+            >) -> Stripe.Connect.Transfer.Reversal
 
         // https://docs.stripe.com/api/transfer_reversals/update.md
         public var update:
@@ -32,12 +38,16 @@ extension Stripe.Connect.Transfer.Reversals {
                 _ transferId: Stripe.Connect.Transfer.ID,
                 _ reversalId: Stripe.Connect.Transfer.Reversal.ID,
                 _ request: Update.Request
-            ) async throws(any Swift.Error) -> Stripe.Connect.Transfer.Reversal
+            ) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Connect.Transfer.Reversals.Update.Error
+            >) -> Stripe.Connect.Transfer.Reversal
 
         // https://docs.stripe.com/api/transfer_reversals/list.md
         public var list:
             @Sendable (_ transferId: Stripe.Connect.Transfer.ID, _ request: List.Request)
-                async throws(any Swift.Error) ->
+                async throws(Either<
+                    Async.Lifecycle.Error, Stripe.Connect.Transfer.Reversals.List.Error
+                >) ->
                 List.Response
     }
 }

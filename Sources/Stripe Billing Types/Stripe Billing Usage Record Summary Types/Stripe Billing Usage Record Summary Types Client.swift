@@ -1,4 +1,6 @@
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -11,6 +13,8 @@ extension Stripe.Billing.UsageRecordSummary {
             @Sendable (
                 _ subscriptionItemId: Stripe.Billing.SubscriptionItems.SubscriptionItem.ID,
                 _ request: List.Request
-            ) async throws(any Swift.Error) -> List.Response
+            ) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Billing.UsageRecordSummary.List.Error
+            >) -> List.Response
     }
 }

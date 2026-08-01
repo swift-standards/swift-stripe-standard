@@ -5,7 +5,9 @@
 //  Created by Coen ten Thije Boonkkamp on 13/01/2025.
 //
 
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -15,17 +17,23 @@ extension Stripe.Files {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/files/create.md
         public var create:
-            @Sendable (_ request: Stripe.Files.Create.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Files.Create.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Files.Create.Error
+            >) ->
                 Stripe.Files.File
 
         // https://docs.stripe.com/api/files/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Files.File.ID) async throws(any Swift.Error) ->
+            @Sendable (_ id: Stripe.Files.File.ID) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Files.Retrieve.Error
+            >) ->
                 Stripe.Files.File
 
         // https://docs.stripe.com/api/files/list.md
         public var list:
-            @Sendable (_ request: Stripe.Files.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Files.List.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Files.List.Error
+            >) ->
                 Stripe.Files.List.Response
     }
 }

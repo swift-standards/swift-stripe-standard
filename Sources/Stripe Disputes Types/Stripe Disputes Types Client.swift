@@ -5,7 +5,9 @@
 //  Created by Coen ten Thije Boonkkamp on 13/01/2025.
 //
 
+import Async_Lifecycle_Primitives
 import Dependencies
+import Either_Primitives
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -15,22 +17,29 @@ extension Stripe.Disputes {
     public struct Client: Sendable {
         // https://docs.stripe.com/api/disputes/retrieve.md
         public var retrieve:
-            @Sendable (_ id: Stripe.Disputes.Dispute.ID) async throws(any Swift.Error) ->
+            @Sendable (_ id: Stripe.Disputes.Dispute.ID) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Disputes.Retrieve.Error
+            >) ->
                 Stripe.Disputes.Dispute
 
         // https://docs.stripe.com/api/disputes/update.md
         public var update:
             @Sendable (_ id: Stripe.Disputes.Dispute.ID, _ request: Stripe.Disputes.Update.Request)
-                async throws(any Swift.Error) -> Stripe.Disputes.Dispute
+                async throws(Either<Async.Lifecycle.Error, Stripe.Disputes.Update.Error>) ->
+                Stripe.Disputes.Dispute
 
         // https://docs.stripe.com/api/disputes/list.md
         public var list:
-            @Sendable (_ request: Stripe.Disputes.List.Request) async throws(any Swift.Error) ->
+            @Sendable (_ request: Stripe.Disputes.List.Request) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Disputes.List.Error
+            >) ->
                 Stripe.Disputes.List.Response
 
         // https://docs.stripe.com/api/disputes/close.md
         public var close:
-            @Sendable (_ id: Stripe.Disputes.Dispute.ID) async throws(any Swift.Error) ->
+            @Sendable (_ id: Stripe.Disputes.Dispute.ID) async throws(Either<
+                Async.Lifecycle.Error, Stripe.Disputes.Close.Error
+            >) ->
                 Stripe.Disputes.Dispute
     }
 }
