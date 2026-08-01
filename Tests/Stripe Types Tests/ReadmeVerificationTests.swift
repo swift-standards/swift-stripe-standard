@@ -1,3 +1,5 @@
+import Async_Lifecycle_Primitives
+import Either_Primitives
 import Foundation
 import Testing
 import URLRouting
@@ -129,9 +131,10 @@ struct ReadmeVerificationTests {
 
     @Test("Testing Pattern (README lines 189-221)")
     func testingPattern() async throws {
-        // README shows plain `throw TestError()` closures; the actual Client
-        // slots are now typed-throws(Witness.Unimplemented.Error), so the
-        // unimplemented endpoints below throw that typed error instead
+        // README shows plain `throw TestError()` closures; the actual Client slots are
+        // now typed `throws(Either<Async.Lifecycle.Error, Leaf>)` per the ruled
+        // witness-error shape, so the unimplemented endpoints below resolve into the
+        // leaf through `Either`'s `Witness.Unimplemented.Representable` conformance
         // (nested @Witness clients get it for free via `.unimplemented()`).
         @Sendable func unimplemented(
             _ operation: String,
@@ -163,16 +166,16 @@ struct ReadmeVerificationTests {
                     created: Date()
                 )
             },
-            update: { _, _ async throws(Witness.Unimplemented.Error) in
-                throw unimplemented("update")
+            update: { _, _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Update.Error>) in
+                throw .unimplemented(unimplemented("update"))
             },
-            retrieve: { _ async throws(Witness.Unimplemented.Error) in
-                throw unimplemented("retrieve")
+            retrieve: { _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Retrieve.Error>) in
+                throw .unimplemented(unimplemented("retrieve"))
             },
-            list: { _ async throws(Witness.Unimplemented.Error) in throw unimplemented("list") },
-            delete: { _ async throws(Witness.Unimplemented.Error) in throw unimplemented("delete")
+            list: { _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.List.Error>) in throw .unimplemented(unimplemented("list")) },
+            delete: { _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Delete.Error>) in throw .unimplemented(unimplemented("delete"))
             },
-            search: { _ async throws(Witness.Unimplemented.Error) in throw unimplemented("search")
+            search: { _ async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Search.Error>) in throw .unimplemented(unimplemented("search"))
             },
             bankAccounts: .unimplemented(),
             cards: .unimplemented(),
