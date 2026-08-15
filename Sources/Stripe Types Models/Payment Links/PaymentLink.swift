@@ -378,10 +378,6 @@ extension Stripe.PaymentLink.After.Completion.Hosted {
         }
 
         // Add decoding init to handle custom messages
-        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-        // signature. The standard library declares the requirement with untyped `throws`, so
-        // the thrown type cannot be narrowed here without failing to satisfy it.
-        // swiftlint:disable:next typed_throws_required
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.message = try container.decodeIfPresent(String.self, forKey: .message)

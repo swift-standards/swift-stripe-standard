@@ -124,10 +124,6 @@ public struct Expandable<Model: Codable, ID: Codable & Hashable & Sendable>: Cod
 
     private var _state: ExpandableState
 
-    // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-    // signature. The standard library declares the requirement with untyped `throws`, so
-    // the thrown type cannot be narrowed here without failing to satisfy it.
-    // swiftlint:disable:next typed_throws_required
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
 
@@ -236,10 +232,6 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
                 }
             }
 
-            // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-            // signature. The standard library declares the requirement with untyped `throws`, so
-            // the thrown type cannot be narrowed here without failing to satisfy it.
-            // swiftlint:disable:next typed_throws_required
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
@@ -311,10 +303,6 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
     }
     private var _state: ExpandableState
 
-    // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-    // signature. The standard library declares the requirement with untyped `throws`, so
-    // the thrown type cannot be narrowed here without failing to satisfy it.
-    // swiftlint:disable:next typed_throws_required
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
 
@@ -419,10 +407,6 @@ public struct ExpandableCollection<Model: Codable>: Codable {
 
     private var _state: ExpandableState
 
-    // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-    // signature. The standard library declares the requirement with untyped `throws`, so
-    // the thrown type cannot be narrowed here without failing to satisfy it.
-    // swiftlint:disable:next typed_throws_required
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
 

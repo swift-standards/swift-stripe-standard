@@ -115,10 +115,6 @@ extension Stripe.Billing.Plans.Create {
         case id(String)
         case data(ProductData)
 
-        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-        // signature. The standard library declares the requirement with untyped `throws`, so
-        // the thrown type cannot be narrowed here without failing to satisfy it.
-        // swiftlint:disable:next typed_throws_required
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -130,10 +126,6 @@ extension Stripe.Billing.Plans.Create {
             }
         }
 
-        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-        // signature. The standard library declares the requirement with untyped `throws`, so
-        // the thrown type cannot be narrowed here without failing to satisfy it.
-        // swiftlint:disable:next typed_throws_required
         public init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
             // REASON: probing a decoding container for an alternative payload shape. `decode` throws
@@ -249,10 +241,6 @@ extension Stripe.Billing.Plans.Create {
         case inf
         case value(Int)
 
-        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-        // signature. The standard library declares the requirement with untyped `throws`, so
-        // the thrown type cannot be narrowed here without failing to satisfy it.
-        // swiftlint:disable:next typed_throws_required
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -264,10 +252,6 @@ extension Stripe.Billing.Plans.Create {
             }
         }
 
-        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-        // signature. The standard library declares the requirement with untyped `throws`, so
-        // the thrown type cannot be narrowed here without failing to satisfy it.
-        // swiftlint:disable:next typed_throws_required
         public init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
             // REASON: probing a decoding container for an alternative payload shape. `decode` throws
