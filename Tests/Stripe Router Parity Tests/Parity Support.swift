@@ -5,9 +5,7 @@
 //  Batch-0 wire-shape parity corpus support (url-routing-stack migration).
 //
 
-import Foundation
 import Testing
-import URL_Routing_Test_Support
 
 // §A9 toolchain gate (swift-institute/Research/swift-compiler-bug-catalog.md §A9):
 // every Stripe router materializes `Tagged` inside deep generic parser chains
@@ -17,26 +15,43 @@ import URL_Routing_Test_Support
 // empirically for this suite on 2026-07-21, crash report
 // swiftpm-testing-helper-2026-07-21-005610.ips). `.disabled(if:)`, not
 // `withKnownIssue`, because the crash kills the runner. Auto-retires at the
-// 6.4 toolchain move, at which point the first run RECORDS the Batch-0 corpus
-// into `__Corpus__/` (Parity.fixture record-when-absent semantics).
+// 6.4 toolchain move, at which point the suite compares against the
+// Swift-embedded Batch-0 corpus in `Corpus.swift`.
 #if compiler(<6.4)
     let taggedMetadataSIGSEGV = true
 #else
     let taggedMetadataSIGSEGV = false
 #endif
 
-/// Compares a corpus against `__Corpus__/<name>.txt`, recording on first run.
+/// Compares a corpus against its Swift-embedded reference document.
 func assertParity(
     _ corpus: String,
-    fixture name: String,
-    filePath: String = #filePath
+    fixture name: String
 ) throws {
-    let url = URL(fileURLWithPath: filePath)
-        .deletingLastPathComponent()
-        .appendingPathComponent("__Corpus__")
-        .appendingPathComponent("\(name).txt")
-    let outcome = try Parity.fixture(corpus, at: url)
-    if case .mismatched(let diff) = outcome {
-        Issue.record("Parity mismatch for \(name):\n\(diff)")
+    guard let expected = Corpus[name] else {
+        Issue.record(Comment(rawValue: "No embedded parity corpus named \(name)"))
+        return
     }
+    guard corpus != expected else { return }
+    let report = difference(expected: expected, actual: corpus)
+    Issue.record(Comment(rawValue: "Parity mismatch for \(name):\n\(report)"))
+}
+
+/// Renders the first differing lines of two corpora, for a readable failure.
+private func difference(expected: String, actual: String) -> String {
+    let expectedLines = expected.split(separator: "\n", omittingEmptySubsequences: false)
+    let actualLines = actual.split(separator: "\n", omittingEmptySubsequences: false)
+    var differences: [String] = []
+    for index in 0..<max(expectedLines.count, actualLines.count) {
+        let expected = index < expectedLines.count ? expectedLines[index] : "<absent>"
+        let actual = index < actualLines.count ? actualLines[index] : "<absent>"
+        if expected != actual {
+            differences.append("line \(index + 1):\n  - \(expected)\n  + \(actual)")
+        }
+        if differences.count >= 40 {
+            differences.append("… (further differences truncated)")
+            break
+        }
+    }
+    return differences.joined(separator: "\n")
 }

@@ -292,8 +292,7 @@ let package = Package(
                 .stripeTypes,
                 .product(name: "URL Routing Test Support", package: "swift-url-routing"),
             ],
-            path: "Tests/Stripe Router Parity Tests",
-            exclude: ["__Corpus__"]
+            path: "Tests/Stripe Router Parity Tests"
         ),
         .testTarget(
             name: "Stripe Types Shared Tests",
