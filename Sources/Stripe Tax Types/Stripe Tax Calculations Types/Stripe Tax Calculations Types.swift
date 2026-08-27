@@ -8,7 +8,7 @@
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
-import Tagged_Primitives
+import Tagged
 
 // Calculations namespace is already defined in Stripe Namespaces.swift
 

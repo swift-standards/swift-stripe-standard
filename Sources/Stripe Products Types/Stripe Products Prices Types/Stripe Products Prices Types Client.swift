@@ -5,8 +5,8 @@
 //  Created by Coen ten Thije Boonkkamp on 05/01/2025.
 //
 
-import Async_Lifecycle_Primitives
-import Either_Primitives
+import Async_Lifecycle
+import Either
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared

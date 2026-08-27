@@ -3,8 +3,8 @@
 //  swift-stripe-standard
 //
 
-import Async_Lifecycle_Primitives
-import Either_Primitives
+import Async_Lifecycle
+import Either
 import Stripe_Types_Models
 import Stripe_Types_Shared
 import Witnesses
@@ -18,7 +18,7 @@ extension Stripe.Disputes.Retrieve {
     /// Failure leaf for `Stripe.Disputes.Client.retrieve`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
@@ -43,7 +43,7 @@ extension Stripe.Disputes.Update {
     /// Failure leaf for `Stripe.Disputes.Client.update`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
@@ -68,7 +68,7 @@ extension Stripe.Disputes.List {
     /// Failure leaf for `Stripe.Disputes.Client.list`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
@@ -98,7 +98,7 @@ extension Stripe.Disputes.Close {
     /// Failure leaf for `Stripe.Disputes.Client.close`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,

@@ -101,7 +101,7 @@ extension Target.Dependency {
         .product(name: "Dependencies Test Support", package: "swift-dependencies")
     }
     static var tagged: Self {
-        .product(name: "Tagged Primitives", package: "swift-tagged-primitives")
+        .product(name: "Tagged", package: "swift-tagged")
     }
     static var dual: Self { .product(name: "Dual", package: "swift-dual") }
     static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
@@ -111,11 +111,11 @@ extension Target.Dependency {
     static var htmlStandard: Self {
         .product(name: "HTML Standard", package: "swift-html-standard")
     }
-    static var eitherPrimitives: Self {
-        .product(name: "Either Primitives", package: "swift-either-primitives")
+    static var either: Self {
+        .product(name: "Either", package: "swift-either")
     }
-    static var asyncLifecyclePrimitives: Self {
-        .product(name: "Async Lifecycle Primitives", package: "swift-async-primitives")
+    static var asyncLifecycle: Self {
+        .product(name: "Async Lifecycle", package: "swift-async")
     }
     static var witnesses: Self { .product(name: "Witnesses", package: "swift-witnesses") }
 }
@@ -176,41 +176,41 @@ let package = Package(
     ],
     dependencies: [
         // swift-dependencies, swift-dual, swift-html-form-coder, and swift-url-routing have no
-        // tagged release yet carrying the products this package requires (org: swift-foundations);
+        // tagged release yet carrying the products this package requires (org: swift-compositions);
         // pinned to branch until upstream cuts a version.
         // BRANCH-PIN-001 exemption tracked pending a tag.
         .package(
-            url: "https://github.com/swift-foundations/swift-dependencies.git",
+            url: "https://github.com/swift-compositions/swift-dependencies.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-tagged-primitives.git",
-            from: "0.10.0"
+            url: "https://github.com/swift-molecules/swift-tagged.git",
+            branch: "main"
         ),
-        .package(url: "https://github.com/swift-foundations/swift-dual.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-dual.git", branch: "main"),
         // "URL Routing Foundation Integration" and "URL Routing Test Support" post-date the
         // 0.6.2 tag and only exist on main; from: "0.6.2" resolves to a version that lacks them.
-        .package(url: "https://github.com/swift-foundations/swift-url-routing.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-url-routing.git", branch: "main"),
         .package(
-            url: "https://github.com/swift-foundations/swift-html-form-coder.git",
+            url: "https://github.com/swift-compositions/swift-html-form-coder.git",
             branch: "main"
         ),
         .package(url: "https://github.com/swift-standards/swift-html-standard.git", from: "0.1.6"),
-        // The witness-error retype (swift-foundations/swift-witnesses#3) types every client
+        // The witness-error retype (swift-compositions/swift-witnesses#3) types every client
         // operation throws(Either<Async.Lifecycle.Error, Leaf>), so Either, the lifecycle
         // envelope, and Witness.Unimplemented.Representable are now written directly in these
         // sources rather than reached through the Dependencies umbrella re-export.
         // None of the three carries a tagged release; BRANCH-PIN-001 exemption tracked pending
         // a tag.
         .package(
-            url: "https://github.com/swift-primitives/swift-either-primitives.git",
+            url: "https://github.com/swift-molecules/swift-either.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-async-primitives.git",
+            url: "https://github.com/swift-molecules/swift-async.git",
             branch: "main"
         ),
-        .package(url: "https://github.com/swift-foundations/swift-witnesses.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-witnesses.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -314,8 +314,8 @@ let package = Package(
         .testTarget(
             name: "Stripe Types Tests",
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .stripeTypes,
                 .dependenciesTestSupport,
                 .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
@@ -324,8 +324,8 @@ let package = Package(
         .target(
             name: .stripeBalance,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -347,8 +347,8 @@ let package = Package(
         .target(
             name: .stripeBalanceTransactions,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -370,8 +370,8 @@ let package = Package(
         .target(
             name: .stripeCharges,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -393,8 +393,8 @@ let package = Package(
         .target(
             name: .stripeCustomers,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -416,8 +416,8 @@ let package = Package(
         .target(
             name: .stripeCustomerSession,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -439,8 +439,8 @@ let package = Package(
         .target(
             name: .stripeDisputes,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -462,8 +462,8 @@ let package = Package(
         .target(
             name: .stripeEvents,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -504,8 +504,8 @@ let package = Package(
         .target(
             name: .stripeFiles,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -527,8 +527,8 @@ let package = Package(
         .target(
             name: .stripeFileLinks,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -550,8 +550,8 @@ let package = Package(
         .target(
             name: .stripeMandates,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -572,8 +572,8 @@ let package = Package(
         .target(
             name: .stripePaymentIntents,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -595,8 +595,8 @@ let package = Package(
         .target(
             name: .stripeSetupIntents,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -617,8 +617,8 @@ let package = Package(
         .target(
             name: .stripeSetupAttempts,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -639,8 +639,8 @@ let package = Package(
         .target(
             name: .stripePayouts,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -662,8 +662,8 @@ let package = Package(
         .target(
             name: .stripeRefunds,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -685,8 +685,8 @@ let package = Package(
         .target(
             name: .stripeConfirmationToken,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -708,8 +708,8 @@ let package = Package(
         .target(
             name: .stripeTokens,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -730,8 +730,8 @@ let package = Package(
         .target(
             name: .stripePaymentMethods,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -753,8 +753,8 @@ let package = Package(
         .target(
             name: .stripeProducts,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -776,8 +776,8 @@ let package = Package(
         .target(
             name: .stripeCheckout,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -798,8 +798,8 @@ let package = Package(
         .target(
             name: .stripePaymentLink,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -821,8 +821,8 @@ let package = Package(
         .target(
             name: .stripeBilling,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -844,8 +844,8 @@ let package = Package(
         .target(
             name: .stripeCapital,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -867,8 +867,8 @@ let package = Package(
         .target(
             name: .stripeConnect,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -890,8 +890,8 @@ let package = Package(
         .target(
             name: .stripeFraud,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -932,8 +932,8 @@ let package = Package(
         .target(
             name: .stripeTerminal,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -1049,8 +1049,8 @@ let package = Package(
         .target(
             name: .stripeTax,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -1129,8 +1129,8 @@ let package = Package(
         .target(
             name: .stripeForwarding,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -1151,8 +1151,8 @@ let package = Package(
         .target(
             name: .stripeWebhooks,
             dependencies: [
-                .eitherPrimitives,
-                .asyncLifecyclePrimitives,
+                .either,
+                .asyncLifecycle,
                 .witnesses,
                 .stripeTypesModels,
                 .stripeTypesShared,

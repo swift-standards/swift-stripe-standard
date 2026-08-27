@@ -5,13 +5,13 @@
 //  Created for swift-stripe-types on 14/01/2025.
 //
 
-import Async_Lifecycle_Primitives
+import Async_Lifecycle
 import Dependencies
-import Either_Primitives
+import Either
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
-import Tagged_Primitives
+import Tagged
 
 extension Stripe.PaymentMethodConfigurations {
     @Witness

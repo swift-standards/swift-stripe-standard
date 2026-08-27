@@ -3,8 +3,8 @@
 //  swift-stripe-standard
 //
 
-import Async_Lifecycle_Primitives
-import Either_Primitives
+import Async_Lifecycle
+import Either
 import Stripe_Types_Models
 import Stripe_Types_Shared
 import Witnesses
@@ -13,7 +13,7 @@ extension Stripe.Billing.Invoices.Create {
     /// Failure leaf for `Stripe.Billing.Invoices.Client.create`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
@@ -38,7 +38,7 @@ extension Stripe.Billing.Invoices.CreatePreview {
     /// Failure leaf for `Stripe.Billing.Invoices.Client.createPreview`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
@@ -68,7 +68,7 @@ extension Stripe.Billing.Invoices.Retrieve {
     /// Failure leaf for `Stripe.Billing.Invoices.Client.retrieve`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
@@ -93,7 +93,7 @@ extension Stripe.Billing.Invoices.Update {
     /// Failure leaf for `Stripe.Billing.Invoices.Client.update`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
@@ -118,7 +118,7 @@ extension Stripe.Billing.Invoices.List {
     /// Failure leaf for `Stripe.Billing.Invoices.Client.list`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
@@ -148,7 +148,7 @@ extension Stripe.Billing.Invoices.Delete {
     /// Failure leaf for `Stripe.Billing.Invoices.Client.delete`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
@@ -173,7 +173,7 @@ extension Stripe.Billing.Invoices.Finalize {
     /// Failure leaf for `Stripe.Billing.Invoices.Client.finalize`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
@@ -198,7 +198,7 @@ extension Stripe.Billing.Invoices.Pay {
     /// Failure leaf for `Stripe.Billing.Invoices.Client.pay`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
@@ -223,7 +223,7 @@ extension Stripe.Billing.Invoices.Send {
     /// Failure leaf for `Stripe.Billing.Invoices.Client.send`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
@@ -248,7 +248,7 @@ extension Stripe.Billing.Invoices.Void {
     /// Failure leaf for `Stripe.Billing.Invoices.Client.void`.
     ///
     /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-foundations/swift-witnesses#3, ratified by comment 5143970225).
+    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
     /// Lifecycle facts — shutdown and timeout among them — ride in
     /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,

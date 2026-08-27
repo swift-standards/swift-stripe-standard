@@ -7,7 +7,7 @@
 
 import Foundation
 import Stripe_Types_Shared
-import Tagged_Primitives
+import Tagged
 
 // https://docs.stripe.com/api/issuing/early_fraud_warnings/object.md
 

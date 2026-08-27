@@ -1,5 +1,5 @@
-import Async_Lifecycle_Primitives
-import Either_Primitives
+import Async_Lifecycle
+import Either
 import Foundation
 import Testing
 import URLRouting
@@ -146,7 +146,7 @@ struct ReadmeVerificationTests {
             Witness.Unimplemented.Error(
                 witness: "Stripe.Customers.Client",
                 operation: operation,
-                location: Source_Primitives.Source.Location(
+                location: Source.Source.Location(
                     fileID: fileID,
                     filePath: filePath,
                     line: line,

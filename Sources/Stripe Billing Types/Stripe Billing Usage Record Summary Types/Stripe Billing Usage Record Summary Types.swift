@@ -1,7 +1,7 @@
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
-import Tagged_Primitives
+import Tagged
 
 extension Stripe.Billing.UsageRecordSummary {
     public struct Summary: Codable, Equatable, Sendable, Identifiable {

@@ -243,8 +243,8 @@ struct TestError: Error {}
 
 ### Used By
 
-- [swift-stripe](https://github.com/swift-foundations/swift-stripe): The Swift library for the Stripe API.
-- [swift-stripe-http](https://github.com/swift-foundations/swift-stripe-http): A Swift package with live implementations for the Stripe API.
+- [swift-stripe](https://github.com/swift-compositions/swift-stripe): The Swift library for the Stripe API.
+- [swift-stripe-http](https://github.com/swift-compositions/swift-stripe-http): A Swift package with live implementations for the Stripe API.
 
 ### Third-Party Dependencies
 

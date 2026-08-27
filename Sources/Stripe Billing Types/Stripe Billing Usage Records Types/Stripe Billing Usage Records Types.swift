@@ -1,7 +1,7 @@
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
-import Tagged_Primitives
+import Tagged
 
 extension Stripe.Billing.UsageRecords {
     public struct UsageRecord: Codable, Equatable, Sendable, Identifiable {
@@ -67,7 +67,7 @@ extension Stripe.Billing.UsageRecords.Create.Request {
     ///
     /// Stripe encodes this field as a bare integer or the bare string `now`, not as
     /// a tagged object, so this type owns its own single-value `Codable` shape. It
-    /// deliberately does NOT reuse `Either_Primitives.Either`, whose synthesized
+    /// deliberately does NOT reuse `Either.Either`, whose synthesized
     /// `Codable` conformance is keyed rather than flat, and it is nested here rather
     /// than declared at module scope so it cannot shadow that primitive.
     public enum Either<A: Codable & Equatable & Sendable, B: Codable & Equatable & Sendable>:

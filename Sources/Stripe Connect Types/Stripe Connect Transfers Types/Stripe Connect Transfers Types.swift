@@ -1,7 +1,7 @@
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
-import Tagged_Primitives
+import Tagged
 
 extension Stripe.Connect.Transfers {
     // https://docs.stripe.com/api/transfers/create.md

@@ -8,7 +8,7 @@
 
 import Foundation
 import Stripe_Types_Shared
-import Tagged_Primitives
+import Tagged
 
 extension Stripe.Customers {
     /// The [Customer Object](https://stripe.com/docs/api/customers/object)

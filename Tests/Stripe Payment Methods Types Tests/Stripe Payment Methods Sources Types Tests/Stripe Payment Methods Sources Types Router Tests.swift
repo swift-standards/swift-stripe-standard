@@ -1,6 +1,6 @@
 import Foundation
 import Stripe_Types_Shared
-import Tagged_Primitives
+import Tagged
 import Testing
 import URLRouting
 import URL_Routing_Foundation_Integration

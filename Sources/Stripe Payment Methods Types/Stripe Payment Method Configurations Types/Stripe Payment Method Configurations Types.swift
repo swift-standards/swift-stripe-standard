@@ -8,7 +8,7 @@
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
-import Tagged_Primitives
+import Tagged
 
 extension Stripe.PaymentMethodConfigurations {
     // https://docs.stripe.com/api/payment_method_configurations/create.md

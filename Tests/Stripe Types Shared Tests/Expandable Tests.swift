@@ -14,7 +14,7 @@
 //  a `Tagged<Self, String>`.
 
 import Foundation
-import Tagged_Primitives
+import Tagged
 import Testing
 
 @testable import Stripe_Types_Shared
