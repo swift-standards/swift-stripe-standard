@@ -180,22 +180,22 @@ let package = Package(
         // pinned to branch until upstream cuts a version.
         // BRANCH-PIN-001 exemption tracked pending a tag.
         .package(
-            url: "https://github.com/swift-compositions/swift-dependencies.git",
+            url: "https://github.com/swift-compositions/swift-dependencies",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-tagged.git",
+            url: "https://github.com/swift-atoms/swift-tagged",
             branch: "main"
         ),
-        .package(url: "https://github.com/swift-compositions/swift-dual.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-dual", branch: "main"),
         // "URL Routing Foundation Integration" and "URL Routing Test Support" post-date the
         // 0.6.2 tag and only exist on main; from: "0.6.2" resolves to a version that lacks them.
-        .package(url: "https://github.com/swift-compositions/swift-url-routing.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-url-routing", branch: "main"),
         .package(
-            url: "https://github.com/swift-compositions/swift-html-form-coder.git",
+            url: "https://github.com/swift-compositions/swift-html-form-coder",
             branch: "main"
         ),
-        .package(url: "https://github.com/swift-standards/swift-html-standard.git", from: "0.1.6"),
+        .package(url: "https://github.com/swift-standards/swift-html-standard", from: "0.1.6"),
         // The witness-error retype (swift-compositions/swift-witnesses#3) types every client
         // operation throws(Either<Async.Lifecycle.Error, Leaf>), so Either, the lifecycle
         // envelope, and Witness.Unimplemented.Representable are now written directly in these
@@ -203,14 +203,14 @@ let package = Package(
         // None of the three carries a tagged release; BRANCH-PIN-001 exemption tracked pending
         // a tag.
         .package(
-            url: "https://github.com/swift-molecules/swift-either.git",
+            url: "https://github.com/swift-atoms/swift-either",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-async.git",
+            url: "https://github.com/swift-molecules/swift-async",
             branch: "main"
         ),
-        .package(url: "https://github.com/swift-compositions/swift-witnesses.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-witnesses", branch: "main"),
     ],
     targets: [
         .target(
