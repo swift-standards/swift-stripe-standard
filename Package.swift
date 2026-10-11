@@ -1,4 +1,4 @@
-// swift-tools-version: 6.3.3
+// swift-tools-version: 6.4
 
 import Foundation
 import PackageDescription
@@ -103,8 +103,6 @@ extension Target.Dependency {
     static var tagged: Self {
         .product(name: "Tagged", package: "swift-tagged")
     }
-    static var dual: Self { .product(name: "Dual", package: "swift-dual") }
-    static var urlRouting: Self { .product(name: "URLRouting", package: "swift-url-routing") }
     static var htmlFormCoder: Self {
         .product(name: "HTML Form Coder Codable", package: "swift-html-form-coder")
     }
@@ -123,11 +121,11 @@ extension Target.Dependency {
 let package = Package(
     name: "swift-stripe-standard",
     platforms: [
-        .macOS("27"),
-        .iOS("27"),
-        .tvOS("27"),
-        .watchOS("27"),
-        .visionOS("27"),
+        .macOS(.v27),
+        .iOS(.v27),
+        .tvOS(.v27),
+        .watchOS(.v27),
+        .visionOS(.v27),
     ],
     products: [
         .library(name: .stripeTypes, targets: [.stripeTypes]),
@@ -175,7 +173,7 @@ let package = Package(
         .library(name: .stripeTypesModels, targets: [.stripeTypesModels]),
     ],
     dependencies: [
-        // swift-dependencies, swift-dual, swift-html-form-coder, and swift-url-routing have no
+        // swift-dependencies and swift-html-form-coder have no
         // tagged release yet carrying the products this package requires (org: swift-compositions);
         // pinned to branch until upstream cuts a version.
         // BRANCH-PIN-001 exemption tracked pending a tag.
@@ -187,15 +185,11 @@ let package = Package(
             url: "https://github.com/swift-atoms/swift-tagged",
             branch: "main"
         ),
-        .package(url: "https://github.com/swift-compositions/swift-dual", branch: "main"),
-        // "URL Routing Foundation Integration" and "URL Routing Test Support" post-date the
-        // 0.6.2 tag and only exist on main; from: "0.6.2" resolves to a version that lacks them.
-        .package(url: "https://github.com/swift-compositions/swift-url-routing", branch: "main"),
         .package(
             url: "https://github.com/swift-compositions/swift-html-form-coder",
             branch: "main"
         ),
-        .package(url: "https://github.com/swift-standards/swift-html-standard", from: "0.1.6"),
+        .package(url: "https://github.com/swift-standards/swift-html-standard", branch: "main"),
         // The witness-error retype (swift-compositions/swift-witnesses#3) types every client
         // operation throws(Either<Async.Lifecycle.Error, Leaf>), so Either, the lifecycle
         // envelope, and Witness.Unimplemented.Representable are now written directly in these
@@ -207,18 +201,17 @@ let package = Package(
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-molecules/swift-async",
+            url: "https://github.com/swift-atoms/swift-async",
             branch: "main"
         ),
         .package(url: "https://github.com/swift-compositions/swift-witnesses", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-json", branch: "main"),
     ],
     targets: [
         .target(
             name: .stripeTypesShared,
             dependencies: [
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .htmlStandard,
             ]
@@ -227,8 +220,6 @@ let package = Package(
             name: .stripeTypesModels,
             dependencies: [
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
                 .stripeTypesShared,
@@ -240,8 +231,6 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
                 .stripeBalance,
@@ -287,28 +276,12 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "Stripe Router Parity Tests",
-            dependencies: [
-                .stripeTypes,
-                .product(name: "URL Routing Test Support", package: "swift-url-routing"),
-            ],
-            path: "Tests/Stripe Router Parity Tests",
-            exclude: ["__Corpus__"]
-        ),
-        .testTarget(
             name: "Stripe Types Shared Tests",
             dependencies: [
                 .stripeTypesShared,
                 .dependenciesTestSupport,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Types Models Tests",
-            dependencies: [
-                .stripeTypesModels,
-                .stripeTypesShared,
-                .dependenciesTestSupport,
+                .product(name: "JSON", package: "swift-json"),
             ]
         ),
         .testTarget(
@@ -318,7 +291,7 @@ let package = Package(
                 .asyncLifecycle,
                 .stripeTypes,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
+                .product(name: "JSON", package: "swift-json"),
             ]
         ),
         .target(
@@ -330,18 +303,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Balance Types Tests",
-            dependencies: [
-                .stripeBalance,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -353,18 +316,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Balance Transactions Types Tests",
-            dependencies: [
-                .stripeBalanceTransactions,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -376,18 +329,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Charges Types Tests",
-            dependencies: [
-                .stripeCharges,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -399,18 +342,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Customers Types Tests",
-            dependencies: [
-                .stripeCustomers,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -422,18 +355,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Customer Session Types Tests",
-            dependencies: [
-                .stripeCustomerSession,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -445,18 +368,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Disputes Types Tests",
-            dependencies: [
-                .stripeDisputes,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -468,18 +381,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Events Types Tests",
-            dependencies: [
-                .stripeEvents,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -488,17 +391,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Event Destinations Types Tests",
-            dependencies: [
-                .stripeEventDestinations,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -510,18 +404,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Files Types Tests",
-            dependencies: [
-                .stripeFiles,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -533,18 +417,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe File Links Types Tests",
-            dependencies: [
-                .stripeFileLinks,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -556,17 +430,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Mandates Types Tests",
-            dependencies: [
-                .stripeMandates,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -578,18 +443,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Payment Intents Types Tests",
-            dependencies: [
-                .stripePaymentIntents,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -601,17 +456,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Setup Intents Types Tests",
-            dependencies: [
-                .stripeSetupIntents,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -623,17 +469,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Setup Attempts Types Tests",
-            dependencies: [
-                .stripeSetupAttempts,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -645,18 +482,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Payouts Types Tests",
-            dependencies: [
-                .stripePayouts,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -668,18 +495,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Refunds Types Tests",
-            dependencies: [
-                .stripeRefunds,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -691,18 +508,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Confirmation Token Types Tests",
-            dependencies: [
-                .stripeConfirmationToken,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -714,17 +521,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Tokens Types Tests",
-            dependencies: [
-                .stripeTokens,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -736,18 +534,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Payment Methods Types Tests",
-            dependencies: [
-                .stripePaymentMethods,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -759,18 +547,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Products Types Tests",
-            dependencies: [
-                .stripeProducts,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -782,17 +560,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Checkout Types Tests",
-            dependencies: [
-                .stripeCheckout,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -804,18 +573,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Payment Link Types Tests",
-            dependencies: [
-                .stripePaymentLink,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -827,8 +586,6 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
             ]
@@ -838,7 +595,7 @@ let package = Package(
             dependencies: [
                 .stripeBilling,
                 .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
+                .product(name: "JSON", package: "swift-json"),
             ]
         ),
         .target(
@@ -850,18 +607,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Capital Types Tests",
-            dependencies: [
-                .stripeCapital,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -873,18 +620,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Connect Types Tests",
-            dependencies: [
-                .stripeConnect,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -896,18 +633,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Fraud Types Tests",
-            dependencies: [
-                .stripeFraud,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -916,17 +643,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Issuing Types Tests",
-            dependencies: [
-                .stripeIssuing,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -938,17 +656,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Terminal Types Tests",
-            dependencies: [
-                .stripeTerminal,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -957,17 +666,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Treasury Types Tests",
-            dependencies: [
-                .stripeTreasury,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -976,17 +676,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Entitlements Types Tests",
-            dependencies: [
-                .stripeEntitlements,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -995,17 +686,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Sigma Types Tests",
-            dependencies: [
-                .stripeSigma,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -1014,17 +696,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Reporting Types Tests",
-            dependencies: [
-                .stripeReporting,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -1033,17 +706,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Financial Connections Types Tests",
-            dependencies: [
-                .stripeFinancialConnections,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -1055,18 +719,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Tax Types Tests",
-            dependencies: [
-                .stripeTax,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -1075,17 +729,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Identity Types Tests",
-            dependencies: [
-                .stripeIdentity,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -1094,17 +739,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Crypto Types Tests",
-            dependencies: [
-                .stripeCrypto,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -1113,17 +749,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Climate Types Tests",
-            dependencies: [
-                .stripeClimate,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -1135,17 +762,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Forwarding Types Tests",
-            dependencies: [
-                .stripeForwarding,
-                .dependenciesTestSupport,
             ]
         ),
         .target(
@@ -1157,18 +775,8 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
-            ]
-        ),
-        .testTarget(
-            name: "Stripe Webhooks Types Tests",
-            dependencies: [
-                .stripeWebhooks,
-                .dependenciesTestSupport,
-                .product(name: "URL Routing Foundation Integration", package: "swift-url-routing"),
             ]
         ),
         .target(
@@ -1177,8 +785,6 @@ let package = Package(
                 .stripeTypesModels,
                 .stripeTypesShared,
                 .dependencies,
-                .dual,
-                .urlRouting,
                 .htmlFormCoder,
                 .tagged,
             ]

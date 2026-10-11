@@ -8,10 +8,8 @@
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
-import URLRouting
 
 extension Stripe.Billing {
-    @Cases
     public enum API: Equatable, Sendable {
         //    case credit_Note(Stripe.Billing.Credit_Note.API)
         //    case customer_Balance_Transaction(Stripe.Billing.Customer_Balance_Transaction.API)
@@ -41,27 +39,5 @@ extension Stripe.Billing {
         //    case test_Clocks(Stripe.Billing.Test_Clocks.API)
         //    case usage_Records(Stripe.Billing.Usage_Records.API)
         //    case usage_Record_Summary(Stripe.Billing.Usage_Record_Summary.API)
-    }
-}
-
-extension Stripe.Billing.API {
-    public struct Router: ParserPrinter, Sendable {
-        public init() {}
-
-        public var body: some URLRouting.Router<Stripe.Billing.API> {
-            OneOf {
-                URLRouting.Route(.case(Stripe.Billing.API.cases.subscriptions)) {
-                    Stripe.Billing.Subscriptions.API.Router()
-                }
-
-                URLRouting.Route(.case(Stripe.Billing.API.cases.customerPortalSession)) {
-                    Stripe.Billing.Customer.Portal.Session.API.Router()
-                }
-
-                URLRouting.Route(.case(Stripe.Billing.API.cases.subscriptionSchedule)) {
-                    Stripe.Billing.Subscription.Schedule.API.Router()
-                }
-            }
-        }
     }
 }

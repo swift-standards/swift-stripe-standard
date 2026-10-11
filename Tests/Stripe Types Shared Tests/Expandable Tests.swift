@@ -13,7 +13,7 @@
 //  package (e.g. `Stripe.Customers.Customer.ID`, `Stripe.Charges.Charge.ID`):
 //  a `Tagged<Self, String>`.
 
-import Foundation
+import JSON
 import Tagged
 import Testing
 
@@ -38,9 +38,9 @@ struct Tests {
     struct Unit {
         @Test("Decodes an unexpanded id-only payload when the ID is a Tagged wrapper")
         func decodesUnexpandedTaggedID() throws {
-            let json = Data(#""fx_123""#.utf8)
+            let json = try JSON.parse(#""fx_123""#)
 
-            let value = try JSONDecoder().decode(ExpandableOf<Fixture>.self, from: json)
+            let value = try json.decode(ExpandableOf<Fixture>.self)
 
             #expect(value.wrappedValue == Fixture.ID(rawValue: "fx_123"))
             #expect(value.projectedValue == nil)
@@ -48,9 +48,9 @@ struct Tests {
 
         @Test("Decodes an expanded-object payload when the ID is a Tagged wrapper")
         func decodesExpandedObjectWithTaggedID() throws {
-            let json = Data(#"{"id":"fx_123","name":"Widget"}"#.utf8)
+            let json = try JSON.parse(#"{"id":"fx_123","name":"Widget"}"#)
 
-            let value = try JSONDecoder().decode(ExpandableOf<Fixture>.self, from: json)
+            let value = try json.decode(ExpandableOf<Fixture>.self)
 
             let expectedID = try #require(Fixture.ID(rawValue: "fx_123"))
             #expect(value.projectedValue == Fixture(id: expectedID, name: "Widget"))
@@ -64,8 +64,8 @@ struct Tests {
                 model: Fixture(id: expectedID, name: "Widget")
             )
 
-            let data = try JSONEncoder().encode(expanded)
-            let decoded = try JSONDecoder().decode(ExpandableOf<Fixture>.self, from: data)
+            let json = try JSON(encoding: expanded)
+            let decoded = try json.decode(ExpandableOf<Fixture>.self)
 
             #expect(decoded.projectedValue == Fixture(id: expectedID, name: "Widget"))
         }
@@ -75,9 +75,9 @@ struct Tests {
     struct `Edge Case` {
         @Test("ExpandableCollection still decodes an array of Tagged-ID models")
         func expandableCollectionDecodesExpandedModelsWithTaggedID() throws {
-            let json = Data(#"[{"id":"fx_1","name":"A"},{"id":"fx_2","name":"B"}]"#.utf8)
+            let json = try JSON.parse(#"[{"id":"fx_1","name":"A"},{"id":"fx_2","name":"B"}]"#)
 
-            let value = try JSONDecoder().decode(ExpandableCollection<Fixture>.self, from: json)
+            let value = try json.decode(ExpandableCollection<Fixture>.self)
 
             #expect(value.projectedValue?.map(\.name) == ["A", "B"])
             #expect(value.wrappedValue == nil)
@@ -85,9 +85,9 @@ struct Tests {
 
         @Test("ExpandableCollection still decodes an array of unexpanded Tagged ids")
         func expandableCollectionDecodesUnexpandedTaggedIDs() throws {
-            let json = Data(#"["fx_1","fx_2"]"#.utf8)
+            let json = try JSON.parse(#"["fx_1","fx_2"]"#)
 
-            let value = try JSONDecoder().decode(ExpandableCollection<Fixture>.self, from: json)
+            let value = try json.decode(ExpandableCollection<Fixture>.self)
 
             #expect(value.wrappedValue == ["fx_1", "fx_2"])
             #expect(value.projectedValue == nil)

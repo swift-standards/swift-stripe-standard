@@ -1,9 +1,7 @@
 import Async_Lifecycle
 import Either
-import Foundation
+import JSON
 import Testing
-import URLRouting
-import URL_Routing_Foundation_Integration
 
 @testable import Stripe_Customers_Types
 @testable import Stripe_Payment_Intents_Types
@@ -94,39 +92,6 @@ struct ReadmeVerificationTests {
         let _: any Sendable = listResponse
     }
 
-    // MARK: - URL Routing (README lines 171-183)
-
-    @Test("URL Routing (README lines 171-183)")
-    func urlRouting() throws {
-        let router = Stripe.Customers.API.Router()
-
-        // Verify API enum cases exist
-        let _ = Stripe.Customers.API.create(
-            request: Stripe.Customers.Create.Request()
-        )
-        let retrieveAPI = Stripe.Customers.API.retrieve(id: "cus_123")
-        let _ = Stripe.Customers.API.update(
-            id: "cus_123",
-            request: Stripe.Customers.Update.Request()
-        )
-        let _ = Stripe.Customers.API.list(
-            request: Stripe.Customers.List.Request()
-        )
-        let _ = Stripe.Customers.API.delete(id: "cus_123")
-
-        // Verify Equatable
-        #expect(retrieveAPI == retrieveAPI)
-
-        // Verify router can generate URLs
-        let url = router.url(for: retrieveAPI)
-        #expect(url.path == "/v1/customers/cus_123")
-
-        // Verify round-trip
-        let request = try router.request(for: retrieveAPI)
-        let matched = try router.match(request: request)
-        #expect(matched.is(\.retrieve))
-    }
-
     // MARK: - Testing Pattern (README lines 189-221)
 
     @Test("Testing Pattern (README lines 189-221)")
@@ -146,7 +111,7 @@ struct ReadmeVerificationTests {
             Witness.Unimplemented.Error(
                 witness: "Stripe.Customers.Client",
                 operation: operation,
-                location: Source.Source.Location(
+                location: Source.Location(
                     fileID: fileID,
                     filePath: filePath,
                     line: line,
@@ -154,6 +119,9 @@ struct ReadmeVerificationTests {
                 )
             )
         }
+
+        let template = try JSON.parse(#"{"id":"cus_test","object":"customer","created":0}"#)
+            .decode(Stripe.Customers.Customer.self)
 
         // Create mock client as shown in README
         let mockClient = Stripe.Customers.Client(
@@ -163,7 +131,7 @@ struct ReadmeVerificationTests {
                     email: request.email,
                     name: request.name,
                     object: "customer",
-                    created: Date()
+                    created: template.created
                 )
             },
             update: {

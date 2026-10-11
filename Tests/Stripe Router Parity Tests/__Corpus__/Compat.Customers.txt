@@ -1,4 +1,0 @@
-== customers.create ==
-method: POST
-path: /v1/customers
-body(utf8): description=parity+fixture+customer&email=parity%40example.com&name=Parity+Fixture

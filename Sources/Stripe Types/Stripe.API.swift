@@ -43,10 +43,8 @@ import Stripe_Terminal_Types
 import Stripe_Tokens_Types
 import Stripe_Treasury_Types
 import Stripe_Webhooks_Types
-import URLRouting
 
 extension Stripe {
-    @Cases
     public enum API: Equatable, Sendable {
         case balance(Stripe.Balance.API)
         case balanceTransactions(Stripe.BalanceTransactions.API)
@@ -86,132 +84,5 @@ extension Stripe {
         //    case climate(Climate.API)
         //    case forwarding(Forwarding.API)
         //    case webhooks(Webhooks.API)
-    }
-}
-
-extension Stripe.API {
-    public struct Router: ParserPrinter, Sendable {
-
-        public init() {}
-
-        public var body: some URLRouting.Router<Stripe.API> {
-            OneOf {
-
-                URLRouting.Route(.case(Stripe.API.cases.balance)) {
-                    Stripe.Balance.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.balanceTransactions)) {
-                    Stripe.BalanceTransactions.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.charges)) {
-                    Stripe.Charges.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.customers)) {
-                    Stripe.Customers.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.customerSessions)) {
-                    Stripe.Customers.Customer.Sessions.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.disputes)) {
-                    Stripe.Disputes.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.events)) {
-                    Stripe.Events.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.files)) {
-                    Stripe.Files.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.fileLinks)) {
-                    Stripe.FileLinks.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.mandates)) {
-                    Stripe.Mandates.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.paymentIntents)) {
-                    Stripe.PaymentIntents.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.setupIntents)) {
-                    Stripe.Setup.Intents.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.setupAttempts)) {
-                    Stripe.Setup.Attempts.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.payouts)) {
-                    Stripe.Payouts.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.refunds)) {
-                    Stripe.Refunds.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.confirmationToken)) {
-                    Stripe.ConfirmationToken.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.tokens)) {
-                    Stripe.Tokens.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.paymentMethods)) {
-                    Stripe.PaymentMethods.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.products)) {
-                    Stripe.Products.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.checkout)) {
-                    Stripe.Checkout.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.paymentLinks)) {
-                    Stripe.PaymentLinks.API.Router()
-                }
-                URLRouting.Route(.case(Stripe.API.cases.billing)) {
-                    Stripe.Billing.API.Router()
-                }
-                //                URLRouting.Route(.case(Stripe.API.capital)) {
-                //                    Capital.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.connect)) {
-                //                    Connect.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.fraud)) {
-                //                    Fraud.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.issuing)) {
-                //                    Issuing.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.terminal)) {
-                //                    Terminal.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.treasury)) {
-                //                    Treasury.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.entitlements)) {
-                //                    Entitlements.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.sigma)) {
-                //                    Sigma.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.reporting)) {
-                //                    Reporting.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.financial_Connections)) {
-                //                    Financial_Connections.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.tax)) {
-                //                    Tax.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.identity)) {
-                //                    Identity.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.crypto)) {
-                //                    Crypto.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.climate)) {
-                //                    Climate.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.forwarding)) {
-                //                    Forwarding.API.Router()
-                //                }
-                //                URLRouting.Route(.case(Stripe.API.webhooks)) {
-                //                    Webhooks.API.Router()
-                //                }
-            }
-        }
     }
 }

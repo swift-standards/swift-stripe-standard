@@ -1,4 +1,4 @@
-import Foundation
+import JSON
 import Testing
 
 @testable import Stripe_Billing_Types
@@ -183,14 +183,9 @@ struct ListResponseDecodingTests {
             }
             """
 
-        let data = jsonString.data(using: .utf8)!
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-
         do {
-            let response = try decoder.decode(
-                Stripe.Billing.Subscriptions.List.Response.self,
-                from: data
+            let response = try JSON.parse(jsonString).decode(
+                Stripe.Billing.Subscriptions.List.Response.self
             )
             #expect(response.object == "list")
             #expect(response.data.count == 1)
