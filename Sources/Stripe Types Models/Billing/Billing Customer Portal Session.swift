@@ -18,8 +18,7 @@ extension Stripe.Billing.Customer.Portal {
         /// String representing the object's type. Objects of the same type share the same value.
         public var object: String
         /// The configuration used by this session, describing the features available.
-        @ExpandableOf<Stripe.Billing.Customer.Portal.Configuration> public var configuration:
-            Stripe.Billing.Customer.Portal.Configuration.ID?
+        @ExpandableOf<Stripe.Billing.Customer.Portal.Configuration> public var configuration: Stripe.Billing.Customer.Portal.Configuration.ID?
         /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
         /// The ID of the customer for this session.

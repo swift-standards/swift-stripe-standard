@@ -51,20 +51,12 @@ extension Stripe.StatementDescriptor: RawRepresentable {
 }
 
 extension Stripe.StatementDescriptor {
-    // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-    // signature. The standard library declares the requirement with untyped `throws`, so
-    // the thrown type cannot be narrowed here without failing to satisfy it.
-    // swiftlint:disable:next typed_throws_required
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self)
         try self.init(string)
     }
 
-    // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-    // signature. The standard library declares the requirement with untyped `throws`, so
-    // the thrown type cannot be narrowed here without failing to satisfy it.
-    // swiftlint:disable:next typed_throws_required
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(self.rawValue)

@@ -31,8 +31,7 @@ extension Stripe.Fraud.EarlyFraudWarnings {
         /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool?
         /// ID of the Payment Intent this early fraud warning is for, optionally expanded.
-        @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent:
-            Stripe.PaymentIntents.PaymentIntent.ID?
+        @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID?
 
         public init(
             id: ID,

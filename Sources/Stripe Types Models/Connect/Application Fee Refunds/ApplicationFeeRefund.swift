@@ -21,15 +21,13 @@ extension Stripe.Connect.Application.Fee {
         /// Amount, in cents.
         public var amount: Int?
         /// Balance transaction that describes the impact on your account balance.
-        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction:
-            Stripe.Balance.Transaction.ID?
+        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction: Stripe.Balance.Transaction.ID?
         /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
         /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
         public var currency: Stripe.Currency?
         /// ID of the application fee that was refunded.
-        @ExpandableOf<Stripe.Connect.Application.Fee> public var fee:
-            Stripe.Connect.Application.Fee.ID?
+        @ExpandableOf<Stripe.Connect.Application.Fee> public var fee: Stripe.Connect.Application.Fee.ID?
         /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?
 

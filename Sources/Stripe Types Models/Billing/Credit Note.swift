@@ -21,8 +21,7 @@ extension Stripe.Billing.Credit {
         /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
         public var currency: Stripe.Currency?
         /// ID of the invoice.
-        @Expandable<Stripe.Billing.Invoice, Stripe.Billing.Invoice.ID> public var invoice:
-            Stripe.Billing.Invoice.ID?
+        @Expandable<Stripe.Billing.Invoice, Stripe.Billing.Invoice.ID> public var invoice: Stripe.Billing.Invoice.ID?
         /// Line items that make up the credit note
         public var lines: Note.LineItem.List?
         /// Customer-facing text that appears on the credit note PDF.

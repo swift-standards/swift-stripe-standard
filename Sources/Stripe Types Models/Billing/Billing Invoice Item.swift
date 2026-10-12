@@ -44,22 +44,19 @@ extension Stripe.Billing.Invoice {
         /// The discounts which apply to the invoice item. Item discounts are applied before invoice discounts. Use expand[]=discounts to expand each discount.
         @ExpandableCollection<Stripe.Products.Discount> public var discounts: [String]?
         /// The ID of the invoice this invoice item belongs to.
-        @Expandable<Stripe.Billing.Invoice, Stripe.Billing.Invoice.ID> public var invoice:
-            Stripe.Billing.Invoice.ID?
+        @Expandable<Stripe.Billing.Invoice, Stripe.Billing.Invoice.ID> public var invoice: Stripe.Billing.Invoice.ID?
         /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool?
         /// Quantity of units for the invoice item. If the invoice item is a proration, the quantity of the subscription that the proration was computed for.
         public var quantity: Int?
         /// The subscription that this invoice item has been created for, if any.
-        @ExpandableOf<Stripe.Billing.Subscription> public var subscription:
-            Stripe.Billing.Subscription.ID?
+        @ExpandableOf<Stripe.Billing.Subscription> public var subscription: Stripe.Billing.Subscription.ID?
         /// The subscription item that this invoice item has been created for, if any.
         public var subscriptionItem: String?
         /// The tax rates which apply to the invoice item. When set, the default_tax_rates on the invoice do not apply to this invoice item.
         public var taxRates: [Stripe.Tax.Rate]?
         /// ID of the test clock this invoice item belongs to.
-        @ExpandableOf<Stripe.Billing.TestClocks.TestClock> public var testClock:
-            Stripe.Billing.TestClocks.TestClock.ID?
+        @ExpandableOf<Stripe.Billing.TestClocks.TestClock> public var testClock: Stripe.Billing.TestClocks.TestClock.ID?
         /// Unit Amount (in the currency specified) of the invoice item.
         public var unitAmount: Int?
         /// Same as `unit_amount`, but contains a decimal value with at most 12 decimal places.

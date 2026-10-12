@@ -38,8 +38,7 @@ extension Stripe.Billing.Customer.Balance {
         /// The ID of the credit note (if any) related to the transaction.
         @Expandable<Stripe.Billing.Credit.Note, Stripe.Billing.Credit.Note.ID> public var creditNote
         /// The ID of the invoice (if any) related to the transaction.
-        @Expandable<Stripe.Billing.Invoice, Stripe.Billing.Invoice.ID> public var invoice:
-            Stripe.Billing.Invoice.ID?
+        @Expandable<Stripe.Billing.Invoice, Stripe.Billing.Invoice.ID> public var invoice: Stripe.Billing.Invoice.ID?
         /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool?
 

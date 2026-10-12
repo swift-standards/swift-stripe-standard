@@ -21,8 +21,7 @@ extension Stripe.Billing {
         /// ID of the customer who owns the subscription.
         @ExpandableOf<Stripe.Customers.Customer> public var customer: Stripe.Customers.Customer.ID?
         /// ID of the default payment method for the subscription.
-        @ExpandableOf<Stripe.PaymentMethods.PaymentMethod> public var defaultPaymentMethod:
-            Stripe.PaymentMethods.PaymentMethod.ID?
+        @ExpandableOf<Stripe.PaymentMethods.PaymentMethod> public var defaultPaymentMethod: Stripe.PaymentMethods.PaymentMethod.ID?
         /// The subscription's description, meant to be displayable to the customer.
         public var description: String?
         /// List of subscription items, each with an attached plan.

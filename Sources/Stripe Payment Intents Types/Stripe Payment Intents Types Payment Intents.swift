@@ -151,8 +151,7 @@ extension Stripe.PaymentIntents.Create {
     public struct Request: Codable, Equatable, Sendable {
         public let amount: Int
         public let currency: Stripe.Currency
-        public let automaticPaymentMethods:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Automatic.Payment.Methods?
+        public let automaticPaymentMethods: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Automatic.Payment.Methods?
         public let confirm: Bool?
         public let customer: Stripe.Customers.Customer.ID?
         public let description: String?
@@ -160,26 +159,21 @@ extension Stripe.PaymentIntents.Create {
         public let offSession: Bool?
         public let paymentMethod: Stripe.PaymentMethods.PaymentMethod.ID?
         public let receiptEmail: String?
-        public let setupFutureUsage:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.SetupFutureUsage?
+        public let setupFutureUsage: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.SetupFutureUsage?
         public let shipping: Stripe.PaymentIntents.Shipping?
         public let statementDescriptor: Stripe.StatementDescriptor?
         public let statementDescriptorSuffix: String?
         public let applicationFeeAmount: Int?
-        public let captureMethod:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Capture.Method?
-        public let confirmationMethod:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Confirmation.Method?
+        public let captureMethod: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Capture.Method?
+        public let confirmationMethod: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Confirmation.Method?
         public let confirmationToken: String?
         public let errorOnRequiresAction: Bool?
         public let mandate: Stripe.Mandates.Mandate.ID?
         public let mandateData: MandateData?
         public let onBehalfOf: String?
         public let paymentMethodConfiguration: String?
-        public let paymentMethodData:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Payment.Method.Options?
-        public let paymentMethodOptions:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Payment.Method.Options?
+        public let paymentMethodData: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Payment.Method.Options?
+        public let paymentMethodOptions: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Payment.Method.Options?
         public let paymentMethodTypes: [String]?
         public let radarOptions: RadarOptions?
         public let returnUrl: String?
@@ -309,18 +303,14 @@ extension Stripe.PaymentIntents.Update {
         public let metadata: [String: String]?
         public let paymentMethod: Stripe.PaymentMethods.PaymentMethod.ID?
         public let receiptEmail: String?
-        public let setupFutureUsage:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.SetupFutureUsage?
+        public let setupFutureUsage: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.SetupFutureUsage?
         public let shipping: Stripe.PaymentIntents.Shipping?
         public let statementDescriptor: Stripe.StatementDescriptor?
         public let statementDescriptorSuffix: String?
         public let applicationFeeAmount: Int?
-        public let captureMethod:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Capture.Method?
-        public let paymentMethodData:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Payment.Method.Options?
-        public let paymentMethodOptions:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Payment.Method.Options?
+        public let captureMethod: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Capture.Method?
+        public let paymentMethodData: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Payment.Method.Options?
+        public let paymentMethodOptions: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Payment.Method.Options?
         public let paymentMethodTypes: [String]?
         public let transferGroup: String?
 
@@ -400,20 +390,16 @@ extension Stripe.PaymentIntents.Confirm {
     public struct Request: Codable, Equatable, Sendable {
         public let paymentMethod: Stripe.PaymentMethods.PaymentMethod.ID?
         public let receiptEmail: String?
-        public let setupFutureUsage:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.SetupFutureUsage?
+        public let setupFutureUsage: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.SetupFutureUsage?
         public let shipping: Stripe.PaymentIntents.Shipping?
-        public let captureMethod:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Capture.Method?
+        public let captureMethod: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Capture.Method?
         public let confirmationToken: String?
         public let errorOnRequiresAction: Bool?
         public let mandate: Stripe.Mandates.Mandate.ID?
         public let mandateData: MandateData?
         public let offSession: Bool?
-        public let paymentMethodData:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Payment.Method.Options?
-        public let paymentMethodOptions:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Payment.Method.Options?
+        public let paymentMethodData: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Payment.Method.Options?
+        public let paymentMethodOptions: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Payment.Method.Options?
         public let paymentMethodTypes: [String]?
         public let radarOptions: RadarOptions?
         public let returnUrl: String?
@@ -532,8 +518,7 @@ extension Stripe.PaymentIntents.Capture {
 // https://docs.stripe.com/api/payment_intents/cancel.md
 extension Stripe.PaymentIntents.Cancel {
     public struct Request: Codable, Equatable, Sendable {
-        public let cancellationReason:
-            Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Cancellation.Reason?
+        public let cancellationReason: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Cancellation.Reason?
 
         private enum CodingKeys: String, CodingKey {
             case cancellationReason = "cancellation_reason"

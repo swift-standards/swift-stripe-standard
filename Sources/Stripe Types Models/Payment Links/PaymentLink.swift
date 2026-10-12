@@ -381,7 +381,6 @@ extension Stripe.PaymentLink.After.Completion.Hosted {
         // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
         // signature. The standard library declares the requirement with untyped `throws`, so
         // the thrown type cannot be narrowed here without failing to satisfy it.
-        // swiftlint:disable:next typed_throws_required
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.message = try container.decodeIfPresent(String.self, forKey: .message)
@@ -712,8 +711,7 @@ extension Stripe.PaymentLink.Invoice.Creation.Invoice {
         /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?
         /// Options for invoice PDF rendering.
-        public var renderingOptions:
-            Stripe.PaymentLink.Invoice.Creation.Invoice.Data.Rendering.Options?
+        public var renderingOptions: Stripe.PaymentLink.Invoice.Creation.Invoice.Data.Rendering.Options?
 
         public init(
             accountTaxIds: [String]? = nil,

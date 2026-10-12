@@ -45,18 +45,15 @@ extension Stripe.Billing.Invoice {
         public var discountable: Bool?
         @ExpandableCollection<Stripe.Products.Discount> public var discounts: [String]?
         /// The ID of the invoice item associated with this line item if any.
-        @ExpandableOf<Stripe.Billing.Invoice.Item> public var invoiceItem:
-            Stripe.Billing.Invoice.Item.ID?
+        @ExpandableOf<Stripe.Billing.Invoice.Item> public var invoiceItem: Stripe.Billing.Invoice.Item.ID?
         /// Whether this is a test line item.
         public var livemode: Bool?
         /// Additional details for proration line items.
         public var prorationDetails: ProrationDetails?
         /// The subscription that the invoice item pertains to, if any.
-        @ExpandableOf<Stripe.Billing.Subscription> public var subscription:
-            Stripe.Billing.Subscription.ID?
+        @ExpandableOf<Stripe.Billing.Subscription> public var subscription: Stripe.Billing.Subscription.ID?
         /// The subscription item that generated this invoice item. Left empty if the line item is not an explicit result of a subscription.
-        @ExpandableOf<Stripe.Billing.Subscription.Item> public var subscriptionItem:
-            Stripe.Billing.Subscription.Item.ID?
+        @ExpandableOf<Stripe.Billing.Subscription.Item> public var subscriptionItem: Stripe.Billing.Subscription.Item.ID?
         /// The amount of tax calculated per tax rate for this line item
         public var taxAmounts: [Stripe.Billing.Invoice.TotalTaxAmount]?
         /// The tax rates which apply to the line item.

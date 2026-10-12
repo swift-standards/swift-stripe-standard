@@ -11,46 +11,35 @@ import Stripe_Types_Shared
 extension Stripe.PaymentIntents.PaymentIntent {
     public struct NextAction: Codable, Hashable, Sendable {
         /// Contains instructions for authenticating a payment by redirecting your customer to Alipay App or website.
-        public var alipayHandleRedirect:
-            Stripe.PaymentIntents.PaymentIntent.NextAction.Alipay.HandleRedirect?
+        public var alipayHandleRedirect: Stripe.PaymentIntents.PaymentIntent.NextAction.Alipay.HandleRedirect?
         /// Contains Boleto details necessary for the customer to complete the payment.
-        public var boletoDisplaydetails:
-            Stripe.PaymentIntents.PaymentIntent.NextAction.Boleto.DisplayDetails?
+        public var boletoDisplaydetails: Stripe.PaymentIntents.PaymentIntent.NextAction.Boleto.DisplayDetails?
         /// Contains instructions for processing off session recurring payments with Indian issued cards.
-        public var cardAwaitNotification:
-            Stripe.PaymentIntents.PaymentIntent.NextAction.Card.AwaitNotification?
+        public var cardAwaitNotification: Stripe.PaymentIntents.PaymentIntent.NextAction.Card.AwaitNotification?
         // TODO: - Add suppport for Bank display once out of preview
         // https://stripe.com/docs/api/payment_intents/object#payment_intent_object-next_action-display_bank_transfer_instructions
         /// Contains Konbini details necessary for the customer to complete the payment.
-        public var konbiniDisplayDetails:
-            Stripe.PaymentIntents.PaymentIntent.NextAction.Konbini.DisplayDetails?
+        public var konbiniDisplayDetails: Stripe.PaymentIntents.PaymentIntent.NextAction.Konbini.DisplayDetails?
         /// Contains OXXO details necessary for the customer to complete the payment.
-        public var oxxoDisplayDetails:
-            Stripe.PaymentIntents.PaymentIntent.NextAction.OXXO.DisplayDetails?
+        public var oxxoDisplayDetails: Stripe.PaymentIntents.PaymentIntent.NextAction.OXXO.DisplayDetails?
         /// The field that contains PayNow QR code info
-        public var paynowDisplayQrCode:
-            Stripe.PaymentIntents.PaymentIntent.NextAction.Paynow.DisplayQRCode?
+        public var paynowDisplayQrCode: Stripe.PaymentIntents.PaymentIntent.NextAction.Paynow.DisplayQRCode?
         // The field that contains Pix QR code info
         // public var pixDisplayQrCode: Stripe.PaymentIntents.PaymentIntent.NextAction.PaynowDisplayQRCode? TODO: - Add preview feature when it's ready.https://stripe.com/docs/api/payment_intents/object#payment_intent_object-next_action-pix_display_qr_code
         /// The field that contains PromptPay QR code info
-        public var promptpayDisplayQrCode:
-            Stripe.PaymentIntents.PaymentIntent.NextAction.PromptPay.DisplayQRCode?
+        public var promptpayDisplayQrCode: Stripe.PaymentIntents.PaymentIntent.NextAction.PromptPay.DisplayQRCode?
         /// Contains instructions for authenticating a payment by redirecting your customer to another page or application.
         public var redirectToUrl: Stripe.PaymentIntents.PaymentIntent.NextAction.RedirectToUrl?
         /// Type of the next action to perform, one of `redirect_to_url` or `use_stripe_sdk`, `alipay_handle_redirect`, `oxxo_display_details` or `verify_with_microdeposits`.
         public var type: Stripe.PaymentIntents.PaymentIntent.NextAction.`Type`?
         /// Contains details describing microdeposits verification flow.
-        public var verifyWithMicrodeposits:
-            Stripe.PaymentIntents.PaymentIntent.NextAction.VerifyWithMicrodeposits?
+        public var verifyWithMicrodeposits: Stripe.PaymentIntents.PaymentIntent.NextAction.VerifyWithMicrodeposits?
         /// The field that contains Wechat Pay QR code info
-        public var wechatPayDisplayQrCode:
-            Stripe.PaymentIntents.PaymentIntent.NextAction.WechatPay.QRCode?
+        public var wechatPayDisplayQrCode: Stripe.PaymentIntents.PaymentIntent.NextAction.WechatPay.QRCode?
         /// Info required for android app to app redirect
-        public var wechatPayRedirectToAndroidApp:
-            Stripe.PaymentIntents.PaymentIntent.NextAction.WechatPay.AndroidApp?
+        public var wechatPayRedirectToAndroidApp: Stripe.PaymentIntents.PaymentIntent.NextAction.WechatPay.AndroidApp?
         /// Info required for iOS app to app redirect
-        public var wechatPayRedirectToIosApp:
-            Stripe.PaymentIntents.PaymentIntent.NextAction.WechatPay.IOSApp?
+        public var wechatPayRedirectToIosApp: Stripe.PaymentIntents.PaymentIntent.NextAction.WechatPay.IOSApp?
 
         public init(
             alipayHandleRedirect: Stripe.PaymentIntents.PaymentIntent.NextAction.Alipay

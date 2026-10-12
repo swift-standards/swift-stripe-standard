@@ -23,8 +23,7 @@ extension Stripe.Fraud.Reviews {
         /// If `true`, the review needs action.
         public var open: Bool?
         /// The PaymentIntent ID associated with this review, if one exists.
-        @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent:
-            Stripe.PaymentIntents.PaymentIntent.ID?
+        @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID?
         /// The reason the review is currently open or closed. One of `rule`, `manual`, `approved`, `refunded`, `refunded_as_fraud`, or `disputed`.
         public var reason: ReviewReason?
         /// String representing the object's type. Objects of the same type share the same value.

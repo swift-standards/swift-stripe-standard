@@ -284,8 +284,7 @@ extension Stripe.Billing.Customer.Portal.Configuration.Update {
         public let active: Bool?
 
         /// The business information shown to customers in the portal.
-        public let businessProfile:
-            Stripe.Billing.Customer.Portal.Configuration.Create.Request.BusinessProfile?
+        public let businessProfile: Stripe.Billing.Customer.Portal.Configuration.Create.Request.BusinessProfile?
 
         /// The default URL to redirect customers to.
         public let defaultReturnUrl: String?

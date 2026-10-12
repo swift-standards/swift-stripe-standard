@@ -69,8 +69,7 @@ extension Stripe.Customers {
         /// The customers tax IDs
         public var taxIds: Stripe.Tax.ID.List?
         /// ID of the test clock this customer belongs to.
-        @ExpandableOf<Stripe.Billing.TestClocks.TestClock> public var testClock:
-            Stripe.Billing.TestClocks.TestClock.ID?
+        @ExpandableOf<Stripe.Billing.TestClocks.TestClock> public var testClock: Stripe.Billing.TestClocks.TestClock.ID?
 
         public init(
             id: Stripe.Customers.Customer.ID,
@@ -187,8 +186,7 @@ extension Stripe.Customers {
         /// Default custom fields to be displayed on invoices for this customer.
         public var customFields: [Stripe.Customers.CustomerInvoiceSettingsCustomFields]?
         /// ID of the default payment method used for subscriptions and invoices for the customer.
-        @ExpandableOf<Stripe.PaymentMethods.PaymentMethod> public var defaultPaymentMethod:
-            Stripe.PaymentMethods.PaymentMethod.ID?
+        @ExpandableOf<Stripe.PaymentMethods.PaymentMethod> public var defaultPaymentMethod: Stripe.PaymentMethods.PaymentMethod.ID?
         /// Default footer to be displayed on invoices for this customer.
         public var footer: String?
         /// Default options for invoice PDF rendering for this customer.

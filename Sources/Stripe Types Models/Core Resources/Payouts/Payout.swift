@@ -35,15 +35,13 @@ extension Stripe.Payouts {
         /// Returns `true` if the payout was created by an automated payout schedule, and false if it was requested manually.
         public var automatic: Bool?
         /// ID of the balance transaction that describes the impact of this payout on your account balance.
-        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction:
-            Stripe.Balance.Transaction.ID?
+        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction: Stripe.Balance.Transaction.ID?
         /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
         /// ID of the bank account or card the payout was sent to.
         @DynamicExpandable<Card, BankAccount> public var destination: String?
         /// If the payout failed or was canceled, this will be the ID of the balance transaction that reversed the initial balance transaction, and puts the funds from the failed payout back in your balance.
-        @ExpandableOf<Stripe.Balance.Transaction> public var failureBalanceTransaction:
-            Stripe.Balance.Transaction.ID?
+        @ExpandableOf<Stripe.Balance.Transaction> public var failureBalanceTransaction: Stripe.Balance.Transaction.ID?
         /// Error code explaining reason for payout failure if available. See Types of payout failures for a list of failure codes.
         public var failureCode: Stripe.Payouts.Payout.FailureCode?
         /// Message to user further explaining reason for payout failure if available.

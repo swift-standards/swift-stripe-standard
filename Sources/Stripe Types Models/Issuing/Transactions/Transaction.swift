@@ -33,8 +33,7 @@ public struct Transaction: Codable, Hashable, Sendable, Identifiable {
     /// Detailed breakdown of amount components. These amounts are denominated in currency and in the smallest currency unit.
     public var amountDetails: TransactionAmountDetails?
     /// ID of the balance transaction associated with this transaction.
-    @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction:
-        Stripe.Balance.Transaction.ID?
+    @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction: Stripe.Balance.Transaction.ID?
     /// Time at which the object was created. Measured in seconds since the Unix epoch.
     public var created: Date
     /// If you’ve disputed the transaction, the ID of the dispute.

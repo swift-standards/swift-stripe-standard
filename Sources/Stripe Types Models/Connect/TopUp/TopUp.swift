@@ -29,8 +29,7 @@ extension Stripe.Connect {
         /// String representing the object's type. Objects of the same type share the same value.
         public var object: String
         /// ID of the balance transaction that describes the impact of this top-up on your account balance. May not be specified depending on status of top-up.
-        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction:
-            Stripe.Balance.Transaction.ID?
+        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction: Stripe.Balance.Transaction.ID?
         /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
         /// Date the funds are expected to arrive in your Stripe account for payouts. This factors in delays like weekends or bank holidays. May not be specified depending on status of top-up.

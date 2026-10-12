@@ -87,10 +87,6 @@ extension Stripe.Setup.Intents.Create {
             self.usage = usage
         }
 
-        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-        // signature. The standard library declares the requirement with untyped `throws`, so
-        // the thrown type cannot be narrowed here without failing to satisfy it.
-        // swiftlint:disable:next typed_throws_required
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(attachToSelf, forKey: .attachToSelf)
@@ -104,10 +100,6 @@ extension Stripe.Setup.Intents.Create {
             try container.encodeIfPresent(usage, forKey: .usage)
         }
 
-        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-        // signature. The standard library declares the requirement with untyped `throws`, so
-        // the thrown type cannot be narrowed here without failing to satisfy it.
-        // swiftlint:disable:next typed_throws_required
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             attachToSelf = try container.decodeIfPresent(Bool.self, forKey: .attachToSelf)
@@ -176,10 +168,6 @@ extension Stripe.Setup.Intents.Update {
             self.paymentMethodTypes = paymentMethodTypes
         }
 
-        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-        // signature. The standard library declares the requirement with untyped `throws`, so
-        // the thrown type cannot be narrowed here without failing to satisfy it.
-        // swiftlint:disable:next typed_throws_required
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(attachToSelf, forKey: .attachToSelf)
@@ -190,10 +178,6 @@ extension Stripe.Setup.Intents.Update {
             try container.encodeIfPresent(paymentMethodTypes, forKey: .paymentMethodTypes)
         }
 
-        // REASON: this is the exact `Swift.Decodable`/`Swift.Encodable` protocol requirement
-        // signature. The standard library declares the requirement with untyped `throws`, so
-        // the thrown type cannot be narrowed here without failing to satisfy it.
-        // swiftlint:disable:next typed_throws_required
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             attachToSelf = try container.decodeIfPresent(Bool.self, forKey: .attachToSelf)

@@ -12,8 +12,7 @@ extension Stripe.Checkout {
             self.sessions = sessions
         }
 
-        public subscript<T>(dynamicMember keyPath: KeyPath<Stripe.Checkout.Sessions.Client, T>) -> T
-        {
+        public subscript<T>(dynamicMember keyPath: KeyPath<Stripe.Checkout.Sessions.Client, T>) -> T {
             sessions[keyPath: keyPath]
         }
     }

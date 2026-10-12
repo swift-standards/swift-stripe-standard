@@ -33,13 +33,11 @@ extension Stripe.Connect {
         /// Amount in cents reversed (can be less than the amount attribute on the transfer if a partial reversal was issued).
         public var amountReversed: Int?
         /// Balance transaction that describes the impact of this transfer on your account balance.
-        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction:
-            Stripe.Balance.Transaction.ID?
+        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction: Stripe.Balance.Transaction.ID?
         /// Time that this record of the transfer was first created.
         public var created: Date
         /// If the destination is a Stripe account, this will be the ID of the payment that the destination account received for the transfer.
-        @ExpandableOf<Stripe.Charges.Charge> public var destinationPayment:
-            Stripe.Charges.Charge.ID?
+        @ExpandableOf<Stripe.Charges.Charge> public var destinationPayment: Stripe.Charges.Charge.ID?
         /// Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode.
         public var livemode: Bool?
         /// A list of reversals that have been applied to the transfer.

@@ -27,8 +27,7 @@ extension Stripe.Billing.Subscription {
         /// The present status of the subscription schedule. Possible values are `not_started`, `active`, `completed`, `released`, and `canceled`. You can read more about the different states in our behavior guide.
         public var status: Status?
         /// ID of the subscription managed by the subscription schedule.
-        @ExpandableOf<Stripe.Billing.Subscription> public var subscription:
-            Stripe.Billing.Subscription.ID?
+        @ExpandableOf<Stripe.Billing.Subscription> public var subscription: Stripe.Billing.Subscription.ID?
         /// String representing the object’s type. Objects of the same type share the same value.
         public var object: String
         /// ID of the Connect Application that created the schedule.
@@ -50,8 +49,7 @@ extension Stripe.Billing.Subscription {
         /// ID of the subscription once managed by the subscription schedule (if it is released).
         public var releasedSubscription: Stripe.Billing.Subscription.ID?
         /// ID of the test clock this subscription schedule belongs to.
-        @ExpandableOf<Stripe.Billing.TestClocks.TestClock> public var testClock:
-            Stripe.Billing.TestClocks.TestClock.ID?
+        @ExpandableOf<Stripe.Billing.TestClocks.TestClock> public var testClock: Stripe.Billing.TestClocks.TestClock.ID?
 
         public init(
             id: ID,
@@ -125,8 +123,7 @@ extension Stripe.Billing.Subscription.Schedule {
         /// Either `charge_automatically`, or `send_invoice`. When charging automatically, Stripe will attempt to pay the underlying subscription at the end of each billing cycle using the default source attached to the customer. When sending an invoice, Stripe will email your customer an invoice with payment instructions.
         public var collectionMethod: CollectionMethod?
         /// ID of the default payment method for the subscription schedule. If not set, invoices will use the default payment method in the customer’s invoice settings.
-        @ExpandableOf<Stripe.PaymentMethods.PaymentMethod> public var defaultPaymentMethod:
-            Stripe.PaymentMethods.PaymentMethod.ID?
+        @ExpandableOf<Stripe.PaymentMethods.PaymentMethod> public var defaultPaymentMethod: Stripe.PaymentMethods.PaymentMethod.ID?
         /// Subscription description, meant to be displayable to the customer. Use this field to optionally store an explanation of the subscription.
         public var description: String?
         /// The subscription schedule’s default invoice settings.
@@ -259,8 +256,7 @@ extension Stripe.Billing.Subscription.Schedule {
         /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
         public var currency: Stripe.Currency?
         /// ID of the default payment method for the subscription schedule. It must belong to the customer associated with the subscription schedule. If not set, invoices will use the default payment method in the customer’s invoice settings.
-        @ExpandableOf<Stripe.PaymentMethods.PaymentMethod> public var defaultPaymentMethod:
-            Stripe.PaymentMethods.PaymentMethod.ID?
+        @ExpandableOf<Stripe.PaymentMethods.PaymentMethod> public var defaultPaymentMethod: Stripe.PaymentMethods.PaymentMethod.ID?
         /// The default tax rates to apply to the subscription during this phase of the subscription schedule.
         public var defaultTaxRates: [Stripe.Tax.Rate]?
         /// Subscription description, meant to be displayable to the customer. Use this field to optionally store an explanation of the subscription.

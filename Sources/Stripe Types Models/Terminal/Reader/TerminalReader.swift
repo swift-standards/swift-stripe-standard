@@ -134,8 +134,7 @@ extension Stripe.Terminal.Readers {
 extension Stripe.Terminal.Readers {
     public struct ReaderActionPaymentIntent: Codable, Hashable, Sendable {
         /// Most recent PaymentIntent processed by the reader.
-        @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent:
-            Stripe.PaymentIntents.PaymentIntent.ID?
+        @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID?
         /// Per-transaction overrides of Terminal reader configurations.
         public var processConfig: ReaderActionPaymentIntentProcessConfig?
 
@@ -203,8 +202,7 @@ extension Stripe.Terminal.Readers {
         /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?
         /// Payment intent that is being refunded.
-        @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent:
-            Stripe.PaymentIntents.PaymentIntent.ID?
+        @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID?
         /// The reason for the refund.
         public var reason: String?
         /// Unique identifier for the refund object.

@@ -16,11 +16,9 @@ extension Stripe.Mandates.Mandate.PaymentMethodDetails {
         /// Description of the interval. Only required if the `'payment_schedule'` parameter is `'interval'` or`'combined'`.
         public var intervalDescription: String?
         /// Payment schedule for the mandate.
-        public var paymentSchedule:
-            Stripe.Mandates.Mandate.PaymentMethodDetails.ACSSDebit.PaymentSchedule?
+        public var paymentSchedule: Stripe.Mandates.Mandate.PaymentMethodDetails.ACSSDebit.PaymentSchedule?
         /// Transaction type of the mandate.
-        public var transactionType:
-            Stripe.Mandates.Mandate.PaymentMethodDetails.ACSSDebit.TransactionType?
+        public var transactionType: Stripe.Mandates.Mandate.PaymentMethodDetails.ACSSDebit.TransactionType?
 
         public init(
             defaultFor: Stripe.Mandates.Mandate.PaymentMethodDetails.ACSSDebit.DefaultFor? = nil,
@@ -82,8 +80,7 @@ extension Stripe.Mandates.Mandate.PaymentMethodDetails {
 extension Stripe.Mandates.Mandate.PaymentMethodDetails {
     public struct BacsDebit: Codable, Hashable, Sendable {
         /// The status of the mandate on the Bacs network. Can be one of  `pending`, `revoked`,`refused`, or `accepted`.
-        public var networkStatus:
-            Stripe.Mandates.Mandate.PaymentMethodDetails.BacsDebit.NetworkStatus?
+        public var networkStatus: Stripe.Mandates.Mandate.PaymentMethodDetails.BacsDebit.NetworkStatus?
         /// The unique reference identifying the mandate on the Bacs network.
         public var reference: String?
         /// The URL that will contain the mandate that the customer has signed.

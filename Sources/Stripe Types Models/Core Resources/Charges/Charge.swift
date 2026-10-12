@@ -30,13 +30,11 @@ extension Stripe.Charges {
         /// ID of the Connect application that created the charge.
         public var application: String?
         /// The application fee (if any) for the charge. [See the Connect documentation](https://stripe.com/docs/connect/direct-charges#collecting-fees) for details.
-        @ExpandableOf<Stripe.Connect.Application.Fee> public var applicationFee:
-            Stripe.Connect.Application.Fee.ID?
+        @ExpandableOf<Stripe.Connect.Application.Fee> public var applicationFee: Stripe.Connect.Application.Fee.ID?
         /// The amount of the application fee (if any) for the charge. [See the Connect documentation](https://stripe.com/docs/connect/direct-charges#collecting-fees) for details.
         public var applicationFeeAmount: Int?
         /// ID of the balance transaction that describes the impact of this charge on your account balance (not including refunds or disputes).
-        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction:
-            Stripe.Balance.Transaction.ID?
+        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction: Stripe.Balance.Transaction.ID?
         /// Billing information associated with the payment method at the time of the transaction.
         public var billingDetails: BillingModel.Details?
         /// The full statement descriptor that is passed to card networks, and that is displayed on your customers’ credit card and bank statements. Allows you to see what the statement descriptor looks like after the static and dynamic portions are combined.
@@ -56,8 +54,7 @@ extension Stripe.Charges {
         /// Whether the charge has been disputed.
         public var disputed: Bool?
         /// ID of the balance transaction that describes the reversal of the balance on your account due to payment failure.
-        @ExpandableOf<Stripe.Balance.Transaction> public var failureBalanceTransaction:
-            Stripe.Balance.Transaction.ID?
+        @ExpandableOf<Stripe.Balance.Transaction> public var failureBalanceTransaction: Stripe.Balance.Transaction.ID?
         /// Error code explaining reason for charge failure if available (see [the errors section](https://stripe.com/docs/api#errors) for a list of codes).
         public var failureCode: String?
         /// Message to user further explaining reason for charge failure if available.
@@ -65,8 +62,7 @@ extension Stripe.Charges {
         /// Information on fraud assessments for the charge.
         public var fraudDetails: Stripe.Charges.Charge.Fraud.Details?
         /// ID of the invoice this charge is for if one exists.
-        @Expandable<Stripe.Billing.Invoice, Stripe.Billing.Invoice.ID> public var invoice:
-            Stripe.Billing.Invoice.ID?
+        @Expandable<Stripe.Billing.Invoice, Stripe.Billing.Invoice.ID> public var invoice: Stripe.Billing.Invoice.ID?
         /// Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode.
         public var livemode: Bool?
         /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -78,8 +74,7 @@ extension Stripe.Charges {
         /// `true` if the charge succeeded, or was successfully authorized for later capture.
         public var paid: Bool?
         /// ID of the PaymentIntent associated with this charge, if one exists.
-        @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent:
-            Stripe.PaymentIntents.PaymentIntent.ID?
+        @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID?
         /// ID of the payment method used in this charge.
         public var paymentMethod: Stripe.PaymentMethods.PaymentMethod.ID?
         /// Details about the payment method at the time of the transaction.
@@ -97,13 +92,11 @@ extension Stripe.Charges {
         /// A list of refunds that have been applied to the charge.
         public var refunds: Stripe.Refunds.Refund.List?
         /// ID of the review associated with this charge if one exists.
-        @ExpandableOf<Stripe.Fraud.Reviews.Review> public var review:
-            Stripe.Fraud.Reviews.Review.ID?
+        @ExpandableOf<Stripe.Fraud.Reviews.Review> public var review: Stripe.Fraud.Reviews.Review.ID?
         /// Shipping information for the charge.
         public var shipping: ShippingLabel?
         /// The transfer ID which created this charge. Only present if the charge came from another Stripe account. [See the Connect documentation](https://stripe.com/docs/connect/destination-charges) for details.
-        @ExpandableOf<Stripe.Connect.Transfer> public var sourceTransfer:
-            Stripe.Connect.Transfer.ID?
+        @ExpandableOf<Stripe.Connect.Transfer> public var sourceTransfer: Stripe.Connect.Transfer.ID?
         /// Extra information about a charge. This will appear on your customer’s credit card statement. It must contain at least one letter.
         public var statementDescriptor: Stripe.StatementDescriptor?
         /// Provides information about the charge that customers see on their statements. Concatenated with the prefix (shortened descriptor) or statement descriptor that’s set on the account to form the complete statement descriptor. Maximum 22 characters for the concatenated descriptor.
@@ -398,8 +391,7 @@ extension Stripe.Charges.Charge {
 extension Stripe.Charges.Charge.PaymentMethod {
     public struct Details: Codable, Hashable, Sendable {
         /// If this is a `ach_credit_transfer` payment, this hash contains a snapshot of the transaction specific details of the `ach_credit_transfer` payment method.
-        public var achCreditTransfer:
-            Stripe.Charges.Charge.PaymentMethod.Details.ACHCredit.Transfer?
+        public var achCreditTransfer: Stripe.Charges.Charge.PaymentMethod.Details.ACHCredit.Transfer?
         /// If this is a `ach_debit` payment, this hash contains a snapshot of the transaction specific details of the `ach_debit` payment method.
         public var achDebit: Stripe.Charges.Charge.PaymentMethod.Details.ACHDebit?
         /// If this is a `acss_debit` payment, this hash contains a snapshot of the transaction specific details of the `acss_debit` payment method.

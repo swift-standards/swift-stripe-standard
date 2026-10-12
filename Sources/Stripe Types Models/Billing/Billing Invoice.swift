@@ -38,8 +38,7 @@ extension Stripe.Billing {
         /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?
         /// The PaymentIntent associated with this invoice. The PaymentIntent is generated when the invoice is finalized, and can then be used to pay the invoice. Note that voiding an invoice will cancel the PaymentIntent.
-        @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent:
-            Stripe.PaymentIntents.PaymentIntent.ID?
+        @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID?
         /// End of the usage period during which invoice items were added to this invoice.
         public var periodEnd: Date?
         /// Start of the usage period during which invoice items were added to this invoice.
@@ -493,8 +492,7 @@ extension Stripe.Billing.Invoice {
         /// ID of the mandate to be used for this invoice. It must correspond to the payment method used to pay the invoice, including the invoice’s `default_payment_method` or `default_source`, if set.
         public var defaultMandate: Stripe.Mandates.Mandate.ID?
         /// Payment-method-specific configuration to provide to the invoice’s PaymentIntent.
-        public var paymentMethodOptions:
-            Stripe.Billing.Invoice.PaymentSettings.PaymentMethodOptions?
+        public var paymentMethodOptions: Stripe.Billing.Invoice.PaymentSettings.PaymentMethodOptions?
         /// The list of payment method types (e.g. card) to provide to the invoice’s PaymentIntent. If not set, Stripe attempts to automatically determine the types to use by looking at the invoice’s default payment method, the subscription’s default payment method, the customer’s default payment method, and your invoice template settings.
         public var paymentMethodTypes: [Stripe.PaymentMethods.PaymentMethod.`Type`]?
 

@@ -127,17 +127,14 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Currency supported by the bank account. Returned when the Session is in `setup` mode.
         public var currency: Stripe.Currency?
         /// Additional fields for Mandate creation
-        public var mandateOptions:
-            Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Mandate.Options?
+        public var mandateOptions: Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Mandate.Options?
         /// Indicates that you intend to make future payments with this PaymentIntent’s payment method.
         ///
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Setup.FutureUsage?
         /// Bank account verification method.
-        public var verificationMethod:
-            Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Verification.Method?
+        public var verificationMethod: Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Verification.Method?
 
         public init(
             currency: Stripe.Currency? = nil,
@@ -175,16 +172,13 @@ extension Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Mandate {
         /// A URL for custom mandate text
         public var customMandateUrl: String?
         /// List of Stripe products where this mandate can be selected automatically. Returned when the Session is in setup mode.
-        public var defaultFor:
-            [Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Mandate.Options.DefaultFor]?
+        public var defaultFor: [Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Mandate.Options.DefaultFor]?
         /// Description of the interval. Only required if `payment_schedule` parmeter is `interval` or `combined`.
         public var intervalDescription: String?
         /// Payment schedule for the mandate.
-        public var paymentSchedule:
-            Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Mandate.Options.PaymentSchedule?
+        public var paymentSchedule: Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Mandate.Options.PaymentSchedule?
         /// Transaction type of the mandate.
-        public var transactionType:
-            Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Mandate.Options.TransactionType?
+        public var transactionType: Stripe.Checkout.Session.PaymentMethod.Options.AcssDebit.Mandate.Options.TransactionType?
 
         public init(
             customMandateUrl: String? = nil,
@@ -262,8 +256,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
 
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Affirm.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Affirm.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Affirm.Setup
@@ -294,8 +287,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.AfterpayClearpay.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.AfterpayClearpay.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.AfterpayClearpay.Setup
@@ -325,8 +317,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Alipay.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Alipay.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Alipay.Setup
@@ -357,8 +348,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.AuBecsDebit.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.AuBecsDebit.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.AuBecsDebit.Setup
@@ -389,8 +379,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.BacsDebit.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.BacsDebit.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.BacsDebit.Setup
@@ -425,8 +414,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Bancontact.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Bancontact.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Bancontact.Setup
@@ -458,8 +446,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Boleto.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Boleto.Setup.FutureUsage?
 
         public init(
             expiresAfterDays: Int? = nil,
@@ -498,8 +485,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Card.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Card.Setup.FutureUsage?
         /// Provides information about a card payment that customers see on their statements. Concatenated with the Kana prefix (shortened Kana descriptor) or Kana statement descriptor that’s set on the account to form the complete statement descriptor. Maximum 22 characters. On card statements, the concatenation of both prefix and suffix (including separators) will appear truncated to 22 characters.
         public var statementDescriptorSuffixKana: String?
         /// Provides information about a card payment that customers see on their statements. Concatenated with the Kanji prefix (shortened Kanji descriptor) or Kanji statement descriptor that’s set on the account to form the complete statement descriptor. Maximum 17 characters. On card statements, the concatenation of both prefix and suffix (including separators) will appear truncated to 17 characters.
@@ -556,8 +542,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Cashapp.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Cashapp.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Cashapp.Setup
@@ -584,8 +569,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options.Cashapp.Setup {
 extension Stripe.Checkout.Session.PaymentMethod.Options {
     public struct CustomerBalance: Codable, Hashable, Sendable {
         /// Configuration for the bank transfer funding type, if the `funding_type` is set to `bank_transfer`.
-        public var bankTransfer:
-            Stripe.Checkout.Session.PaymentMethod.Options.CustomerBalance.BankTransfer?
+        public var bankTransfer: Stripe.Checkout.Session.PaymentMethod.Options.CustomerBalance.BankTransfer?
         /// The funding method type to be used when there are not enough funds in the customer balance. Permitted values include: `bank_transfer`.
         public var fundingType: String?
         /// Indicates that you intend to make future payments with this PaymentIntent’s payment method.
@@ -593,8 +577,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.CustomerBalance.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.CustomerBalance.Setup.FutureUsage?
 
         public init(
             bankTransfer: Stripe.Checkout.Session.PaymentMethod.Options.CustomerBalance
@@ -628,8 +611,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options.CustomerBalance {
             [Stripe.Checkout.Session.PaymentMethod.Options.CustomerBalance.BankTransfer
                 .RequestedAddressType]?
         /// The bank transfer type that this PaymentIntent is allowed to use for funding Permitted values include: `eu_bank_transfer`, `gb_bank_transfer`, `jp_bank_transfer`, or `mx_bank_transfer`.
-        public var type:
-            Stripe.Checkout.Session.PaymentMethod.Options.CustomerBalance.BankTransferType?
+        public var type: Stripe.Checkout.Session.PaymentMethod.Options.CustomerBalance.BankTransferType?
 
         public init(
             euBankTransfer: Stripe.Checkout.Session.PaymentMethod.Options.CustomerBalance
@@ -703,8 +685,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Eps.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Eps.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Eps.Setup.FutureUsage? =
@@ -734,8 +715,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Fpx.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Fpx.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Fpx.Setup.FutureUsage? =
@@ -765,8 +745,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Giropay.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Giropay.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Giropay.Setup
@@ -797,8 +776,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Grabpay.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Grabpay.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Grabpay.Setup
@@ -829,8 +807,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Ideal.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Ideal.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Ideal.Setup
@@ -860,8 +837,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Klarna.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Klarna.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Klarna.Setup
@@ -898,8 +874,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Konbini.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Konbini.Setup.FutureUsage?
 
         public init(
             expiresAfterDays: Int? = nil,
@@ -932,8 +907,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Link.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Link.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Link.Setup
@@ -967,8 +941,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.OXXO.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.OXXO.Setup.FutureUsage?
 
         public init(
             expiresAfterDays: Int? = nil,
@@ -1000,8 +973,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.P24.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.P24.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.P24.Setup.FutureUsage? =
@@ -1031,8 +1003,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Paynow.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Paynow.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Paynow.Setup
@@ -1079,8 +1050,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.SepaDebit.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.SepaDebit.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.SepaDebit.Setup
@@ -1115,8 +1085,7 @@ extension Stripe.Checkout.Session.PaymentMethod.Options {
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.Sofort.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Sofort.Setup.FutureUsage?
 
         public init(
             setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.Sofort.Setup
@@ -1143,18 +1112,15 @@ extension Stripe.Checkout.Session.PaymentMethod.Options.Sofort.Setup {
 extension Stripe.Checkout.Session.PaymentMethod.Options {
     public struct USBankAccount: Codable, Hashable, Sendable {
         /// Additional fields for Financial Connections Session creation
-        public var financialConnections:
-            Stripe.Checkout.Session.PaymentMethod.Options.USBankAccount.FinancialConnections?
+        public var financialConnections: Stripe.Checkout.Session.PaymentMethod.Options.USBankAccount.FinancialConnections?
         /// Indicates that you intend to make future payments with this PaymentIntent’s payment method.
         ///
         /// Providing this parameter will attach the payment method to the PaymentIntent’s Customer, if present, after the PaymentIntent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be attached to a Customer after the transaction completes.
         ///
         /// When processing card payments, Stripe also uses `setup_future_usage` to dynamically optimize your payment flow and comply with regional legislation and network rules, such as SCA.
-        public var setupFutureUsage:
-            Stripe.Checkout.Session.PaymentMethod.Options.USBankAccount.Setup.FutureUsage?
+        public var setupFutureUsage: Stripe.Checkout.Session.PaymentMethod.Options.USBankAccount.Setup.FutureUsage?
         /// Bank account verification method.
-        public var verificationMethod:
-            Stripe.Checkout.Session.PaymentMethod.Options.USBankAccount.Verification.Method?
+        public var verificationMethod: Stripe.Checkout.Session.PaymentMethod.Options.USBankAccount.Verification.Method?
 
         public init(
             financialConnections: Stripe.Checkout.Session.PaymentMethod.Options.USBankAccount

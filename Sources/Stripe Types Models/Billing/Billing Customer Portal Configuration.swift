@@ -248,8 +248,7 @@ extension Stripe.Billing.Customer.Portal {
 
     public struct PortalConfigurationFeaturesSubscriptionUpdate: Codable, Hashable, Sendable {
         /// The types of subscription updates that are supported for items listed in the products attribute. When empty, subscriptions are not updateable.
-        public var defaultAllowedUpdates:
-            [PortalConfigurationFeaturesSubscriptionUpdateDefaultAllowedUpdate]?
+        public var defaultAllowedUpdates: [PortalConfigurationFeaturesSubscriptionUpdateDefaultAllowedUpdate]?
         /// Whether the feature is enabled.
         public var enabled: Bool?
         /// The list of products that support subscription updates.
@@ -284,8 +283,7 @@ extension Stripe.Billing.Customer.Portal {
         case promotionCode = "promotion_code"
     }
 
-    public struct PortalConfigurationFeaturesSubscriptionUpdateProduct: Codable, Hashable, Sendable
-    {
+    public struct PortalConfigurationFeaturesSubscriptionUpdateProduct: Codable, Hashable, Sendable {
         /// The list of price IDs which, when subscribed to, a subscription can be updated.
         public var prices: [String]?
         /// The product ID.

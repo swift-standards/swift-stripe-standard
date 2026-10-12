@@ -33,8 +33,7 @@ extension Stripe.Connect.Application {
         /// ID of the Connect application that earned the fee.
         public var application: String?
         /// Balance transaction that describes the impact of this collected application fee on your account balance (not including refunds).
-        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction:
-            Stripe.Balance.Transaction.ID?
+        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction: Stripe.Balance.Transaction.ID?
         /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
         /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.

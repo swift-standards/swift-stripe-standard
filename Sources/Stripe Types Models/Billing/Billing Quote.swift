@@ -73,15 +73,13 @@ extension Stripe.Billing {
         /// The timestamps of which the quote transitioned to a new status.
         public var statusTransitions: Stripe.Billing.Quote.StatusTransition?
         /// The subscription that was created or updated from this quote.
-        @ExpandableOf<Stripe.Billing.Subscription> public var subscription:
-            Stripe.Billing.Subscription.ID?
+        @ExpandableOf<Stripe.Billing.Subscription> public var subscription: Stripe.Billing.Subscription.ID?
         /// When creating a subscription or subscription schedule, the specified configuration data will be used. There must be at least one line item with a recurring price for a subscription or subscription schedule to be created.
         public var subscriptionData: Stripe.Billing.Quote.SubscriptionData?
         /// The subscription schedule that was created or updated from this quote.
         @ExpandableOf<Stripe.Billing.Subscription.Schedule> public var subscriptionSchedule
         /// ID of the test clock this quote belongs to.
-        @ExpandableOf<Stripe.Billing.TestClocks.TestClock> public var testClock:
-            Stripe.Billing.TestClocks.TestClock.ID?
+        @ExpandableOf<Stripe.Billing.TestClocks.TestClock> public var testClock: Stripe.Billing.TestClocks.TestClock.ID?
         /// Tax and discount details for the computed total amount.
         public var totalDetails: Stripe.Billing.Quote.TotalDetails?
         /// The account (if any) the payments will be attributed to for tax reporting, and where funds from each payment will be transferred to for each of the invoices.
@@ -274,8 +272,7 @@ extension Stripe.Billing.Quote.Computed.Recurring {
 extension Stripe.Billing.Quote.Computed.Recurring.TotalDetails {
     public struct Breakdown: Codable, Hashable, Sendable {
         /// The aggregated line item discounts.
-        public var discounts:
-            [Stripe.Billing.Quote.Computed.Recurring.TotalDetails.Breakdown.Discount]?
+        public var discounts: [Stripe.Billing.Quote.Computed.Recurring.TotalDetails.Breakdown.Discount]?
         /// The aggregated line item tax amounts by rate.
         public var taxes: [Stripe.Billing.Quote.Computed.Recurring.TotalDetails.Breakdown.Tax]?
 
@@ -314,8 +311,7 @@ extension Stripe.Billing.Quote.Computed.Recurring.TotalDetails.Breakdown {
         /// The tax rate applied.
         public var rate: Stripe.Tax.Rate?
         /// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
-        public var taxabilityReason:
-            Stripe.Billing.Quote.Computed.Recurring.TotalDetails.Breakdown.Tax.TaxabilityReason?
+        public var taxabilityReason: Stripe.Billing.Quote.Computed.Recurring.TotalDetails.Breakdown.Tax.TaxabilityReason?
 
         public init(
             amount: Int? = nil,
@@ -410,8 +406,7 @@ extension Stripe.Billing.Quote.Computed.Upfront {
 extension Stripe.Billing.Quote.Computed.Upfront.TotalDetails {
     public struct Breakdown: Codable, Hashable, Sendable {
         /// The aggregated line item discounts.
-        public var discounts:
-            [Stripe.Billing.Quote.Computed.Upfront.TotalDetails.Breakdown.Discount]?
+        public var discounts: [Stripe.Billing.Quote.Computed.Upfront.TotalDetails.Breakdown.Discount]?
         /// The aggregated line item tax amounts by rate.
         public var taxes: [Stripe.Billing.Quote.Computed.Upfront.TotalDetails.Breakdown.Tax]?
 
@@ -450,8 +445,7 @@ extension Stripe.Billing.Quote.Computed.Upfront.TotalDetails.Breakdown {
         /// The tax rate applied.
         public var rate: Stripe.Tax.Rate?
         /// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
-        public var taxabilityReason:
-            Stripe.Billing.Quote.Computed.Upfront.TotalDetails.Breakdown.Tax.TaxabilityReason?
+        public var taxabilityReason: Stripe.Billing.Quote.Computed.Upfront.TotalDetails.Breakdown.Tax.TaxabilityReason?
 
         public init(
             amount: Int? = nil,
@@ -642,8 +636,7 @@ extension Stripe.Billing.Quote.TotalDetails.Breakdown {
         /// The tax rate applied.
         public var rate: Stripe.Tax.Rate?
         /// The reasoning behind this tax, for example, if the product is tax exempt. The possible values for this field may be extended as new tax rules are supported.
-        public var taxabilityReason:
-            Stripe.Billing.Quote.TotalDetails.Breakdown.Tax.TaxabilityReason?
+        public var taxabilityReason: Stripe.Billing.Quote.TotalDetails.Breakdown.Tax.TaxabilityReason?
 
         public init(
             amount: Int? = nil,

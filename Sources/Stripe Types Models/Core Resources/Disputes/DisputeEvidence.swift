@@ -33,8 +33,7 @@ extension Stripe.Disputes.Dispute {
         /// (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) A relevant document or contract showing the customer's signature.
         @ExpandableOf<Stripe.Files.File> public var customerSignature: Stripe.Files.File.ID?
         /// (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation for the prior charge that can uniquely identify the charge, such as a receipt, shipping label, work order, etc. This document should be paired with a similar document from the disputed payment that proves the two payments are separate.
-        @ExpandableOf<Stripe.Files.File> public var duplicateChargeDocumentation:
-            Stripe.Files.File.ID?
+        @ExpandableOf<Stripe.Files.File> public var duplicateChargeDocumentation: Stripe.Files.File.ID?
         /// An explanation of the difference between the disputed charge versus the prior charge that appears to be a duplicate.
         public var duplicateChargeExplanation: String?
         /// The Stripe ID for the prior charge which appears to be a duplicate of the disputed charge.

@@ -74,8 +74,7 @@ extension Stripe.Checkout {
         /// The timestamp at which the Checkout Session will expire
         public var expiresAt: Date?
         /// ID of the invoice created by the Checkout Session, if it exists.
-        @Expandable<Stripe.Billing.Invoice, Stripe.Billing.Invoice.ID> public var invoice:
-            Stripe.Billing.Invoice.ID?
+        @Expandable<Stripe.Billing.Invoice, Stripe.Billing.Invoice.ID> public var invoice: Stripe.Billing.Invoice.ID?
         /// Details on the state of invoice creation for the Checkout Session.
         public var invoiceCreation: Stripe.Checkout.Session.Invoice.Creation?
         /// Has the `value` true if the object exists in live mode or the value `false` if the object exists in test mode.
@@ -109,8 +108,7 @@ extension Stripe.Checkout {
         /// Describes the type of transaction being performed by Checkout in order to customize relevant text on the page, such as the submit button. `submit_type` can only be specified on Checkout Sessions in `payment` mode, but not Checkout Sessions in `subscription` or `setup` mode.
         public var submitType: Stripe.Checkout.Session.Submit.`Type`?
         /// The ID of the subscription created if one or more plans were provided.
-        @ExpandableOf<Stripe.Billing.Subscription> public var subscription:
-            Stripe.Billing.Subscription.ID?
+        @ExpandableOf<Stripe.Billing.Subscription> public var subscription: Stripe.Billing.Subscription.ID?
         /// Details on the state of tax ID collection for the session.
         public var taxIdCollection: Stripe.Checkout.Session.TaxId.Collection?
         /// Tax and discount details for the computed total amount.
@@ -487,8 +485,7 @@ extension Stripe.Checkout.Session.Invoice.Creation.Invoice {
         /// The account tax IDs associated with the invoice
         @ExpandableCollection<Stripe.Tax.ID> public var accountTaxIds: [String]?
         /// Custom fields displayed on the invoice.
-        public var customFields:
-            [Stripe.Checkout.Session.Invoice.Creation.Invoice.Data.Custom.Fields]?
+        public var customFields: [Stripe.Checkout.Session.Invoice.Creation.Invoice.Data.Custom.Fields]?
         /// An arbitrary string attached to the object. Often useful for displaying to users.
         public var description: String?
         /// Footer displayed on the invoice.
@@ -496,8 +493,7 @@ extension Stripe.Checkout.Session.Invoice.Creation.Invoice {
         /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?
         /// Options for invoice PDF rendering.
-        public var renderingOptions:
-            Stripe.Checkout.Session.Invoice.Creation.Invoice.Data.Rendering.Options?
+        public var renderingOptions: Stripe.Checkout.Session.Invoice.Creation.Invoice.Data.Rendering.Options?
 
         public init(
             accountTaxIds: [String]? = nil,

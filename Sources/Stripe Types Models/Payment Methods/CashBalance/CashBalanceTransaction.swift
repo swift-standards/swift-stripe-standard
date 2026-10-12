@@ -72,8 +72,7 @@ public struct CashBalanceTransaction: Codable, Hashable, Sendable, Identifiable 
 
 public struct CashBalanceTransactionAppliedToPayment: Codable, Hashable, Sendable {
     /// The Payment Intent that funds were applied to.
-    @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent:
-        Stripe.PaymentIntents.PaymentIntent.ID?
+    @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID?
 
     public init(
         paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID? = nil
@@ -155,8 +154,7 @@ public struct CashBalanceTransactionRefundedFromPayment: Codable, Hashable, Send
 
 public struct CashBalanceTransactionUnappliedFromPayment: Codable, Hashable, Sendable {
     /// The Payment Intent that funds were unapplied from.
-    @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent:
-        Stripe.PaymentIntents.PaymentIntent.ID?
+    @ExpandableOf<Stripe.PaymentIntents.PaymentIntent> public var paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID?
 
     public init(
         paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID? = nil

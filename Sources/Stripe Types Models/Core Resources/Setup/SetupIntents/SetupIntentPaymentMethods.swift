@@ -46,8 +46,7 @@ public struct SetupIntentPaymentMethodOptionsAcssDebit: Codable, Hashable, Senda
     /// Additional fields for Mandate creation
     public var mandateOptions: SetupIntentPaymentMethodOptionsAcssDebitMandateOptions?
     /// Bank account verification method.
-    public var verificationMethod:
-        SetupIntentPaymentMethodOptionsAcssDebitMandateOptionsVerificationMethod?
+    public var verificationMethod: SetupIntentPaymentMethodOptionsAcssDebitMandateOptionsVerificationMethod?
 
     public init(
         currency: Stripe.Currency? = nil,
@@ -72,8 +71,7 @@ public struct SetupIntentPaymentMethodOptionsAcssDebitMandateOptions: Codable, H
     /// Payment schedule for the mandate.
     public var payoutSchedule: SetupIntentPaymentMethodOptionsAcssDebitMandateOptionsPayoutSchedule?
     /// Transaction type of the mandate.
-    public var transactionType:
-        SetupIntentPaymentMethodOptionsAcssDebitMandateOptionsTransactionType?
+    public var transactionType: SetupIntentPaymentMethodOptionsAcssDebitMandateOptionsTransactionType?
 
     public init(
         customMandateUrl: String? = nil,
@@ -304,8 +302,7 @@ public struct SetupIntentPaymentMethodOptionsSepaDebitMandateOptions: Codable, H
 // MARK: US Bank Account
 public struct SetupIntentPaymentMethodOptionsUSBankAccount: Codable, Hashable, Sendable {
     /// Additional fields for Financial Connections Session creation
-    public var financialConnections:
-        SetupIntentPaymentMethodOptionsUSBankAccountFinancialConnections?
+    public var financialConnections: SetupIntentPaymentMethodOptionsUSBankAccountFinancialConnections?
     /// Bank account verification method.
     public var verificationMethod: SetupIntentPaymentMethodOptionsUSBankAccountVerificationMethod?
 
@@ -323,8 +320,7 @@ public struct SetupIntentPaymentMethodOptionsUSBankAccountFinancialConnections: 
     Sendable
 {
     /// The list of permissions to request. The `payment_method` permission must be included.
-    public var permissions:
-        [SetupIntentPaymentMethodOptionsUSBankAccountFinancialConnectionsPermission]?
+    public var permissions: [SetupIntentPaymentMethodOptionsUSBankAccountFinancialConnectionsPermission]?
 
     public init(
         permissions: [SetupIntentPaymentMethodOptionsUSBankAccountFinancialConnectionsPermission]? =

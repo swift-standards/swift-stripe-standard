@@ -97,8 +97,7 @@ extension Stripe.Products.Shipping.Rate.Fixed {
         /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
         public var currency: Stripe.Currency?
         /// Shipping rates defined in each available currency option. Each key must be a three-letter ISO currency code and a supported currency. For example, to get your shipping rate in `eur`, fetch the value of the `eur` key in `currency_options`. This field is not included by default. To include it in the response, expand the `currency_options` field.
-        public var currencyOptions:
-            [Stripe.Currency: Stripe.Products.Shipping.Rate.Fixed.Amount.Currency.Options]?
+        public var currencyOptions: [Stripe.Currency: Stripe.Products.Shipping.Rate.Fixed.Amount.Currency.Options]?
 
         public init(
             amount: Int? = nil,
@@ -118,8 +117,7 @@ extension Stripe.Products.Shipping.Rate.Fixed.Amount.Currency {
         /// A non-negative integer in cents representing how much to charge.
         public var amount: Int?
         /// Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of `inclusive`, `exclusive`, or `unspecified`.
-        public var taxBehavior:
-            Stripe.Products.Shipping.Rate.Fixed.Amount.Currency.Options.TaxBehavior?
+        public var taxBehavior: Stripe.Products.Shipping.Rate.Fixed.Amount.Currency.Options.TaxBehavior?
 
         public init(
             amount: Int? = nil,

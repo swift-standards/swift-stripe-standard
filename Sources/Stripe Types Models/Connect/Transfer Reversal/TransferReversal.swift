@@ -29,13 +29,11 @@ extension Stripe.Connect.Transfer {
         /// String representing the object’s type. Objects of the same type share the same value.
         public var object: String
         /// Balance transaction that describes the impact on your account balance.
-        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction:
-            Stripe.Balance.Transaction.ID?
+        @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction: Stripe.Balance.Transaction.ID?
         /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
         /// Linked payment refund for the transfer reversal.
-        @ExpandableOf<Stripe.Refunds.Refund> public var destinationPaymentRefund:
-            Stripe.Refunds.Refund.ID?
+        @ExpandableOf<Stripe.Refunds.Refund> public var destinationPaymentRefund: Stripe.Refunds.Refund.ID?
         /// ID of the refund responsible for the transfer reversal.
         @ExpandableOf<Stripe.Refunds.Refund> public var sourceRefund: Stripe.Refunds.Refund.ID?
 

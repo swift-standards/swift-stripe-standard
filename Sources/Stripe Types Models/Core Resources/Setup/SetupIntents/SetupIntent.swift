@@ -135,8 +135,7 @@ extension Stripe.Setup.Intent {
 extension Stripe.Setup.Intent {
     public struct NextAction: Codable, Hashable, Sendable {
         /// The field that contains Cash App Pay QR code info
-        public var cashappHandleRedirectOrDisplayQrCode:
-            Stripe.Setup.Intent.NextAction.CashappHandleRedirectOrDisplayQrCode?
+        public var cashappHandleRedirectOrDisplayQrCode: Stripe.Setup.Intent.NextAction.CashappHandleRedirectOrDisplayQrCode?
         /// Contains instructions for authenticating by redirecting your customer to another page or application.
         public var redirectToUrl: Stripe.Setup.Intent.NextAction.RedirectToUrl?
         /// Type of the next action to perform, one of `redirect_to_url`, `use_stripe_sdk`, `alipay_handle_redirect`, `oxxo_display_details`, or `verify_with_microdeposits`.

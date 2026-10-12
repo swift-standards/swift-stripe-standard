@@ -73,8 +73,7 @@ extension Stripe.PaymentIntents {
         /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
         /// ID of the invoice that created this PaymentIntent, if it exists.
-        @Expandable<Stripe.Billing.Invoice, Stripe.Billing.Invoice.ID> public var invoice:
-            Stripe.Billing.Invoice.ID?
+        @Expandable<Stripe.Billing.Invoice, Stripe.Billing.Invoice.ID> public var invoice: Stripe.Billing.Invoice.ID?
         /// Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode.
         public var livemode: Bool?
         /// The account (if any) for which the funds of the PaymentIntent are intended. See the PaymentIntents Connect usage guide for details.
@@ -86,8 +85,7 @@ extension Stripe.PaymentIntents {
         /// If present, this property tells you about the processing state of the payment.
         public var processing: PaymentIntent.Processing?
         /// ID of the review associated with this PaymentIntent, if any.
-        @ExpandableOf<Stripe.Fraud.Reviews.Review> public var review:
-            Stripe.Fraud.Reviews.Review.ID?
+        @ExpandableOf<Stripe.Fraud.Reviews.Review> public var review: Stripe.Fraud.Reviews.Review.ID?
         /// The data with which to automatically create a Transfer when the payment is finalized. See the PaymentIntents Connect usage guide for details.
         public var transferData: PaymentIntent.Transfer.Data?
         /// A string that identifies the resulting payment as part of a group. See the PaymentIntents Connect usage guide for details.
@@ -240,8 +238,7 @@ extension Stripe.PaymentIntents.PaymentIntent {
 extension Stripe.PaymentIntents.PaymentIntent.Processing {
     public struct Card: Codable, Hashable, Sendable {
         /// For recurring payments of Indian cards, this hash contains details on whether customer approval is required, and until when the payment will be in `processing` state
-        public var customerNotification:
-            Stripe.PaymentIntents.PaymentIntent.Processing.Card.Customer.Notification?
+        public var customerNotification: Stripe.PaymentIntents.PaymentIntent.Processing.Card.Customer.Notification?
 
         public init(
             customerNotification: Stripe.PaymentIntents.PaymentIntent.Processing.Card.Customer
@@ -431,13 +428,11 @@ extension Stripe.PaymentIntents.PaymentIntent.Payment.Method {
         /// If the PaymentIntent’s `payment_method_types` includes `affirm`, this hash contains the configurations that will be applied to each payment attempt of that type.
         public let affirm: Stripe.PaymentMethods.PaymentMethod.Options.Affirm.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `afterpay_clearpay`, this hash contains the configurations that will be applied to each payment attempt of that type.
-        public let afterpayClearpay:
-            Stripe.PaymentMethods.PaymentMethod.Options.AfterpayClearpay.Configuration?
+        public let afterpayClearpay: Stripe.PaymentMethods.PaymentMethod.Options.AfterpayClearpay.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `alipay`, this hash contains the configurations that will be applied to each payment attempt of that type.
         public let alipay: Stripe.PaymentMethods.PaymentMethod.Options.Alipay.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `au_becs_debit`, this hash contains the configurations that will be applied to each payment attempt of that type.
-        public let auBecsDebit:
-            Stripe.PaymentMethods.PaymentMethod.Options.AUBecsDebit.Configuration?
+        public let auBecsDebit: Stripe.PaymentMethods.PaymentMethod.Options.AUBecsDebit.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `bacs_debit`, this hash contains the configurations that will be applied to each payment attempt of that type.
         public let bacsDebit: Stripe.PaymentMethods.PaymentMethod.Options.BacsDebit.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `bancontact`, this hash contains the configurations that will be applied to each payment attempt of that type.
@@ -449,11 +444,9 @@ extension Stripe.PaymentIntents.PaymentIntent.Payment.Method {
         /// If the PaymentIntent’s `payment_method_types` includes `card`, this hash contains the configurations that will be applied to each payment attempt of that type.
         public let card: Stripe.PaymentMethods.PaymentMethod.Options.Card.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `card_present`, this hash contains the configurations that will be applied to each payment attempt of that type.
-        public let cardPresent:
-            Stripe.PaymentMethods.PaymentMethod.Options.CardPresent.Configuration?
+        public let cardPresent: Stripe.PaymentMethods.PaymentMethod.Options.CardPresent.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `customer_balance`, this hash contains the configurations that will be applied to each payment attempt of that type.
-        public let customerBalance:
-            Stripe.PaymentMethods.PaymentMethod.Options.CustomerBalance.Configuration?
+        public let customerBalance: Stripe.PaymentMethods.PaymentMethod.Options.CustomerBalance.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `eps`, this hash contains the configurations that will be applied to each payment attempt of that type.
         public let eps: Stripe.PaymentMethods.PaymentMethod.Options.EPS.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `fpx`, this hash contains the configurations that will be applied to each payment attempt of that type.
@@ -465,8 +458,7 @@ extension Stripe.PaymentIntents.PaymentIntent.Payment.Method {
         /// If the PaymentIntent’s `payment_method_types` includes `ideal`, this hash contains the configurations that will be applied to each payment attempt of that type.
         public let ideal: Stripe.PaymentMethods.PaymentMethod.Options.Ideal.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `interac_present`, this hash contains the configurations that will be applied to each payment attempt of that type.
-        public let interacPresent:
-            Stripe.PaymentMethods.PaymentMethod.Options.InteracPresent.Configuration?
+        public let interacPresent: Stripe.PaymentMethods.PaymentMethod.Options.InteracPresent.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `klarna`, this hash contains the configurations that will be applied to each payment attempt of that type.
         public let klarna: Stripe.PaymentMethods.PaymentMethod.Options.Klarna.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `konbini`, this hash contains the configurations that will be applied to each payment attempt of that type.
@@ -488,8 +480,7 @@ extension Stripe.PaymentIntents.PaymentIntent.Payment.Method {
         /// If the PaymentIntent’s `payment_method_types` includes `sofort`, this hash contains the configurations that will be applied to each payment attempt of that type.
         public let sofort: Stripe.PaymentMethods.PaymentMethod.Options.Sofort.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `us_bank_account`, this hash contains the configurations that will be applied to each payment attempt of that type.
-        public let usBankAccount:
-            Stripe.PaymentMethods.PaymentMethod.Options.USBankAccount.Configuration?
+        public let usBankAccount: Stripe.PaymentMethods.PaymentMethod.Options.USBankAccount.Configuration?
         /// If the PaymentIntent’s `payment_method_types` includes `wechat_pay`, this hash contains the configurations that will be applied to each payment attempt of that type.
         public let wechatPay: Stripe.PaymentMethods.PaymentMethod.Options.WechatPay.Configuration?
 
