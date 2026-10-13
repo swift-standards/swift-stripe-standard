@@ -1,40 +1,22 @@
-//
-//  Stripe Tax Calculations Types.swift
-//  swift-stripe-types
-//
-//  Created on 2025-01-14.
-//
-
-import Foundation
+public import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 import Tagged
 
-// Calculations namespace is already defined in Stripe Namespaces.swift
-
 extension Stripe.Tax.Calculations {
-    // https://docs.stripe.com/api/tax/calculations/create.md
     public enum Create {}
     public enum List {}
 }
 
 extension Stripe.Tax.Calculations.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
         public var currency: Stripe.Currency
-        /// The customer to tax.
         public var customer: Stripe.Customers.Customer.ID?
-        /// The customer's details. Only required if customer is not provided.
         public var customerDetails: CustomerDetails?
-        /// A list of items the customer is purchasing.
         public var lineItems: [LineItem]
-        /// Shipping cost details for the calculation.
         public var shippingCost: ShippingCost?
-        /// The shipping address to use for the calculation.
         public var shipFromDetails: ShipFromDetails?
-        /// Timestamp of the date to use for the calculation. Measured in seconds since the Unix epoch.
         public var taxDate: Date?
-        /// Set of key-value pairs that you can attach to an object.
         public var expand: [String]?
 
         private enum CodingKeys: String, CodingKey {
@@ -70,15 +52,10 @@ extension Stripe.Tax.Calculations.Create {
     }
 
     public struct CustomerDetails: Codable, Equatable, Sendable {
-        /// The customer's postal address (for example, home or business location).
         public var address: Address?
-        /// The type of customer address provided.
         public var addressSource: AddressSource?
-        /// The customer's IP address (IPv4 or IPv6).
         public var ipAddress: String?
-        /// The customer's tax exemption. One of none, exempt, or reverse.
         public var taxability: Taxability?
-        /// A list of tax IDs for the customer.
         public var taxIds: [TaxID]?
 
         private enum CodingKeys: String, CodingKey {
@@ -116,17 +93,11 @@ extension Stripe.Tax.Calculations.Create {
     }
 
     public struct LineItem: Codable, Equatable, Sendable {
-        /// A positive integer in the smallest currency unit representing the line item's total price.
         public var amount: Int
-        /// If provided, the product's tax code will be used for the calculation. If omitted, Stripe will use the default tax code.
         public var product: Stripe.Products.Product.ID?
-        /// The number of units of the item being purchased. Must be a positive integer.
         public var quantity: Int?
-        /// A custom identifier for this line item, which will be included in the calculation's lineItems.
         public var reference: String?
-        /// Specifies whether the amount includes taxes. Defaults to exclusive.
         public var taxBehavior: TaxBehavior?
-        /// The tax code ID to use for this line item.
         public var taxCode: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -161,13 +132,9 @@ extension Stripe.Tax.Calculations.Create {
     }
 
     public struct ShippingCost: Codable, Equatable, Sendable {
-        /// A positive integer in the smallest currency unit representing the shipping charge.
         public var amount: Int
-        /// If provided, the shipping tax code will be used for the calculation.
         public var shippingRate: Stripe.Products.Shipping.Rate.ID?
-        /// Specifies whether the amount includes taxes. Defaults to exclusive.
         public var taxBehavior: TaxBehavior?
-        /// The tax code to use for shipping.
         public var taxCode: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -196,7 +163,6 @@ extension Stripe.Tax.Calculations.Create {
     }
 
     public struct ShipFromDetails: Codable, Equatable, Sendable {
-        /// The address from which the goods are being shipped from.
         public var address: Address
 
         public init(address: Address) {
@@ -205,9 +171,7 @@ extension Stripe.Tax.Calculations.Create {
     }
 
     public struct TaxID: Codable, Equatable, Sendable {
-        /// The type of the tax ID.
         public var type: TaxIDType
-        /// The value of the tax ID.
         public var value: String
 
         public init(type: TaxIDType, value: String) {
@@ -296,17 +260,13 @@ extension Stripe.Tax.Calculations.Create {
 }
 
 extension Stripe.Tax.Calculations.List {
-    // https://docs.stripe.com/api/tax/calculations/lineItems.md
     public enum LineItems {}
 }
 
 extension Stripe.Tax.Calculations.List.LineItems {
     public struct Request: Codable, Equatable, Sendable {
-        /// A cursor for use in pagination. ending_before is an object ID that defines your place in the list.
         public var endingBefore: String?
-        /// A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.
         public var limit: Int?
-        /// A cursor for use in pagination. starting_after is an object ID that defines your place in the list.
         public var startingAfter: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -327,13 +287,9 @@ extension Stripe.Tax.Calculations.List.LineItems {
     }
 
     public struct Response: Codable, Sendable {
-        /// String describing the object type returned.
         public var object: String
-        /// Details about each object.
         public var data: [Stripe.Tax.Calculation.LineItem]
-        /// True if this list has another page of items after this one that can be fetched.
         public var hasMore: Bool
-        /// The URL where this list can be accessed.
         public var url: String
 
         private enum CodingKeys: String, CodingKey {

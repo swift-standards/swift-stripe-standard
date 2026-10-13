@@ -2,48 +2,33 @@ import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
-// The Session model already exists in Stripe Types Models
-// We only need to add the Create request type here
-
-// MARK: - Create
 extension Stripe.Billing.Customer.Portal.Session {
     public enum Create {}
 }
 
 extension Stripe.Billing.Customer.Portal.Session.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// The ID of an existing customer.
         public let customer: Stripe.Customers.Customer.ID
 
-        /// The ID of an existing configuration to use for this session.
         public let configuration: String?
 
-        /// Information about a specific flow for the customer to go through.
         public let flowData: FlowData?
 
-        /// The IETF language tag of the locale Customer Portal is displayed in.
         public let locale: String?
 
-        /// The account for which the session was created on behalf of.
         public let onBehalfOf: String?
 
-        /// The URL to redirect customers to when they click on the portal link.
         public let returnUrl: String?
 
         public struct FlowData: Codable, Equatable, Sendable {
-            /// Behavior after the flow is completed.
             public let afterCompletion: AfterCompletion?
 
-            /// Type of flow that the customer will go through.
             public let type: FlowType
 
-            /// Additional parameters for subscription update flow.
             public let subscriptionUpdate: SubscriptionUpdate?
 
-            /// Additional parameters for subscription update confirm flow.
             public let subscriptionUpdateConfirm: SubscriptionUpdateConfirm?
 
-            /// Additional parameters for subscription cancel flow.
             public let subscriptionCancel: SubscriptionCancel?
 
             public enum FlowType: String, Codable, Equatable, Sendable {
@@ -54,13 +39,10 @@ extension Stripe.Billing.Customer.Portal.Session.Create {
             }
 
             public struct AfterCompletion: Codable, Equatable, Sendable {
-                /// Configuration when type is hosted_confirmation.
                 public let hostedConfirmation: HostedConfirmation?
 
-                /// Configuration when type is redirect.
                 public let redirect: Redirect?
 
-                /// The specified type of behavior after the flow is completed.
                 public let type: AfterCompletionType
 
                 public enum AfterCompletionType: String, Codable, Equatable, Sendable {
@@ -70,7 +52,6 @@ extension Stripe.Billing.Customer.Portal.Session.Create {
                 }
 
                 public struct HostedConfirmation: Codable, Equatable, Sendable {
-                    /// A custom message to display to the customer after the flow is completed.
                     public let customMessage: String?
 
                     private enum CodingKeys: String, CodingKey {
@@ -79,7 +60,6 @@ extension Stripe.Billing.Customer.Portal.Session.Create {
                 }
 
                 public struct Redirect: Codable, Equatable, Sendable {
-                    /// The URL to redirect customers to after the flow is completed.
                     public let returnUrl: String
 
                     private enum CodingKeys: String, CodingKey {
@@ -95,31 +75,24 @@ extension Stripe.Billing.Customer.Portal.Session.Create {
             }
 
             public struct SubscriptionUpdate: Codable, Equatable, Sendable {
-                /// The ID of the subscription to be updated.
                 public let subscription: Stripe.Billing.Subscription.ID
             }
 
             public struct SubscriptionUpdateConfirm: Codable, Equatable, Sendable {
-                /// The ID of the subscription item to be updated.
                 public let items: [Item]
 
-                /// The ID of the subscription to be updated.
                 public let subscription: Stripe.Billing.Subscription.ID
 
                 public struct Item: Codable, Equatable, Sendable {
-                    /// The ID of the subscription item to be updated.
                     public let id: Stripe.Billing.Subscription.Item.ID
 
-                    /// The quantity to update to.
                     public let quantity: Int?
 
-                    /// The ID of the price to update to.
                     public let price: Stripe.Products.Price.ID?
                 }
             }
 
             public struct SubscriptionCancel: Codable, Equatable, Sendable {
-                /// The ID of the subscription to be canceled.
                 public let subscription: Stripe.Billing.Subscription.ID
             }
 

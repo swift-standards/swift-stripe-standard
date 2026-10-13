@@ -3,7 +3,6 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe {
-    // https://docs.stripe.com/api/confirmation_tokens/retrieve.md
     public struct ConfirmationToken: Sendable, Hashable, Identifiable {
         public typealias ID = Tagged<Self, String>
 

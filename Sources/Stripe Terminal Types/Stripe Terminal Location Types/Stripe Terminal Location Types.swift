@@ -3,7 +3,6 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 import Tagged
 
-// MARK: - Create
 extension Stripe.Terminal.Locations {
     public enum Create {}
 }
@@ -70,7 +69,6 @@ extension Stripe.Terminal.Locations.Create {
     }
 }
 
-// MARK: - Update
 extension Stripe.Terminal.Locations {
     public enum Update {}
 }
@@ -137,7 +135,6 @@ extension Stripe.Terminal.Locations.Update {
     }
 }
 
-// MARK: - List
 extension Stripe.Terminal.Locations {
     public enum List {}
 }

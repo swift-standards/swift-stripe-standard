@@ -1,25 +1,13 @@
-//
-//  Tax Code.swift
-//
-//
-//  Created by Andrew Edwards on 12/16/21.
-//
-
 import Foundation
-import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/tax_codes/object.md
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe.Tax {
     public struct Code: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
-        /// Unique identifier for the object.
         public var id: ID
-        /// String representing the object’s type. Objects of the same type share the same value.
         public var object: String
-        /// A detailed description of which types of products the tax code represents.
         public var description: String
-        /// A short name for the tax code.
         public var name: String
 
         public init(

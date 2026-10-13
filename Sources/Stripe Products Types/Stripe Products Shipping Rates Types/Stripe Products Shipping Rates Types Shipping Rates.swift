@@ -4,11 +4,8 @@ import Stripe_Types_Shared
 import Tagged
 
 extension Stripe.Products.ShippingRates {
-    // https://docs.stripe.com/api/shipping_rates/create.md
     public enum Create {}
-    // https://docs.stripe.com/api/shipping_rates/update.md
     public enum Update {}
-    // https://docs.stripe.com/api/shipping_rates/list.md
     public enum List {}
 }
 

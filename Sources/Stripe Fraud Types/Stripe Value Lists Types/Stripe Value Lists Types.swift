@@ -3,23 +3,16 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Fraud.ValueLists.API {
-    // https://docs.stripe.com/api/radar/value_lists/create.md
     public enum Create {}
-    // https://docs.stripe.com/api/radar/value_lists/update.md
     public enum Update {}
-    // https://docs.stripe.com/api/radar/value_lists/list.md
     public enum List {}
 }
 
 extension Stripe.Fraud.ValueLists.API.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// The name of the value list for use in rules.
         public var alias: String
-        /// Type of the items in the value list. One of card_fingerprint, card_bin, email, ip_address, country, string, case_sensitive_string, or customer_id. Use string if the item type is unknown or mixed.
         public var itemType: Stripe.Fraud.ValueLists.ItemType?
-        /// The human-readable name of the value list.
         public var name: String
-        /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?
 
         private enum CodingKeys: String, CodingKey {
@@ -45,11 +38,8 @@ extension Stripe.Fraud.ValueLists.API.Create {
 
 extension Stripe.Fraud.ValueLists.API.Update {
     public struct Request: Codable, Equatable, Sendable {
-        /// The name of the value list for use in rules.
         public var alias: String?
-        /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?
-        /// The human-readable name of the value list.
         public var name: String?
 
         public init(
@@ -66,17 +56,11 @@ extension Stripe.Fraud.ValueLists.API.Update {
 
 extension Stripe.Fraud.ValueLists.API.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// The alias used to reference the value list when writing rules.
         public var alias: String?
-        /// A value contained within a value list - returns all value lists containing this value.
         public var contains: String?
-        /// A cursor for use in pagination. ending_before is an object ID that defines your place in the list.
         public var endingBefore: String?
-        /// A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.
         public var limit: Int?
-        /// A cursor for use in pagination. starting_after is an object ID that defines your place in the list.
         public var startingAfter: String?
-        /// Only return value lists that were created during the given date interval.
         public var created: Stripe.DateFilter?
 
         private enum CodingKeys: String, CodingKey {

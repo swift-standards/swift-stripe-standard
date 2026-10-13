@@ -1,25 +1,12 @@
-//
-//  Billing Credit Balance Summary.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
 import Foundation
-import Stripe_Types_Shared
+public import Stripe_Types_Shared
+public import Tagged
 
-// https://docs.stripe.com/api/billing/credit-balance-summary/object.md
-
-/// The [Credit Balance Summary Object](https://stripe.com/docs/api/billing/credit-balance-summary/object) .
 extension Stripe.Billing.Credit.Balance {
     public struct Summary: Codable, Hashable, Sendable {
-        /// String representing the object's type. Objects of the same type share the same value.
         public var object: String
-        /// The credit balance summary information
         public var balances: [Balance]?
-        /// The ID of the customer for whom the credit balance summary is retrieved
         public var customer: Stripe.Customers.Customer.ID?
-        /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool?
 
         public init(
@@ -45,9 +32,7 @@ extension Stripe.Billing.Credit.Balance {
 
 extension Stripe.Billing.Credit.Balance.Summary {
     public struct Balance: Codable, Hashable, Sendable {
-        /// The available balance that can be applied to new charges
         public var availableBalance: BalanceAmount?
-        /// The ledger balance, which includes pending transactions
         public var ledgerBalance: BalanceAmount?
 
         public init(
@@ -65,9 +50,7 @@ extension Stripe.Billing.Credit.Balance.Summary {
     }
 
     public struct BalanceAmount: Codable, Hashable, Sendable {
-        /// Monetary amount details
         public var monetary: Monetary?
-        /// The type of amount
         public var type: String?
 
         public init(
@@ -85,9 +68,7 @@ extension Stripe.Billing.Credit.Balance.Summary {
     }
 
     public struct Monetary: Codable, Hashable, Sendable {
-        /// Three-letter ISO currency code, in lowercase
         public var currency: Stripe.Currency?
-        /// The amount in the smallest currency unit (e.g., cents for USD)
         public var value: Int?
 
         public init(
@@ -107,11 +88,8 @@ extension Stripe.Billing.Credit.Balance.Summary {
 
 extension Stripe.Billing.Credit.Balance.Summary {
     public struct Filter: Codable, Hashable, Sendable {
-        /// The type of filter
         public var type: FilterType
-        /// Applicability scope filter
         public var applicabilityScope: ApplicabilityScope?
-        /// Credit grant filter
         public var creditGrant: String?
 
         public init(
@@ -137,9 +115,7 @@ extension Stripe.Billing.Credit.Balance.Summary {
     }
 
     public struct ApplicabilityScope: Codable, Hashable, Sendable {
-        /// Price type filter
         public var priceType: PriceType?
-        /// List of price IDs to filter by
         public var prices: [String]?
 
         public init(

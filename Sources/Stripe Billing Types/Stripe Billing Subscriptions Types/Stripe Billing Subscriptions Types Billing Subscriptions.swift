@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 05/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -17,7 +10,6 @@ extension Stripe.Billing.Subscriptions {
 }
 
 extension Stripe.Billing.Subscriptions.Create {
-    // https://docs.stripe.com/api/subscriptions/create.md
     public struct Request: Codable, Equatable, Sendable {
         public let customer: Stripe.Customers.Customer.ID
         public let items: [Item]
@@ -79,7 +71,6 @@ extension Stripe.Billing.Subscriptions.Create {
 }
 
 extension Stripe.Billing.Subscriptions.Update {
-    // https://docs.stripe.com/api/subscriptions/update.md
     public struct Request: Codable, Equatable, Sendable {
         public let cancelAtPeriodEnd: Bool?
         public let description: String?
@@ -135,31 +126,18 @@ extension Stripe.Billing.Subscriptions.Update {
 }
 
 extension Stripe.Billing.Subscriptions.List {
-    // https://docs.stripe.com/api/subscriptions/list.md
     public struct Request: Codable, Equatable, Sendable {
-        /// Filter subscriptions by their automatic tax settings
         public let automaticTax: Stripe.DateFilter?
-        /// The collection method of the subscriptions to retrieve
         public let collectionMethod: Stripe.Billing.Subscription.Collection.Method?
-        /// Only return subscriptions that were created during the given date interval
         public let created: Stripe.DateFilter?
-        /// Only return subscriptions whose current_period_end falls within the given date interval
         public let currentPeriodEnd: Stripe.DateFilter?
-        /// Only return subscriptions whose current_period_start falls within the given date interval
         public let currentPeriodStart: Stripe.DateFilter?
-        /// The ID of the customer whose subscriptions will be retrieved
         public let customer: Stripe.Customers.Customer.ID?
-        /// A cursor for use in pagination
         public let endingBefore: String?
-        /// A limit on the number of objects to be returned (1-100, default 10)
         public let limit: Int?
-        /// Filter for subscriptions that contain this recurring price ID
         public let price: Stripe.Products.Price.ID?
-        /// A cursor for use in pagination
         public let startingAfter: String?
-        /// The status of the subscriptions to retrieve
         public let status: Stripe.Billing.Subscription.Status?
-        /// Filter for subscriptions associated with the specified test clock
         public let testClock: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -205,9 +183,7 @@ extension Stripe.Billing.Subscriptions.List {
             self.testClock = testClock
         }
 
-        /// Filter subscriptions by their automatic tax settings
         public struct AutomaticTaxFilter: Codable, Equatable, Sendable {
-            /// Enabled automatic tax calculation
             public let enabled: Bool
 
             public init(enabled: Bool) {
@@ -244,7 +220,6 @@ extension Stripe.Billing.Subscriptions.List {
 }
 
 extension Stripe.Billing.Subscriptions.Cancel {
-    // https://docs.stripe.com/api/subscriptions/cancel.md
     public struct Request: Codable, Equatable, Sendable {
         public let invoiceNow: Bool?
         public let prorate: Bool?

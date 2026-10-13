@@ -2,8 +2,6 @@ import Foundation
 import Stripe_Types_Shared
 
 extension Stripe.WebElements {
-    /// Link Authentication Element for Link payment method
-    /// See: https://docs.stripe.com/payments/elements/link-authentication-element
     public struct LinkAuthentication: Codable, Hashable, Sendable {
         public let options: Options?
 

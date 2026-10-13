@@ -1,110 +1,59 @@
-import Foundation
-import Stripe_Types_Shared
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
-// https://docs.stripe.com/api/subscriptions/object.md
-
-/// The [Subscription Object](https://stripe.com/docs/api/subscriptions/object)
 extension Stripe.Billing {
     public struct Subscription: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
 
-        /// Unique identifier for the object.
         public var id: ID
-        /// If the subscription has been canceled with the `at_period_end` flag set to `true`, `cancel_at_period_end` on the subscription will be `true`.
         public var cancelAtPeriodEnd: Bool?
-        /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
         public var currency: Stripe.Currency?
-        /// End of the current period that the subscription has been invoiced for.
         public var currentPeriodEnd: Date?
-        /// Start of the current period that the subscription has been invoiced for.
         public var currentPeriodStart: Date?
-        /// ID of the customer who owns the subscription.
         @ExpandableOf<Stripe.Customers.Customer> public var customer: Stripe.Customers.Customer.ID?
-        /// ID of the default payment method for the subscription.
         @ExpandableOf<Stripe.PaymentMethods.PaymentMethod> public var defaultPaymentMethod: Stripe.PaymentMethods.PaymentMethod.ID?
-        /// The subscription's description, meant to be displayable to the customer.
         public var description: String?
-        /// List of subscription items, each with an attached plan.
         public var items: Item.List?
-        /// The most recent invoice this subscription has generated.
         @Expandable<Invoice, Invoice.ID> public var latestInvoice
-        /// Set of key-value pairs that you can attach to an object.
         public var metadata: [String: String]?
-        /// You can use this SetupIntent to collect user authentication.
         @ExpandableOf<Stripe.Setup.Intent> public var pendingSetupIntent
-        /// If specified, pending updates that will be applied to the subscription.
         public var pendingUpdate: PendingUpdate?
-        /// Subscription status
         public var status: Status?
-        /// String representing the object's type.
         public var object: String
-        /// ID of the Connect Application that created the subscription.
         public var application: String?
-        /// Application fee percentage
         public var applicationFeePercent: Decimal?
-        /// Automatic tax settings for this subscription.
         public var automaticTax: AutomaticTax?
-        /// Billing cycle anchor
         public var billingCycleAnchor: Date?
-        /// Billing cycle anchor configuration
         public var billingCycleAnchorConfig: BillingCycleAnchorConfig?
-        /// Billing thresholds
         public var billingThresholds: BillingThresholds?
-        /// Cancellation date
         public var cancelAt: Date?
-        /// Cancellation timestamp
         public var canceledAt: Date?
-        /// Cancellation details
         public var cancellationDetails: Cancellation.Details?
-        /// Collection method
         public var collectionMethod: Collection.Method?
-        /// Creation timestamp
         public var created: Date
-        /// Payment due days
         public var daysUntilDue: Int?
-        /// Default payment source
         @DynamicExpandable<BankAccount, Card> public var defaultSource: String?
-        /// Default tax rates
         public var defaultTaxRates: [Stripe.Tax.Rate]?
-        /// Active discount
         public var discount: Stripe.Products.Discount?
-        /// End date if ended
         public var endedAt: Date?
-        /// Live mode flag
         public var livemode: Bool?
-        /// Next pending invoice timestamp
         public var nextPendingInvoiceItemInvoice: Date?
-        /// Connected account
         @ExpandableOf<Stripe.Connect.Account> public var onBehalfOf: Stripe.Connect.Account.ID?
-        /// Payment pause settings
         public var pauseCollection: PauseCollection?
-        /// Payment settings
         public var paymentSettings: Payment.Settings?
-        /// Pending invoice interval
         public var pendingInvoiceItemInterval: PendingInvoiceItemInterval?
-        /// Associated schedule
         @ExpandableOf<Schedule> public var schedule
-        /// Start date
         public var startDate: Date?
-        /// Test clock ID
         public var testClock: String?
-        /// Transfer data
         public var transferData: TransferData?
-        /// Trial end date
         public var trialEnd: Date?
-        /// Trial settings
         public var trialSettings: Trial.Settings?
-        /// Trial start date
         public var trialStart: Date?
-        /// Billing mode configuration
         public var billingMode: BillingMode?
-        /// Array of discounts applied to the subscription
         public var discounts: [Stripe.Products.Discount]?
-        /// Invoice settings for the subscription
         public var invoiceSettings: InvoiceSettings?
-        /// Legacy plan object (deprecated, use price instead)
         public var plan: Plan?
-        /// Quantity of the subscription (for single-item subscriptions)
         public var quantity: Int?
 
         private enum CodingKeys: String, CodingKey {
@@ -263,7 +212,6 @@ extension Stripe.Billing {
     }
 }
 
-// MARK: - Subscription Types
 extension Stripe.Billing.Subscription {
     public enum Status: String, Codable, Sendable {
         case active
@@ -276,7 +224,6 @@ extension Stripe.Billing.Subscription {
         case paused
     }
 
-    // Using shared Stripe.Interval type
     public typealias Interval = Stripe.Interval
 
     public enum PaymentBehavior: String, Codable, Sendable {
@@ -293,14 +240,10 @@ extension Stripe.Billing.Subscription {
     }
 }
 
-// MARK: - Automatic Tax
 extension Stripe.Billing.Subscription {
     public struct AutomaticTax: Codable, Hashable, Sendable {
-        /// Whether Stripe automatically computes tax on this subscription.
         public var enabled: Bool?
-        /// The reason why automatic tax is disabled, if applicable.
         public var disabledReason: String?
-        /// The location where tax is liable to be collected.
         public var liability: TaxLiability?
 
         private enum CodingKeys: String, CodingKey {
@@ -329,12 +272,9 @@ extension Stripe.Billing.Subscription {
     }
 }
 
-// MARK: - Billing
 extension Stripe.Billing.Subscription {
     public struct BillingThresholds: Codable, Hashable, Sendable {
-        /// Monetary threshold that triggers the subscription to create an invoice
         public var amountGte: Int?
-        /// Reset billing cycle anchor flag
         public var resetBillingCycleAnchor: Bool?
 
         private enum CodingKeys: String, CodingKey {
@@ -352,18 +292,14 @@ extension Stripe.Billing.Subscription {
     }
 }
 
-// MARK: - Cancellation
 extension Stripe.Billing.Subscription {
     public enum Cancellation {}
 }
 
 extension Stripe.Billing.Subscription.Cancellation {
     public struct Details: Codable, Hashable, Sendable {
-        /// Additional comments about cancellation
         public var comment: String?
-        /// Customer submitted reason
         public var feedback: Feedback?
-        /// Cancellation reason
         public var reason: String?
 
         public init(
@@ -389,7 +325,6 @@ extension Stripe.Billing.Subscription.Cancellation {
     }
 }
 
-// MARK: - Collection
 extension Stripe.Billing.Subscription {
     public enum Collection {}
 }
@@ -401,18 +336,14 @@ extension Stripe.Billing.Subscription.Collection {
     }
 }
 
-// MARK: - Payment
 extension Stripe.Billing.Subscription {
     public enum Payment {}
 }
 
 extension Stripe.Billing.Subscription.Payment {
     public struct Settings: Codable, Hashable, Sendable {
-        /// Payment method options configuration
         public var paymentMethodOptions: MethodOptions?
-        /// Allowed payment method types
         public var paymentMethodTypes: [Stripe.PaymentMethods.PaymentMethod.`Type`]?
-        /// Default payment method saving behavior
         public var saveDefaultPaymentMethod: SaveDefaultPaymentMethod?
 
         private enum CodingKeys: String, CodingKey {
@@ -438,19 +369,14 @@ extension Stripe.Billing.Subscription.Payment {
     }
 
     public struct MethodOptions: Codable, Hashable, Sendable {
-        // This is a placeholder for payment method options
-        // The actual implementation should define specific payment method configurations
 
         public init() {}
     }
 }
 
-// MARK: - PendingInvoiceItemInterval
 extension Stripe.Billing.Subscription {
     public struct PendingInvoiceItemInterval: Codable, Hashable, Sendable {
-        /// Billing interval
         public var interval: Stripe.Interval?
-        /// Number of intervals between invoices
         public var intervalCount: Int?
 
         private enum CodingKeys: String, CodingKey {
@@ -468,12 +394,9 @@ extension Stripe.Billing.Subscription {
     }
 }
 
-// MARK: - PauseCollection
 extension Stripe.Billing.Subscription {
     public struct PauseCollection: Codable, Hashable, Sendable {
-        /// Collection behavior while paused
         public var behavior: Behavior?
-        /// Resume date
         public var resumesAt: Date?
 
         private enum CodingKeys: String, CodingKey {
@@ -497,14 +420,12 @@ extension Stripe.Billing.Subscription {
     }
 }
 
-// MARK: - Trial
 extension Stripe.Billing.Subscription {
     public enum Trial {}
 }
 
 extension Stripe.Billing.Subscription.Trial {
     public struct Settings: Codable, Hashable, Sendable {
-        /// End behavior configuration
         public var endBehavior: EndBehavior?
 
         public init(
@@ -515,7 +436,6 @@ extension Stripe.Billing.Subscription.Trial {
     }
 
     public struct EndBehavior: Codable, Hashable, Sendable {
-        /// Behavior when payment method is missing
         public var missingPaymentMethod: MissingPaymentMethodBehavior?
 
         private enum CodingKeys: String, CodingKey {
@@ -536,12 +456,9 @@ extension Stripe.Billing.Subscription.Trial {
     }
 }
 
-// MARK: - TransferData
 extension Stripe.Billing.Subscription {
     public struct TransferData: Codable, Hashable, Sendable {
-        /// Transfer percentage
         public var amountPercent: Int?
-        /// Destination account
         @ExpandableOf<Stripe.Connect.Account> public var destination: Stripe.Connect.Account.ID?
 
         private enum CodingKeys: String, CodingKey {
@@ -559,7 +476,6 @@ extension Stripe.Billing.Subscription {
     }
 }
 
-// MARK: - Search and List Results
 extension Stripe.Billing.Subscription {
     public struct List: Codable, Hashable, Sendable {
         public var object: String
@@ -578,7 +494,6 @@ extension Stripe.Billing.Subscription {
     }
 }
 
-// MARK: - PendingUpdate
 extension Stripe.Billing.Subscription {
     public struct PendingUpdate: Codable, Hashable, Sendable {
         public var billingCycleAnchor: Date?
@@ -611,7 +526,6 @@ extension Stripe.Billing.Subscription {
     }
 }
 
-// MARK: - BillingMode
 extension Stripe.Billing.Subscription {
     public struct BillingMode: Codable, Hashable, Sendable {
         public var type: String?
@@ -622,7 +536,6 @@ extension Stripe.Billing.Subscription {
     }
 }
 
-// MARK: - BillingCycleAnchorConfig
 extension Stripe.Billing.Subscription {
     public struct BillingCycleAnchorConfig: Codable, Hashable, Sendable {
         public var dayOfMonth: Int?
@@ -655,7 +568,6 @@ extension Stripe.Billing.Subscription {
     }
 }
 
-// MARK: - InvoiceSettings
 extension Stripe.Billing.Subscription {
     public struct InvoiceSettings: Codable, Hashable, Sendable {
         public var accountTaxIds: [String]?

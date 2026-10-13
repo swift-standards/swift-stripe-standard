@@ -2,8 +2,6 @@ import Foundation
 import Stripe_Types_Shared
 
 extension Stripe.WebElements {
-    /// Currency Selector Element for selecting payment currency
-    /// See: https://docs.stripe.com/elements/currency-selector-element
     public struct CurrencySelector: Codable, Hashable, Sendable {
         public let options: Options?
 

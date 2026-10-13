@@ -1,43 +1,31 @@
-import Foundation
+public import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Products.PromotionCodes {
-    // https://docs.stripe.com/api/promotion_codes/create.md
     public enum Create {}
 
-    // https://docs.stripe.com/api/promotion_codes/update.md
     public enum Update {}
 
-    // https://docs.stripe.com/api/promotion_codes/list.md
     public enum List {}
 }
 
-// MARK: - Create Request
 extension Stripe.Products.PromotionCodes.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// The coupon for this promotion code (required)
         public let coupon: Stripe.Products.Coupon.ID
 
-        /// Whether the promotion code is currently active
         public let active: Bool?
 
-        /// Customer-facing code
         public let code: String?
 
-        /// The customer that this promotion code can be used by
         public let customer: Stripe.Customers.Customer.ID?
 
-        /// Date at which the promotion code can no longer be redeemed
         public let expiresAt: Date?
 
-        /// Maximum number of times this promotion code can be redeemed
         public let maxRedemptions: Int?
 
-        /// Set of key-value pairs for additional information
         public let metadata: [String: String]?
 
-        /// Settings that restrict the redemption of the promotion code
         public let restrictions: Stripe.Products.PromotionCodes.Restrictions?
 
         private enum CodingKeys: String, CodingKey {
@@ -73,16 +61,12 @@ extension Stripe.Products.PromotionCodes.Create {
     }
 }
 
-// MARK: - Update Request
 extension Stripe.Products.PromotionCodes.Update {
     public struct Request: Codable, Equatable, Sendable {
-        /// Whether the promotion code is currently active
         public let active: Bool?
 
-        /// Set of key-value pairs for additional information
         public let metadata: [String: String]?
 
-        /// Settings that restrict the redemption of the promotion code
         public let restrictions: Stripe.Products.PromotionCodes.Restrictions?
 
         public init(
@@ -97,31 +81,22 @@ extension Stripe.Products.PromotionCodes.Update {
     }
 }
 
-// MARK: - List Request/Response
 extension Stripe.Products.PromotionCodes.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Filter by active status
         public let active: Bool?
 
-        /// Filter by promotion code
         public let code: String?
 
-        /// Filter by coupon
         public let coupon: Stripe.Products.Coupon.ID?
 
-        /// Filter by creation date
         public let created: Stripe.DateFilter?
 
-        /// Filter by customer
         public let customer: Stripe.Customers.Customer.ID?
 
-        /// Pagination cursor
         public let endingBefore: String?
 
-        /// Limit on the number of objects to be returned
         public let limit: Int?
 
-        /// Pagination cursor
         public let startingAfter: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -183,19 +158,14 @@ extension Stripe.Products.PromotionCodes.List {
     }
 }
 
-// MARK: - Shared Types
 extension Stripe.Products.PromotionCodes {
     public struct Restrictions: Codable, Equatable, Sendable {
-        /// Promotion code restrictions defined in each available currency option
         public let currencyOptions: [Stripe.Currency: CurrencyOptions]?
 
-        /// Limit to customers without any successful payments or invoices
         public let firstTimeTransaction: Bool?
 
-        /// Minimum amount required to redeem this promotion code
         public let minimumAmount: Int?
 
-        /// Three-letter ISO code for minimum_amount
         public let minimumAmountCurrency: Stripe.Currency?
 
         private enum CodingKeys: String, CodingKey {
@@ -219,7 +189,6 @@ extension Stripe.Products.PromotionCodes {
     }
 
     public struct CurrencyOptions: Codable, Equatable, Sendable {
-        /// Minimum amount required to redeem this promotion code
         public let minimumAmount: Int?
 
         private enum CodingKeys: String, CodingKey {

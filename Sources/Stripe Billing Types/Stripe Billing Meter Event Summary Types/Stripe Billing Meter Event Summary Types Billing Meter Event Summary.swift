@@ -1,10 +1,3 @@
-//
-//  Stripe Billing Meter Event Summary Types Billing Meter Event Summary.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -51,25 +44,17 @@ extension Stripe.Billing.MeterEventSummary {
 }
 
 extension Stripe.Billing.MeterEventSummary {
-    // https://docs.stripe.com/api/billing/meter-event-summary/list.md
     public enum List {}
 }
 
 extension Stripe.Billing.MeterEventSummary.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Customer to fetch event summaries for
         public var customer: Stripe.Customers.Customer.ID
-        /// Start of aggregation period (must align with minute/hour/day boundaries)
         public var startTime: Int
-        /// End of aggregation period (must align with minute/hour/day boundaries)
         public var endTime: Int
-        /// Aggregation granularity
         public var valueGroupingWindow: ValueGroupingWindow?
-        /// Pagination cursor for previous page
         public var endingBefore: String?
-        /// Number of objects to return (1-100, default 10)
         public var limit: Int?
-        /// Pagination cursor for next page
         public var startingAfter: String?
 
         public enum ValueGroupingWindow: String, Codable, Equatable, Sendable {

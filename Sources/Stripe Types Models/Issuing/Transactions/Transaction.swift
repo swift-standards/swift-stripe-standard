@@ -1,54 +1,27 @@
-//
-//  Transaction.swift
-//  Stripe
-//
-//  Created by Andrew Edwards on 5/29/19.
-//
-
-import Foundation
-import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/issuing/transactions/object.md
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
 public struct Transaction: Codable, Hashable, Sendable, Identifiable {
     public typealias ID = Tagged<Self, String>
-    /// Unique identifier for the object.
     public var id: ID
-    /// The amount of this transaction in your currency. This is the amount that your balance will be updated by.
     public var amount: Int?
-    /// The Authorization object that led to this transaction.
     @ExpandableOf<Authorization> public var authorization
-    /// The card used to make this transaction.
     @Expandable<IssuingCard, String> public var card: String?
-    /// The cardholder to whom this transaction belongs.
     @ExpandableOf<Cardholder> public var cardholder
-    /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
     public var currency: Stripe.Currency?
-    /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
     public var metadata: [String: String]?
-    /// The nature of the transaction.
     public var type: TransactionType?
-    /// String representing the object’s type. Objects of the same type share the same value.
     public var object: String
-    /// Detailed breakdown of amount components. These amounts are denominated in currency and in the smallest currency unit.
     public var amountDetails: TransactionAmountDetails?
-    /// ID of the balance transaction associated with this transaction.
     @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction: Stripe.Balance.Transaction.ID?
-    /// Time at which the object was created. Measured in seconds since the Unix epoch.
     public var created: Date
-    /// If you’ve disputed the transaction, the ID of the dispute.
     @ExpandableOf<IssuingDispute> public var dispute
-    /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
     public var livemode: Bool?
-    /// The amount that the merchant will receive, denominated in `merchant_currency`. It will be different from `amount` if the merchant is taking payment in a different currency.
     public var merchantAmount: Int?
-    /// The currency with which the merchant is taking payment.
     public var merchantCurrency: Stripe.Currency?
-    /// More information about the user involved in the transaction.
     public var merchantData: AuthorizationMerchantData?
-    /// Additional purchase information that is optionally provided by the merchant. This field is not included by default. To include it in the response, expand the `purchase_details` field.
     public var purchaseDetails: TransactionPurchaseDetails?
-    /// The digital wallet used for this transaction. One of `apple_pay`, `google_pay`, or `samsung_pay`.
     public var wallet: TransactionWallet?
 
     public init(
@@ -95,7 +68,6 @@ public struct Transaction: Codable, Hashable, Sendable, Identifiable {
 }
 
 public struct TransactionAmountDetails: Codable, Hashable, Sendable {
-    /// The fee charged by the ATM for the cash withdrawal.
     public var atmFee: Int?
 
     public init(
@@ -125,22 +97,15 @@ public struct TransactionList: Codable, Hashable, Sendable {
 }
 
 public enum TransactionType: String, Codable, Sendable {
-    /// Funds were captured by the acquirer. `amount` will be negative as funds are moving out of your balance. Not all captures will be linked to an authorization, as acquirers can force capture in some cases.
     case capture
-    /// An acquirer initiated a refund. This transaction might not be linked to an original capture, for example credits are original transactions. `amount` will be positive for refunds and negative for refund reversals.
     case refund
 }
 
 public struct TransactionPurchaseDetails: Codable, Hashable, Sendable {
-    /// Information about the flight that was purchased with this transaction.
     public var flight: TransactionPurchaseDetailsFlight?
-    /// Information about fuel that was purchased with this transaction.
     public var fuel: TransactionPurchaseDetailsFuel?
-    /// Information about lodging that was purchased with this transaction.
     public var lodging: TransactionPurchaseDetailsLodging?
-    /// The line items in the purchase.
     public var receipt: [TransactionPurchaseDetailsReceipt]?
-    /// A merchant-specific order number.
     public var reference: String?
 
     public init(
@@ -159,15 +124,10 @@ public struct TransactionPurchaseDetails: Codable, Hashable, Sendable {
 }
 
 public struct TransactionPurchaseDetailsFlight: Codable, Hashable, Sendable {
-    /// The time that the flight departed.
     public var departureAt: Int?
-    /// The name of the passenger.
     public var passengerName: String?
-    /// Whether the ticket is refundable.
     public var refundable: Bool?
-    /// The legs of the trip.
     public var segments: [TransactionPurchaseDetailsFlightSegment]?
-    /// The travel agency that issued the ticket.
     public var travelAgency: String?
 
     public init(
@@ -186,17 +146,11 @@ public struct TransactionPurchaseDetailsFlight: Codable, Hashable, Sendable {
 }
 
 public struct TransactionPurchaseDetailsFlightSegment: Codable, Hashable, Sendable {
-    /// The three-letter IATA airport code of the flight’s destination.
     public var arrivalAirportCode: String?
-    /// The airline carrier code.
     public var carrier: String?
-    /// The three-letter IATA airport code that the flight departed from.
     public var departureAirportCode: String?
-    /// The flight number.
     public var flightNumber: String?
-    /// The flight’s service class.
     public var serviceCLass: String?
-    /// Whether a stopover is allowed on this flight.
     public var stopoverAllowed: Bool?
 
     public init(
@@ -217,13 +171,9 @@ public struct TransactionPurchaseDetailsFlightSegment: Codable, Hashable, Sendab
 }
 
 public struct TransactionPurchaseDetailsFuel: Codable, Hashable, Sendable {
-    /// The type of fuel that was purchased. One of `diesel`, `unleaded_plus`, `unleaded_regular`, `unleaded_super`, or `other`.
     public var type: TransactionPurchaseDetailsFuelType?
-    /// The units for `volume_decimal`. One of `us_gallon` or `liter`.
     public var unit: TransactionPurchaseDetailsFuelUnit?
-    /// The cost in cents per each unit of fuel, represented as a decimal string with at most 12 decimal places.
     public var unitCostDecimal: String?
-    /// The volume of the fuel that was pumped, represented as a decimal string with at most 12 decimal places.
     public var volumeDecimal: String?
 
     public init(
@@ -253,9 +203,7 @@ public enum TransactionPurchaseDetailsFuelUnit: String, Codable, Sendable {
 }
 
 public struct TransactionPurchaseDetailsLodging: Codable, Hashable, Sendable {
-    /// The time of checking into the lodging.
     public var checkInAt: Int?
-    /// The number of nights stayed at the lodging.
     public var nights: Int?
 
     public init(
@@ -268,13 +216,9 @@ public struct TransactionPurchaseDetailsLodging: Codable, Hashable, Sendable {
 }
 
 public struct TransactionPurchaseDetailsReceipt: Codable, Hashable, Sendable {
-    /// The description of the item. The maximum length of this field is 26 characters.
     public var description: String?
-    /// The quantity of the item.
     public var quantity: Decimal?
-    /// The total for this line item in cents.
     public var total: Int?
-    /// The unit cost of the item in cents.
     public var unitCost: Int?
 
     public init(

@@ -1,16 +1,8 @@
-//
-//  Stripe Billing Meters Types Billing Meters.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
-import Foundation
+public import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Billing.Meters {
-    // Placeholder for the Meter model - should be replaced with actual model from Stripe Types Models
     public struct Meter: Codable, Equatable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
 
@@ -111,7 +103,6 @@ extension Stripe.Billing.Meters {
 }
 
 extension Stripe.Billing.Meters {
-    // https://docs.stripe.com/api/billing/meter/create.md
     public enum Create {}
 }
 
@@ -152,7 +143,6 @@ extension Stripe.Billing.Meters.Create {
 }
 
 extension Stripe.Billing.Meters {
-    // https://docs.stripe.com/api/billing/meter/update.md
     public enum Update {}
 }
 
@@ -171,7 +161,6 @@ extension Stripe.Billing.Meters.Update {
 }
 
 extension Stripe.Billing.Meters {
-    // https://docs.stripe.com/api/billing/meter/list.md
     public enum List {}
 }
 
@@ -218,7 +207,6 @@ extension Stripe.Billing.Meters.List {
 }
 
 extension Stripe.Billing.Meters {
-    // https://docs.stripe.com/api/billing/meter/deactivate.md
     public enum Deactivate {}
 }
 
@@ -229,7 +217,6 @@ extension Stripe.Billing.Meters.Deactivate {
 }
 
 extension Stripe.Billing.Meters {
-    // https://docs.stripe.com/api/billing/meter/reactivate.md
     public enum Reactivate {}
 }
 

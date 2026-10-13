@@ -1,39 +1,21 @@
-//
-//  LineItemPriceData.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
 import Foundation
-import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/payment-link/create.md
-// https://docs.stripe.com/api/checkout/sessions/create.md
-// Shared price data structure for line items across Payment Links and Checkout Sessions
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe {
-    /// Price data for creating line items inline without a pre-existing Price object
     public struct LineItemPriceData: Codable, Equatable, Hashable, Sendable {
-        /// Three-letter ISO currency code, in lowercase
         public let currency: Stripe.Currency
 
-        /// The ID of the product that this price will belong to
         public let product: Stripe.Products.Product.ID?
 
-        /// Data used to generate a new product object inline
         public let productData: ProductData?
 
-        /// The recurring components of a price
         public let recurring: Recurring?
 
-        /// Specifies whether the price is considered inclusive of taxes or exclusive of taxes
         public let taxBehavior: TaxBehavior?
 
-        /// A positive integer in cents (or 0 for a free price)
         public let unitAmount: Int?
 
-        /// Same as unit_amount, but accepts a decimal value with up to 12 decimal places
         public let unitAmountDecimal: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -64,21 +46,15 @@ extension Stripe {
             self.unitAmountDecimal = unitAmountDecimal
         }
 
-        /// Product data for creating a product inline
         public struct ProductData: Codable, Equatable, Hashable, Sendable {
-            /// The product's name, meant to be displayable to the customer
             public let name: String
 
-            /// The product's description, meant to be displayable to the customer
             public let description: String?
 
-            /// A list of up to 8 URLs of images for this product
             public let images: [String]?
 
-            /// Set of key-value pairs that you can attach to an object
             public let metadata: [String: String]?
 
-            /// A tax code ID
             public let taxCode: String?
 
             private enum CodingKeys: String, CodingKey {
@@ -104,12 +80,9 @@ extension Stripe {
             }
         }
 
-        /// The recurring components of a price
         public struct Recurring: Codable, Equatable, Hashable, Sendable {
-            /// Specifies billing frequency
             public let interval: Stripe.Interval
 
-            /// The number of intervals between subscription billings
             public let intervalCount: Int?
 
             private enum CodingKeys: String, CodingKey {
@@ -125,7 +98,6 @@ extension Stripe {
                 self.intervalCount = intervalCount
             }
 
-            // Using shared Stripe.Interval type
             public typealias Interval = Stripe.Interval
         }
 

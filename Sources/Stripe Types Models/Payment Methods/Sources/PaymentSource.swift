@@ -1,25 +1,12 @@
-//
-//  PaymentSource.swift
-//  Stripe
-//
-//  Created by Nicolas Bachschmidt on 2018-08-09.
-//
-
 import Stripe_Types_Shared
-
-/**
- Payment Source objects
- https://stripe.com/docs/api#customer_bank_account_object
- https://stripe.com/docs/api#card_object
- https://stripe.com/docs/api#source_object
- */
+public import Tagged
 
 public enum StripePaymentSource: Codable, Hashable, Sendable {
     case bankAccount(BankAccount)
     case card(Card)
     case source(Source)
 
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let object = try container.decode(String.self, forKey: .object)
         switch object {
@@ -41,7 +28,7 @@ public enum StripePaymentSource: Codable, Hashable, Sendable {
         }
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         switch self {
         case .bankAccount(let bankAccount):
             try bankAccount.encode(to: encoder)

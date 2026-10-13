@@ -1,4 +1,4 @@
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -8,7 +8,6 @@ import Stripe_Types_Shared
 extension Stripe.Billing.UsageRecords {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/usageRecords/create
         public var create:
             @Sendable (
                 _ subscriptionItemId: Stripe.Billing.SubscriptionItems.SubscriptionItem.ID,
@@ -16,7 +15,6 @@ extension Stripe.Billing.UsageRecords {
             ) async throws(Either<Async.Lifecycle.Error, Stripe.Billing.UsageRecords.Create.Error>)
                 -> UsageRecord
 
-        // https://docs.stripe.com/api/usageRecords/list
         public var list:
             @Sendable (
                 _ subscriptionItemId: Stripe.Billing.SubscriptionItems.SubscriptionItem.ID,

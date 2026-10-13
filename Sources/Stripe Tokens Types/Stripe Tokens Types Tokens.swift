@@ -1,35 +1,19 @@
-//
-//  Stripe Tokens Types Tokens.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Tokens {
-    // https://docs.stripe.com/api/tokens/create.md
     public enum Create {}
 }
 
-// https://docs.stripe.com/api/tokens/create.md
 extension Stripe.Tokens.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// Information for the account token
         public let account: AccountData?
-        /// The bank account data
         public let bankAccount: BankAccountData?
-        /// The card data
         public let card: CardData?
-        /// The customer to associate with this token
         public let customer: Stripe.Customers.Customer.ID?
-        /// The CVC update data
         public let cvcUpdate: CVCUpdate?
-        /// The person data for Connect accounts
         public let person: PersonData?
-        /// The PII data
         public let pii: PIIData?
 
         private enum CodingKeys: String, CodingKey {

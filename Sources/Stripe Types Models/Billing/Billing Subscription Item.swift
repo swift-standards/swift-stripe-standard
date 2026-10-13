@@ -1,45 +1,22 @@
-//
-//  Subscription.Item.swift
-//  Stripe
-//
-//  Created by Andrew Edwards on 6/6/17.
-//
-//
-
-import Foundation
-import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/subscriptionItems/object.md
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe.Billing.Subscription {
-    /// The [Subscription Item Object](https://stripe.com/docs/api/subscriptionItems/object) .
     public struct Item: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
-        /// Unique identifier for the object.
         public var id: ID
-        /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?
-        /// The price the customer is subscribed to.
         public var price: Stripe.Products.Price?
-        /// The quantity of the plan to which the customer should be subscribed.
         public var quantity: Int?
-        /// The `subscription` this `subscription_item` belongs to.
         public var subscription: Stripe.Billing.Subscription.ID?
-        /// String representing the object’s type. Objects of the same type share the same value.
         public var object: String
-        /// Define thresholds at which an invoice will be sent, and the related subscription advanced to a new billing period
         public var billingThresholds: BillingThresholds?
-        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
-        /// The tax rates which apply to this `subscription_item`. When set, the `default_tax_rates` on the subscription do not apply to this `subscription_item`.
         public var taxRates: [Stripe.Tax.Rate]?
-        /// Current period end for this subscription item
         public var currentPeriodEnd: Date?
-        /// Current period start for this subscription item
         public var currentPeriodStart: Date?
-        /// Legacy plan object (deprecated, use price instead)
         public var plan: Stripe.Billing.Plan?
-        /// Array of discounts applied to this subscription item
         public var discounts: [Stripe.Products.Discount]?
 
         enum CodingKeys: String, CodingKey, CaseIterable {
@@ -92,7 +69,6 @@ extension Stripe.Billing.Subscription {
 
 extension Stripe.Billing.Subscription.Item {
     public struct BillingThresholds: Codable, Hashable, Sendable {
-        /// Usage threshold that triggers the subscription to create an invoice
         public var usageGte: Int?
 
         public init(
@@ -105,13 +81,9 @@ extension Stripe.Billing.Subscription.Item {
 
 extension Stripe.Billing.Subscription.Item {
     public enum PaymentBehavior: String, Codable, Sendable {
-        /// Use `allow_incomplete` to transition the subscription to `status=past_due` if a payment is required but cannot be paid.
         case allowIncomplete = "allow_incomplete"
-        /// Use `error_if_incomplete` if you want Stripe to return an HTTP 402 status code if a subscription’s first invoice cannot be paid.
         case errorIfIncomplete = "error_if_incomplete"
-        /// Use `pending_if_incomplete` to update the subscription using pending updates. When you use `pending_if_incomplete` you can only pass the parameters supported by pending updates.
         case pendingIfIncomplete = "pending_if_incomplete"
-        /// Use `default_incomplete` to transition the subscription to `status=past_due` when payment is required and await explicit confirmation of the invoice’s payment intent. This allows simpler management of scenarios where additional user actions are needed to pay a subscription’s invoice. Such as failed payments, SCA regulation, or collecting a mandate for a bank debit payment method.
         case defaultIncomplete = "default_incomplete"
 
     }

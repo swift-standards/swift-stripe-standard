@@ -1,29 +1,16 @@
-//
-//  Stripe Disputes Types Disputes.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Disputes {
-    // https://docs.stripe.com/api/disputes/update.md
     public enum Update {}
-    // https://docs.stripe.com/api/disputes/list.md
     public enum List {}
 }
 
-// https://docs.stripe.com/api/disputes/update.md
 extension Stripe.Disputes.Update {
     public struct Request: Codable, Equatable, Sendable {
-        /// Evidence to upload to respond to a dispute
         public let evidence: Evidence?
-        /// Set of key-value pairs that you can attach to an object
         public let metadata: [String: String]?
-        /// Whether to immediately submit evidence to the bank
         public let submit: Bool?
 
         public init(
@@ -40,53 +27,29 @@ extension Stripe.Disputes.Update {
 
 extension Stripe.Disputes.Update.Request {
     public struct Evidence: Codable, Equatable, Sendable {
-        /// Any server or activity logs showing proof that the customer accessed or downloaded the purchased digital product
         public let accessActivityLog: String?
-        /// The billing address provided by the customer
         public let billingAddress: String?
-        /// Your correspondence with the customer that addresses the dispute
         public let customerCommunication: String?
-        /// The email address of the customer
         public let customerEmailAddress: String?
-        /// The name of the customer
         public let customerName: String?
-        /// The IP address that the customer used when making the purchase
         public let customerPurchaseIp: String?
-        /// A relevant document or contract showing the customer's signature
         public let customerSignature: String?
-        /// Documentation for the prior charge that can uniquely identify the charge
         public let duplicateChargeDocumentation: String?
-        /// An explanation of the difference between the disputed charge versus the prior charge
         public let duplicateChargeExplanation: String?
-        /// The Stripe ID for the prior charge which appears to be a duplicate
         public let duplicateChargeId: String?
-        /// A description of the product or service that was sold
         public let productDescription: String?
-        /// Any receipt or message sent to the customer notifying them of the charge
         public let receipt: String?
-        /// Your refund policy, as shown to the customer
         public let refundPolicy: String?
-        /// Documentation demonstrating that the customer was shown your refund policy
         public let refundPolicyDisclosure: String?
-        /// A justification for why the customer is not entitled to a refund
         public let refundRefusalExplanation: String?
-        /// The date on which the customer received or began receiving the purchased service
         public let serviceDate: String?
-        /// Documentation showing proof that a service was provided to the customer
         public let serviceDocumentation: String?
-        /// The address to which a physical product was shipped
         public let shippingAddress: String?
-        /// The delivery service that shipped a physical product
         public let shippingCarrier: String?
-        /// The date on which a physical product began its route to the shipping address
         public let shippingDate: String?
-        /// Documentation showing proof that a product was shipped to the customer
         public let shippingDocumentation: String?
-        /// The tracking number for a physical product
         public let shippingTrackingNumber: String?
-        /// Any additional evidence or statements
         public let uncategorizedFile: String?
-        /// Any additional evidence or statements (max 20,000 characters)
         public let uncategorizedText: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -170,20 +133,13 @@ extension Stripe.Disputes.Update.Request {
     }
 }
 
-// https://docs.stripe.com/api/disputes/list.md
 extension Stripe.Disputes.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Only return disputes associated with the specified charge
         public let charge: Stripe.Charges.Charge.ID?
-        /// Only return disputes associated with the specified payment intent
         public let paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID?
-        /// Only return disputes created during the given date interval
         public let created: Stripe.DateFilter?
-        /// A cursor for use in pagination
         public let endingBefore: String?
-        /// A limit on the number of objects to be returned
         public let limit: Int?
-        /// A cursor for use in pagination
         public let startingAfter: String?
 
         private enum CodingKeys: String, CodingKey {

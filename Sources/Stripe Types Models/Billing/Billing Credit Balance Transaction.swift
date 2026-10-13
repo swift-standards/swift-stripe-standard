@@ -1,39 +1,20 @@
-//
-//  Billing Credit Balance Transaction.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
-import Foundation
-import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/billing/credit-balance-transaction/object.md
-
-/// The [Credit Balance Transaction Object](https://stripe.com/docs/api/billing/credit-balance-transaction/object) .
 extension Stripe.Billing.Credit.Balance {
     public struct Transaction: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
 
-        /// Unique identifier for the object.
         public var id: ID
-        /// String representing the object's type. Objects of the same type share the same value.
         public var object: String
-        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
-        /// The credit portion of the transaction. Can be null.
         public var credit: Credit?
-        /// The ID of the credit grant associated with this transaction.
         public var creditGrant: String?
-        /// The debit portion of the transaction. Can be null.
         public var debit: Debit?
-        /// The time when the credit balance transaction's effect becomes realized and impacts the credit balance.
         public var effectiveAt: Date?
-        /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool?
-        /// The ID of the test clock used to create this credit balance transaction.
         public var testClock: String?
-        /// The type of transaction, either `credit` or `debit`.
         public var type: TransactionType?
 
         public init(
@@ -82,7 +63,6 @@ extension Stripe.Billing.Credit.Balance {
 
 extension Stripe.Billing.Credit.Balance.Transaction {
     public struct Credit: Codable, Hashable, Sendable {
-        /// Amount details for the credit
         public var amount: Amount?
 
         public init(amount: Amount? = nil) {
@@ -95,11 +75,8 @@ extension Stripe.Billing.Credit.Balance.Transaction {
     }
 
     public struct Debit: Codable, Hashable, Sendable {
-        /// Amount details for the debit
         public var amount: Amount?
-        /// Details about the credits applied
         public var creditsApplied: CreditsApplied?
-        /// The type of debit
         public var type: DebitType?
 
         public init(
@@ -126,9 +103,7 @@ extension Stripe.Billing.Credit.Balance.Transaction {
 
 extension Stripe.Billing.Credit.Balance.Transaction {
     public struct Amount: Codable, Hashable, Sendable {
-        /// Monetary amount details
         public var monetary: Monetary?
-        /// The type of amount
         public var type: String?
 
         public init(
@@ -146,9 +121,7 @@ extension Stripe.Billing.Credit.Balance.Transaction {
     }
 
     public struct Monetary: Codable, Hashable, Sendable {
-        /// Three-letter ISO currency code, in lowercase
         public var currency: Stripe.Currency?
-        /// The amount in the smallest currency unit (e.g., cents for USD)
         public var value: Int?
 
         public init(
@@ -166,9 +139,7 @@ extension Stripe.Billing.Credit.Balance.Transaction {
     }
 
     public struct CreditsApplied: Codable, Hashable, Sendable {
-        /// The ID of the invoice the credits were applied to
         public var invoice: Stripe.Billing.Invoice.ID?
-        /// The ID of the invoice line item the credits were applied to
         public var invoiceLineItem: String?
 
         public init(

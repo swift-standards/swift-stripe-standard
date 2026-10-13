@@ -1,40 +1,20 @@
-//
-//  ValueLists.swift
-//  Stripe
-//
-//  Created by Andrew Edwards on 3/30/19.
-//
-
-import Foundation
-import Stripe_Types_Shared
-import Tagged
-
-// https://docs.stripe.com/api/radar/value_lists/object.md
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe.Fraud.ValueLists {
-    /// The [Value List](https://stripe.com/docs/api/radar/value_lists/object)
     public struct ValueList: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
 
-        /// Unique identifier for the object.
         public var id: ID
-        /// The name of the value list for use in rules.
         public var alias: String?
-        /// The type of items in the value list. One of `card_fingerprint`, `card_bin`, `email`, `ip_address`, `country`, `string`,  `case_sensitive_string` or `customer_id`.
         public var itemType: ItemType?
-        /// List of items contained within this value list.
         public var listItems: ListItems?
-        /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?
-        /// The name of the value list.
         public var name: String?
-        /// String representing the object's type. Objects of the same type share the same value.
         public var object: String
-        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
-        /// The name or email address of the user who added this item to the value list.
         public var createdBy: String?
-        /// Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode.
         public var livemode: Bool?
 
         public init(

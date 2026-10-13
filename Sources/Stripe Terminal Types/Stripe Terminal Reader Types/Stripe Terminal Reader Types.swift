@@ -3,7 +3,6 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 import Tagged
 
-// MARK: - Create
 extension Stripe.Terminal.Readers {
     public enum Create {}
 }
@@ -36,7 +35,6 @@ extension Stripe.Terminal.Readers.Create {
     }
 }
 
-// MARK: - Update
 extension Stripe.Terminal.Readers {
     public enum Update {}
 }
@@ -56,7 +54,6 @@ extension Stripe.Terminal.Readers.Update {
     }
 }
 
-// MARK: - List
 extension Stripe.Terminal.Readers {
     public enum List {}
 }
@@ -123,7 +120,6 @@ extension Stripe.Terminal.Readers.List {
     }
 }
 
-// MARK: - Process Payment Intent
 extension Stripe.Terminal.Readers {
     public enum ProcessPaymentIntent {}
 }
@@ -174,7 +170,6 @@ extension Stripe.Terminal.Readers.ProcessPaymentIntent {
     }
 }
 
-// MARK: - Process Setup Intent
 extension Stripe.Terminal.Readers {
     public enum ProcessSetupIntent {}
 }
@@ -199,7 +194,6 @@ extension Stripe.Terminal.Readers.ProcessSetupIntent {
     }
 }
 
-// MARK: - Collect Inputs
 extension Stripe.Terminal.Readers {
     public enum CollectInputs {}
 }
@@ -262,7 +256,6 @@ extension Stripe.Terminal.Readers.CollectInputs {
     }
 }
 
-// MARK: - Confirm Payment Intent
 extension Stripe.Terminal.Readers {
     public enum ConfirmPaymentIntent {}
 }
@@ -281,7 +274,6 @@ extension Stripe.Terminal.Readers.ConfirmPaymentIntent {
     }
 }
 
-// MARK: - Collect Payment Method
 extension Stripe.Terminal.Readers {
     public enum CollectPaymentMethod {}
 }
@@ -332,7 +324,6 @@ extension Stripe.Terminal.Readers.CollectPaymentMethod {
     }
 }
 
-// MARK: - Refund Payment
 extension Stripe.Terminal.Readers {
     public enum RefundPayment {}
 }
@@ -377,7 +368,6 @@ extension Stripe.Terminal.Readers.RefundPayment {
     }
 }
 
-// MARK: - Set Reader Display
 extension Stripe.Terminal.Readers {
     public enum SetReaderDisplay {}
 }
@@ -439,7 +429,6 @@ extension Stripe.Terminal.Readers.SetReaderDisplay {
     }
 }
 
-// MARK: - Present Payment Method (Test Helper)
 extension Stripe.Terminal.Readers {
     public enum PresentPaymentMethod {}
 }

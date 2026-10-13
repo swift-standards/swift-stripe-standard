@@ -1,10 +1,3 @@
-//
-//  PaymentMethods.swift
-//  swift-stripe-types
-//
-//  Created by Namespace Refactoring Script on 2025-08-10 08:57:41 +0000.
-//
-
 import Foundation
 import Stripe_Types_Models
 @_exported import Stripe_Types_Shared
@@ -13,9 +6,7 @@ extension Stripe.PaymentMethods {
     public enum PaymentMethods {}
 }
 
-// MARK: - Create
 extension Stripe.PaymentMethods.PaymentMethods {
-    // https://docs.stripe.com/api/paymentMethods/create.md
     public enum Create {}
 }
 
@@ -24,13 +15,11 @@ extension Stripe.PaymentMethods.PaymentMethods.Create {
         public let type: Stripe.PaymentMethods.PaymentMethod.`Type`
         public let billingDetails: BillingModel.Details?
         public let metadata: [String: String]?
-        public let allowRedisplay: String?  // "always", "limited", "unspecified"
+        public let allowRedisplay: String?
 
-        // Payment method specific parameters
         public let card: Card?
         public let usBankAccount: USBankAccount?
         public let sepaDebit: SepaDebit?
-        // Add more payment method specific types as needed
 
         public init(
             type: Stripe.PaymentMethods.PaymentMethod.`Type`,
@@ -91,7 +80,7 @@ extension Stripe.PaymentMethods.PaymentMethods.Create {
         }
 
         public struct USBankAccount: Codable, Equatable, Sendable {
-            public let accountHolderType: String?  // "individual" or "company"
+            public let accountHolderType: String?
             public let accountNumber: String?
             public let routingNumber: String?
 
@@ -122,9 +111,7 @@ extension Stripe.PaymentMethods.PaymentMethods.Create {
     }
 }
 
-// MARK: - Update
 extension Stripe.PaymentMethods.PaymentMethods {
-    // https://docs.stripe.com/api/paymentMethods/update.md
     public enum Update {}
 }
 
@@ -132,7 +119,7 @@ extension Stripe.PaymentMethods.PaymentMethods.Update {
     public struct Request: Codable, Equatable, Sendable {
         public let billingDetails: BillingModel.Details?
         public let metadata: [String: String]?
-        public let allowRedisplay: String?  // "always", "limited", "unspecified"
+        public let allowRedisplay: String?
         public let card: Card?
         public let usBankAccount: USBankAccount?
         public let link: Link?
@@ -178,7 +165,7 @@ extension Stripe.PaymentMethods.PaymentMethods.Update {
         }
 
         public struct USBankAccount: Codable, Equatable, Sendable {
-            public let accountHolderType: String?  // "individual" or "company"
+            public let accountHolderType: String?
 
             public init(accountHolderType: String? = nil) {
                 self.accountHolderType = accountHolderType
@@ -190,15 +177,12 @@ extension Stripe.PaymentMethods.PaymentMethods.Update {
         }
 
         public struct Link: Codable, Equatable, Sendable {
-            // Link payment method update parameters if needed
             public init() {}
         }
     }
 }
 
-// MARK: - List
 extension Stripe.PaymentMethods.PaymentMethods {
-    // https://docs.stripe.com/api/paymentMethods/list.md
     public enum List {}
 }
 
@@ -248,9 +232,7 @@ extension Stripe.PaymentMethods.PaymentMethods.List {
     }
 }
 
-// MARK: - List Customer
 extension Stripe.PaymentMethods.PaymentMethods.List {
-    // https://docs.stripe.com/api/paymentMethods/customer_list.md
     public enum Customer {}
 }
 
@@ -260,7 +242,7 @@ extension Stripe.PaymentMethods.PaymentMethods.List.Customer {
         public let endingBefore: String?
         public let startingAfter: String?
         public let limit: Int?
-        public let allowRedisplay: String?  // "always", "limited", "unspecified"
+        public let allowRedisplay: String?
 
         public init(
             type: String? = nil,
@@ -300,9 +282,7 @@ extension Stripe.PaymentMethods.PaymentMethods.List.Customer {
     }
 }
 
-// MARK: - Attach
 extension Stripe.PaymentMethods.PaymentMethods {
-    // https://docs.stripe.com/api/paymentMethods/attach.md
     public enum Attach {}
 }
 

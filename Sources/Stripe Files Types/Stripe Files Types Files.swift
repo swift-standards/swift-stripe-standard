@@ -1,31 +1,17 @@
-//
-//  Stripe Files Types Files.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
-import Foundation
+public import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Files {
-    // https://docs.stripe.com/api/files/create.md
     public enum Create {}
-    // https://docs.stripe.com/api/files/list.md
     public enum List {}
 }
 
-// https://docs.stripe.com/api/files/create.md
 extension Stripe.Files.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// The file to upload (multipart/form-data)
         public let file: Data
-        /// The purpose of the uploaded file
         public let purpose: Stripe.Files.File.Purpose
-        /// Specifies which fields in the response should be expanded
         public let expand: [String]?
-        /// Optional parameters for the file link that's created
         public let fileLinkData: FileLinkData?
 
         private enum CodingKeys: String, CodingKey {
@@ -51,11 +37,8 @@ extension Stripe.Files.Create {
 
 extension Stripe.Files.Create.Request {
     public struct FileLinkData: Codable, Equatable, Sendable {
-        /// Set to true to create a file link for the newly created file
         public let create: Bool
-        /// The time after which the link expires
         public let expiresAt: Date?
-        /// Set of key-value pairs that you can attach to an object
         public let metadata: [String: String]?
 
         private enum CodingKeys: String, CodingKey {
@@ -76,18 +59,12 @@ extension Stripe.Files.Create.Request {
     }
 }
 
-// https://docs.stripe.com/api/files/list.md
 extension Stripe.Files.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Only return files created during the given date interval
         public let created: Stripe.DateFilter?
-        /// A cursor for use in pagination
         public let endingBefore: String?
-        /// A limit on the number of objects to be returned
         public let limit: Int?
-        /// The file purpose to filter queries by
         public let purpose: Stripe.Files.File.Purpose?
-        /// A cursor for use in pagination
         public let startingAfter: String?
 
         private enum CodingKeys: String, CodingKey {

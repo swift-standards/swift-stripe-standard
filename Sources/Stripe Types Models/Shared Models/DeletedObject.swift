@@ -1,12 +1,4 @@
-//
-//  DeletedObject.swift
-//  Stripe
-//
-//  Created by Anthony Castelli on 4/20/17.
-//
-//
-
-import Stripe_Types_Shared
+public import Stripe_Types_Shared
 
 public struct DeletedObject<Object>: Codable, Hashable, Sendable {
     public var id: Tagged<Object, String>

@@ -1,12 +1,5 @@
-//
-//  File.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 08/01/2025.
-//
-
 import Foundation
-import Stripe_Types_Shared
+public import Stripe_Types_Shared
 
 extension Stripe {
     public struct StatementDescriptor: Codable, Hashable, Sendable {
@@ -51,13 +44,13 @@ extension Stripe.StatementDescriptor: RawRepresentable {
 }
 
 extension Stripe.StatementDescriptor {
-    public init(from decoder: Decoder) throws {
+    public init(from decoder: any Decoder) throws {
         let container = try decoder.singleValueContainer()
         let string = try container.decode(String.self)
         try self.init(string)
     }
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(self.rawValue)
     }
@@ -87,7 +80,6 @@ extension Stripe.StatementDescriptor {
         }
     }
 }
-// String-like behavior
 extension Stripe.StatementDescriptor: CustomStringConvertible {
     public var description: String {
         self.rawValue

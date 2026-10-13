@@ -1,4 +1,4 @@
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -9,7 +9,6 @@ import Tagged
 extension Stripe.Customers.BankAccounts {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/customer_bank_accounts/create.md
         public var create:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ request: Create.Request)
                 async throws(Either<
@@ -17,14 +16,12 @@ extension Stripe.Customers.BankAccounts {
                 >)
                 -> BankAccount
 
-        // https://docs.stripe.com/api/customer_bank_accounts/retrieve.md
         public var retrieve:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ bankAccountId: BankAccount.ID)
                 async throws(Either<
                     Async.Lifecycle.Error, Stripe.Customers.BankAccounts.Retrieve.Error
                 >) -> BankAccount
 
-        // https://docs.stripe.com/api/customer_bank_accounts/update.md
         public var update:
             @Sendable (
                 _ customerId: Stripe.Customers.Customer.ID, _ bankAccountId: BankAccount.ID,
@@ -33,7 +30,6 @@ extension Stripe.Customers.BankAccounts {
                 Async.Lifecycle.Error, Stripe.Customers.BankAccounts.Update.Error
             >) -> BankAccount
 
-        // https://docs.stripe.com/api/customer_bank_accounts/list.md
         public var list:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ request: List.Request)
                 async throws(Either<
@@ -41,14 +37,12 @@ extension Stripe.Customers.BankAccounts {
                 >)
                 -> List.Response
 
-        // https://docs.stripe.com/api/customer_bank_accounts/delete.md
         public var delete:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ bankAccountId: BankAccount.ID)
                 async throws(Either<
                     Async.Lifecycle.Error, Stripe.Customers.BankAccounts.Delete.Error
                 >) -> DeletedObject<BankAccount>
 
-        // https://docs.stripe.com/api/customer_bank_accounts/verify.md
         public var verify:
             @Sendable (
                 _ customerId: Stripe.Customers.Customer.ID, _ bankAccountId: BankAccount.ID,

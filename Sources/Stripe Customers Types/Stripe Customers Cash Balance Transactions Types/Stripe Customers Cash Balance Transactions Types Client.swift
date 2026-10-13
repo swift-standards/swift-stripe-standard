@@ -1,4 +1,4 @@
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -9,7 +9,6 @@ import Tagged
 extension Stripe.Customers.CashBalanceTransactions {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/cash_balance_transactions/retrieve.md
         public var retrieve:
             @Sendable (
                 _ customerId: Stripe.Customers.Customer.ID,
@@ -18,7 +17,6 @@ extension Stripe.Customers.CashBalanceTransactions {
                 Async.Lifecycle.Error, Stripe.Customers.CashBalanceTransactions.Retrieve.Error
             >) -> CashBalanceTransaction
 
-        // https://docs.stripe.com/api/cash_balance_transactions/list.md
         public var list:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ request: List.Request)
                 async throws(Either<

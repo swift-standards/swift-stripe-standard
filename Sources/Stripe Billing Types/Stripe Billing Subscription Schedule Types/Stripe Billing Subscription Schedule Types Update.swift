@@ -1,30 +1,17 @@
-//
-//  File.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 22/09/2025.
-//
-
-import Foundation
+public import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Billing.Subscription.Schedule {
-    // https://docs.stripe.com/api/subscriptionSchedules/update.md
     public enum Update {}
 }
 
 extension Stripe.Billing.Subscription.Schedule.Update {
     public struct Request: Codable, Equatable, Sendable {
-        /// Behavior when the subscription schedule ends
         public var endBehavior: Stripe.Billing.Subscription.Schedule.EndBehavior?
-        /// Object containing service periods - replaces all existing phases when provided
         public var phases: [Stripe.Billing.Subscription.Schedule.Update.Request.Phase]?
-        /// Default settings for subscription schedule
         public var defaultSettings: Stripe.Billing.Subscription.Schedule.DefaultSettings?
-        /// Set of key-value pairs
         public var metadata: [String: String]?
-        /// Determines how to handle prorations
         public var prorationBehavior: Stripe.Billing.Subscription.Schedule.ProrationBehavior?
 
         public init(
@@ -51,57 +38,30 @@ extension Stripe.Billing.Subscription.Schedule.Update {
     }
 }
 
-// MARK: - Update Phase Types
-
 extension Stripe.Billing.Subscription.Schedule.Update.Request {
-    /// Phase configuration for updating a subscription schedule
-    /// Note: start_date must be set on the first phase per Stripe API requirements
     public struct Phase: Codable, Equatable, Sendable {
-        /// List of configuration items (required by Stripe API)
         public var items: [Item]
-        /// Additional invoice items to add for this phase
         public var addInvoiceItems: [AddInvoiceItem]?
-        /// Percentage of invoice transferred to application owner
         public var applicationFeePercent: Double?
-        /// Automatic tax settings
         public var automaticTax: AutomaticTax?
-        /// Billing cycle anchor configuration
         public var billingCycleAnchor: Stripe.Billing.Subscription.Schedule.BillingCycleAnchor?
-        /// Billing thresholds for the phase
         public var billingThresholds: PhaseBillingThresholds?
-        /// Collection method for this phase
         public var collectionMethod: Stripe.Billing.Subscription.Schedule.CollectionMethod?
-        /// Three-letter ISO currency code
         public var currency: Stripe.Currency?
-        /// Default payment method for this phase
         public var defaultPaymentMethod: Stripe.PaymentMethods.PaymentMethod.ID?
-        /// Default tax rates to apply
         public var defaultTaxRates: [String]?
-        /// Description of the phase
         public var description: String?
-        /// Discounts to apply
         public var discounts: [Stripe.Billing.Subscription.Schedule.Discount]?
-        /// Phase duration configuration
         public var duration: Duration?
-        /// The end of this phase
         public var endDate: Date?
-        /// Invoice settings for this phase
         public var invoiceSettings: Stripe.Billing.Subscription.Schedule.InvoiceSettings?
-        /// Number of iterations (deprecated)
         public var iterations: Int?
-        /// Subscription data to set on the subscription
         public var metadata: [String: String]?
-        /// Account receiving charges
         public var onBehalfOf: String?
-        /// Controls whether prorations are created
         public var prorationBehavior: Stripe.Billing.Subscription.Schedule.ProrationBehavior?
-        /// Start date for this phase - MUST be set for first phase
         public var startDate: Stripe.Billing.Subscription.Schedule.StartDate?
-        /// Automatic transfer configuration
         public var transferData: TransferData?
-        /// Whether this phase is a trial
         public var trial: Bool?
-        /// Trial end timestamp
         public var trialEnd: Date?
 
         public init(
@@ -183,11 +143,8 @@ extension Stripe.Billing.Subscription.Schedule.Update.Request {
 }
 
 extension Stripe.Billing.Subscription.Schedule.Update.Request.Phase {
-    /// Automatic tax configuration for a phase
     public struct AutomaticTax: Codable, Equatable, Sendable {
-        /// Whether automatic tax is enabled
         public var enabled: Bool
-        /// Liability configuration
         public var liability: Liability?
 
         public init(enabled: Bool, liability: Liability? = nil) {
@@ -196,9 +153,7 @@ extension Stripe.Billing.Subscription.Schedule.Update.Request.Phase {
         }
 
         public struct Liability: Codable, Equatable, Sendable {
-            /// The account that's liable for tax
             public var account: String?
-            /// Type of liability
             public var type: String
 
             public init(account: String? = nil, type: String) {
@@ -208,11 +163,8 @@ extension Stripe.Billing.Subscription.Schedule.Update.Request.Phase {
         }
     }
 
-    /// Duration configuration for a phase
     public struct Duration: Codable, Equatable, Sendable {
-        /// The unit of time the phase lasts
         public var interval: Interval
-        /// Number of intervals
         public var intervalCount: Int
 
         public enum Interval: String, Codable, Equatable, Sendable {
@@ -233,11 +185,8 @@ extension Stripe.Billing.Subscription.Schedule.Update.Request.Phase {
         }
     }
 
-    /// Transfer data configuration for a phase
     public struct TransferData: Codable, Equatable, Sendable {
-        /// The account receiving the transfer
         public var destination: String
-        /// Percentage of the invoice amount to transfer
         public var amountPercent: Double?
 
         public init(destination: String, amountPercent: Double? = nil) {
@@ -251,11 +200,8 @@ extension Stripe.Billing.Subscription.Schedule.Update.Request.Phase {
         }
     }
 
-    /// Billing thresholds configuration for a phase
     public struct PhaseBillingThresholds: Codable, Equatable, Sendable {
-        /// Amount threshold to advance to next billing period
         public var amountGte: Int?
-        /// Whether to reset the billing cycle anchor
         public var resetBillingCycleAnchor: Bool?
 
         public init(amountGte: Int? = nil, resetBillingCycleAnchor: Bool? = nil) {
@@ -271,15 +217,10 @@ extension Stripe.Billing.Subscription.Schedule.Update.Request.Phase {
 }
 
 extension Stripe.Billing.Subscription.Schedule.Update.Request.Phase {
-    /// Additional invoice item to add for this phase
     public struct AddInvoiceItem: Codable, Equatable, Sendable {
-        /// The ID of the price object
         public var price: Stripe.Products.Price.ID?
-        /// Data to generate price on the fly
         public var priceData: AddInvoiceItemPriceData?
-        /// Quantity for this item
         public var quantity: Int?
-        /// Tax rates for this item
         public var taxRates: [String]?
 
         public init(
@@ -302,17 +243,11 @@ extension Stripe.Billing.Subscription.Schedule.Update.Request.Phase {
         }
     }
 
-    /// Price data for additional invoice items
     public struct AddInvoiceItemPriceData: Codable, Equatable, Sendable {
-        /// Three-letter ISO currency code
         public var currency: Stripe.Currency
-        /// The ID of the product
         public var product: Stripe.Products.Product.ID
-        /// Unit amount
         public var unitAmount: Int?
-        /// Unit amount as a decimal string
         public var unitAmountDecimal: String?
-        /// Tax behavior
         public var taxBehavior: String?
 
         public init(
@@ -338,17 +273,11 @@ extension Stripe.Billing.Subscription.Schedule.Update.Request.Phase {
         }
     }
 
-    /// Item configuration for phase update
     public struct Item: Codable, Equatable, Sendable {
-        /// The price ID
         public var price: Stripe.Products.Price.ID?
-        /// Inline price data
         public var priceData: PriceData?
-        /// Quantity for this item
         public var quantity: Int?
-        /// Tax rates to apply
         public var taxRates: [String]?
-        /// Billing thresholds for this item
         public var billingThresholds: Stripe.Billing.Subscription.Schedule.BillingThresholds?
 
         public init(
@@ -377,17 +306,11 @@ extension Stripe.Billing.Subscription.Schedule.Update.Request.Phase {
 
 extension Stripe.Billing.Subscription.Schedule.Update.Request.Phase.Item {
     public struct PriceData: Codable, Equatable, Sendable {
-        /// Three-letter ISO currency code
         public var currency: Stripe.Currency
-        /// The ID of the product
         public var product: Stripe.Products.Product.ID
-        /// The recurring components of a price
         public var recurring: Recurring
-        /// Unit amount
         public var unitAmount: Int?
-        /// Unit amount as a decimal string
         public var unitAmountDecimal: String?
-        /// Tax behavior for the price
         public var taxBehavior: String?
 
         public init(
@@ -417,9 +340,7 @@ extension Stripe.Billing.Subscription.Schedule.Update.Request.Phase.Item {
     }
 
     public struct Recurring: Codable, Equatable, Sendable {
-        /// Billing frequency
         public var interval: String
-        /// Number of intervals
         public var intervalCount: Int?
 
         public init(

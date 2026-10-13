@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 07/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -180,25 +173,15 @@ extension Stripe.Products.Prices.Update {
 
 extension Stripe.Products.Prices.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Only return prices that are active or inactive
         public let active: Bool?
-        /// Only return prices for the given currency
         public let currency: Stripe.Currency?
-        /// Only return prices that were created during the given date interval
         public let created: Stripe.DateFilter?
-        /// A cursor for use in pagination
         public let endingBefore: String?
-        /// A limit on the number of objects to be returned (1-100, default 10)
         public let limit: Int?
-        /// Only return prices with these lookup keys
         public let lookupKeys: [String]?
-        /// Only return prices for the given product
         public let product: Stripe.Products.Product.ID?
-        /// Filter prices by recurring properties
-        public let recurring: String?  // Price.Recurring.Filter serialized
-        /// A cursor for use in pagination
+        public let recurring: String?
         public let startingAfter: String?
-        /// Only return prices of the given type
         public let type: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -222,7 +205,7 @@ extension Stripe.Products.Prices.List {
             limit: Int? = nil,
             lookupKeys: [String]? = nil,
             product: Stripe.Products.Product.ID? = nil,
-            recurring: String? = nil,  // Price.Recurring.Filter serialized
+            recurring: String? = nil,
             startingAfter: String? = nil,
             type: String? = nil
         ) {
@@ -266,7 +249,6 @@ extension Stripe.Products.Prices.List {
     }
 }
 
-// Add Price.Recurring.Filter type
 extension Stripe.Products.Price.Recurring {
     public struct Filter: Codable, Equatable, Sendable {
         public let interval: String?

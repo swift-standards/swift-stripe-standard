@@ -4,7 +4,6 @@ import Stripe_Types_Shared
 
 extension Stripe.ConfirmationToken {
     public enum API: Equatable, Sendable {
-        // https://docs.stripe.com/api/confirmation_tokens/retrieve.md
         case retrieve(id: ConfirmationToken.ID)
     }
 }

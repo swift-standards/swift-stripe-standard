@@ -1,10 +1,3 @@
-//
-//  Products API.swift
-//  coenttb-stripe
-//
-//  Created by Coen ten Thije Boonkkamp on 05/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared

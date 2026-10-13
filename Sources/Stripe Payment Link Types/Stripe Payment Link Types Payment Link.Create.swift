@@ -1,8 +1,7 @@
-import Foundation
+public import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
-// https://docs.stripe.com/api/payment-link/create.md
 extension Stripe.PaymentLinks.Create {
     public struct Request: Codable, Equatable, Sendable {
         public let lineItems: [LineItem]

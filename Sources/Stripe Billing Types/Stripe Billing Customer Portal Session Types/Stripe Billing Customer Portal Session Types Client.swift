@@ -1,4 +1,4 @@
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -8,7 +8,6 @@ import Stripe_Types_Shared
 extension Stripe.Billing.Customer.Portal.Session {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/customer_portal/sessions/create.md
         public var create:
             @Sendable (_ request: Create.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Billing.Customer.Portal.Session.Create.Error

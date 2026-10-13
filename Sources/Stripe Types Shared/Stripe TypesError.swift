@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 20/12/2024.
-//
-
 import Foundation
 
 extension Stripe {

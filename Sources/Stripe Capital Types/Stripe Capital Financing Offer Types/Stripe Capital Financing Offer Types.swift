@@ -3,7 +3,6 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Capital.FinancingOffer {
-    // https://docs.stripe.com/api/capital/financing_offers/list.md
     public enum List {}
 }
 

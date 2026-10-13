@@ -1,16 +1,8 @@
-//
-//  Stripe Billing Meter Event Adjustment Types Billing Meter Event Adjustment.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Billing.MeterEventAdjustments {
-    // Placeholder for the MeterEventAdjustment model
     public struct MeterEventAdjustment: Codable, Equatable, Sendable {
         public let object: String
         public let livemode: Bool
@@ -35,17 +27,13 @@ extension Stripe.Billing.MeterEventAdjustments {
 }
 
 extension Stripe.Billing.MeterEventAdjustments {
-    // https://docs.stripe.com/api/billing/meter-event-adjustment/create.md
     public enum Create {}
 }
 
 extension Stripe.Billing.MeterEventAdjustments.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// The name of the meter event
         public var eventName: String
-        /// Specifies whether to cancel a single event or a range of events
         public var type: AdjustmentType
-        /// Details for canceling events
         public var cancel: Cancel?
 
         public enum AdjustmentType: String, Codable, Equatable, Sendable {
@@ -53,7 +41,6 @@ extension Stripe.Billing.MeterEventAdjustments.Create {
         }
 
         public struct Cancel: Codable, Equatable, Sendable {
-            /// Unique identifier for the event (can only cancel events within 24 hours)
             public var identifier: String?
 
             public init(identifier: String? = nil) {

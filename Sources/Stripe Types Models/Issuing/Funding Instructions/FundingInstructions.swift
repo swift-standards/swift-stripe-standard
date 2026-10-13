@@ -1,25 +1,11 @@
-//
-//  FundingInstructions.swift
-//
-//
-//  Created by Andrew Edwards on 5/16/23.
-//
-
 import Foundation
-import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/issuing/funding_instructions/object.md
+public import Stripe_Types_Shared
 
 public struct FundingInstructions: Codable, Hashable, Sendable {
-    /// Details to display instructions for initiating a bank transfer
     public var bankTransfer: FundingInstructionsBankTransfer?
-    /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
     public var currency: Stripe.Currency?
-    /// The `funding_type` of the returned instructions.
     public var fundingType: FundingInstructionsFundingType?
-    /// String representing the object’s type. Objects of the same type share the same value.
     public var object: String
-    /// Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode.
     public var livemode: Bool
 
     public init(
@@ -38,22 +24,15 @@ public struct FundingInstructions: Codable, Hashable, Sendable {
 }
 
 public struct FundingInstructionsBankTransfer: Codable, Hashable, Sendable {
-    /// The country of the bank account to fund
     public var country: String?
-    /// A list of financial addresses that can be used to fund a particular balance
     public var financialAddresses: [FundingInstructionsBankTransferFinancialAddress]?
-    /// The `bank_transfer` type
     public var type: FundingInstructionsBankTransferType?
 }
 
 public struct FundingInstructionsBankTransferFinancialAddress: Codable, Hashable, Sendable {
-    /// An IBAN-based FinancialAddress
     public var iban: FundingInstructionsBankTransferFinancialAddressIban?
-    /// An account number and sort code-based FinancialAddress
     public var sortCode: FundingInstructionsBankTransferFinancialAddressSortCode?
-    /// The payment networks supported by this FinancialAddress
     public var supportedNetworks: [FundingInstructionsBankTransferFinancialAddressSupportedNetwork]?
-    /// The type of financial address
     public var type: FundingInstructionsBankTransferFinancialAddressType?
 
     public init(
@@ -75,13 +54,9 @@ public enum FundingInstructionsBankTransferFinancialAddressType: String, Codable
 }
 
 public struct FundingInstructionsBankTransferFinancialAddressIban: Codable, Hashable, Sendable {
-    /// The name of the person or business that owns the bank account
     public var accountHolderName: String?
-    /// The BIC/SWIFT code of the account.
     public var bic: String?
-    /// Two-letter country code (ISO 3166-1 alpha-2).
     public var country: String?
-    /// The IBAN of the account.
     public var iban: String?
 
     public init(
@@ -98,11 +73,8 @@ public struct FundingInstructionsBankTransferFinancialAddressIban: Codable, Hash
 }
 
 public struct FundingInstructionsBankTransferFinancialAddressSortCode: Codable, Hashable, Sendable {
-    /// The name of the person or business that owns the bank account
     public var accountHolderName: String?
-    /// The account number
     public var accountNumber: String?
-    /// The six-digit sort code
     public var sortCode: String?
 
     public init(
@@ -125,14 +97,11 @@ public enum FundingInstructionsBankTransferFinancialAddressSupportedNetwork: Str
 }
 
 public enum FundingInstructionsBankTransferType: String, Codable, Sendable {
-    /// A  bank transfer to an EU bank account
     case euBankTransfer = "eu_bank_transfer"
-    /// A bank transfer to a GB bank account
     case gbBankTransfer = "gb_bank_transfer"
 }
 
 public enum FundingInstructionsFundingType: String, Codable, Sendable {
-    /// Use a `bank_transfer` hash to define the bank transfer type
     case bankTransfer = "bank_transfer"
 }
 

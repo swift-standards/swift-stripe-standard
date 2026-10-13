@@ -2,7 +2,6 @@ import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
-// https://docs.stripe.com/api/payment-link/update.md
 extension Stripe.PaymentLinks.Update {
     public struct Request: Codable, Equatable, Sendable {
         public let active: Bool?

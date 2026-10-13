@@ -1,63 +1,31 @@
-//
-//  Authorization.swift
-//  Stripe
-//
-//  Created by Andrew Edwards on 5/20/19.
-//
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
-import Foundation
-import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/issuing/authorizations/object.md
-
-/// The [Authorization Object](https://stripe.com/docs/api/issuing/authorizations/object)
 public struct Authorization: Codable, Hashable, Sendable, Identifiable {
     public typealias ID = Tagged<Self, String>
-    /// Unique identifier for the object.
     public var id: ID
-    /// The total amount that was authorized or rejected. This amount is in the card’s currency and in the smallest currency unit.
     public var amount: Int?
-    /// Whether the authorization has been approved.
     public var approved: Bool?
-    /// Card associated with this authorization.
     public var card: IssuingCard?
-    /// The cardholder to whom this authorization belongs.
     @Expandable<Cardholder, String> public var cardholder: String?
-    /// Three-letter ISO currency code. Must be a supported currency.
     public var currency: Stripe.Currency?
-    /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
     public var metadata: [String: String]?
-    /// The current status of the authorization in its lifecycle.
     public var status: AuthorizationStatus?
-    /// String representing the object’s type. Objects of the same type share the same value.
     public var object: String
-    /// Detailed breakdown of amount components. These amounts are denominated in currency and in the smallest currency unit.
     public var amountDetails: AuthorizationAmountDetails?
-    /// How the card details were provided. One of `chip`, `contactless`, `keyed_in`, `online`, or `swipe`.
     public var authorizationMethod: AuthorizationMethod?
-    /// List of balance transactions associated with this authorization.
     public var balanceTransactions: [Stripe.Balance.Transaction]?
-    /// Time at which the object was created. Measured in seconds since the Unix epoch.
     public var created: Date
-    /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
     public var livemode: Bool?
-    /// The total amount that was authorized or rejected. This amount is in the `merchant_currency` and in the smallest currency unit.
     public var merchantAmount: Int?
-    /// The currency that was presented to the cardholder for the authorization. Three-letter ISO currency code, in lowercase. Must be a supported currency.
     public var merchantCurrency: Stripe.Currency?
-    /// Details about the merchant (grocery store, e-commerce website, etc.) where the card authorization happened.
     public var merchantData: AuthorizationMerchantData?
-    /// Details about the authorization, such as identifiers, set by the card network.
     public var networkData: AuthorizationNetworkData?
-    /// The pending authorization request. This field will only be non-null during an `issuing_authorization.request` webhook.
     public var pendingRequest: AuthorizationPendingRequest?
-    /// History of every time the authorization was approved/denied (whether approved/denied by you directly or by Stripe based on your `spending_controls`). If the merchant changes the authorization by performing an incremental authorization or partial capture, you can look at this field to see the previous states of the authorization.
     public var requestHistory: [AuthorizationRequestHistory]?
-    /// List of transactions associated with this authorization.
     public var transactions: [Transaction]?
-    /// Verifications that Stripe performed on information that the cardholder provided to the merchant.
     public var verificationData: AuthorizationVerificationData?
-    /// What, if any, digital wallet was used for this authorization. One of `apple_pay`, `google_pay`, or `samsung_pay`.
     public var wallet: AuthorizationWallet?
 
     public init(
@@ -112,7 +80,6 @@ public struct Authorization: Codable, Hashable, Sendable, Identifiable {
 }
 
 public struct AuthorizationAmountDetails: Codable, Hashable, Sendable {
-    /// The fee charged by the ATM for the cash withdrawal.
     public var atmFee: Int?
 
     public init(
@@ -123,17 +90,11 @@ public struct AuthorizationAmountDetails: Codable, Hashable, Sendable {
 }
 
 public struct AuthorizationPendingRequest: Codable, Hashable, Sendable {
-    /// The additional amount Stripe will hold if the authorization is approved, in the card’s currency and in the smallest currency unit.
     public var amount: Int?
-    /// Detailed breakdown of amount components. These amounts are denominated in currency and in the smallest currency unit.
     public var amountDetails: AuthorizationPendingRequestAmountDetails?
-    /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
     public var currency: Stripe.Currency?
-    /// If set true, you may provide amount to control how much to hold for the authorization.
     public var isAmountControllable: Bool?
-    /// The amount the merchant is requesting to be authorized in the merchant_currency. The amount is in the smallest currency unit.
     public var merchantAmount: Int?
-    /// The local currency the merchant is requesting to authorize.
     public var merchantCurrency: Stripe.Currency?
 
     public init(
@@ -154,7 +115,6 @@ public struct AuthorizationPendingRequest: Codable, Hashable, Sendable {
 }
 
 public struct AuthorizationPendingRequestAmountDetails: Codable, Hashable, Sendable {
-    /// The fee charged by the ATM for the cash withdrawal.
     public var atmFee: Int?
 
     public init(
@@ -165,37 +125,22 @@ public struct AuthorizationPendingRequestAmountDetails: Codable, Hashable, Senda
 }
 
 public enum AuthorizationMethod: String, Codable, Sendable {
-    /// The card number was manually entered into a terminal.
     case keyedIn = "keyed_in"
-    /// The card was physically swiped in a terminal.
     case swipe
-    /// The card was physically present and inserted into a chip-enabled terminal. The transaction is cryptographically secured.
     case chip
-    /// The card was tapped on a contactless-enabled terminal. If a digital wallet copy of the card was used, the wallet field will be present.
     case contactless
-    /// The card was used in a card-not-present scenario, such as a transaction initiated at an online e-commerce checkout.
     case online
 }
 
 public struct AuthorizationMerchantData: Codable, Hashable, Sendable {
-    // TODO: - Make this an enum once it's solidified. https://stripe.com/docs/issuing/merchant-categories
-    /// A categorization of the seller’s type of business. See our merchant categories guide for a list of possible values.
     public var category: String?
-    /// The merchant category code for the seller’s business
     public var categoryCode: String?
-    /// City where the seller is located
     public var city: String?
-    /// Country where the seller is located
     public var country: String?
-    /// Name of the seller
     public var name: String?
-    /// Identifier assigned to the seller by the card brand
     public var networkId: String?
-    /// Postal code where the seller is located
     public var postalCode: String?
-    /// State where the seller is located
     public var state: String?
-    /// An ID assigned by the seller to the location of the sale.
     public var terminalId: String?
 
     public init(
@@ -222,7 +167,6 @@ public struct AuthorizationMerchantData: Codable, Hashable, Sendable {
 }
 
 public struct AuthorizationNetworkData: Codable, Hashable, Sendable {
-    /// Identifier assigned to the acquirer by the card network. Sometimes this value is not provided by the network; in this case, the value will be `null`.
     public var acquiringInstitutionId: String?
 
     public init(
@@ -233,21 +177,13 @@ public struct AuthorizationNetworkData: Codable, Hashable, Sendable {
 }
 
 public struct AuthorizationRequestHistory: Codable, Hashable, Sendable {
-    /// The `pending_request.amount` at the time of the request, presented in your card’s currency and in the smallest currency unit. Stripe held this amount from your account to fund the authorization if the request was approved.
     public var amount: Int?
-    /// Detailed breakdown of amount components. These amounts are denominated in currency and in the smallest currency unit.
     public var amountDetails: AuthorizationRequestHistoryAmountDetails?
-    /// Whether this request was approved.
     public var approved: Bool?
-    /// Time at which the object was created. Measured in seconds since the Unix epoch.
     public var created: Date
-    /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
     public var currency: Stripe.Currency?
-    /// The `pending_request.merchant_amount` at the time of the request, presented in the `merchant_currency` and in the smallest currency unit.
     public var merchantAmount: Int?
-    /// The currency that was collected by the merchant and presented to the cardholder for the authorization. Three-letter ISO currency code, in lowercase. Must be a supported currency.
     public var merchantCurrency: Stripe.Currency?
-    /// When an authorization is approved or declined by you or by Stripe, this field provides additional detail on the reason for the outcome.
     public var reason: AuthorizationRequestHistoryReason?
 
     public init(
@@ -272,7 +208,6 @@ public struct AuthorizationRequestHistory: Codable, Hashable, Sendable {
 }
 
 public struct AuthorizationRequestHistoryAmountDetails: Codable, Hashable, Sendable {
-    /// The fee charged by the ATM for the cash withdrawal.
     public var atmFee: Int?
 
     public init(
@@ -283,33 +218,19 @@ public struct AuthorizationRequestHistoryAmountDetails: Codable, Hashable, Senda
 }
 
 public enum AuthorizationRequestHistoryReason: String, Codable, Sendable {
-    /// The authorization request was declined because your account is disabled. For more information, please contact us at support-issuing@stripe.com. Replaces the deprecated `account_inactive` and `account_compliance_disabled` enums.
     case accountDisabled = "account_disabled"
-    /// The authorization was declined because of your spending controls. Documentation for updating your spending controls can be found here. Replaces the deprecated `authorization_controls` enum.
     case spendingControls = "spending_controls"
-    /// The authorization was approved according to your Issuing default settings. Authorization outcome was not driven by real-time auth webhook or spending controls as neither were configured.
     case cardActive = "card_active"
-    /// The authorization request was declined because the card was inactive. To activate the card, refer to our documentation.
     case cardInactive = "card_inactive"
-    /// The authorization request was declined because the cardholder was inactive. You can activate the cardholder in the dashboard or via the API update endpoint.
     case cardholderInactive = "cardholder_inactive"
-    /// The authorization request was declined because your account had insufficient funds. Documentation for topping up your Issuing Balance can be found here.
     case insufficientFunds = "insufficient_funds"
-    /// The authorization was not approved because the cardholder still required verification. More details can be found by querying the API and obtaining the requirements field of the Cardholder object.
     case cardholderVerificationRequired = "cardholder_verification_required"
-    /// The charge is not allowed on the Stripe network, possibly because it is an ATM withdrawal or cash advance.
     case notAllowed = "not_allowed"
-    /// The authorization was suspected to be fraud based on Stripe’s risk controls.
     case suspectedFraud = "suspected_fraud"
-    /// The authorization was approved via the real-time auth webhook. More details on this can be found here.
     case webhookApproved = "webhook_approved"
-    /// The authorization was declined via the real-time auth webhook. More details on this can be found here.
     case webhookDeclined = "webhook_declined"
-    /// If you are using the real-time auth webhook, the webhook timed out before we received your authorization decision. Stripe approved or declined the authorization based on what you’ve configured in your Issuing default or Autopilot settings.
     case webhookTimeout = "webhook_timeout"
-    /// The response sent through the real-time auth webhook is invalid.
     case webhookError = "webhook_error"
-    /// The authorization failed required verification checks. See `authorization.verification_data` for more information. Replaces the deprecated `authentication_failed`, `incorrect_cvc`, and `incorrect_expiry` enums.
     case verificationFailed = "verification_failed"
 }
 
@@ -320,13 +241,9 @@ public enum AuthorizationStatus: String, Codable, Sendable {
 }
 
 public struct AuthorizationVerificationData: Codable, Hashable, Sendable {
-    /// Whether the cardholder provided an address first line and if it matched the cardholder’s `billing.address.line1`.
     public var addressLine1Check: AuthorizationVerificationDataCheck?
-    /// Whether the cardholder provided a postal code and if it matched the cardholder’s `billing.address.postal_code`.
     public var addressPostalCodeCheck: AuthorizationVerificationDataCheck?
-    /// Whether the cardholder provided a CVC and if it matched Stripe’s record.
     public var cvcCheck: AuthorizationVerificationDataCheck?
-    /// Whether the cardholder provided an expiry date and if it matched Stripe’s record.
     public var expiryCheck: AuthorizationVerificationDataCheck?
 
     public init(

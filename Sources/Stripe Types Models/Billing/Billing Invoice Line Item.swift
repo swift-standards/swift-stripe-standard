@@ -1,64 +1,32 @@
-//
-//  InvoiceLineItem.swift
-//  Stripe
-//
-//  Created by Anthony Castelli on 9/5/17.
-//
-//
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
-import Foundation
-import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/invoices/line_item.md
-
-/// The [Invoice Line Item Object](https://stripe.com/docs/api/invoices/line_item) .
 extension Stripe.Billing.Invoice {
     public struct LineItem: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
-        /// Unique identifier for the object.
         public var id: ID
-        /// The amount, in cents.
         public var amount: Int?
-        /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
         public var currency: Stripe.Currency?
-        /// An arbitrary string attached to the object. Often useful for displaying to users.
         public var description: String?
-        /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Note that for line items with `type=subscription` this will reflect the metadata of the subscription that caused the line item to be created.
         public var metadata: [String: String]?
-        /// The timespan covered by this invoice item.
         public var period: Period?
-        /// The price of the line item.
         public var price: Stripe.Products.Price?
-        /// Whether this is a proration.
         public var proration: Bool?
-        /// The quantity of the subscription, if the line item is a subscription or a proration.
         public var quantity: Int?
-        /// A string identifying the type of the source of this line item, either an `invoiceitem` or a `subscription`.
         public var type: Type?
-        /// String representing the object's type. Objects of the same type share the same value.
         public var object: String
-        /// The integer amount in cents representing the amount for this line item, excluding all tax and discounts.
         public var amountExcludingTax: Int?
-        /// The amount of discount calculated per discount for this line item.
         public var discountAmounts: [DiscountAmount]?
-        /// If true, discounts will apply to this line item. Always false for prorations.
         public var discountable: Bool?
         @ExpandableCollection<Stripe.Products.Discount> public var discounts: [String]?
-        /// The ID of the invoice item associated with this line item if any.
         @ExpandableOf<Stripe.Billing.Invoice.Item> public var invoiceItem: Stripe.Billing.Invoice.Item.ID?
-        /// Whether this is a test line item.
         public var livemode: Bool?
-        /// Additional details for proration line items.
         public var prorationDetails: ProrationDetails?
-        /// The subscription that the invoice item pertains to, if any.
         @ExpandableOf<Stripe.Billing.Subscription> public var subscription: Stripe.Billing.Subscription.ID?
-        /// The subscription item that generated this invoice item. Left empty if the line item is not an explicit result of a subscription.
         @ExpandableOf<Stripe.Billing.Subscription.Item> public var subscriptionItem: Stripe.Billing.Subscription.Item.ID?
-        /// The amount of tax calculated per tax rate for this line item
         public var taxAmounts: [Stripe.Billing.Invoice.TotalTaxAmount]?
-        /// The tax rates which apply to the line item.
         public var taxRates: [Stripe.Tax.Rate]?
-        /// The amount in cents representing the unit amount for this line item, excluding all tax and discounts.
         public var unitAmountExcludingTax: String?
 
         public init(
@@ -115,9 +83,7 @@ extension Stripe.Billing.Invoice {
 
 extension Stripe.Billing.Invoice.LineItem {
     public struct Period: Codable, Hashable, Sendable {
-        /// Start of the line item's billing period
         public var start: Date?
-        /// End of the line item's billing period
         public var end: Date?
 
         public init(
@@ -135,9 +101,7 @@ extension Stripe.Billing.Invoice.LineItem {
     }
 
     public struct DiscountAmount: Codable, Hashable, Sendable {
-        /// The amount, in cents, of the discount.
         public var amount: Int?
-        /// The discount that was applied to get this discount amount.
         @ExpandableOf<Stripe.Products.Discount> public var discount: Stripe.Products.Discount.ID?
 
         public init(
@@ -150,7 +114,6 @@ extension Stripe.Billing.Invoice.LineItem {
     }
 
     public struct ProrationDetails: Codable, Hashable, Sendable {
-        /// For a credit proration `line_item`, the original debit `lineItems` to which the credit proration applies.
         public var creditedItems: CreditedItem?
 
         public init(
@@ -163,9 +126,7 @@ extension Stripe.Billing.Invoice.LineItem {
 
 extension Stripe.Billing.Invoice.LineItem.ProrationDetails {
     public struct CreditedItem: Codable, Hashable, Sendable {
-        /// Invoice containing the credited invoice line items
         public var invoice: Stripe.Billing.Invoice.ID?
-        /// Credited invoice line items
         public var invoiceLineItems: [String]?
 
         public init(
@@ -201,17 +162,11 @@ extension Stripe.Billing.Invoice.LineItem {
 
 extension Stripe.Billing.Invoice {
     public struct SearchResult: Codable, Hashable, Sendable {
-        /// A string describing the object type returned.
         public var object: String
-        /// A list of invoices, paginated by any request parameters.
         public var data: [Stripe.Billing.Invoice]?
-        /// Whether or not there are more elements available after this set.
         public var hasMore: Bool?
-        /// The URL for accessing this list.
         public var url: String?
-        /// The URL for accessing the next page in search results.
         public var nextPage: String?
-        /// The total count of entries in the search result, not just the current page.
         public var totalCount: Int?
 
         public init(

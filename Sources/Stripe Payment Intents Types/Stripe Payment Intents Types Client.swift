@@ -1,11 +1,4 @@
-//
-//  File.swift
-//  coenttb-stripe
-//
-//  Created by Coen ten Thije Boonkkamp on 04/01/2025.
-//
-
-import Async_Lifecycle
+public import Async_Lifecycle
 import Either
 import Foundation
 import Stripe_Types_Models
@@ -14,14 +7,12 @@ import Stripe_Types_Shared
 extension Stripe.PaymentIntents {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/payment_intents/create.md
         public var create:
             @Sendable (_ request: Stripe.PaymentIntents.Create.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.PaymentIntents.Create.Error
             >) ->
                 Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent
 
-        // https://docs.stripe.com/api/payment_intents/update.md
         public var update:
             @Sendable (
                 _ id: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.ID,
@@ -29,13 +20,11 @@ extension Stripe.PaymentIntents {
             ) async throws(Either<Async.Lifecycle.Error, Stripe.PaymentIntents.Update.Error>) ->
                 Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent
 
-        // https://docs.stripe.com/api/payment_intents/retrieve.md
         public var retrieve:
             @Sendable (_ id: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.ID)
                 async throws(Either<Async.Lifecycle.Error, Stripe.PaymentIntents.Retrieve.Error>) ->
                 Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent
 
-        // https://docs.stripe.com/api/payment_intents/list.md
         public var list:
             @Sendable (_ request: Stripe.PaymentIntents.List.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.PaymentIntents.List.Error
@@ -43,7 +32,6 @@ extension Stripe.PaymentIntents {
                 ->
                 Stripe.PaymentIntents.List.Response
 
-        // https://docs.stripe.com/api/payment_intents/cancel.md
         public var cancel:
             @Sendable (
                 _ id: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.ID,
@@ -51,7 +39,6 @@ extension Stripe.PaymentIntents {
             ) async throws(Either<Async.Lifecycle.Error, Stripe.PaymentIntents.Cancel.Error>) ->
                 Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent
 
-        // https://docs.stripe.com/api/payment_intents/capture.md
         public var capture:
             @Sendable (
                 _ id: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.ID,
@@ -59,7 +46,6 @@ extension Stripe.PaymentIntents {
             ) async throws(Either<Async.Lifecycle.Error, Stripe.PaymentIntents.Capture.Error>) ->
                 Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent
 
-        // https://docs.stripe.com/api/payment_intents/confirm.md
         public var confirm:
             @Sendable (
                 _ id: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.ID,
@@ -67,7 +53,6 @@ extension Stripe.PaymentIntents {
             ) async throws(Either<Async.Lifecycle.Error, Stripe.PaymentIntents.Confirm.Error>) ->
                 Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent
 
-        // https://docs.stripe.com/api/payment_intents/increment_authorization.md
         public var incrementAuthorization:
             @Sendable (
                 _ id: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.ID,
@@ -77,7 +62,6 @@ extension Stripe.PaymentIntents {
             >) ->
                 Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent
 
-        // https://docs.stripe.com/api/payment_intents/apply_customer_balance.md
         public var applyCustomerBalance:
             @Sendable (_ id: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.ID)
                 async throws(Either<
@@ -85,14 +69,12 @@ extension Stripe.PaymentIntents {
                 >) ->
                 Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent
 
-        // https://docs.stripe.com/api/payment_intents/search.md
         public var search:
             @Sendable (_ request: Stripe.PaymentIntents.Search.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.PaymentIntents.Search.Error
             >) ->
                 Stripe.PaymentIntents.Search.Response
 
-        // https://docs.stripe.com/api/payment_intents/verify_microdeposits.md
         public var verifyMicrodeposits:
             @Sendable (
                 _ id: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.ID,

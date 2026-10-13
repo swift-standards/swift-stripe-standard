@@ -1,32 +1,16 @@
-//
-//  File.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 04/01/2025.
-//
-
-import Foundation
+public import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.PaymentIntents {
-    // https://docs.stripe.com/api/payment_intents/create.md
     public enum Create {}
-    // https://docs.stripe.com/api/payment_intents/update.md
     public enum Update {}
-    // https://docs.stripe.com/api/payment_intents/confirm.md
     public enum Confirm {}
-    // https://docs.stripe.com/api/payment_intents/capture.md
     public enum Capture {}
-    // https://docs.stripe.com/api/payment_intents/cancel.md
     public enum Cancel {}
-    // https://docs.stripe.com/api/payment_intents/list.md
     public enum List {}
-    // https://docs.stripe.com/api/payment_intents/search.md
     public enum Search {}
-    // https://docs.stripe.com/api/payment_intents/increment_authorization.md
     public enum IncrementAuthorization {}
-    // https://docs.stripe.com/api/payment_intents/verify_microdeposits.md
     public enum VerifyMicrodeposits {}
 }
 
@@ -62,9 +46,7 @@ extension Stripe.PaymentIntents {
     }
 }
 
-// https://docs.stripe.com/api/payment_intents/create.md
 extension Stripe.PaymentIntents.Create {
-    // Radar fraud prevention options
     public struct RadarOptions: Codable, Equatable, Sendable {
         public let session: String?
 
@@ -73,7 +55,6 @@ extension Stripe.PaymentIntents.Create {
         }
     }
 
-    // Transfer data for connected accounts
     public struct TransferData: Codable, Equatable, Sendable {
         public let amount: Int?
         public let destination: String
@@ -84,7 +65,6 @@ extension Stripe.PaymentIntents.Create {
         }
     }
 
-    // Mandate data for setting up future payments
     public struct MandateData: Codable, Equatable, Sendable {
         public let customerAcceptance: CustomerAcceptance
 
@@ -127,7 +107,6 @@ extension Stripe.PaymentIntents.Create {
             }
 
             public struct OfflineAcceptance: Codable, Equatable, Sendable {
-                // Offline acceptance details if needed
                 public init() {}
             }
 
@@ -293,7 +272,6 @@ extension Stripe.PaymentIntents.Create {
     }
 }
 
-// https://docs.stripe.com/api/payment_intents/update.md
 extension Stripe.PaymentIntents.Update {
     public struct Request: Codable, Equatable, Sendable {
         public let amount: Int?
@@ -381,9 +359,7 @@ extension Stripe.PaymentIntents.Update {
     }
 }
 
-// https://docs.stripe.com/api/payment_intents/confirm.md
 extension Stripe.PaymentIntents.Confirm {
-    // Use the same MandateData type from Create
     public typealias MandateData = Stripe.PaymentIntents.Create.MandateData
     public typealias RadarOptions = Stripe.PaymentIntents.Create.RadarOptions
 
@@ -465,9 +441,7 @@ extension Stripe.PaymentIntents.Confirm {
     }
 }
 
-// https://docs.stripe.com/api/payment_intents/capture.md
 extension Stripe.PaymentIntents.Capture {
-    // TransferData for capture operation
     public struct TransferData: Codable, Equatable, Sendable {
         public let amount: Int?
 
@@ -515,7 +489,6 @@ extension Stripe.PaymentIntents.Capture {
     }
 }
 
-// https://docs.stripe.com/api/payment_intents/cancel.md
 extension Stripe.PaymentIntents.Cancel {
     public struct Request: Codable, Equatable, Sendable {
         public let cancellationReason: Stripe_Types_Shared.Stripe.PaymentIntents.PaymentIntent.Cancellation.Reason?
@@ -533,18 +506,12 @@ extension Stripe.PaymentIntents.Cancel {
     }
 }
 
-// https://docs.stripe.com/api/payment_intents/list.md
 extension Stripe.PaymentIntents.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Only return payment intents that were created during the given date interval
         public let created: Stripe.DateFilter?
-        /// Filter by customer ID
         public let customer: Stripe.Customers.Customer.ID?
-        /// A cursor for use in pagination
         public let endingBefore: String?
-        /// A limit on the number of objects to be returned (1-100, default 10)
         public let limit: Int?
-        /// A cursor for use in pagination
         public let startingAfter: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -597,7 +564,6 @@ extension Stripe.PaymentIntents.List {
     }
 }
 
-// https://docs.stripe.com/api/payment_intents/search.md
 extension Stripe.PaymentIntents.Search {
     public struct Request: Codable, Equatable, Sendable {
         public let query: String
@@ -650,7 +616,6 @@ extension Stripe.PaymentIntents.Search {
     }
 }
 
-// https://docs.stripe.com/api/payment_intents/increment_authorization.md
 extension Stripe.PaymentIntents.IncrementAuthorization {
     public struct Request: Codable, Equatable, Sendable {
         public let amount: Int
@@ -695,7 +660,6 @@ extension Stripe.PaymentIntents.IncrementAuthorization {
     }
 }
 
-// https://docs.stripe.com/api/payment_intents/verify_microdeposits.md
 extension Stripe.PaymentIntents.VerifyMicrodeposits {
     public struct Request: Codable, Equatable, Sendable {
         public let amounts: [Int]?

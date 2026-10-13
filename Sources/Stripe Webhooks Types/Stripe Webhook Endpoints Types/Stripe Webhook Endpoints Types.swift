@@ -3,13 +3,10 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.WebhookEndpoint {
-    // https://docs.stripe.com/api/webhook_endpoints/create.md
     public enum Create {}
 
-    // https://docs.stripe.com/api/webhook_endpoints/update.md
     public enum Update {}
 
-    // https://docs.stripe.com/api/webhook_endpoints/list.md
     public enum List {}
 }
 

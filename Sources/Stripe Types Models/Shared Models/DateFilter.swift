@@ -1,24 +1,12 @@
-//
-//  Stripe Shared Types DateFilter.swift
-//  swift-stripe-types
-//
-//  Created by Namespace Refactoring on 2025-01-10.
-//
-
 import Foundation
-import Stripe_Types_Shared
+public import Stripe_Types_Shared
 
 extension Stripe {
-    /// A common filter type for date ranges used in list requests
     public struct DateFilter: Codable, Equatable, Sendable, RawRepresentable {
         public typealias RawValue = String
-        /// Minimum value to filter by (exclusive)
         public let gt: Int?
-        /// Minimum value to filter by (inclusive)
         public let gte: Int?
-        /// Maximum value to filter by (exclusive)
         public let lt: Int?
-        /// Maximum value to filter by (inclusive)
         public let lte: Int?
 
         public init(
@@ -33,10 +21,7 @@ extension Stripe {
             self.lte = lte
         }
 
-        // MARK: - RawRepresentable
-
         public init?(rawValue: String) {
-            // Parse simple format like "gt:123,gte:456,lt:789,lte:012"
             var gt: Int?
             var gte: Int?
             var lt: Int?
@@ -60,7 +45,6 @@ extension Stripe {
                 }
             }
 
-            // At least one value must be present
             guard gt != nil || gte != nil || lt != nil || lte != nil else {
                 return nil
             }

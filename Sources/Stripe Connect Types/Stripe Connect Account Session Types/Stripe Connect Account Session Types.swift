@@ -1,17 +1,9 @@
-//
-//  Stripe Connect Account Session Types.swift
-//  swift-stripe-types
-//
-//  Created on 2025-01-14.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 import Tagged
 
 extension Stripe.Connect.Account.Session {
-    // https://docs.stripe.com/api/account_sessions/create.md
     public enum Create {}
 }
 
@@ -121,22 +113,17 @@ extension Stripe.Connect.Account.Session.Create {
                     self.features = features
                 }
 
-                // Component-specific features based on Stripe API documentation
                 public struct Features: Codable, Equatable, Sendable {
-                    // Common features across multiple components
                     public var externalAccountCollection: Bool?
                     public var disableStripeUserAuthentication: Bool?
 
-                    // Balances-specific features
                     public var editPayoutSchedule: Bool?
                     public var instantPayouts: Bool?
                     public var standardPayouts: Bool?
 
-                    // Financial account features
                     public var sendMoney: Bool?
                     public var transferBalance: Bool?
 
-                    // Issuing card features
                     public var cardManagement: Bool?
                     public var cardSpendDisputeManagement: Bool?
                     public var cardholderManagement: Bool?

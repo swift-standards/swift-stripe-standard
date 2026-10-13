@@ -1,55 +1,39 @@
-import Foundation
+public import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.PaymentMethods.Sources {
-    // https://docs.stripe.com/api/sources/create.md
     public enum Create {}
 
-    // https://docs.stripe.com/api/sources/update.md
     public enum Update {}
 }
 
-// MARK: - Create Request
 extension Stripe.PaymentMethods.Sources.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// The type of the source to create (required)
         public let type: String
 
-        /// Amount associated with the source
         public let amount: Int?
 
-        /// Three-letter ISO currency code
         public let currency: Stripe.Currency?
 
-        /// Authentication flow (redirect, receiver, code_verification, none)
         public let flow: String?
 
-        /// Mandate information for bank debits
         public let mandate: Mandate?
 
-        /// Key-value pairs for additional information
         public let metadata: [String: String]?
 
-        /// Information about payment instrument owner
         public let owner: Owner?
 
-        /// Parameters for receiver flow
         public let receiver: Receiver?
 
-        /// Parameters for redirect flow
         public let redirect: Redirect?
 
-        /// Items and shipping information
         public let sourceOrder: SourceOrder?
 
-        /// Text to display on customer's statement
         public let statementDescriptor: Stripe.StatementDescriptor?
 
-        /// Optional token to create source
         public let token: String?
 
-        /// Reusability of source (reusable or single_use)
         public let usage: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -100,22 +84,16 @@ extension Stripe.PaymentMethods.Sources.Create {
     }
 }
 
-// MARK: - Update Request
 extension Stripe.PaymentMethods.Sources.Update {
     public struct Request: Codable, Equatable, Sendable {
-        /// Amount associated with the source
         public let amount: Int?
 
-        /// Mandate information for bank debits
         public let mandate: Stripe.PaymentMethods.Sources.Mandate?
 
-        /// Key-value pairs for additional structured information
         public let metadata: [String: String]?
 
-        /// Payment instrument owner details
         public let owner: Stripe.PaymentMethods.Sources.Owner?
 
-        /// Order and shipping information
         public let sourceOrder: Stripe.PaymentMethods.Sources.SourceOrder?
 
         private enum CodingKeys: String, CodingKey {
@@ -142,7 +120,6 @@ extension Stripe.PaymentMethods.Sources.Update {
     }
 }
 
-// MARK: - Shared Types
 extension Stripe.PaymentMethods.Sources {
     public typealias Owner = Stripe.PaymentMethods.Sources.Create.Owner
     public typealias Mandate = Stripe.PaymentMethods.Sources.Create.Mandate

@@ -1,34 +1,19 @@
-//
-//  Stripe Billing Subscription Items Types Billing Subscription Items.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Billing.SubscriptionItems {
-    // https://docs.stripe.com/api/subscriptionItems/create.md
     public enum Create {}
 }
 
 extension Stripe.Billing.SubscriptionItems.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// The identifier of the subscription to add items to
         public var subscription: Stripe.Billing.Subscription.ID
-        /// The ID of the price object
         public var price: Stripe.Products.Price.ID?
-        /// Data used to generate a new price object inline
         public var priceData: PriceData?
-        /// Quantity for this item
         public var quantity: Int?
-        /// A list of Tax Rate IDs to apply to this subscription item
         public var taxRates: [String]?
-        /// Set of key-value pairs that you can attach to an object
         public var metadata: [String: String]?
-        /// The billing thresholds of the item
         public var billingThresholds: BillingThresholds?
 
         public init(
@@ -61,15 +46,10 @@ extension Stripe.Billing.SubscriptionItems.Create {
     }
 
     public struct PriceData: Codable, Equatable, Sendable {
-        /// Three-letter ISO currency code
         public var currency: Stripe.Currency
-        /// The ID of the product that this price will belong to
         public var product: Stripe.Products.Product.ID
-        /// The recurring components of a price
         public var recurring: Recurring
-        /// A positive integer in cents representing how much to charge
         public var unitAmount: Int?
-        /// Same as unit_amount, but accepts a decimal value with at most 12 decimal places
         public var unitAmountDecimal: String?
 
         public init(
@@ -96,9 +76,7 @@ extension Stripe.Billing.SubscriptionItems.Create {
     }
 
     public struct Recurring: Codable, Equatable, Sendable {
-        /// Billing frequency
         public var interval: String
-        /// The number of intervals between subscription billings
         public var intervalCount: Int?
 
         public init(
@@ -116,7 +94,6 @@ extension Stripe.Billing.SubscriptionItems.Create {
     }
 
     public struct BillingThresholds: Codable, Equatable, Sendable {
-        /// Usage threshold that triggers the subscription to advance to a new billing period
         public var usageGte: Int?
 
         public init(usageGte: Int? = nil) {
@@ -130,25 +107,17 @@ extension Stripe.Billing.SubscriptionItems.Create {
 }
 
 extension Stripe.Billing.SubscriptionItems {
-    // https://docs.stripe.com/api/subscriptionItems/update.md
     public enum Update {}
 }
 
 extension Stripe.Billing.SubscriptionItems.Update {
     public struct Request: Codable, Equatable, Sendable {
-        /// The ID of the price object
         public var price: Stripe.Products.Price.ID?
-        /// Data used to generate a new price object inline
         public var priceData: Stripe.Billing.SubscriptionItems.Create.PriceData?
-        /// Quantity for this item
         public var quantity: Int?
-        /// A list of Tax Rate IDs to apply to this subscription item
         public var taxRates: [String]?
-        /// Set of key-value pairs that you can attach to an object
         public var metadata: [String: String]?
-        /// The billing thresholds of the item
         public var billingThresholds: Stripe.Billing.SubscriptionItems.Create.BillingThresholds?
-        /// Delete all keys from the existing metadata
         public var clearMetadata: Bool?
 
         public init(
@@ -182,19 +151,14 @@ extension Stripe.Billing.SubscriptionItems.Update {
 }
 
 extension Stripe.Billing.SubscriptionItems {
-    // https://docs.stripe.com/api/subscriptionItems/list.md
     public enum List {}
 }
 
 extension Stripe.Billing.SubscriptionItems.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// The ID of the subscription whose items will be retrieved
         public var subscription: Stripe.Billing.Subscription.ID
-        /// A cursor for use in pagination
         public var endingBefore: String?
-        /// A limit on the number of objects to be returned
         public var limit: Int?
-        /// A cursor for use in pagination
         public var startingAfter: String?
 
         public init(

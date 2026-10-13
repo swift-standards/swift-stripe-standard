@@ -1,49 +1,25 @@
-//
-//  TaxCalculation.swift
-//  Stripe Types Models
-//
-//  Created on 2025-01-14.
-//
-
-import Foundation
-import Stripe_Types_Shared
-import Tagged
-
-// https://docs.stripe.com/api/tax/calculations/object.md
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe.Tax {
     public struct Calculation: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
 
-        /// Unique identifier for the calculation.
         public var id: ID
-        /// String representing the object's type. Objects of the same type share the same value.
         public var object: String
-        /// Total amount after taxes in the smallest currency unit.
         public var amountTotal: Int
-        /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
         public var currency: Stripe.Currency
-        /// The customer's details for the calculation.
         public var customerDetails: CustomerDetails?
-        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
-        /// The customer's tax IDs.
         public var customerTaxIds: [CustomerTaxID]?
-        /// Time at which the calculation expires.
         public var expiresAt: Date?
-        /// The line items that were used to calculate tax.
         public var lineItems: LineItemList?
-        /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool
-        /// The customer's shipping information for the calculation.
         public var shippingCost: ShippingCost?
-        /// The amount of tax to be collected on top of the line item prices.
         public var taxAmountExclusive: Int
-        /// The amount of tax already included in the line item prices.
         public var taxAmountInclusive: Int
-        /// Breakdown of individual tax amounts that contribute to the total.
         public var taxBreakdown: [TaxBreakdown]?
-        /// Timestamp of date of the tax calculation.
         public var taxDate: Date
 
         private enum CodingKeys: String, CodingKey {
@@ -102,15 +78,10 @@ extension Stripe.Tax {
 
 extension Stripe.Tax.Calculation {
     public struct CustomerDetails: Codable, Hashable, Sendable {
-        /// The customer's postal address (for example, home or business location).
         public var address: Address?
-        /// The type of customer address provided.
         public var addressSource: AddressSource?
-        /// The customer's IP address (IPv4 or IPv6).
         public var ipAddress: String?
-        /// The customer's tax exemption. One of none, exempt, or reverse.
         public var taxability: Taxability?
-        /// The customer's tax IDs.
         public var taxIds: [TaxID]?
 
         private enum CodingKeys: String, CodingKey {
@@ -137,9 +108,7 @@ extension Stripe.Tax.Calculation {
     }
 
     public struct CustomerTaxID: Codable, Hashable, Sendable {
-        /// The type of the tax ID.
         public var type: String
-        /// The value of the tax ID.
         public var value: String
 
         public init(type: String, value: String) {
@@ -151,25 +120,15 @@ extension Stripe.Tax.Calculation {
     public struct LineItem: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
 
-        /// Unique identifier for the object.
         public var id: ID
-        /// String representing the object's type. Objects of the same type share the same value.
         public var object: String
-        /// The line item amount in the smallest currency unit.
         public var amount: Int
-        /// The amount of tax calculated for this line item, in the smallest currency unit.
         public var amountTax: Int
-        /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool
-        /// The product used for this line item.
         public var product: Stripe.Products.Product.ID?
-        /// The number of units of the item being purchased.
         public var quantity: Int
-        /// A custom identifier for this line item.
         public var reference: String?
-        /// Specifies whether the amount includes taxes.
         public var taxBehavior: TaxBehavior?
-        /// The tax code for the line item.
         public var taxCode: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -211,13 +170,9 @@ extension Stripe.Tax.Calculation {
     }
 
     public struct LineItemList: Codable, Hashable, Sendable {
-        /// String describing the object type returned.
         public var object: String
-        /// Details about each object.
         public var data: [LineItem]
-        /// True if this list has another page of items after this one that can be fetched.
         public var hasMore: Bool
-        /// The URL where this list can be accessed.
         public var url: String
 
         private enum CodingKeys: String, CodingKey {
@@ -241,13 +196,9 @@ extension Stripe.Tax.Calculation {
     }
 
     public struct ShippingCost: Codable, Hashable, Sendable {
-        /// The shipping amount in the smallest currency unit.
         public var amount: Int
-        /// The amount of tax calculated for shipping, in the smallest currency unit.
         public var amountTax: Int
-        /// The tax code for shipping.
         public var taxCode: String?
-        /// Specifies whether the amount includes taxes.
         public var taxBehavior: TaxBehavior?
 
         private enum CodingKeys: String, CodingKey {
@@ -271,17 +222,11 @@ extension Stripe.Tax.Calculation {
     }
 
     public struct TaxBreakdown: Codable, Hashable, Sendable {
-        /// The amount of tax, in the smallest currency unit.
         public var amount: Int
-        /// Whether the tax amount is inclusive or exclusive.
         public var inclusive: Bool
-        /// The tax jurisdiction details.
         public var jurisdiction: TaxJurisdiction?
-        /// Indicates whether the jurisdiction was determined by the origin or destination address.
         public var sourcing: Sourcing?
-        /// The type of tax (for example, sales_tax or vat).
         public var taxRateDetails: TaxRateDetails?
-        /// The reasoning behind this tax, for example, if the product is tax exempt.
         public var taxabilityReason: TaxabilityReason?
 
         private enum CodingKeys: String, CodingKey {
@@ -311,13 +256,9 @@ extension Stripe.Tax.Calculation {
     }
 
     public struct TaxJurisdiction: Codable, Hashable, Sendable {
-        /// Two-letter country code (ISO 3166-1 alpha-2).
         public var country: String
-        /// A human-readable name for the jurisdiction.
         public var displayName: String
-        /// Indicates the level of the jurisdiction.
         public var level: Level?
-        /// ISO 3166-2 subdivision code, without country prefix.
         public var state: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -349,9 +290,7 @@ extension Stripe.Tax.Calculation {
     }
 
     public struct TaxRateDetails: Codable, Hashable, Sendable {
-        /// The tax rate percentage as a string (for example, "8.5").
         public var percentageDecimal: String
-        /// The tax type, such as vat or sales_tax.
         public var taxType: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -369,9 +308,7 @@ extension Stripe.Tax.Calculation {
     }
 
     public struct TaxID: Codable, Hashable, Sendable {
-        /// The type of the tax ID.
         public var type: String
-        /// The value of the tax ID.
         public var value: String
 
         public init(type: String, value: String) {

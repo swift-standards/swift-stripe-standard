@@ -1,43 +1,23 @@
-//
-//  Stripe Refunds Types Refunds.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Refunds {
-    // https://docs.stripe.com/api/refunds/create.md
     public enum Create {}
-    // https://docs.stripe.com/api/refunds/update.md
     public enum Update {}
-    // https://docs.stripe.com/api/refunds/list.md
     public enum List {}
 }
 
-// https://docs.stripe.com/api/refunds/create.md
 extension Stripe.Refunds.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// A positive integer in cents representing how much to refund
         public let amount: Int?
-        /// ID of the charge to refund
         public let charge: Stripe.Charges.Charge.ID?
-        /// Email for refund instructions for payment methods without native refund support
         public let instructionsEmail: String?
-        /// Set of key-value pairs for additional information
         public let metadata: [String: String]?
-        /// Indicates refund origin for Customer Balance
         public let origin: Origin?
-        /// ID of the PaymentIntent to refund
         public let paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID?
-        /// Reason for the refund
         public let reason: Stripe.Refunds.Refund.Reason?
-        /// Whether to refund the associated application fee
         public let refundApplicationFee: Bool?
-        /// Whether to reverse the transfer proportionally to the refund amount
         public let reverseTransfer: Bool?
 
         private enum CodingKeys: String, CodingKey {
@@ -80,10 +60,8 @@ extension Stripe.Refunds.Create {
     }
 }
 
-// https://docs.stripe.com/api/refunds/update.md
 extension Stripe.Refunds.Update {
     public struct Request: Codable, Equatable, Sendable {
-        /// Set of key-value pairs that you can attach to an object
         public let metadata: [String: String]?
 
         public init(metadata: [String: String]? = nil) {
@@ -92,20 +70,13 @@ extension Stripe.Refunds.Update {
     }
 }
 
-// https://docs.stripe.com/api/refunds/list.md
 extension Stripe.Refunds.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Only return refunds for the charge specified by this charge ID
         public let charge: Stripe.Charges.Charge.ID?
-        /// Filter by refund creation date
         public let created: Stripe.DateFilter?
-        /// A cursor for use in pagination
         public let endingBefore: String?
-        /// A limit on the number of objects to be returned
         public let limit: Int?
-        /// Only return refunds for the PaymentIntent specified by this ID
         public let paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID?
-        /// A cursor for use in pagination
         public let startingAfter: String?
 
         private enum CodingKeys: String, CodingKey {

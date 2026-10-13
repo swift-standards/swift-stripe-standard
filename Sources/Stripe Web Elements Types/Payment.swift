@@ -1,13 +1,9 @@
-import Foundation
+public import Foundation
 import Stripe_Types_Shared
 
 extension Stripe.WebElements {
-    /// Payment Element for collecting payment method details
-    /// See: https://docs.stripe.com/payments/payment-element
     public struct Payment: Codable, Hashable, Sendable {
-        /// The type of Element being created
         public var type: String { "payment" }
-        /// Options for creating the Payment Element
         public let options: Options?
 
         public init(options: Options? = nil) {
@@ -15,8 +11,6 @@ extension Stripe.WebElements {
         }
     }
 }
-
-// MARK: - Options
 
 extension Stripe.WebElements.Payment {
     public struct Options: Codable, Hashable, Sendable {
@@ -54,8 +48,6 @@ extension Stripe.WebElements.Payment {
     }
 }
 
-// MARK: - Layout
-
 extension Stripe.WebElements.Payment {
     public struct Layout: Codable, Hashable, Sendable {
         public let type: LayoutType
@@ -84,8 +76,6 @@ extension Stripe.WebElements.Payment {
         case tabs
     }
 }
-
-// MARK: - Default Values
 
 extension Stripe.WebElements.Payment {
     public struct DefaultValues: Codable, Hashable, Sendable {
@@ -179,8 +169,6 @@ extension Stripe.WebElements.Payment.DefaultValues {
     }
 }
 
-// MARK: - Business
-
 extension Stripe.WebElements.Payment {
     public struct Business: Codable, Hashable, Sendable {
         public let name: String?
@@ -190,8 +178,6 @@ extension Stripe.WebElements.Payment {
         }
     }
 }
-
-// MARK: - Fields
 
 extension Stripe.WebElements.Payment {
     public struct Fields: Codable, Hashable, Sendable {
@@ -258,8 +244,6 @@ extension Stripe.WebElements.Payment {
     }
 }
 
-// MARK: - Terms
-
 extension Stripe.WebElements.Payment {
     public struct Terms: Codable, Hashable, Sendable {
         public let applePay: TermOption?
@@ -308,8 +292,6 @@ extension Stripe.WebElements.Payment {
     }
 }
 
-// MARK: - Wallets
-
 extension Stripe.WebElements.Payment {
     public struct Wallets: Codable, Hashable, Sendable {
         public let applePay: WalletOption?
@@ -330,8 +312,6 @@ extension Stripe.WebElements.Payment {
     }
 }
 
-// MARK: - Apple Pay
-
 extension Stripe.WebElements.Payment {
     public struct ApplePay: Codable, Hashable, Sendable {
         public let recurringPaymentRequest: RecurringPaymentRequest?
@@ -349,8 +329,6 @@ extension Stripe.WebElements.Payment {
         }
     }
 }
-
-// MARK: - Apple Pay Recurring Payment
 
 extension Stripe.WebElements.Payment.ApplePay {
     public struct RecurringPaymentRequest: Codable, Hashable, Sendable {
@@ -434,8 +412,6 @@ extension Stripe.WebElements.Payment.ApplePay {
     }
 }
 
-// MARK: - Apple Pay Deferred Payment
-
 extension Stripe.WebElements.Payment.ApplePay {
     public struct DeferredPaymentRequest: Codable, Hashable, Sendable {
         public let paymentDescription: String
@@ -478,8 +454,6 @@ extension Stripe.WebElements.Payment.ApplePay {
         }
     }
 }
-
-// MARK: - Apple Pay Automatic Reload
 
 extension Stripe.WebElements.Payment.ApplePay {
     public struct AutomaticReloadPaymentRequest: Codable, Hashable, Sendable {

@@ -1,43 +1,22 @@
-//
-//  PaymentMethodDomain.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 14/01/2025.
-//
-
-import Foundation
-import Stripe_Types_Shared
-import Tagged
-
-// https://docs.stripe.com/api/payment_method_domains/object.md
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe {
     public struct PaymentMethodDomain: Codable, Hashable, Sendable {
         public typealias ID = Tagged<Self, String>
 
-        /// Unique identifier for the object.
         public var id: ID
-        /// String representing the object's type. Objects of the same type share the same value.
         public var object: String
-        /// Amazon Pay's eligibility status on this domain.
         public var amazonPay: PaymentMethodStatus?
-        /// Apple Pay's eligibility status on this domain.
         public var applePay: PaymentMethodStatus?
-        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
-        /// The domain name that this payment method domain object represents.
         public var domainName: String
-        /// Whether this payment method domain is enabled. If the domain is not enabled, payment methods that require a payment method domain will not appear in Elements or Embedded Checkout.
         public var enabled: Bool
-        /// Google Pay's eligibility status on this domain.
         public var googlePay: PaymentMethodStatus?
-        /// Klarna's eligibility status on this domain.
         public var klarna: PaymentMethodStatus?
-        /// Link's eligibility status on this domain.
         public var link: PaymentMethodStatus?
-        /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool?
-        /// PayPal's eligibility status on this domain.
         public var paypal: PaymentMethodStatus?
 
         private enum CodingKeys: String, CodingKey {
@@ -84,9 +63,7 @@ extension Stripe {
         }
 
         public struct PaymentMethodStatus: Codable, Hashable, Sendable {
-            /// The status of the payment method domain on this domain.
             public var status: Status?
-            /// Additional status details.
             public var statusDetails: StatusDetails?
 
             private enum CodingKeys: String, CodingKey {
@@ -108,7 +85,6 @@ extension Stripe {
             }
 
             public struct StatusDetails: Codable, Hashable, Sendable {
-                // Details would be specified here when available
                 public init() {}
             }
         }

@@ -1,39 +1,20 @@
-//
-//  PaymentMethodConfiguration.swift
-//  Stripe Types Models
-//
-//  Created for swift-stripe-types on 14/01/2025.
-//
-
 import Foundation
-import Stripe_Types_Shared
-import Tagged
-
-// https://docs.stripe.com/api/payment_method_configurations/object.md
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe.PaymentMethodConfigurations {
-    /// The [Payment Method Configuration Object](https://docs.stripe.com/api/payment_method_configurations/object).
     public struct Configuration: Codable, Hashable, Sendable {
         public typealias ID = Tagged<Self, String>
 
-        /// Unique identifier for the object.
         public var id: ID?
-        /// String representing the object's type. Objects of the same type share the same value.
         public var object: String
-        /// Whether the configuration can be used for new payments.
         public var active: Bool
-        /// Whether this configuration is the default. Child configurations effectively inherit the display preferences of default configurations.
         public var isDefault: Bool
-        /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool
-        /// The configuration's name.
         public var name: String
-        /// ID of the Connect application that created the configuration.
         public var application: String?
-        /// Parent configuration for configurations of type child. The child configuration inherits from the parent configuration.
         public var parent: String?
 
-        // Payment method specific configurations
         public var acssDebit: PaymentMethodConfig?
         public var affirm: PaymentMethodConfig?
         public var afterpayClearpay: PaymentMethodConfig?
@@ -276,11 +257,8 @@ extension Stripe.PaymentMethodConfigurations {
     }
 }
 
-// MARK: - PaymentMethodConfig
 extension Stripe.PaymentMethodConfigurations {
-    /// Configuration for a specific payment method.
     public struct PaymentMethodConfig: Codable, Hashable, Sendable {
-        /// Display preference for this payment method.
         public var displayPreference: DisplayPreference?
 
         private enum CodingKeys: String, CodingKey {
@@ -292,9 +270,7 @@ extension Stripe.PaymentMethodConfigurations {
         }
     }
 
-    /// Display preference configuration.
     public struct DisplayPreference: Codable, Hashable, Sendable {
-        /// The display preference value.
         public var preference: Preference
 
         public init(preference: Preference) {
@@ -302,13 +278,9 @@ extension Stripe.PaymentMethodConfigurations {
         }
     }
 
-    /// Display preference values.
     public enum Preference: String, Codable, CaseIterable, Sendable {
-        /// Don't display the payment method.
         case none
-        /// Payment method is disabled.
         case off
-        /// Payment method is enabled.
         case on
     }
 }

@@ -1,10 +1,3 @@
-//
-//  Products.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 05/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -18,17 +11,11 @@ extension Stripe.Products.Products {
 }
 
 extension Stripe.Products.Products.DefaultPrice {
-    /// Data used to generate a new Price object inline when creating a product
     public struct Data: Codable, Equatable, Sendable {
-        /// Three-letter ISO currency code, in lowercase
         public let currency: Stripe.Currency
-        /// A positive integer in cents (or 0 for a free price) representing how much to charge
         public let unitAmount: Int?
-        /// Same as unit_amount, but accepts a decimal value in cents with at most 12 decimal places
         public let unitAmountDecimal: String?
-        /// The recurring components of a price such as interval and interval_count
         public let recurring: Recurring?
-        /// Specifies whether the price is considered inclusive of taxes or exclusive of taxes
         public let taxBehavior: TaxBehavior?
 
         private enum CodingKeys: String, CodingKey {
@@ -54,9 +41,7 @@ extension Stripe.Products.Products.DefaultPrice {
         }
 
         public struct Recurring: Codable, Equatable, Sendable {
-            /// Specifies billing frequency
             public let interval: Stripe.Interval
-            /// The number of intervals between subscription billings
             public let intervalCount: Int?
 
             private enum CodingKeys: String, CodingKey {
@@ -69,7 +54,6 @@ extension Stripe.Products.Products.DefaultPrice {
                 self.intervalCount = intervalCount
             }
 
-            // Using shared Stripe.Interval type
             public typealias Interval = Stripe.Interval
         }
 

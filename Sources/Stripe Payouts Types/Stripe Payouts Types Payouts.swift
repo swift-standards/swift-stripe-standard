@@ -1,43 +1,23 @@
-//
-//  Stripe Payouts Types Payouts.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Payouts {
-    // https://docs.stripe.com/api/payouts/create.md
     public enum Create {}
-    // https://docs.stripe.com/api/payouts/update.md
     public enum Update {}
-    // https://docs.stripe.com/api/payouts/list.md
     public enum List {}
-    // https://docs.stripe.com/api/payouts/reverse.md
     public enum Reverse {}
 }
 
-// https://docs.stripe.com/api/payouts/create.md
 extension Stripe.Payouts.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// A positive integer in cents representing how much to payout
         public let amount: Int
-        /// Three-letter ISO currency code, in lowercase
         public let currency: Stripe.Currency
-        /// An arbitrary string attached to the object
         public let description: String?
-        /// ID of bank account or card to send payout
         public let destination: String?
-        /// Set of key-value pairs for additional information
         public let metadata: [String: String]?
-        /// Payout sending method: standard or instant
         public let method: Stripe.Payouts.Payout.Method?
-        /// Balance type to draw payout from
         public let sourceType: Stripe.Payouts.Payout.SourceType?
-        /// Displays on recipient's bank/card statement
         public let statementDescriptor: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -73,10 +53,8 @@ extension Stripe.Payouts.Create {
     }
 }
 
-// https://docs.stripe.com/api/payouts/update.md
 extension Stripe.Payouts.Update {
     public struct Request: Codable, Equatable, Sendable {
-        /// Set of key-value pairs that you can attach to an object
         public let metadata: [String: String]?
 
         public init(metadata: [String: String]? = nil) {
@@ -85,22 +63,14 @@ extension Stripe.Payouts.Update {
     }
 }
 
-// https://docs.stripe.com/api/payouts/list.md
 extension Stripe.Payouts.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Filter by expected payout arrival date
         public let arrivalDate: Stripe.DateFilter?
-        /// Filter by payout creation date
         public let created: Stripe.DateFilter?
-        /// Filter by external account ID
         public let destination: String?
-        /// A cursor for use in pagination
         public let endingBefore: String?
-        /// A limit on the number of objects to be returned
         public let limit: Int?
-        /// A cursor for use in pagination
         public let startingAfter: String?
-        /// Filter by payout status
         public let status: Stripe.Payouts.Payout.Status?
 
         private enum CodingKeys: String, CodingKey {
@@ -159,10 +129,8 @@ extension Stripe.Payouts.List {
     }
 }
 
-// https://docs.stripe.com/api/payouts/reverse.md
 extension Stripe.Payouts.Reverse {
     public struct Request: Codable, Equatable, Sendable {
-        /// Set of key-value pairs that you can attach to an object
         public let metadata: [String: String]?
 
         public init(metadata: [String: String]? = nil) {

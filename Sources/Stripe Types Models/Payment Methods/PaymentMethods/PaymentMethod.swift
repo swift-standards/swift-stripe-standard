@@ -1,100 +1,52 @@
-//
-//  PaymentMethod.swift
-//  Stripe
-//
-//  Created by Andrew Edwards on 4/15/19.
-//
-
-import Foundation
-import Stripe_Types_Shared
-import Tagged
-
-// https://docs.stripe.com/api/paymentMethods/object.md
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe {
     public typealias PaymentMethod = Stripe.PaymentMethods.PaymentMethod
 }
 
 extension Stripe.PaymentMethods {
-    /// The [PaymentMethod Object](https://stripe.com/docs/api/paymentMethods/object) .
     public struct PaymentMethod: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
 
-        /// Unique identifier for the object.
         public var id: ID
-        /// Billing information associated with the PaymentMethod that may be used or required by particular types of payment methods.
         public var billingDetails: BillingModel.Details?
-        /// The ID of the Customer to which this PaymentMethod is saved. This will not be set when the PaymentMethod has not been saved to a Customer.
         @ExpandableOf<Stripe.Customers.Customer> public var customer: Stripe.Customers.Customer.ID?
-        /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?
-        /// The type of the PaymentMethod. An additional hash is included on the PaymentMethod with a name matching this value. It contains additional information specific to the PaymentMethod type.
         public var type: PaymentMethod.`Type`?
-        /// String representing the object’s type. Objects of the same type share the same value.
         public var object: String
-        /// If this is an `acss_debit` PaymentMethod, this hash contains details about the ACSS Debit payment method.
         public var acssDebit: PaymentMethodAcssDebit?
-        /// If this is an AfterpayClearpay PaymentMethod, this hash contains details about the AfterpayClearpay payment method.
         public var afterpayClearpay: PaymentMethodAfterpayClearpay?
-        /// If this is an Alipay PaymentMethod, this hash contains details about the Alipay payment method.
         public var alipay: PaymentMethodAlipay?
-        /// If this is an `au_becs_debit` PaymentMethod, this hash contains details about the bank account.
         public var auBecsDebit: PaymentMethodAuBecsDebit?
-        /// If this is a `bacs_debit` PaymentMethod, this hash contains details about the Bacs Direct Debit bank account.
         public var bacsDebit: PaymentMethodBacsDebit?
-        /// If this is a `bancontact` PaymentMethod, this hash contains details about the Bancontact payment method.
         public var bancontact: PaymentMethodBancontact?
-        /// If this is a `boleto` PaymentMethod, this hash contains details about the Boleto payment method.
         public var boleto: PaymentMethodBoleto?
-        /// If this is a `card` PaymentMethod, this hash contains details about the card.
         public var card: PaymentMethodCard?
-        /// If this is an `card_present` PaymentMethod, this hash contains details about the Card Present payment method.
         public var cardPresent: PaymentMethodCardPresent?
-        /// If this is a `cashapp` PaymentMethod, this hash contains details about the Cash App Pay payment method.
         public var cashapp: PaymentMethodCashapp?
-        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
-        /// If this is a `customer_balance` PaymentMethod, this hash contains details about the CustomerBalance payment method.
         public var customerBalance: PaymentMethodCustomerBalance?
-        /// If this is an `eps` PaymentMethod, this hash contains details about the EPS payment method.
         public var eps: PaymentMethodEps?
-        /// If this is an `fpx` PaymentMethod, this hash contains details about the FPX payment method.
         public var fpx: PaymentMethodFpx?
-        /// If this is an `giropay` PaymentMethod, this hash contains details about the Giropay payment method.
         public var giropay: PaymentMethodGiropay?
-        /// If this is a `grabpay` PaymentMethod, this hash contains details about the GrabPay payment method.
         public var grabpay: PaymentMethodGrabpay?
-        /// If this is an `ideal` PaymentMethod, this hash contains details about the iDEAL payment method.
         public var ideal: PaymentMethodIdeal?
-        /// If this is an `interac_present` PaymentMethod, this hash contains details about the Interac Present payment method.
         public var interacPresent: PaymentMethodInteractPresent?
-        /// If this is a `klarna` PaymentMethod, this hash contains details about the Klarna payment method.
         public var klarna: PaymentMethodKlarna?
-        /// If this is a `konbini` PaymentMethod, this hash contains details about the Konbini payment method.
         public var konbini: PaymentMethodKonbini?
-        /// If this is a `link` PaymentMethod, this hash contains details about the Link payment method.
         public var link: PaymentMethodLink?
-        /// Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode.
         public var livemode: Bool?
-        /// If this is an `oxxo` PaymentMethod, this hash contains details about the OXXO payment method.
         public var oxxo: PaymentMethodOXXO?
-        /// If this is a `p24` PaymentMethod, this hash contains details about the P24 payment method.
         public var p24: PaymentMethodP24?
-        /// If this is a`paynow` PaymentMethod, this hash contains details about the PayNow payment method.
         public var paynow: PaymentMethodPaynow?
-        /// If this is a `pix` PaymentMethod, this hash contains details about the Pix payment method.
         public var pix: PaymentMethodPix?
-        /// If this is a `promptpay` PaymentMethod, this hash contains details about the PromptPay payment method.
         public var promptpay: PaymentMethodPromptPay?
-        /// Options to configure Radar. See Radar Session for more information.
         public var radarOptions: PaymentMethod.RadarOptions?
-        /// If this is a `sepa_debit` PaymentMethod, this hash contains details about the SEPA debit bank account.
         public var sepaDebit: PaymentMethodSepaDebit?
-        /// If this is a sofort PaymentMethod, this hash contains details about the SOFORT payment method.
         public var sofort: PaymentMethodSofort?
-        /// If this is an `us_bank_account` PaymentMethod, this hash contains details about the US bank account payment method.
         public var usBankAccount: PaymentMethodUSBankAccount?
-        /// If this is an `wechat_pay` PaymentMethod, this hash contains details about the `wechat_pay` payment method.
         public var wechatPay: PaymentMethodWechatPay?
 
         public init(
@@ -217,7 +169,6 @@ extension Stripe.PaymentMethods.PaymentMethod {
 
 extension Stripe.PaymentMethods.PaymentMethod {
     public struct RadarOptions: Codable, Hashable, Sendable {
-        /// A Radar Session is a snapshot of the browser metadata and device details that help Radar make more accurate predictions on your payments.
         public var session: String?
 
         public init(

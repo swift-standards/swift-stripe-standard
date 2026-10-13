@@ -1,4 +1,4 @@
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -8,32 +8,27 @@ import Stripe_Types_Shared
 extension Stripe.Terminal.Locations {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/terminal/locations/create.md
         public var create:
             @Sendable (_ request: Create.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Terminal.Locations.Create.Error
             >) -> Location
 
-        // https://docs.stripe.com/api/terminal/locations/retrieve.md
         public var retrieve:
             @Sendable (_ id: Location.ID) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Terminal.Locations.Retrieve.Error
             >) -> Location
 
-        // https://docs.stripe.com/api/terminal/locations/update.md
         public var update:
             @Sendable (_ id: Location.ID, _ request: Update.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Terminal.Locations.Update.Error
             >)
                 -> Location
 
-        // https://docs.stripe.com/api/terminal/locations/list.md
         public var list:
             @Sendable (_ request: List.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Terminal.Locations.List.Error
             >) -> List.Response
 
-        // https://docs.stripe.com/api/terminal/locations/delete.md
         public var delete:
             @Sendable (_ id: Location.ID) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Terminal.Locations.Delete.Error

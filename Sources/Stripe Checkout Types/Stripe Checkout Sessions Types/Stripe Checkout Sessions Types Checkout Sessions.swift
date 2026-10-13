@@ -1,4 +1,4 @@
-import Foundation
+public import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
@@ -11,31 +11,18 @@ extension Stripe.Checkout.Sessions {
 }
 
 extension Stripe.Checkout.Sessions.PaymentIntent {
-    /// A subset of parameters to be passed to PaymentIntent creation for Checkout Sessions in payment mode
     public struct Data: Codable, Equatable, Sendable {
-        /// The amount of the application fee (if any) that will be requested to be applied to the payment
         public let applicationFeeAmount: Int?
-        /// Controls when the funds will be captured from the customer's account
         public let captureMethod: CaptureMethod?
-        /// An arbitrary string attached to the object. Often useful for displaying to users
         public let description: String?
-        /// Set of key-value pairs that you can attach to an object
         public let metadata: [String: String]?
-        /// The Stripe account ID for which these funds are intended
         public let onBehalfOf: String?
-        /// Email address that the receipt for the resulting payment will be sent to
         public let receiptEmail: String?
-        /// Indicates that you intend to make future payments with the payment method collected
         public let setupFutureUsage: SetupFutureUsage?
-        /// An arbitrary string to be displayed on your customer's credit card or bank statement
         public let statementDescriptor: String?
-        /// Provides information about a card payment that customers see on their statements
         public let statementDescriptorSuffix: String?
-        /// Shipping information for this PaymentIntent
         public let shipping: Shipping?
-        /// The parameters used to automatically create a Transfer when the payment succeeds
         public let transferData: TransferData?
-        /// A string that identifies the resulting payment as part of a group
         public let transferGroup: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -392,8 +379,6 @@ extension Stripe.Checkout.Sessions.Create {
         }
     }
 }
-
-// PriceData and its nested types moved to Stripe.LineItemPriceData in Shared Models
 
 extension Stripe.Checkout.Sessions.Create.Request {
     public struct AutomaticTax: Codable, Hashable, Sendable {

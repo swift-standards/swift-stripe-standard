@@ -1,37 +1,18 @@
-//
-//  Token.swift
-//  Stripe
-//
-//  Created by Anthony Castelli on 4/23/17.
-//
-//
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
-import Foundation
-import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/tokens/object.md
-
-/// The [Token Object](https://stripe.com/docs/api/tokens/object) .
 extension Stripe.Tokens {
     public struct Token: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
-        /// Unique identifier for the object.
         public var id: ID
-        /// String representing the object’s type. Objects of the same type share the same value.
         public var object: String
-        /// Hash describing the bank account.
         public var bankAccount: BankAccount?
-        /// Hash describing the card used to make the charge.
         public var card: Card?
-        /// IP address of the client that generated the token.
         public var clientIp: String?
-        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
-        /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool?
-        /// Type of the token: `account`, `bank_account`, `card`, or `pii`.
         public var type: Stripe.Tokens.Token.`Type`?
-        /// Whether this token has already been used (tokens can be used only once).
         public var used: Bool?
 
         public init(

@@ -1,8 +1,3 @@
-//
-//  Stripe Billing Invoice Line Item Types Client Errors.swift
-//  swift-stripe-standard
-//
-
 import Async_Lifecycle
 import Either
 import Stripe_Types_Models
@@ -10,22 +5,12 @@ import Stripe_Types_Shared
 import Witnesses
 
 extension Stripe.Billing.Invoice.LineItems.List {
-    /// Failure leaf for `Stripe.Billing.Invoice.LineItems.Client.list`.
-    ///
-    /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
-    /// Lifecycle facts — shutdown and timeout among them — ride in
-    /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
         Witness.Unimplemented.Representable
     {
-        /// The request never produced a Stripe response.
         case transport
-        /// Stripe answered with a structured API error.
         case api(StripeError.Error)
-        /// Stripe answered, but the payload did not decode as `Stripe.Billing.Invoice.LineItem.List`.
         case malformedResponse
-        /// The witness carries no implementation for this operation.
         case notImplemented(Witness.Unimplemented.Error)
 
         public static func unimplemented(_ error: Witness.Unimplemented.Error) -> Self {
@@ -35,22 +20,12 @@ extension Stripe.Billing.Invoice.LineItems.List {
 }
 
 extension Stripe.Billing.Invoice.LineItems.Update {
-    /// Failure leaf for `Stripe.Billing.Invoice.LineItems.Client.update`.
-    ///
-    /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
-    /// Lifecycle facts — shutdown and timeout among them — ride in
-    /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
         Witness.Unimplemented.Representable
     {
-        /// The request never produced a Stripe response.
         case transport
-        /// Stripe answered with a structured API error.
         case api(StripeError.Error)
-        /// Stripe answered, but the payload did not decode as `Stripe.Billing.Invoice.LineItem`.
         case malformedResponse
-        /// The witness carries no implementation for this operation.
         case notImplemented(Witness.Unimplemented.Error)
 
         public static func unimplemented(_ error: Witness.Unimplemented.Error) -> Self {
@@ -60,22 +35,12 @@ extension Stripe.Billing.Invoice.LineItems.Update {
 }
 
 extension Stripe.Billing.Invoice.LineItems.AddLines {
-    /// Failure leaf for `Stripe.Billing.Invoice.LineItems.Client.addLines`.
-    ///
-    /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
-    /// Lifecycle facts — shutdown and timeout among them — ride in
-    /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
         Witness.Unimplemented.Representable
     {
-        /// The request never produced a Stripe response.
         case transport
-        /// Stripe answered with a structured API error.
         case api(StripeError.Error)
-        /// Stripe answered, but the payload did not decode as `Stripe.Billing.Invoice`.
         case malformedResponse
-        /// The witness carries no implementation for this operation.
         case notImplemented(Witness.Unimplemented.Error)
 
         public static func unimplemented(_ error: Witness.Unimplemented.Error) -> Self {
@@ -85,22 +50,12 @@ extension Stripe.Billing.Invoice.LineItems.AddLines {
 }
 
 extension Stripe.Billing.Invoice.LineItems.UpdateLines {
-    /// Failure leaf for `Stripe.Billing.Invoice.LineItems.Client.updateLines`.
-    ///
-    /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
-    /// Lifecycle facts — shutdown and timeout among them — ride in
-    /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
         Witness.Unimplemented.Representable
     {
-        /// The request never produced a Stripe response.
         case transport
-        /// Stripe answered with a structured API error.
         case api(StripeError.Error)
-        /// Stripe answered, but the payload did not decode as `Stripe.Billing.Invoice`.
         case malformedResponse
-        /// The witness carries no implementation for this operation.
         case notImplemented(Witness.Unimplemented.Error)
 
         public static func unimplemented(_ error: Witness.Unimplemented.Error) -> Self {
@@ -110,22 +65,12 @@ extension Stripe.Billing.Invoice.LineItems.UpdateLines {
 }
 
 extension Stripe.Billing.Invoice.LineItems.RemoveLines {
-    /// Failure leaf for `Stripe.Billing.Invoice.LineItems.Client.removeLines`.
-    ///
-    /// Domain leaf of the ruled `Either<Async.Lifecycle.Error, Leaf>` witness-error
-    /// shape (swift-compositions/swift-witnesses#3, ratified by comment 5143970225).
-    /// Lifecycle facts — shutdown and timeout among them — ride in
-    /// `Async.Lifecycle.Error` on the left and are deliberately absent here.
     public enum Error: Swift.Error, Sendable, Hashable,
         Witness.Unimplemented.Representable
     {
-        /// The request never produced a Stripe response.
         case transport
-        /// Stripe answered with a structured API error.
         case api(StripeError.Error)
-        /// Stripe answered, but the payload did not decode as `Stripe.Billing.Invoice } }`.
         case malformedResponse
-        /// The witness carries no implementation for this operation.
         case notImplemented(Witness.Unimplemented.Error)
 
         public static func unimplemented(_ error: Witness.Unimplemented.Error) -> Self {

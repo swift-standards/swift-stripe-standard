@@ -45,7 +45,7 @@ struct ReadmeVerificationTests {
         let _: Stripe.Customers.Client.Type = Stripe.Customers.Client.self
 
         // Verify it's Sendable
-        #expect(Stripe.Customers.Client.self is any Sendable.Type)
+        let _: any Sendable.Type = Stripe.Customers.Client.self
     }
 
     // MARK: - Type Safety with Tagged IDs (README lines 132-139)

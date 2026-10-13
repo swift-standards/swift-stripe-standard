@@ -1,46 +1,24 @@
-//
-//  StripeExpandable.swift
-//
-//
-//  Created by Andrew Edwards on 4/11/20.
-//
-
 import Foundation
 
 extension KeyedDecodingContainer {
-    // REASON: every failure this can produce originates in a `Decoder`/`Encoder` standard
-    // library call, whose requirements are declared with untyped `throws`. Narrowing the
-    // thrown type here would misdescribe the standard library's error domain.
-    // swiftlint:disable typed_throws_required
     public func decode<U>(
         _ type: ExpandableCollection<U>.Type,
         forKey key: Self.Key
     ) throws -> ExpandableCollection<U> where U: Codable {
-        // swiftlint:enable typed_throws_required
         return try decodeIfPresent(type, forKey: key) ?? ExpandableCollection<U>()
     }
 
-    // REASON: every failure this can produce originates in a `Decoder`/`Encoder` standard
-    // library call, whose requirements are declared with untyped `throws`. Narrowing the
-    // thrown type here would misdescribe the standard library's error domain.
-    // swiftlint:disable typed_throws_required
     public func decode<U, ID>(
         _ type: Expandable<U, ID>.Type,
         forKey key: Self.Key
     ) throws -> Expandable<U, ID> where U: Codable {
-        // swiftlint:enable typed_throws_required
         return try decodeIfPresent(type, forKey: key) ?? Expandable<U, ID>()
     }
 
-    // REASON: every failure this can produce originates in a `Decoder`/`Encoder` standard
-    // library call, whose requirements are declared with untyped `throws`. Narrowing the
-    // thrown type here would misdescribe the standard library's error domain.
-    // swiftlint:disable typed_throws_required
     public func decode<U, D>(
         _ type: DynamicExpandable<U, D>.Type,
         forKey key: Self.Key
     ) throws -> DynamicExpandable<U, D> where U: Codable, D: Codable {
-        // swiftlint:enable typed_throws_required
         return try decodeIfPresent(type, forKey: key) ?? DynamicExpandable<U, D>()
     }
 }
@@ -97,24 +75,13 @@ public struct Expandable<Model: Codable, ID: Codable & Hashable & Sendable>: Cod
         self._state = .empty
     }
 
-    // REASON: every failure this can produce originates in a `Decoder`/`Encoder` standard
-    // library call, whose requirements are declared with untyped `throws`. Narrowing the
-    // thrown type here would misdescribe the standard library's error domain.
-    // swiftlint:disable typed_throws_required
     public init(
-        from decoder: Decoder
+        from decoder: any Decoder
     ) throws {
-        // swiftlint:enable typed_throws_required
         if let container = try decoder.singleValueContainerIfPresentAndNotNull() {
             do {
                 self._state = .unexpanded(try container.decode(ID.self))
             } catch is DecodingError {
-                // `ID` may be a wrapper type (e.g. `Tagged<Tag, String>`) whose own
-                // `init(from:)` reports the typeMismatch against its *underlying*
-                // wire type, not `ID.self` — so a guard comparing the thrown type's
-                // identity to `ID.self` never matches and the error propagates
-                // uncaught. Fall back structurally: any decoding failure while
-                // reading `ID` means the payload was the expanded `Model` instead.
                 self._state = .expanded(try container.decode(Model.self))
             }
         } else {
@@ -124,7 +91,7 @@ public struct Expandable<Model: Codable, ID: Codable & Hashable & Sendable>: Cod
 
     private var _state: ExpandableState
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
 
         switch _state {
@@ -177,23 +144,21 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
         indirect case expanded(Either)
         case empty
 
-        // Custom hash implementation
         func hash(into hasher: inout Hasher) {
             switch self {
             case .unexpanded(let id):
-                hasher.combine(0)  // Discriminator for unexpanded
+                hasher.combine(0)
                 hasher.combine(id)
 
             case .expanded(let either):
-                hasher.combine(1)  // Discriminator for expanded
+                hasher.combine(1)
                 hasher.combine(either)
 
             case .empty:
-                hasher.combine(2)  // Discriminator for empty
+                hasher.combine(2)
             }
         }
 
-        // Custom equality implementation
         static func == (lhs: ExpandableState, rhs: ExpandableState) -> Bool {
             switch (lhs, rhs) {
             case (.unexpanded(let l), .unexpanded(let r)):
@@ -210,20 +175,13 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
             }
         }
 
-        // Helper enum to store either A or B
         enum Either: Hashable, Codable {
             case left(A)
             case right(B)
 
-            // Implement Codable
-            // REASON: every failure this can produce originates in a `Decoder`/`Encoder` standard
-            // library call, whose requirements are declared with untyped `throws`. Narrowing the
-            // thrown type here would misdescribe the standard library's error domain.
-            // swiftlint:disable typed_throws_required
             public init(
-                from decoder: Decoder
+                from decoder: any Decoder
             ) throws {
-                // swiftlint:enable typed_throws_required
                 let container = try decoder.singleValueContainer()
                 do {
                     self = .left(try container.decode(A.self))
@@ -232,7 +190,7 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
                 }
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
                 case .left(let a):
@@ -271,14 +229,9 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
         self._state = .empty
     }
 
-    // REASON: every failure this can produce originates in a `Decoder`/`Encoder` standard
-    // library call, whose requirements are declared with untyped `throws`. Narrowing the
-    // thrown type here would misdescribe the standard library's error domain.
-    // swiftlint:disable typed_throws_required
     public init(
-        from decoder: Decoder
+        from decoder: any Decoder
     ) throws {
-        // swiftlint:enable typed_throws_required
         let codingPath = decoder.codingPath
         do {
             let container = try decoder.singleValueContainer()
@@ -303,7 +256,7 @@ public struct DynamicExpandable<A: Codable & Hashable & Sendable, B: Codable & H
     }
     private var _state: ExpandableState
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
 
         switch _state {
@@ -386,14 +339,9 @@ public struct ExpandableCollection<Model: Codable>: Codable {
         }
     }
 
-    // REASON: every failure this can produce originates in a `Decoder`/`Encoder` standard
-    // library call, whose requirements are declared with untyped `throws`. Narrowing the
-    // thrown type here would misdescribe the standard library's error domain.
-    // swiftlint:disable typed_throws_required
     public init(
-        from decoder: Decoder
+        from decoder: any Decoder
     ) throws {
-        // swiftlint:enable typed_throws_required
         if let container = try decoder.singleValueContainerIfPresentAndNotNull() {
             do {
                 self._state = .unexpanded(try container.decode([String].self))
@@ -407,7 +355,7 @@ public struct ExpandableCollection<Model: Codable>: Codable {
 
     private var _state: ExpandableState
 
-    public func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
 
         switch _state {
@@ -452,11 +400,7 @@ extension ExpandableCollection.ExpandableState: Hashable where Model: Hashable {
 extension ExpandableCollection.ExpandableState: Sendable where Model: Sendable {}
 
 extension Decoder {
-    // REASON: every failure this can produce originates in a `Decoder`/`Encoder` standard
-    // library call, whose requirements are declared with untyped `throws`. Narrowing the
-    // thrown type here would misdescribe the standard library's error domain.
-    // swiftlint:disable:next typed_throws_required
-    func singleValueContainerIfPresentAndNotNull() throws -> SingleValueDecodingContainer? {
+    func singleValueContainerIfPresentAndNotNull() throws -> any SingleValueDecodingContainer? {
         do {
             let container = try self.singleValueContainer()
 

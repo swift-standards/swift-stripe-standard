@@ -1,36 +1,17 @@
-//
-//  Tax.ID.swift
-//  Stripe
-//
-//  Created by Andrew Edwards on 5/11/19.
-//
-
-import Foundation
-import Stripe_Types_Shared
-import Tagged
-
-// https://docs.stripe.com/api/taxIds/object.md
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe.Tax {
-    /// The [Stripe.Tax ID Object](https://stripe.com/docs/api/customer_tax_ids/object) .
     public struct ID: Codable, Hashable, Sendable {
-        /// Unique identifier for the object.
         public var id: Tagged<Stripe.Tax.ID, String>
-        /// Two-letter ISO code representing the country of the tax ID.
         public var country: String?
-        /// ID of the customer.
         @ExpandableOf<Stripe.Customers.Customer> public var customer: Stripe.Customers.Customer.ID?
-        /// Type of the tax ID.
         public var type: Stripe.Tax.ID.`Type`?
-        /// Value of the tax ID.
         public var value: String?
-        /// String representing the object’s type. Objects of the same type share the same value.
         public var object: String
-        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
-        /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool?
-        /// Tax ID verification information.
         public var verification: Stripe.Tax.ID.Verification?
 
         public init(
@@ -56,8 +37,6 @@ extension Stripe.Tax {
         }
     }
 }
-
-// Tax namespace is already defined in Stripe Namespaces.swift
 
 extension Stripe.Tax.ID {
     public enum `Type`: String, Codable, Sendable {
@@ -118,11 +97,8 @@ extension Stripe.Tax.ID {
 
 extension Stripe.Tax.ID {
     public struct Verification: Codable, Hashable, Sendable {
-        /// Verification status, one of `pending`, `unavailable`, `unverified`, or `verified`.
         public var status: Stripe.Tax.ID.Verification.Status?
-        /// Verified address.
         public var verifiedAddress: String?
-        /// Verified name.
         public var verifiedName: String?
 
         public init(

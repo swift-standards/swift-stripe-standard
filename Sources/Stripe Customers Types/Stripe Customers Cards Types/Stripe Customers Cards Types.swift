@@ -8,19 +8,14 @@ extension Stripe.Customers {
 }
 
 extension Stripe.Customers.Cards {
-    // https://docs.stripe.com/api/cards/create.md
     public enum Create {}
-    // https://docs.stripe.com/api/cards/update.md
     public enum Update {}
-    // https://docs.stripe.com/api/cards/list.md
     public enum List {}
 }
 
 extension Stripe.Customers.Cards.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// A token, like the ones returned by Stripe.js, or a card dictionary.
         public let source: Source
-        /// Set of key-value pairs that you can attach to an object.
         public let metadata: [String: String]?
 
         public init(
@@ -35,7 +30,7 @@ extension Stripe.Customers.Cards.Create {
             case token(String)
             case card(CardDetails)
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
                 case .token(let token):
@@ -46,12 +41,8 @@ extension Stripe.Customers.Cards.Create {
                 }
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let container = try decoder.singleValueContainer()
-                // REASON: probing a decoding container for an alternative payload shape. `decode` throws
-                // the standard library's untyped error domain, and a failed probe is control flow here —
-                // the next shape is attempted — not an error this type can classify.
-                // swiftlint:disable:next no_try_optional
                 if let token = try? container.decode(String.self) {
                     self = .token(token)
                 } else {
@@ -62,27 +53,16 @@ extension Stripe.Customers.Cards.Create {
         }
 
         public struct CardDetails: Codable, Equatable, Sendable {
-            /// The card number, as a string without any separators.
             public let number: String
-            /// Two-digit number representing the card's expiration month.
             public let expMonth: Int
-            /// Two- or four-digit number representing the card's expiration year.
             public let expYear: Int
-            /// Card security code.
             public let cvc: String?
-            /// Cardholder's full name.
             public let name: String?
-            /// Address line 1 (Street address/PO Box/Company name).
             public let addressLine1: String?
-            /// Address line 2 (Apartment/Suite/Unit/Building).
             public let addressLine2: String?
-            /// City/District/Suburb/Town/Village.
             public let addressCity: String?
-            /// State/County/Province/Region.
             public let addressState: String?
-            /// ZIP or postal code.
             public let addressZip: String?
-            /// Two-letter country code (ISO 3166-1 alpha-2).
             public let addressCountry: String?
 
             private enum CodingKeys: String, CodingKey {
@@ -126,7 +106,7 @@ extension Stripe.Customers.Cards.Create {
                 self.addressCountry = addressCountry
             }
 
-            public func encode(to encoder: Encoder) throws {
+            public func encode(to encoder: any Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
                 try container.encode("card", forKey: .object)
                 try container.encode(number, forKey: .number)
@@ -142,7 +122,7 @@ extension Stripe.Customers.Cards.Create {
                 try container.encodeIfPresent(addressCountry, forKey: .addressCountry)
             }
 
-            public init(from decoder: Decoder) throws {
+            public init(from decoder: any Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 self.number = try container.decode(String.self, forKey: .number)
                 self.expMonth = try container.decode(Int.self, forKey: .expMonth)
@@ -174,25 +154,15 @@ extension Stripe.Customers.Cards.Create {
 
 extension Stripe.Customers.Cards.Update {
     public struct Request: Codable, Equatable, Sendable {
-        /// Cardholder's full name.
         public let name: String?
-        /// Address line 1.
         public let addressLine1: String?
-        /// Address line 2.
         public let addressLine2: String?
-        /// City/District/Suburb/Town/Village.
         public let addressCity: String?
-        /// State/County/Province/Region.
         public let addressState: String?
-        /// ZIP or postal code.
         public let addressZip: String?
-        /// Two-letter country code.
         public let addressCountry: String?
-        /// Two-digit number representing the card's expiration month.
         public let expMonth: Int?
-        /// Four-digit number representing the card's expiration year.
         public let expYear: Int?
-        /// Set of key-value pairs that you can attach to an object.
         public let metadata: [String: String]?
 
         private enum CodingKeys: String, CodingKey {
@@ -236,11 +206,8 @@ extension Stripe.Customers.Cards.Update {
 
 extension Stripe.Customers.Cards.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// A cursor for use in pagination.
         public let endingBefore: String?
-        /// A limit on the number of objects to be returned.
         public let limit: Int?
-        /// A cursor for use in pagination.
         public let startingAfter: String?
 
         private enum CodingKeys: String, CodingKey {

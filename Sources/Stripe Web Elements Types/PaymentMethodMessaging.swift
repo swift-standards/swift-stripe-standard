@@ -2,8 +2,6 @@ import Foundation
 import Stripe_Types_Shared
 
 extension Stripe.WebElements {
-    /// Payment Method Messaging Element for displaying payment method messaging
-    /// See: https://docs.stripe.com/elements/payment-method-messaging
     public struct PaymentMethodMessaging: Codable, Hashable, Sendable {
         public let options: Options?
 

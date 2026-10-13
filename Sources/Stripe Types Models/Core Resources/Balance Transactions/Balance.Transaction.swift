@@ -1,49 +1,24 @@
-//
-//  Balance.TransactionItem.swift
-//  Stripe
-//
-//  Created by Anthony Castelli on 4/15/17.
-//
-//
-
-import Foundation
-import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/balanceTransactions/object.md
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe.Balance {
-    /// The [Stripe.Balance Transaction Object](https://stripe.com/docs/api/balance/balance_transaction)
     public struct Transaction: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
-        /// Unique identifier for the object.
         public var id: ID
-        /// String representing the object’s type. Objects of the same type share the same value.
         public var object: String
-        /// Gross amount of the transaction, in cents.
         public var amount: Int?
-        /// The date the transaction’s net funds will become available in the Stripe balance.
         public var availableOn: Date?
-        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
-        /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
         public var currency: Stripe.Currency?
-        /// An arbitrary string attached to the object. Often useful for displaying to users.
         public var description: String?
-        /// The exchange rate used, if applicable, for this transaction. Specifically, if money was converted from currency A to currency B, then the `amount` in currency A, times `exchange_rate`, would be the amount in currency B. For example, suppose you charged a customer 10.00 EUR. Then the PaymentIntent’s `amount` would be `1000` and `currency` would be `eur`. Suppose this was converted into 12.34 USD in your Stripe account. Then the Balance.Transaction’s `amount` would be `1234`, `currency` would be `usd`, and `exchange_rate` would be `1.234`.
         public var exchangeRate: Double?
-        /// Fees (in cents) paid for this transaction.
         public var fee: Int?
-        /// Detailed breakdown of fees (in cents) paid for this transaction.
         public var feeDetails: [Stripe.Balance.Transaction.Fee.Details]?
-        /// Net amount of the transaction, in cents.
         public var net: Int?
-        /// [Learn more](https://stripe.com/docs/reports/reporting-categories) about how reporting categories can help you understand balance transactions from an accounting perspective.
         public var reportingCategory: String?
-        /// The Stripe object to which this transaction is related.
         public var source: String?
-        /// If the transaction’s net funds are available in the Stripe balance yet. Either `available` or `pending`.
         public var status: Stripe.Balance.Transaction.Status?
-        /// Transaction type: `adjustment`, `advance`, `advance_funding`, `application_fee`, `application_fee_refund`, `charge`, `connect_collection_transfer`, `issuing_authorization_hold`, `issuing_authorization_release`, `issuing_transaction`, `payment`, `payment_failure_refund`, `payment_refund`, `payout`, `payout_cancel`, `payout_failure`, `refund`, `refund_failure`, `reserve_transaction`, `reserved_funds`, `stripe_fee`, `stripe_fx_fee`, `tax_fee`, `topup`, `topup_reversal`, `transfer`, `transfer_cancel`, `transfer_failure`, or `transfer_refund`. Learn more about balance transaction types and what they represent.
         public var type: Stripe.Balance.Transaction.`Type`?
 
         public init(
@@ -88,15 +63,10 @@ extension Stripe.Balance.Transaction {
 
 extension Stripe.Balance.Transaction.Fee {
     public struct Details: Codable, Hashable, Sendable {
-        /// Amount of the fee, in cents.
         public var amount: Int?
-        /// ID of the Connect application that earned the fee.
         public var application: String?
-        /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
         public var currency: Stripe.Currency?
-        /// An arbitrary string attached to the object. Often useful for displaying to users.
         public var description: String?
-        /// Type of the fee, one of: `application_fee`, `stripe_fee` or `tax`.
         public var type: Stripe.Balance.Transaction.Fee.Details.`Type`?
 
         public init(

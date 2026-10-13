@@ -3,11 +3,9 @@ import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Customers.Customer.Sessions {
-    // https://docs.stripe.com/api/customer_sessions/create.md
     public enum Create {}
 }
 
-// https://docs.stripe.com/api/customer_sessions/create.md
 extension Stripe.Customers.Customer.Sessions.Create {
     public struct Request: Codable, Equatable, Sendable {
         public let customer: Stripe.Customers.Customer.ID
@@ -35,7 +33,7 @@ extension Stripe.Customers.Customer.Sessions.Create.Request {
             case pricingTable = "pricing_table"
         }
 
-        public func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             switch self {
             case .buyButton(let config):
@@ -49,7 +47,7 @@ extension Stripe.Customers.Customer.Sessions.Create.Request {
             }
         }
 
-        public init(from decoder: Decoder) throws {
+        public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             let componentsFound = [

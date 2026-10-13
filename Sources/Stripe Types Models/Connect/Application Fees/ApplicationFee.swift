@@ -1,49 +1,25 @@
-//
-//  ApplicationFee.swift
-//  Stripe
-//
-//  Created by Andrew Edwards on 3/16/19.
-//
-
-import Foundation
-import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/application_fees/object.md
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe.Connect.Application {
-    /// When you collect a transaction fee on top of a charge made for your user (using [Connect](https://stripe.com/docs/connect) ), an `Application Fee` object is created in your account. You can list, retrieve, and refund application fees. For details, see [Collecting application fees](https://stripe.com/docs/connect/direct-charges#collecting-fees). [Learn More](https://stripe.com/docs/api/application_fees)
     public struct Fee: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
-        /// Unique identifier for the object.
         public var id: ID
-        /// ID of the Stripe account this fee was taken from.
         @ExpandableOf<Stripe.Connect.Account> public var account: Stripe.Connect.Account.ID?
-        /// Amount earned, in cents.
         public var amount: Int?
-        /// Amount in cents refunded (can be less than the amount attribute on the fee if a partial refund was issued)
         public var amountRefunded: Int?
-        /// ID of the charge that the application fee was taken from.
         @ExpandableOf<Stripe.Charges.Charge> public var charge: Stripe.Charges.Charge.ID?
-        /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
         public var currency: Stripe.Currency?
-        /// Whether the fee has been fully refunded. If the fee is only partially refunded, this attribute will still be false.
         public var refunded: Bool?
-        /// String representing the object’s type. Objects of the same type share the same value.
         public var object: String
-        /// ID of the Connect application that earned the fee.
         public var application: String?
-        /// Balance transaction that describes the impact of this collected application fee on your account balance (not including refunds).
         @ExpandableOf<Stripe.Balance.Transaction> public var balanceTransaction: Stripe.Balance.Transaction.ID?
-        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
-        /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool
-        /// ID of the corresponding charge on the platform account, if this fee was the result of a charge using the destination parameter.
         @DynamicExpandable<Stripe.Charges.Charge, Stripe.Connect.Transfer> public
             var originatingTransaction: String?
-        /// A list of refunds that have been applied to the fee.
         public var refunds: Stripe.Connect.Application.Fee.Refund.List?
-        ///
         public var source: Stripe.Connect.Application.Fee.Source?
 
         public init(

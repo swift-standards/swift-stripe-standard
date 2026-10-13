@@ -1,4 +1,4 @@
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -9,19 +9,16 @@ import Tagged
 extension Stripe.Customers.Cards {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/cards/create.md
         public var create:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ request: Create.Request)
                 async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Cards.Create.Error>)
                 -> Card
 
-        // https://docs.stripe.com/api/cards/retrieve.md
         public var retrieve:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ cardId: Card.ID)
                 async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Cards.Retrieve.Error>)
                 -> Card
 
-        // https://docs.stripe.com/api/cards/update.md
         public var update:
             @Sendable (
                 _ customerId: Stripe.Customers.Customer.ID, _ cardId: Card.ID,
@@ -29,13 +26,11 @@ extension Stripe.Customers.Cards {
             ) async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Cards.Update.Error>) ->
                 Card
 
-        // https://docs.stripe.com/api/cards/list.md
         public var list:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ request: List.Request)
                 async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Cards.List.Error>)
                 -> List.Response
 
-        // https://docs.stripe.com/api/cards/delete.md
         public var delete:
             @Sendable (_ customerId: Stripe.Customers.Customer.ID, _ cardId: Card.ID)
                 async throws(Either<Async.Lifecycle.Error, Stripe.Customers.Cards.Delete.Error>)

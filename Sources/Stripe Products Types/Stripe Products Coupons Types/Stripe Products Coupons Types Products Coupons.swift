@@ -1,15 +1,7 @@
-//
-//  File.swift
-//  swift-stripe
-//
-//  Created by Coen ten Thije Boonkkamp on 07/01/2025.
-//
-
-import Foundation
+public import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
-// Main request/response types
 extension Stripe.Products.Coupons {
     public enum Create {}
     public enum Update {}

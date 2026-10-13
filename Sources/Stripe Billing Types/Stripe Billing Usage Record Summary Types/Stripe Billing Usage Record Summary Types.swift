@@ -32,20 +32,16 @@ extension Stripe.Billing.UsageRecordSummary {
     }
 }
 
-// MARK: - List
 extension Stripe.Billing.UsageRecordSummary {
     public enum List {}
 }
 
 extension Stripe.Billing.UsageRecordSummary.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// A cursor for use in pagination. ending_before is an object ID that defines your place in the list.
         public let endingBefore: String?
 
-        /// A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.
         public let limit: Int?
 
-        /// A cursor for use in pagination. starting_after is an object ID that defines your place in the list.
         public let startingAfter: String?
 
         public init(

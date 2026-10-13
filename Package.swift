@@ -800,20 +800,15 @@ let package = Package(
     swiftLanguageModes: [.v6]
 )
 
-let swiftSettings: [SwiftSetting] = [
-    .enableUpcomingFeature("MemberImportVisibility"),
-    .enableUpcomingFeature("StrictUnsafe"),
-    .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
-    //    .unsafeFlags(["-warnings-as-errors"]),
-    // .unsafeFlags([
-    //   "-Xfrontend",
-    //   "-warn-long-function-bodies=50",
-    //   "-Xfrontend",
-    //   "-warn-long-expression-type-checking=50",
-    // ])
-]
-
-for index in package.targets.indices {
-    package.targets[index].swiftSettings =
-        (package.targets[index].swiftSettings ?? []) + swiftSettings
+for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
+    target.swiftSettings = (target.swiftSettings ?? []) + [
+        .strictMemorySafety(),
+        .enableUpcomingFeature("ExistentialAny"),
+        .enableUpcomingFeature("InternalImportsByDefault"),
+        .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+        .enableUpcomingFeature("InferIsolatedConformances"),
+        .enableExperimentalFeature("Lifetimes"),
+        .treatAllWarnings(as: .error),
+    ]
 }

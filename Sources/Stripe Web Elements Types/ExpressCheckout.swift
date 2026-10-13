@@ -2,8 +2,6 @@ import Foundation
 import Stripe_Types_Shared
 
 extension Stripe.WebElements {
-    /// Express Checkout Element for fast checkout with digital wallets
-    /// See: https://docs.stripe.com/elements/express-checkout-element
     public struct ExpressCheckout: Codable, Hashable, Sendable {
         public let options: Options?
 

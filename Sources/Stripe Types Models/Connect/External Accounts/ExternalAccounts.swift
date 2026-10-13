@@ -1,44 +1,20 @@
-//
-//  ExternalAccounts.swift
-//  Stripe
-//
-//  Created by Andrew Edwards on 7/8/17.
-//
-//
-
-import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/external_accounts/object.md
+public import Stripe_Types_Shared
 
 extension Stripe.Connect.Account {
     public enum ExternalAccounts {}
 }
 extension Stripe.Connect.Account.ExternalAccounts {
-    /// External accounts list. [See here](https://stripe.com/docs/api/accounts/object#account_object-external_accounts)
     public struct List: Codable, Hashable, Sendable {
-        /// String representing the object’s type. Objects of the same type share the same value. Always has the value list.
         public var object: String
-        /// Needs to be a string because the result can be an array of 2 possible types ``Card`` and/or ``BankAccount``.
-        /// We'll actually decode the array of accounts seperately based on type and filtered based on object. See the initializer.
-        /// The `data` key is still needed in the `CodingKeys` and for decoding that property from the Stripe API, so we still have to declare it even though the type is unused.
         private var data: String?
-        /// True if this list has another page of items after this one that can be fetched.
         public var hasMore: Bool?
-        /// The URL where this list can be accessed.
         public var url: String?
-        /// An array of `StripeCard`s associated with the account.
         public var cardAccounts: [Card]?
-        /// An array of `StripeBankAccount`s associated with the account.
         public var bankAccounts: [BankAccount]?
 
-        // REASON: every failure this can produce originates in a `Decoder`/`Encoder` standard
-        // library call, whose requirements are declared with untyped `throws`. Narrowing the
-        // thrown type here would misdescribe the standard library's error domain.
-        // swiftlint:disable typed_throws_required
         public init(
-            from decoder: Decoder
+            from decoder: any Decoder
         ) throws {
-            // swiftlint:enable typed_throws_required
             let container = try decoder.container(keyedBy: CodingKeys.self)
             object = try container.decode(String.self, forKey: .object)
             hasMore = try container.decodeIfPresent(Bool.self, forKey: .hasMore)
@@ -58,7 +34,6 @@ extension Stripe.Connect.Account.ExternalAccounts {
             try container.encodeIfPresent(hasMore, forKey: .hasMore)
             try container.encodeIfPresent(url, forKey: .url)
 
-            // Merge cardAccounts and bankAccounts into a single array
             var accounts: [AnyEncodable] = []
             if let cardAccounts {
                 accounts.append(contentsOf: cardAccounts.map { AnyEncodable($0) })
@@ -93,15 +68,14 @@ extension Stripe.Connect.Account.ExternalAccounts {
             case url
         }
 
-        // A helper type to encode heterogeneous elements
         struct AnyEncodable: Encodable {
-            private let _encode: (Encoder) throws -> Void
+            private let _encode: (any Encoder) throws -> Void
 
             init<T: Encodable>(_ encodable: T) {
                 _encode = encodable.encode
             }
 
-            func encode(to encoder: Encoder) throws {
+            func encode(to encoder: any Encoder) throws {
                 try _encode(encoder)
             }
         }

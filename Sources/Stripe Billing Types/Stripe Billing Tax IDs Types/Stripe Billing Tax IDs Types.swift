@@ -107,17 +107,14 @@ extension Stripe.Billing.TaxIDs {
     }
 }
 
-// MARK: - Create
 extension Stripe.Billing.TaxIDs {
     public enum Create {}
 }
 
 extension Stripe.Billing.TaxIDs.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// Type of the tax ID
         public let type: Stripe.Billing.TaxIDs.TaxID.TaxIDType
 
-        /// Value of the tax ID
         public let value: String
 
         public init(
@@ -130,20 +127,16 @@ extension Stripe.Billing.TaxIDs.Create {
     }
 }
 
-// MARK: - List
 extension Stripe.Billing.TaxIDs {
     public enum List {}
 }
 
 extension Stripe.Billing.TaxIDs.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// A cursor for use in pagination. ending_before is an object ID that defines your place in the list.
         public let endingBefore: String?
 
-        /// A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.
         public let limit: Int?
 
-        /// A cursor for use in pagination. starting_after is an object ID that defines your place in the list.
         public let startingAfter: String?
 
         public init(

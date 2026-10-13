@@ -1,30 +1,15 @@
-//
-//  TerminalHardwareShippingMethod.swift
-//
-//
-//  Created by Andrew Edwards on 5/17/23.
-//
-
-import Foundation
+public import Foundation
 import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/terminal/hardware_shipping_methods/object.md
+public import Tagged
 
 public struct TerminalHardwareShippingMethod: Codable, Hashable, Sendable, Identifiable {
     public typealias ID = Tagged<Self, String>
-    /// Unique identifier for the object.
     public var id: ID
-    /// The country in which this Shipping Method is available.
     public var country: String?
-    /// The estimated delivery period containing the estimated minimum and maximum delivery dates. These dates are not guaranteed.
     public var estimatedDeliveryWindow: TerminalHardwareShippingMethodEstimatedDeliveryWindow?
-    /// The name of the Terminal Hardware Shipping Method.
     public var name: TerminalHardwareShippingMethodName?
-    /// String representing the object’s type. Objects of the same type share the same value.
     public var object: String
-    /// The Shipping Method’s status.
     public var status: TerminalHardwareShippingMethodStatus?
-    /// A UNIX timestamp, after which time this Shipping Method has a status of `unavailable` and it can’t be used for order creation. If absent, we have no plans to make this Shipping Method unavailable.
     public var unavailableAfter: Date?
 
     public init(
@@ -47,9 +32,7 @@ public struct TerminalHardwareShippingMethod: Codable, Hashable, Sendable, Ident
 }
 
 public struct TerminalHardwareShippingMethodEstimatedDeliveryWindow: Codable, Hashable, Sendable {
-    /// Maximum estimated delivery date in ISO 8601 format.
     public var maximumDate: String?
-    /// Minimum estimated delivery date in ISO 8601 format.
     public var minimumDate: String?
 
     public init(
@@ -62,18 +45,13 @@ public struct TerminalHardwareShippingMethodEstimatedDeliveryWindow: Codable, Ha
 }
 
 public enum TerminalHardwareShippingMethodName: String, Codable, Sendable {
-    /// Standard
     case standard
-    /// Express
     case express
-    /// Priority
     case priority
 }
 
 public enum TerminalHardwareShippingMethodStatus: String, Codable, Sendable {
-    /// Available for new orders.
     case available
-    /// Can no longer be used for order creation.
     case unavailable
 }
 

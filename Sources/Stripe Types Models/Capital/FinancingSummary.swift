@@ -1,5 +1,5 @@
-import Foundation
-import Stripe_Types_Shared
+public import Foundation
+public import Stripe_Types_Shared
 
 extension Stripe.Capital {
     public struct FinancingSummary: Codable, Equatable, Sendable {

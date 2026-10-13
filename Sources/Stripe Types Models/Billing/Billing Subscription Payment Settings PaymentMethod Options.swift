@@ -1,19 +1,13 @@
 import Foundation
-import Stripe_Types_Shared
+public import Stripe_Types_Shared
 
 extension Stripe.Billing.Subscription.Payment.Settings {
     public struct MethodOptions: Codable, Hashable, Sendable {
-        /// ACSS Debit payment method options
         public var acssDebit: ACSSDebit.Configuration?
-        /// Bancontact payment method options
         public var bancontact: Bancontact.Configuration?
-        /// Card payment method options
         public var card: Card.Configuration?
-        /// Customer Balance payment method options
         public var customerBalance: CustomerBalance.Configuration?
-        /// Konbini payment method options
         public var konbini: Konbini.Configuration?
-        /// US Bank Account payment method options
         public var usBankAccount: USBankAccount.Configuration?
 
         private enum CodingKeys: String, CodingKey {
@@ -43,16 +37,13 @@ extension Stripe.Billing.Subscription.Payment.Settings {
     }
 }
 
-// MARK: - ACSS Debit
 extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions {
     public enum ACSSDebit {}
 }
 
 extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.ACSSDebit {
     public struct Configuration: Codable, Hashable, Sendable {
-        /// Additional fields for Mandate creation
         public var mandateOptions: MandateOptions?
-        /// Bank account verification method
         public var verificationMethod: VerificationMethod?
 
         public init(
@@ -65,7 +56,6 @@ extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.ACSSDebit {
     }
 
     public struct MandateOptions: Codable, Hashable, Sendable {
-        /// Transaction type of the mandate
         public var transactionType: TransactionType?
 
         public init(
@@ -87,14 +77,12 @@ extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.ACSSDebit {
     }
 }
 
-// MARK: - Bancontact
 extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions {
     public enum Bancontact {}
 }
 
 extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.Bancontact {
     public struct Configuration: Codable, Hashable, Sendable {
-        /// Preferred language for the authorization page
         public var preferredLanguage: String?
 
         public init(
@@ -105,18 +93,14 @@ extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.Bancontact 
     }
 }
 
-// MARK: - Card
 extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions {
     public enum Card {}
 }
 
 extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.Card {
     public struct Configuration: Codable, Hashable, Sendable {
-        /// Mandate options for this subscription
         public var mandateOptions: MandateOptions?
-        /// Selected network to process this Subscription
         public var network: String?
-        /// 3D Secure configuration
         public var requestThreeDSecure: RequestThreeDSecure?
 
         public init(
@@ -131,9 +115,7 @@ extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.Card {
     }
 
     public struct MandateOptions: Codable, Hashable, Sendable {
-        /// Amount for future payments
         public var amount: Int?
-        /// Amount type configuration
         public var amountType: AmountType?
 
         public init(
@@ -156,16 +138,13 @@ extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.Card {
     }
 }
 
-// MARK: - Customer Balance
 extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions {
     public enum CustomerBalance {}
 }
 
 extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.CustomerBalance {
     public struct Configuration: Codable, Hashable, Sendable {
-        /// Bank transfer configuration
         public var bankTransfer: BankTransfer?
-        /// Funding method type
         public var fundingType: FundingType?
 
         public init(
@@ -178,9 +157,7 @@ extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.CustomerBal
     }
 
     public struct BankTransfer: Codable, Hashable, Sendable {
-        /// EU bank transfer configuration
         public var euBankTransfer: EUBankTransfer?
-        /// Bank transfer type
         public var type: TransferType?
 
         public init(
@@ -193,7 +170,6 @@ extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.CustomerBal
     }
 
     public struct EUBankTransfer: Codable, Hashable, Sendable {
-        /// Desired country code
         public var country: String?
 
         public init(
@@ -215,7 +191,6 @@ extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.CustomerBal
     }
 }
 
-// MARK: - Konbini
 extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions {
     public enum Konbini {}
 }
@@ -226,16 +201,13 @@ extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.Konbini {
     }
 }
 
-// MARK: - US Bank Account
 extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions {
     public enum USBankAccount {}
 }
 
 extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.USBankAccount {
     public struct Configuration: Codable, Hashable, Sendable {
-        /// Financial connections configuration
         public var financialConnections: FinancialConnections?
-        /// Verification method
         public var verificationMethod: VerificationMethod?
 
         public init(
@@ -248,7 +220,6 @@ extension Stripe.Billing.Subscription.Payment.Settings.MethodOptions.USBankAccou
     }
 
     public struct FinancialConnections: Codable, Hashable, Sendable {
-        /// Required permissions
         public var permissions: [Permission]?
 
         public init(

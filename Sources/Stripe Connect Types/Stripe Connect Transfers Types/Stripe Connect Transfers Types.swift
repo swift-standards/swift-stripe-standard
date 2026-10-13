@@ -4,13 +4,10 @@ import Stripe_Types_Shared
 import Tagged
 
 extension Stripe.Connect.Transfers {
-    // https://docs.stripe.com/api/transfers/create.md
     public enum Create {}
 
-    // https://docs.stripe.com/api/transfers/update.md
     public enum Update {}
 
-    // https://docs.stripe.com/api/transfers/list.md
     public enum List {}
 }
 

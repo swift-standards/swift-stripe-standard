@@ -1,15 +1,6 @@
-//
-//  Shipping.Rate.swift
-//
-//
-//  Created by Andrew Edwards on 12/17/21.
-//
-
-import Foundation
-import Stripe_Types_Shared
-import Tagged
-
-// https://docs.stripe.com/api/shipping_rates/object.md
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe.Products {
     public enum Shipping {}
@@ -31,29 +22,17 @@ extension Stripe.Products.Shipping {
     public struct Rate: Codable, Hashable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
 
-        /// Unique identifier for the object.
         public var id: ID
-        /// Whether the shipping rate can be used for new purchases. Defaults to `true`.
         public var active: Bool
-        /// The name of the shipping rate, meant to be displayable to the customer. This will appear on CheckoutSessions.
         public var displayName: String?
-        /// Describes a fixed amount to charge for shipping. Must be present if type is fixed_amount.
         public var fixedAmount: Stripe.Products.Shipping.Rate.Fixed.Amount?
-        /// Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
         public var metadata: [String: String]?
-        /// The type of calculation to use on the shipping rate. Can only be fixed_amount for now.
         public var type: Stripe.Products.Shipping.Rate.`Type`?
-        /// String representing the object’s type. Objects of the same type share the same value.
         public var object: String
-        /// Time at which the object was created. Measured in seconds since the Unix epoch.
         public var created: Date
-        /// The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.
         public var deliveryEstimate: Stripe.Products.Shipping.Rate.Delivery.Estimate?
-        /// Has the value true if the object exists in live mode or the value false if the object exists in test mode.
         public var livemode: Bool?
-        /// Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of inclusive, exclusive, or unspecified.
         public var taxBehavior: Stripe.Products.Shipping.Rate.Tax.Behavior?
-        /// A tax code ID. The Shipping tax code is `txcd_92010001`.
         @ExpandableOf<Stripe.Tax.Code> public var taxCode: Stripe.Tax.Code.ID?
 
         public init(
@@ -92,11 +71,8 @@ extension Stripe.Products.Shipping.Rate.Fixed.Amount {
 
 extension Stripe.Products.Shipping.Rate.Fixed {
     public struct Amount: Codable, Hashable, Sendable {
-        /// A non-negative integer in cents representing how much to charge.
         public var amount: Int?
-        /// Three-letter ISO currency code, in lowercase. Must be a supported currency.
         public var currency: Stripe.Currency?
-        /// Shipping rates defined in each available currency option. Each key must be a three-letter ISO currency code and a supported currency. For example, to get your shipping rate in `eur`, fetch the value of the `eur` key in `currency_options`. This field is not included by default. To include it in the response, expand the `currency_options` field.
         public var currencyOptions: [Stripe.Currency: Stripe.Products.Shipping.Rate.Fixed.Amount.Currency.Options]?
 
         public init(
@@ -114,9 +90,7 @@ extension Stripe.Products.Shipping.Rate.Fixed {
 
 extension Stripe.Products.Shipping.Rate.Fixed.Amount.Currency {
     public struct Options: Codable, Hashable, Sendable {
-        /// A non-negative integer in cents representing how much to charge.
         public var amount: Int?
-        /// Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of `inclusive`, `exclusive`, or `unspecified`.
         public var taxBehavior: Stripe.Products.Shipping.Rate.Fixed.Amount.Currency.Options.TaxBehavior?
 
         public init(
@@ -146,9 +120,7 @@ extension Stripe.Products.Shipping.Rate {
 
 extension Stripe.Products.Shipping.Rate.Delivery {
     public struct Estimate: Codable, Hashable, Sendable {
-        /// The upper bound of the estimated range. If empty, represents no upper bound i.e., infinite.
         public var maximum: Stripe.Products.Shipping.Rate.Delivery.Estimate.MaxMin?
-        /// The lower bound of the estimated range. If empty, represents no lower bound.
         public var minimum: Stripe.Products.Shipping.Rate.Delivery.Estimate.MaxMin?
 
         public init(
@@ -163,9 +135,7 @@ extension Stripe.Products.Shipping.Rate.Delivery {
 
 extension Stripe.Products.Shipping.Rate.Delivery.Estimate {
     public struct MaxMin: Codable, Hashable, Sendable {
-        /// A unit of time.
         public var unit: Stripe.Products.Shipping.Rate.Delivery.Estimate.Unit?
-        /// Must be greater than 0.
         public var value: Int?
 
         public init(

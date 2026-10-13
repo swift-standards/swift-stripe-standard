@@ -4,21 +4,15 @@ import Stripe_Types_Shared
 import Tagged
 
 extension Stripe.Fraud.EarlyFraudWarnings.API {
-    // https://docs.stripe.com/api/radar/early_fraud_warnings/list.md
     public enum List {}
 }
 
 extension Stripe.Fraud.EarlyFraudWarnings.API.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Only return early fraud warnings for the charge specified by this charge ID.
         public var charge: Stripe.Charges.Charge.ID?
-        /// Only return early fraud warnings for charges that were created by the PaymentIntent specified by this PaymentIntent ID.
         public var paymentIntent: Stripe.PaymentIntents.PaymentIntent.ID?
-        /// A cursor for use in pagination. ending_before is an object ID that defines your place in the list.
         public var endingBefore: String?
-        /// A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.
         public var limit: Int?
-        /// A cursor for use in pagination. starting_after is an object ID that defines your place in the list.
         public var startingAfter: String?
 
         private enum CodingKeys: String, CodingKey {

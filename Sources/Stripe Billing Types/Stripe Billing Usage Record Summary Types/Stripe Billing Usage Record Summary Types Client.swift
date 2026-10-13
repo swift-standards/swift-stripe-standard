@@ -1,4 +1,4 @@
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -8,7 +8,6 @@ import Stripe_Types_Shared
 extension Stripe.Billing.UsageRecordSummary {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/usageRecords/subscription_item_summary_list
         public var list:
             @Sendable (
                 _ subscriptionItemId: Stripe.Billing.SubscriptionItems.SubscriptionItem.ID,

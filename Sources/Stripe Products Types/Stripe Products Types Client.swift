@@ -1,10 +1,3 @@
-//
-//  Products Client.swift
-//  coenttb-stripe
-//
-//  Created by Coen ten Thije Boonkkamp on 05/01/2025.
-//
-
 import Stripe_Types_Shared
 
 extension Stripe.Products {

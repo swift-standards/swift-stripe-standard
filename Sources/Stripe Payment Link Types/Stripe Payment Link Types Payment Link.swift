@@ -1,26 +1,14 @@
-//
-//  File.swift
-//  swift-stripe
-//
-//  Created by Coen ten Thije Boonkkamp on 09/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.PaymentLinks {
-    // https://docs.stripe.com/api/payment-link/create.md
     public enum Create {}
-    // https://docs.stripe.com/api/payment-link/update.md
     public enum Update {}
-    // https://docs.stripe.com/api/payment-link/list.md
     public enum List {}
-    // https://docs.stripe.com/api/payment-link/retrieve-line-items.md
     public enum LineItems {}
 }
 
-// https://docs.stripe.com/api/payment-link/list.md
 extension Stripe.PaymentLinks.List {
     public struct Request: Codable, Equatable, Sendable {
         public let active: Bool?
@@ -49,7 +37,6 @@ extension Stripe.PaymentLinks.List {
     }
 }
 
-// https://docs.stripe.com/api/payment-link/list.md
 extension Stripe.PaymentLinks.List {
     public struct Response: Codable, Equatable, Sendable {
         public let object: String?
@@ -66,7 +53,6 @@ extension Stripe.PaymentLinks.List {
     }
 }
 
-// https://docs.stripe.com/api/payment-link/retrieve-line-items.md
 extension Stripe.PaymentLinks.LineItems {
     public struct Request: Codable, Equatable, Sendable {
         public let endingBefore: String?
@@ -91,7 +77,6 @@ extension Stripe.PaymentLinks.LineItems {
     }
 }
 
-// https://docs.stripe.com/api/payment-link/retrieve-line-items.md
 extension Stripe.PaymentLinks.LineItems {
     public struct Response: Codable, Equatable, Sendable {
         public let object: String?

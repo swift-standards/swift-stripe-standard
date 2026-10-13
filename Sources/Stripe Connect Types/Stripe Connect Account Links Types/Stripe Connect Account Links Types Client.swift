@@ -1,4 +1,4 @@
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -8,7 +8,6 @@ import Stripe_Types_Shared
 extension Stripe.Connect.AccountLinks {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/accountLinks/create.md
         public var create:
             @Sendable (_ request: Stripe.Connect.AccountLinks.Create.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Connect.AccountLinks.Create.Error

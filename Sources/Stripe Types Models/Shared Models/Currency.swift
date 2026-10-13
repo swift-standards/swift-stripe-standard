@@ -1,12 +1,4 @@
-//
-//  Currency.swift
-//  Stripe
-//
-//  Created by Anthony Castelli on 4/14/17.
-//
-//
-
-import Stripe_Types_Shared
+public import Stripe_Types_Shared
 
 extension Stripe {
     public enum Currency: String, Codable, CaseIterable, Sendable, Hashable {
@@ -146,6 +138,5 @@ extension Stripe {
         case yer
         case zar
         case zmw
-        // TODO: - finish adding stripe currecies
     }
 }

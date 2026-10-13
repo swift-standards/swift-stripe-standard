@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 05/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
@@ -170,17 +163,11 @@ extension Stripe.Customers.Update {
 
 extension Stripe.Customers.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Only return customers that were created during the given date interval
         public let created: Stripe.DateFilter?
-        /// Filter customers by email address
         public let email: String?
-        /// A cursor for use in pagination
         public let endingBefore: String?
-        /// A limit on the number of objects to be returned (1-100, default 10)
         public let limit: Int?
-        /// A cursor for use in pagination
         public let startingAfter: String?
-        /// Filter for customers associated with the specified test clock
         public let testClock: String?
 
         private enum CodingKeys: String, CodingKey {

@@ -1,11 +1,4 @@
-//
-//  Stripe Billing Meters Types Client.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -15,20 +8,17 @@ import Stripe_Types_Shared
 extension Stripe.Billing.Meters {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/billing/meter/create.md
         public var create:
             @Sendable (_ request: Stripe.Billing.Meters.Create.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Billing.Meters.Create.Error
             >) -> Meter
 
-        // https://docs.stripe.com/api/billing/meter/retrieve.md
         public var retrieve:
             @Sendable (_ id: Stripe.Billing.Meters.Meter.ID) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Billing.Meters.Retrieve.Error
             >) ->
                 Stripe.Billing.Meters.Meter
 
-        // https://docs.stripe.com/api/billing/meter/update.md
         public var update:
             @Sendable (
                 _ id: Stripe.Billing.Meters.Meter.ID,
@@ -36,7 +26,6 @@ extension Stripe.Billing.Meters {
             ) async throws(Either<Async.Lifecycle.Error, Stripe.Billing.Meters.Update.Error>) ->
                 Meter
 
-        // https://docs.stripe.com/api/billing/meter/list.md
         public var list:
             @Sendable (_ request: Stripe.Billing.Meters.List.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Billing.Meters.List.Error
@@ -44,7 +33,6 @@ extension Stripe.Billing.Meters {
                 ->
                 Stripe.Billing.Meters.List.Response
 
-        // https://docs.stripe.com/api/billing/meter/deactivate.md
         public var deactivate:
             @Sendable (
                 _ id: Stripe.Billing.Meters.Meter.ID,
@@ -52,7 +40,6 @@ extension Stripe.Billing.Meters {
             ) async throws(Either<Async.Lifecycle.Error, Stripe.Billing.Meters.Deactivate.Error>) ->
                 Meter
 
-        // https://docs.stripe.com/api/billing/meter/reactivate.md
         public var reactivate:
             @Sendable (
                 _ id: Stripe.Billing.Meters.Meter.ID,

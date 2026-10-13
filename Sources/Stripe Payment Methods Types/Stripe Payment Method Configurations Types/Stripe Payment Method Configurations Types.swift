@@ -1,35 +1,21 @@
-//
-//  Stripe Payment Method Configurations Types.swift
-//  swift-stripe-types
-//
-//  Created for swift-stripe-types on 14/01/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 import Tagged
 
 extension Stripe.PaymentMethodConfigurations {
-    // https://docs.stripe.com/api/payment_method_configurations/create.md
     public enum Create {}
 
-    // https://docs.stripe.com/api/payment_method_configurations/update.md
     public enum Update {}
 
-    // https://docs.stripe.com/api/payment_method_configurations/list.md
     public enum List {}
 }
 
-// MARK: - Create Request
 extension Stripe.PaymentMethodConfigurations.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// Configuration name (required unless parent provided)
         public let name: String?
-        /// Parent configuration ID (required unless name provided)
         public let parent: String?
 
-        // Payment method configurations
         public let acssDebit: Stripe.PaymentMethodConfigurations.PaymentMethodConfig?
         public let affirm: Stripe.PaymentMethodConfigurations.PaymentMethodConfig?
         public let afterpayClearpay: Stripe.PaymentMethodConfigurations.PaymentMethodConfig?
@@ -254,15 +240,11 @@ extension Stripe.PaymentMethodConfigurations.Create {
     }
 }
 
-// MARK: - Update Request
 extension Stripe.PaymentMethodConfigurations.Update {
     public struct Request: Codable, Equatable, Sendable {
-        /// Whether the configuration can be used for new payments.
         public let active: Bool?
-        /// Configuration name.
         public let name: String?
 
-        // Payment method configurations (same as Create but all optional)
         public let acssDebit: Stripe.PaymentMethodConfigurations.PaymentMethodConfig?
         public let affirm: Stripe.PaymentMethodConfigurations.PaymentMethodConfig?
         public let afterpayClearpay: Stripe.PaymentMethodConfigurations.PaymentMethodConfig?
@@ -487,16 +469,11 @@ extension Stripe.PaymentMethodConfigurations.Update {
     }
 }
 
-// MARK: - List Request
 extension Stripe.PaymentMethodConfigurations.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Filter by Connect application.
         public let application: String?
-        /// A cursor for use in pagination.
         public let endingBefore: String?
-        /// A limit on the number of objects to be returned.
         public let limit: Int?
-        /// A cursor for use in pagination.
         public let startingAfter: String?
 
         private enum CodingKeys: String, CodingKey {

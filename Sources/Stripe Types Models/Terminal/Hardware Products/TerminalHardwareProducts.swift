@@ -1,26 +1,13 @@
-//
-//  TerminalHardwareProduct.swift
-//
-//
-//  Created by Andrew Edwards on 5/17/23.
-//
-
-import Foundation
+public import Foundation
 import Stripe_Types_Shared
-
-// https://docs.stripe.com/api/terminal/hardware_products/object.md
+public import Tagged
 
 public struct TerminalHardwareProduct: Codable, Hashable, Sendable, Identifiable {
     public typealias ID = Tagged<Self, String>
-    /// Unique identifier for the object.
     public var id: ID
-    /// String representing the object’s type. Objects of the same type share the same value.
     public var object: String
-    /// The status of the terminal hardware product.
     public var status: TerminalHardwareProductStatus?
-    /// The type of product.
     public var type: String?
-    /// If all the SKUs for this product have an `unavailable_after` then this is the max `unavailable_after` in UNIX timestamp. Otherwise, null.
     public var unavailableAfter: Date?
 
     public init(
@@ -39,9 +26,7 @@ public struct TerminalHardwareProduct: Codable, Hashable, Sendable, Identifiable
 }
 
 public enum TerminalHardwareProductStatus: String, Codable, Sendable {
-    /// Available for new orders.
     case available
-    /// Can no longer be used for order creation.
     case unavailable
 }
 

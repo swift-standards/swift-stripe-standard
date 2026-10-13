@@ -1,15 +1,6 @@
-//
-//  Stripe Namespaces.swift
-//  swift-stripe-types
-//
-//  Created by Namespace centralization on 05/01/2025.
-//
-
 import Foundation
 
 extension Stripe {
-    // MARK: - Core Resources
-    //    public enum Balance: Sendable {}
     public enum BalanceTransactions: Sendable {}
     public enum Charges: Sendable {}
     public enum Customers: Sendable {}
@@ -24,49 +15,36 @@ extension Stripe {
     public enum Refunds: Sendable {}
     public enum Tokens: Sendable {}
 
-    // MARK: - Billing
     public enum Billing: Sendable {}
 
-    // MARK: - Products
     public enum Products: Sendable {}
     public enum ShippingRates: Sendable {}
 
-    // MARK: - Payment Methods
     public enum PaymentMethods: Sendable {}
     public enum PaymentMethodConfigurations: Sendable {}
     public enum PaymentMethodDomains: Sendable {}
 
-    // MARK: - Checkout
     public enum Checkout: Sendable {}
     public enum PaymentLinks: Sendable {}
 
-    // MARK: - Connect
     public enum Connect: Sendable {}
 
-    // MARK: - Reporting
     public enum Reporting: Sendable {}
 
-    // MARK: - Capital
     public enum Capital: Sendable {}
 
-    // MARK: - Webhooks
     public enum Webhooks: Sendable {}
     public enum WebhookEndpoint: Sendable {}
 
-    // MARK: - Forwarding
     public enum Forwarding: Sendable {}
 
-    // MARK: - Fraud (Radar)
     public enum Fraud: Sendable {}
 
-    // MARK: - Terminal
     public enum Terminal: Sendable {}
 
-    // MARK: - Tax
     public enum Tax: Sendable {}
 }
 
-// MARK: - Fraud Namespaces
 extension Stripe.Fraud {
     public enum Reviews: Sendable {}
     public enum EarlyFraudWarnings: Sendable {}
@@ -74,7 +52,6 @@ extension Stripe.Fraud {
     public enum ValueListItems: Sendable {}
 }
 
-// MARK: - Billing Namespaces
 extension Stripe.Billing {
     public enum Customer: Sendable {}
     public enum Credit: Sendable {}
@@ -113,13 +90,11 @@ extension Stripe.Billing.Customer {
     public enum Portal: Sendable {}
 }
 
-// MARK: - Connect Namespaces
 extension Stripe.Connect {
     public enum Accounts: Sendable {}
     public enum AccountSession: Sendable {}
 }
 
-// MARK: - Terminal Namespaces
 extension Stripe.Terminal {
     public enum Readers: Sendable {}
     public enum Locations: Sendable {}
@@ -131,12 +106,10 @@ extension Stripe.Terminal {
     public enum HardwareShippingMethods: Sendable {}
 }
 
-// MARK: - Payment Methods Namespaces
 extension Stripe.PaymentMethods {
     public enum Sources: Sendable {}
 }
 
-// MARK: - Products Namespaces
 extension Stripe.Products {
     public enum Coupons: Sendable {}
     public enum Discounts: Sendable {}
@@ -147,7 +120,6 @@ extension Stripe.Products {
     public enum TaxRates: Sendable {}
 }
 
-// MARK: - Tax Namespaces
 extension Stripe.Tax {
     public enum Calculations: Sendable {}
     public enum Registrations: Sendable {}

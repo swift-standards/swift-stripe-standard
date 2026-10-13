@@ -1,61 +1,33 @@
-//
-//  Stripe Billing Invoice Items Types Billing Invoice Items.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
-import Foundation
+public import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Billing.InvoiceItems {
-    // https://docs.stripe.com/api/invoiceitems/create.md
     public enum Create {}
 
-    // https://docs.stripe.com/api/invoiceitems/update.md
     public enum Update {}
 
-    // https://docs.stripe.com/api/invoiceitems/list.md
     public enum List {}
 }
 
-// MARK: - Create
 extension Stripe.Billing.InvoiceItems.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// The ID of the customer to be billed
         public let customer: Stripe.Customers.Customer.ID
-        /// The amount of the item, in cents
         public let amount: Int?
-        /// Three-letter ISO currency code
         public let currency: Stripe.Currency?
-        /// An arbitrary string attached to the object
         public let description: String?
-        /// Controls discount applicability
         public let discountable: Bool?
-        /// List of discounts to apply
         public let discounts: [Discount]?
-        /// The ID of an existing invoice to add this item to
         public let invoice: Stripe.Billing.Invoice.ID?
-        /// Set of key-value pairs for metadata
         public let metadata: [String: String]?
-        /// The time period for this item
         public let period: Period?
-        /// Data used to generate a new Price object inline
         public let priceData: PriceData?
-        /// Pricing information for the invoice item
         public let pricing: Pricing?
-        /// Non-negative integer quantity of units for the invoice item
         public let quantity: Int?
-        /// The ID of the subscription this item belongs to
         public let subscription: Stripe.Billing.Subscription.ID?
-        /// Specifies tax behavior
         public let taxBehavior: String?
-        /// The tax code ID for the item
         public let taxCode: String?
-        /// Tax rates which apply to the invoice item
         public let taxRates: [String]?
-        /// Same as amount, but represents a decimal value
         public let unitAmountDecimal: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -118,11 +90,8 @@ extension Stripe.Billing.InvoiceItems.Create {
     }
 
     public struct Discount: Codable, Equatable, Sendable {
-        /// ID of the coupon to create a new discount for
         public let coupon: String?
-        /// ID of an existing discount
         public let discount: String?
-        /// ID of the promotion code
         public let promotionCode: Promotion.Code.ID?
 
         private enum CodingKeys: String, CodingKey {
@@ -143,9 +112,7 @@ extension Stripe.Billing.InvoiceItems.Create {
     }
 
     public struct Period: Codable, Equatable, Sendable {
-        /// The end of the time period
         public let end: Date
-        /// The start of the time period
         public let start: Date
 
         public init(end: Date, start: Date) {
@@ -155,15 +122,10 @@ extension Stripe.Billing.InvoiceItems.Create {
     }
 
     public struct PriceData: Codable, Equatable, Sendable {
-        /// Three-letter ISO currency code
         public let currency: Stripe.Currency
-        /// The ID of the product that this price will belong to
         public let product: Stripe.Products.Product.ID
-        /// Specifies whether the price is considered inclusive of taxes
         public let taxBehavior: String?
-        /// A positive integer in cents
         public let unitAmount: Int?
-        /// Same as unit_amount, but represented as a decimal string
         public let unitAmountDecimal: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -190,7 +152,6 @@ extension Stripe.Billing.InvoiceItems.Create {
     }
 
     public struct Pricing: Codable, Equatable, Sendable {
-        /// The ID of the price object
         public let price: Stripe.Products.Price.ID?
 
         public init(price: Stripe.Products.Price.ID? = nil) {
@@ -199,34 +160,20 @@ extension Stripe.Billing.InvoiceItems.Create {
     }
 }
 
-// MARK: - Update
 extension Stripe.Billing.InvoiceItems.Update {
     public struct Request: Codable, Equatable, Sendable {
-        /// The amount of the item, in cents
         public let amount: Int?
-        /// An arbitrary string attached to the object
         public let description: String?
-        /// Controls discount applicability
         public let discountable: Bool?
-        /// List of discounts to apply
         public let discounts: [Stripe.Billing.InvoiceItems.Create.Discount]?
-        /// Set of key-value pairs for metadata
         public let metadata: [String: String]?
-        /// The time period for this item
         public let period: Stripe.Billing.InvoiceItems.Create.Period?
-        /// Data used to generate a new Price object inline
         public let priceData: Stripe.Billing.InvoiceItems.Create.PriceData?
-        /// Pricing information for the invoice item
         public let pricing: Stripe.Billing.InvoiceItems.Create.Pricing?
-        /// Non-negative integer quantity of units for the invoice item
         public let quantity: Int?
-        /// Specifies tax behavior
         public let taxBehavior: String?
-        /// The tax code ID for the item
         public let taxCode: String?
-        /// Tax rates which apply to the invoice item
         public let taxRates: [String]?
-        /// Same as amount, but represents a decimal value
         public let unitAmountDecimal: String?
 
         private enum CodingKeys: String, CodingKey {
@@ -277,22 +224,14 @@ extension Stripe.Billing.InvoiceItems.Update {
     }
 }
 
-// MARK: - List
 extension Stripe.Billing.InvoiceItems.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// A filter on the list based on the object created field
         public let created: Stripe.DateFilter?
-        /// The identifier of the customer to list invoice items for
         public let customer: Stripe.Customers.Customer.ID?
-        /// A cursor to use in pagination
         public let endingBefore: String?
-        /// The identifier of an invoice to retrieve invoice items for
         public let invoice: Stripe.Billing.Invoice.ID?
-        /// A limit on the number of objects to return
         public let limit: Int?
-        /// Only return pending invoice items
         public let pending: String?
-        /// A cursor to use in pagination
         public let startingAfter: String?
 
         private enum CodingKeys: String, CodingKey {

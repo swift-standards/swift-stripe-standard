@@ -8,17 +8,13 @@ extension Stripe.Customers {
 }
 
 extension Stripe.Customers.CashBalanceTransactions {
-    // https://docs.stripe.com/api/cash_balance_transactions/list.md
     public enum List {}
 }
 
 extension Stripe.Customers.CashBalanceTransactions.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// A cursor for use in pagination.
         public let endingBefore: String?
-        /// A limit on the number of objects to be returned.
         public let limit: Int?
-        /// A cursor for use in pagination.
         public let startingAfter: String?
 
         private enum CodingKeys: String, CodingKey {

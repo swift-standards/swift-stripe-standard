@@ -1,11 +1,4 @@
-//
-//  Stripe Payment Method Configurations Types Client.swift
-//  swift-stripe-types
-//
-//  Created for swift-stripe-types on 14/01/2025.
-//
-
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -16,14 +9,12 @@ import Tagged
 extension Stripe.PaymentMethodConfigurations {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/payment_method_configurations/create.md
         public var create:
             @Sendable (_ request: Create.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.PaymentMethodConfigurations.Create.Error
             >) ->
                 Stripe.PaymentMethodConfigurations.Configuration
 
-        // https://docs.stripe.com/api/payment_method_configurations/retrieve.md
         public var retrieve:
             @Sendable (_ id: Stripe.PaymentMethodConfigurations.Configuration.ID)
                 async throws(Either<
@@ -31,7 +22,6 @@ extension Stripe.PaymentMethodConfigurations {
                 >) ->
                 Stripe.PaymentMethodConfigurations.Configuration
 
-        // https://docs.stripe.com/api/payment_method_configurations/update.md
         public var update:
             @Sendable (
                 _ id: Stripe.PaymentMethodConfigurations.Configuration.ID, _ request: Update.Request
@@ -39,7 +29,6 @@ extension Stripe.PaymentMethodConfigurations {
                 Async.Lifecycle.Error, Stripe.PaymentMethodConfigurations.Update.Error
             >) -> Stripe.PaymentMethodConfigurations.Configuration
 
-        // https://docs.stripe.com/api/payment_method_configurations/list.md
         public var list:
             @Sendable (_ request: List.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.PaymentMethodConfigurations.List.Error

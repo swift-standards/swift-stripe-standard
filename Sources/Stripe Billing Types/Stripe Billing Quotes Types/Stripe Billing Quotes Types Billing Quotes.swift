@@ -1,16 +1,8 @@
-//
-//  Stripe Billing Quotes Types Billing Quotes.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
-import Foundation
+public import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Billing.Quotes {
-    // Placeholder for the Quote model - should be replaced with actual model from Stripe Types Models
     public struct Quote: Codable, Equatable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
         public let id: ID
@@ -174,7 +166,6 @@ extension Stripe.Billing.Quotes {
 }
 
 extension Stripe.Billing.Quotes {
-    // https://docs.stripe.com/api/quotes/create.md
     public enum Create {}
 }
 
@@ -306,7 +297,6 @@ extension Stripe.Billing.Quotes.Create {
 }
 
 extension Stripe.Billing.Quotes {
-    // https://docs.stripe.com/api/quotes/update.md
     public enum Update {}
 }
 
@@ -383,7 +373,6 @@ extension Stripe.Billing.Quotes.Update {
 }
 
 extension Stripe.Billing.Quotes {
-    // https://docs.stripe.com/api/quotes/list.md
     public enum List {}
 }
 
@@ -438,7 +427,6 @@ extension Stripe.Billing.Quotes.List {
 }
 
 extension Stripe.Billing.Quotes {
-    // https://docs.stripe.com/api/quotes/accept.md
     public enum Accept {}
 }
 
@@ -449,7 +437,6 @@ extension Stripe.Billing.Quotes.Accept {
 }
 
 extension Stripe.Billing.Quotes {
-    // https://docs.stripe.com/api/quotes/cancel.md
     public enum Cancel {}
 }
 
@@ -460,7 +447,6 @@ extension Stripe.Billing.Quotes.Cancel {
 }
 
 extension Stripe.Billing.Quotes {
-    // https://docs.stripe.com/api/quotes/finalize.md
     public enum Finalize {}
 }
 
@@ -479,7 +465,6 @@ extension Stripe.Billing.Quotes.Finalize {
 }
 
 extension Stripe.Billing.Quotes.List {
-    // https://docs.stripe.com/api/quotes/lineItems.md
     public enum LineItems {}
 }
 
@@ -522,7 +507,6 @@ extension Stripe.Billing.Quotes.List.LineItems {
 }
 
 extension Stripe.Billing.Quotes.List {
-    // https://docs.stripe.com/api/quotes/computedUpfrontLineItems.md
     public enum ComputedUpfrontLineItems {}
 }
 

@@ -1,33 +1,17 @@
-//
-//  Stripe Billing Subscription Schedule Types List.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 22/09/2025.
-//
-
 import Foundation
 import Stripe_Types_Models
 import Stripe_Types_Shared
 
 extension Stripe.Billing.Subscription.Schedule.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Filter by cancellation date
         public var canceledAt: Stripe.DateFilter?
-        /// Filter by completion date
         public var completedAt: Stripe.DateFilter?
-        /// Filter by creation date
         public var created: Stripe.DateFilter?
-        /// Filter by customer
         public var customer: Stripe.Customers.Customer.ID?
-        /// Pagination cursor
         public var endingBefore: String?
-        /// Number of objects to return
         public var limit: Int?
-        /// Filter by release date
         public var releasedAt: Stripe.DateFilter?
-        /// Filter for not-yet-started schedules
         public var scheduled: Bool?
-        /// Pagination cursor
         public var startingAfter: String?
 
         public init(

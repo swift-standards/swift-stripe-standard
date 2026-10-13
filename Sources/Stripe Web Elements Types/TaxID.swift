@@ -2,8 +2,6 @@ import Foundation
 import Stripe_Types_Shared
 
 extension Stripe.WebElements {
-    /// Tax ID Element for collecting tax identification numbers
-    /// See: https://docs.stripe.com/elements/tax-id-element
     public struct TaxID: Codable, Hashable, Sendable {
         public let options: Options?
 

@@ -1,4 +1,4 @@
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -8,26 +8,22 @@ import Stripe_Types_Shared
 extension Stripe.Products.PromotionCodes {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/promotion_codes/create.md
         public var create:
             @Sendable (_ request: Create.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Products.PromotionCodes.Create.Error
             >) -> Promotion.Code
 
-        // https://docs.stripe.com/api/promotion_codes/retrieve.md
         public var retrieve:
             @Sendable (_ id: Promotion.Code.ID) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Products.PromotionCodes.Retrieve.Error
             >) -> Promotion.Code
 
-        // https://docs.stripe.com/api/promotion_codes/update.md
         public var update:
             @Sendable (_ id: Promotion.Code.ID, _ request: Update.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Products.PromotionCodes.Update.Error
             >) ->
                 Promotion.Code
 
-        // https://docs.stripe.com/api/promotion_codes/list.md
         public var list:
             @Sendable (_ request: List.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Products.PromotionCodes.List.Error

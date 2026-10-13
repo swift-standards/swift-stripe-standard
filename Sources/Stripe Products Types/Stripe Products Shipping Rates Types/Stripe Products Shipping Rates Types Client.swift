@@ -1,4 +1,4 @@
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -9,21 +9,18 @@ import Tagged
 extension Stripe.Products.ShippingRates {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/shipping_rates/create.md
         public var create:
             @Sendable (_ request: Create.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Products.ShippingRates.Create.Error
             >) ->
                 Stripe.Products.Shipping.Rate
 
-        // https://docs.stripe.com/api/shipping_rates/retrieve.md
         public var retrieve:
             @Sendable (_ id: Stripe.Products.Shipping.Rate.ID) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Products.ShippingRates.Retrieve.Error
             >) ->
                 Stripe.Products.Shipping.Rate
 
-        // https://docs.stripe.com/api/shipping_rates/update.md
         public var update:
             @Sendable (_ id: Stripe.Products.Shipping.Rate.ID, _ request: Update.Request)
                 async throws(Either<
@@ -31,7 +28,6 @@ extension Stripe.Products.ShippingRates {
                 >) ->
                 Stripe.Products.Shipping.Rate
 
-        // https://docs.stripe.com/api/shipping_rates/list.md
         public var list:
             @Sendable (_ request: List.Request) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Products.ShippingRates.List.Error

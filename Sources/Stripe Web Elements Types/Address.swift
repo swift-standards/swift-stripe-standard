@@ -2,8 +2,6 @@ import Foundation
 import Stripe_Types_Shared
 
 extension Stripe.WebElements {
-    /// Address Element for collecting address information
-    /// See: https://docs.stripe.com/elements/address-element
     public struct Address: Codable, Hashable, Sendable {
         public let options: Options?
 

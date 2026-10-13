@@ -1,73 +1,51 @@
-import Foundation
-import Stripe_Types_Shared
-import Tagged
-
-// https://docs.stripe.com/api/billing/credit-grant/object.md
+public import Foundation
+public import Stripe_Types_Shared
+public import Tagged
 
 extension Stripe.Billing.Credit {
     public struct Grant: Codable, Equatable, Sendable, Identifiable {
         public typealias ID = Tagged<Self, String>
 
-        /// Unique identifier for the object.
         public let id: ID
 
-        /// String representing the object's type.
         public let object: String
 
-        /// Amount of the credit grant.
         public let amount: Amount?
 
-        /// Configuration specifying what this credit grant applies to.
         public let applicabilityConfig: ApplicabilityConfig
 
-        /// The category of this credit grant.
         public let category: Category
 
-        /// Time at which the object was created.
         public let created: Date
 
-        /// ID of the customer to whom the credit grant applies.
         public let customer: Stripe.Customers.Customer.ID
 
-        /// The time when the credit becomes effective.
         public let effectiveAt: Date?
 
-        /// The time when the credit will expire.
         public let expiresAt: Date?
 
-        /// Has the value true if the object exists in live mode.
         public let livemode: Bool
 
-        /// Set of key-value pairs.
         public let metadata: [String: String]
 
-        /// A descriptive name shown in dashboard.
         public let name: String?
 
-        /// Priority for determining which credit to use.
         public let priority: Int?
 
-        /// ID of the test clock this credit grant belongs to.
         public let testClock: String?
 
-        /// Time at which the object was last updated.
         public let updated: Date
 
-        /// The time when this credit grant was voided.
         public let voidedAt: Date?
 
         public struct Amount: Codable, Equatable, Sendable {
-            /// The monetary amount.
             public let monetary: Monetary?
 
-            /// The type of this amount.
             public let type: AmountType
 
             public struct Monetary: Codable, Equatable, Sendable {
-                /// Three-letter ISO currency code.
                 public let currency: Stripe.Currency
 
-                /// A positive integer.
                 public let value: Int
             }
 
@@ -77,14 +55,11 @@ extension Stripe.Billing.Credit {
         }
 
         public struct ApplicabilityConfig: Codable, Equatable, Sendable {
-            /// Scope of what this credit grant applies to.
             public let scope: Scope
 
             public struct Scope: Codable, Equatable, Sendable {
-                /// The price type to which credit applies.
                 public let priceType: PriceType?
 
-                /// The specific prices to which credit applies.
                 public let prices: [Price]?
 
                 public enum PriceType: String, Codable, Equatable, Sendable {
@@ -92,7 +67,6 @@ extension Stripe.Billing.Credit {
                 }
 
                 public struct Price: Codable, Equatable, Sendable {
-                    /// The price ID.
                     public let id: String?
                 }
 

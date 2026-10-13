@@ -1,4 +1,4 @@
-import Async_Lifecycle
+public import Async_Lifecycle
 import Either
 import Foundation
 import Stripe_Types_Models

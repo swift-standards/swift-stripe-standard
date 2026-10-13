@@ -1,11 +1,4 @@
-//
-//  Stripe Billing Subscription Schedule Types Client.swift
-//  swift-stripe-types
-//
-//  Created by Coen ten Thije Boonkkamp on 13/01/2025.
-//
-
-import Async_Lifecycle
+public import Async_Lifecycle
 import Dependencies
 import Either
 import Foundation
@@ -15,7 +8,6 @@ import Stripe_Types_Shared
 extension Stripe.Billing.Subscription.Schedule {
     @Witness
     public struct Client: Sendable {
-        // https://docs.stripe.com/api/subscriptionSchedules/create.md
         public var create:
             @Sendable (_ request: Stripe.Billing.Subscription.Schedule.Create.Request)
                 async throws(Either<
@@ -24,7 +16,6 @@ extension Stripe.Billing.Subscription.Schedule {
                 ->
                 Stripe.Billing.Subscription.Schedule
 
-        // https://docs.stripe.com/api/subscriptionSchedules/retrieve.md
         public var retrieve:
             @Sendable (_ id: Stripe.Billing.Subscription.Schedule.ID) async throws(Either<
                 Async.Lifecycle.Error, Stripe.Billing.Subscription.Schedule.Retrieve.Error
@@ -32,7 +23,6 @@ extension Stripe.Billing.Subscription.Schedule {
                 ->
                 Stripe.Billing.Subscription.Schedule
 
-        // https://docs.stripe.com/api/subscriptionSchedules/update.md
         public var update:
             @Sendable (
                 _ id: Stripe.Billing.Subscription.Schedule.ID,
@@ -41,7 +31,6 @@ extension Stripe.Billing.Subscription.Schedule {
                 Async.Lifecycle.Error, Stripe.Billing.Subscription.Schedule.Update.Error
             >) -> Stripe.Billing.Subscription.Schedule
 
-        // https://docs.stripe.com/api/subscriptionSchedules/list.md
         public var list:
             @Sendable (_ request: Stripe.Billing.Subscription.Schedule.List.Request)
                 async throws(Either<
@@ -49,7 +38,6 @@ extension Stripe.Billing.Subscription.Schedule {
                 >) ->
                 Stripe.Billing.Subscription.Schedule.List.Response
 
-        // https://docs.stripe.com/api/subscriptionSchedules/cancel.md
         public var cancel:
             @Sendable (
                 _ id: Stripe.Billing.Subscription.Schedule.ID,
@@ -58,7 +46,6 @@ extension Stripe.Billing.Subscription.Schedule {
                 Async.Lifecycle.Error, Stripe.Billing.Subscription.Schedule.Cancel.Error
             >) -> Stripe.Billing.Subscription.Schedule
 
-        // https://docs.stripe.com/api/subscriptionSchedules/release.md
         public var release:
             @Sendable (
                 _ id: Stripe.Billing.Subscription.Schedule.ID,

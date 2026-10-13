@@ -4,17 +4,13 @@ import Stripe_Types_Shared
 import Tagged
 
 extension Stripe.Fraud.ValueListItems.API {
-    // https://docs.stripe.com/api/radar/value_list_items/create.md
     public enum Create {}
-    // https://docs.stripe.com/api/radar/value_list_items/list.md
     public enum List {}
 }
 
 extension Stripe.Fraud.ValueListItems.API.Create {
     public struct Request: Codable, Equatable, Sendable {
-        /// The value of the item (whose type must match the type of the parent value list).
         public var value: String
-        /// The identifier of the value list which the created item will be added to.
         public var valueList: Stripe.Fraud.ValueLists.ValueList.ID
 
         private enum CodingKeys: String, CodingKey {
@@ -34,17 +30,11 @@ extension Stripe.Fraud.ValueListItems.API.Create {
 
 extension Stripe.Fraud.ValueListItems.API.List {
     public struct Request: Codable, Equatable, Sendable {
-        /// Identifier for the parent value list this item belongs to.
         public var valueList: Stripe.Fraud.ValueLists.ValueList.ID?
-        /// Return items belonging to the parent list whose value matches the specified value.
         public var value: String?
-        /// A cursor for use in pagination. ending_before is an object ID that defines your place in the list.
         public var endingBefore: String?
-        /// A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.
         public var limit: Int?
-        /// A cursor for use in pagination. starting_after is an object ID that defines your place in the list.
         public var startingAfter: String?
-        /// Only return value list items that were created during the given date interval.
         public var created: Stripe.DateFilter?
 
         private enum CodingKeys: String, CodingKey {
