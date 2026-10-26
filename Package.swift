@@ -3,96 +3,50 @@
 import Foundation
 import PackageDescription
 
-extension String {
-    static let stripeTypes: Self = "Stripe Types"
-    static let stripeBalance: Self = "Stripe Balance Types"
-    static let stripeBalanceTransactions: Self = "Stripe Balance Transactions Types"
-    static let stripeCharges: Self = "Stripe Charges Types"
-    static let stripeCustomers: Self = "Stripe Customers Types"
-    static let stripeCustomerSession: Self = "Stripe Customer Session Types"
-    static let stripeDisputes: Self = "Stripe Disputes Types"
-    static let stripeEvents: Self = "Stripe Events Types"
-    static let stripeEventDestinations: Self = "Stripe Event Destinations Types"
-    static let stripeFiles: Self = "Stripe Files Types"
-    static let stripeFileLinks: Self = "Stripe File Links Types"
-    static let stripeMandates: Self = "Stripe Mandates Types"
-    static let stripePaymentIntents: Self = "Stripe Payment Intents Types"
-    static let stripeSetupIntents: Self = "Stripe Setup Intents Types"
-    static let stripeSetupAttempts: Self = "Stripe Setup Attempts Types"
-    static let stripePayouts: Self = "Stripe Payouts Types"
-    static let stripeRefunds: Self = "Stripe Refunds Types"
-    static let stripeConfirmationToken: Self = "Stripe Confirmation Token Types"
-    static let stripeTokens: Self = "Stripe Tokens Types"
-    static let stripePaymentMethods: Self = "Stripe Payment Methods Types"
-    static let stripeProducts: Self = "Stripe Products Types"
-    static let stripeCheckout: Self = "Stripe Checkout Types"
-    static let stripePaymentLink: Self = "Stripe Payment Link Types"
-    static let stripeBilling: Self = "Stripe Billing Types"
-    static let stripeCapital: Self = "Stripe Capital Types"
-    static let stripeConnect: Self = "Stripe Connect Types"
-    static let stripeFraud: Self = "Stripe Fraud Types"
-    static let stripeIssuing: Self = "Stripe Issuing Types"
-    static let stripeTerminal: Self = "Stripe Terminal Types"
-    static let stripeTreasury: Self = "Stripe Treasury Types"
-    static let stripeEntitlements: Self = "Stripe Entitlements Types"
-    static let stripeSigma: Self = "Stripe Sigma Types"
-    static let stripeReporting: Self = "Stripe Reporting Types"
-    static let stripeFinancialConnections: Self = "Stripe Financial Connections Types"
-    static let stripeTax: Self = "Stripe Tax Types"
-    static let stripeIdentity: Self = "Stripe Identity Types"
-    static let stripeCrypto: Self = "Stripe Crypto Types"
-    static let stripeClimate: Self = "Stripe Climate Types"
-    static let stripeForwarding: Self = "Stripe Forwarding Types"
-    static let stripeWebhooks: Self = "Stripe Webhooks Types"
-    static let stripeWebElements: Self = "Stripe Web Elements Types"
-    static let stripeTypesShared: Self = "Stripe Types Shared"
-    static let stripeTypesModels: Self = "Stripe Types Models"
-}
-
 extension Target.Dependency {
-    static var stripeTypes: Self { .target(name: .stripeTypes) }
-    static var stripeBalance: Self { .target(name: .stripeBalance) }
-    static var stripeBalanceTransactions: Self { .target(name: .stripeBalanceTransactions) }
-    static var stripeCharges: Self { .target(name: .stripeCharges) }
-    static var stripeCustomers: Self { .target(name: .stripeCustomers) }
-    static var stripeCustomerSession: Self { .target(name: .stripeCustomerSession) }
-    static var stripeDisputes: Self { .target(name: .stripeDisputes) }
-    static var stripeEvents: Self { .target(name: .stripeEvents) }
-    static var stripeEventDestinations: Self { .target(name: .stripeEventDestinations) }
-    static var stripeFiles: Self { .target(name: .stripeFiles) }
-    static var stripeFileLinks: Self { .target(name: .stripeFileLinks) }
-    static var stripeMandates: Self { .target(name: .stripeMandates) }
-    static var stripePaymentIntents: Self { .target(name: .stripePaymentIntents) }
-    static var stripeSetupIntents: Self { .target(name: .stripeSetupIntents) }
-    static var stripeSetupAttempts: Self { .target(name: .stripeSetupAttempts) }
-    static var stripePayouts: Self { .target(name: .stripePayouts) }
-    static var stripeRefunds: Self { .target(name: .stripeRefunds) }
-    static var stripeConfirmationToken: Self { .target(name: .stripeConfirmationToken) }
-    static var stripeTokens: Self { .target(name: .stripeTokens) }
-    static var stripePaymentMethods: Self { .target(name: .stripePaymentMethods) }
-    static var stripeProducts: Self { .target(name: .stripeProducts) }
-    static var stripeCheckout: Self { .target(name: .stripeCheckout) }
-    static var stripePaymentLink: Self { .target(name: .stripePaymentLink) }
-    static var stripeBilling: Self { .target(name: .stripeBilling) }
-    static var stripeCapital: Self { .target(name: .stripeCapital) }
-    static var stripeConnect: Self { .target(name: .stripeConnect) }
-    static var stripeFraud: Self { .target(name: .stripeFraud) }
-    static var stripeIssuing: Self { .target(name: .stripeIssuing) }
-    static var stripeTerminal: Self { .target(name: .stripeTerminal) }
-    static var stripeTreasury: Self { .target(name: .stripeTreasury) }
-    static var stripeEntitlements: Self { .target(name: .stripeEntitlements) }
-    static var stripeSigma: Self { .target(name: .stripeSigma) }
-    static var stripeReporting: Self { .target(name: .stripeReporting) }
-    static var stripeFinancialConnections: Self { .target(name: .stripeFinancialConnections) }
-    static var stripeTax: Self { .target(name: .stripeTax) }
-    static var stripeIdentity: Self { .target(name: .stripeIdentity) }
-    static var stripeCrypto: Self { .target(name: .stripeCrypto) }
-    static var stripeClimate: Self { .target(name: .stripeClimate) }
-    static var stripeForwarding: Self { .target(name: .stripeForwarding) }
-    static var stripeWebhooks: Self { .target(name: .stripeWebhooks) }
-    static var stripeWebElements: Self { .target(name: .stripeWebElements) }
-    static var stripeTypesShared: Self { .target(name: .stripeTypesShared) }
-    static var stripeTypesModels: Self { .target(name: .stripeTypesModels) }
+    static var stripeTypes: Self { .target(name: "Stripe Types") }
+    static var stripeBalance: Self { .target(name: "Stripe Balance Types") }
+    static var stripeBalanceTransactions: Self { .target(name: "Stripe Balance Transactions Types") }
+    static var stripeCharges: Self { .target(name: "Stripe Charges Types") }
+    static var stripeCustomers: Self { .target(name: "Stripe Customers Types") }
+    static var stripeCustomerSession: Self { .target(name: "Stripe Customer Session Types") }
+    static var stripeDisputes: Self { .target(name: "Stripe Disputes Types") }
+    static var stripeEvents: Self { .target(name: "Stripe Events Types") }
+    static var stripeEventDestinations: Self { .target(name: "Stripe Event Destinations Types") }
+    static var stripeFiles: Self { .target(name: "Stripe Files Types") }
+    static var stripeFileLinks: Self { .target(name: "Stripe File Links Types") }
+    static var stripeMandates: Self { .target(name: "Stripe Mandates Types") }
+    static var stripePaymentIntents: Self { .target(name: "Stripe Payment Intents Types") }
+    static var stripeSetupIntents: Self { .target(name: "Stripe Setup Intents Types") }
+    static var stripeSetupAttempts: Self { .target(name: "Stripe Setup Attempts Types") }
+    static var stripePayouts: Self { .target(name: "Stripe Payouts Types") }
+    static var stripeRefunds: Self { .target(name: "Stripe Refunds Types") }
+    static var stripeConfirmationToken: Self { .target(name: "Stripe Confirmation Token Types") }
+    static var stripeTokens: Self { .target(name: "Stripe Tokens Types") }
+    static var stripePaymentMethods: Self { .target(name: "Stripe Payment Methods Types") }
+    static var stripeProducts: Self { .target(name: "Stripe Products Types") }
+    static var stripeCheckout: Self { .target(name: "Stripe Checkout Types") }
+    static var stripePaymentLink: Self { .target(name: "Stripe Payment Link Types") }
+    static var stripeBilling: Self { .target(name: "Stripe Billing Types") }
+    static var stripeCapital: Self { .target(name: "Stripe Capital Types") }
+    static var stripeConnect: Self { .target(name: "Stripe Connect Types") }
+    static var stripeFraud: Self { .target(name: "Stripe Fraud Types") }
+    static var stripeIssuing: Self { .target(name: "Stripe Issuing Types") }
+    static var stripeTerminal: Self { .target(name: "Stripe Terminal Types") }
+    static var stripeTreasury: Self { .target(name: "Stripe Treasury Types") }
+    static var stripeEntitlements: Self { .target(name: "Stripe Entitlements Types") }
+    static var stripeSigma: Self { .target(name: "Stripe Sigma Types") }
+    static var stripeReporting: Self { .target(name: "Stripe Reporting Types") }
+    static var stripeFinancialConnections: Self { .target(name: "Stripe Financial Connections Types") }
+    static var stripeTax: Self { .target(name: "Stripe Tax Types") }
+    static var stripeIdentity: Self { .target(name: "Stripe Identity Types") }
+    static var stripeCrypto: Self { .target(name: "Stripe Crypto Types") }
+    static var stripeClimate: Self { .target(name: "Stripe Climate Types") }
+    static var stripeForwarding: Self { .target(name: "Stripe Forwarding Types") }
+    static var stripeWebhooks: Self { .target(name: "Stripe Webhooks Types") }
+    static var stripeWebElements: Self { .target(name: "Stripe Web Elements Types") }
+    static var stripeTypesShared: Self { .target(name: "Stripe Types Shared") }
+    static var stripeTypesModels: Self { .target(name: "Stripe Types Models") }
 }
 
 extension Target.Dependency {
@@ -128,49 +82,49 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [
-        .library(name: .stripeTypes, targets: [.stripeTypes]),
-        .library(name: .stripeBalance, targets: [.stripeBalance]),
-        .library(name: .stripeBalanceTransactions, targets: [.stripeBalanceTransactions]),
-        .library(name: .stripeCharges, targets: [.stripeCharges]),
-        .library(name: .stripeCustomers, targets: [.stripeCustomers]),
-        .library(name: .stripeCustomerSession, targets: [.stripeCustomerSession]),
-        .library(name: .stripeDisputes, targets: [.stripeDisputes]),
-        .library(name: .stripeEvents, targets: [.stripeEvents]),
-        .library(name: .stripeEventDestinations, targets: [.stripeEventDestinations]),
-        .library(name: .stripeFiles, targets: [.stripeFiles]),
-        .library(name: .stripeFileLinks, targets: [.stripeFileLinks]),
-        .library(name: .stripeMandates, targets: [.stripeMandates]),
-        .library(name: .stripePaymentIntents, targets: [.stripePaymentIntents]),
-        .library(name: .stripeSetupIntents, targets: [.stripeSetupIntents]),
-        .library(name: .stripeSetupAttempts, targets: [.stripeSetupAttempts]),
-        .library(name: .stripePayouts, targets: [.stripePayouts]),
-        .library(name: .stripeRefunds, targets: [.stripeRefunds]),
-        .library(name: .stripeConfirmationToken, targets: [.stripeConfirmationToken]),
-        .library(name: .stripeTokens, targets: [.stripeTokens]),
-        .library(name: .stripePaymentMethods, targets: [.stripePaymentMethods]),
-        .library(name: .stripeProducts, targets: [.stripeProducts]),
-        .library(name: .stripeCheckout, targets: [.stripeCheckout]),
-        .library(name: .stripePaymentLink, targets: [.stripePaymentLink]),
-        .library(name: .stripeBilling, targets: [.stripeBilling]),
-        .library(name: .stripeCapital, targets: [.stripeCapital]),
-        .library(name: .stripeConnect, targets: [.stripeConnect]),
-        .library(name: .stripeFraud, targets: [.stripeFraud]),
-        .library(name: .stripeIssuing, targets: [.stripeIssuing]),
-        .library(name: .stripeTerminal, targets: [.stripeTerminal]),
-        .library(name: .stripeTreasury, targets: [.stripeTreasury]),
-        .library(name: .stripeEntitlements, targets: [.stripeEntitlements]),
-        .library(name: .stripeSigma, targets: [.stripeSigma]),
-        .library(name: .stripeReporting, targets: [.stripeReporting]),
-        .library(name: .stripeFinancialConnections, targets: [.stripeFinancialConnections]),
-        .library(name: .stripeTax, targets: [.stripeTax]),
-        .library(name: .stripeIdentity, targets: [.stripeIdentity]),
-        .library(name: .stripeCrypto, targets: [.stripeCrypto]),
-        .library(name: .stripeClimate, targets: [.stripeClimate]),
-        .library(name: .stripeForwarding, targets: [.stripeForwarding]),
-        .library(name: .stripeWebhooks, targets: [.stripeWebhooks]),
-        .library(name: .stripeWebElements, targets: [.stripeWebElements]),
-        .library(name: .stripeTypesShared, targets: [.stripeTypesShared]),
-        .library(name: .stripeTypesModels, targets: [.stripeTypesModels]),
+        .library(name: "Stripe Types", targets: ["Stripe Types"]),
+        .library(name: "Stripe Balance Types", targets: ["Stripe Balance Types"]),
+        .library(name: "Stripe Balance Transactions Types", targets: ["Stripe Balance Transactions Types"]),
+        .library(name: "Stripe Charges Types", targets: ["Stripe Charges Types"]),
+        .library(name: "Stripe Customers Types", targets: ["Stripe Customers Types"]),
+        .library(name: "Stripe Customer Session Types", targets: ["Stripe Customer Session Types"]),
+        .library(name: "Stripe Disputes Types", targets: ["Stripe Disputes Types"]),
+        .library(name: "Stripe Events Types", targets: ["Stripe Events Types"]),
+        .library(name: "Stripe Event Destinations Types", targets: ["Stripe Event Destinations Types"]),
+        .library(name: "Stripe Files Types", targets: ["Stripe Files Types"]),
+        .library(name: "Stripe File Links Types", targets: ["Stripe File Links Types"]),
+        .library(name: "Stripe Mandates Types", targets: ["Stripe Mandates Types"]),
+        .library(name: "Stripe Payment Intents Types", targets: ["Stripe Payment Intents Types"]),
+        .library(name: "Stripe Setup Intents Types", targets: ["Stripe Setup Intents Types"]),
+        .library(name: "Stripe Setup Attempts Types", targets: ["Stripe Setup Attempts Types"]),
+        .library(name: "Stripe Payouts Types", targets: ["Stripe Payouts Types"]),
+        .library(name: "Stripe Refunds Types", targets: ["Stripe Refunds Types"]),
+        .library(name: "Stripe Confirmation Token Types", targets: ["Stripe Confirmation Token Types"]),
+        .library(name: "Stripe Tokens Types", targets: ["Stripe Tokens Types"]),
+        .library(name: "Stripe Payment Methods Types", targets: ["Stripe Payment Methods Types"]),
+        .library(name: "Stripe Products Types", targets: ["Stripe Products Types"]),
+        .library(name: "Stripe Checkout Types", targets: ["Stripe Checkout Types"]),
+        .library(name: "Stripe Payment Link Types", targets: ["Stripe Payment Link Types"]),
+        .library(name: "Stripe Billing Types", targets: ["Stripe Billing Types"]),
+        .library(name: "Stripe Capital Types", targets: ["Stripe Capital Types"]),
+        .library(name: "Stripe Connect Types", targets: ["Stripe Connect Types"]),
+        .library(name: "Stripe Fraud Types", targets: ["Stripe Fraud Types"]),
+        .library(name: "Stripe Issuing Types", targets: ["Stripe Issuing Types"]),
+        .library(name: "Stripe Terminal Types", targets: ["Stripe Terminal Types"]),
+        .library(name: "Stripe Treasury Types", targets: ["Stripe Treasury Types"]),
+        .library(name: "Stripe Entitlements Types", targets: ["Stripe Entitlements Types"]),
+        .library(name: "Stripe Sigma Types", targets: ["Stripe Sigma Types"]),
+        .library(name: "Stripe Reporting Types", targets: ["Stripe Reporting Types"]),
+        .library(name: "Stripe Financial Connections Types", targets: ["Stripe Financial Connections Types"]),
+        .library(name: "Stripe Tax Types", targets: ["Stripe Tax Types"]),
+        .library(name: "Stripe Identity Types", targets: ["Stripe Identity Types"]),
+        .library(name: "Stripe Crypto Types", targets: ["Stripe Crypto Types"]),
+        .library(name: "Stripe Climate Types", targets: ["Stripe Climate Types"]),
+        .library(name: "Stripe Forwarding Types", targets: ["Stripe Forwarding Types"]),
+        .library(name: "Stripe Webhooks Types", targets: ["Stripe Webhooks Types"]),
+        .library(name: "Stripe Web Elements Types", targets: ["Stripe Web Elements Types"]),
+        .library(name: "Stripe Types Shared", targets: ["Stripe Types Shared"]),
+        .library(name: "Stripe Types Models", targets: ["Stripe Types Models"]),
     ],
     dependencies: [
         // swift-dependencies and swift-html-form-coder have no
@@ -209,7 +163,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: .stripeTypesShared,
+            name: "Stripe Types Shared",
             dependencies: [
                 .dependencies,
                 .htmlFormCoder,
@@ -217,7 +171,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeTypesModels,
+            name: "Stripe Types Models",
             dependencies: [
                 .dependencies,
                 .htmlFormCoder,
@@ -226,7 +180,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeTypes,
+            name: "Stripe Types",
             dependencies: [
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -295,7 +249,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeBalance,
+            name: "Stripe Balance Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -308,7 +262,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeBalanceTransactions,
+            name: "Stripe Balance Transactions Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -321,7 +275,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeCharges,
+            name: "Stripe Charges Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -334,7 +288,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeCustomers,
+            name: "Stripe Customers Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -347,7 +301,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeCustomerSession,
+            name: "Stripe Customer Session Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -360,7 +314,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeDisputes,
+            name: "Stripe Disputes Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -373,7 +327,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeEvents,
+            name: "Stripe Events Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -386,7 +340,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeEventDestinations,
+            name: "Stripe Event Destinations Types",
             dependencies: [
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -396,20 +350,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeFiles,
-            dependencies: [
-                .either,
-                .asyncLifecycle,
-                .witnesses,
-                .stripeTypesModels,
-                .stripeTypesShared,
-                .dependencies,
-                .htmlFormCoder,
-                .tagged,
-            ]
-        ),
-        .target(
-            name: .stripeFileLinks,
+            name: "Stripe Files Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -422,7 +363,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeMandates,
+            name: "Stripe File Links Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -435,7 +376,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripePaymentIntents,
+            name: "Stripe Mandates Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -448,7 +389,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeSetupIntents,
+            name: "Stripe Payment Intents Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -461,7 +402,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeSetupAttempts,
+            name: "Stripe Setup Intents Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -474,7 +415,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripePayouts,
+            name: "Stripe Setup Attempts Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -487,7 +428,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeRefunds,
+            name: "Stripe Payouts Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -500,7 +441,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeConfirmationToken,
+            name: "Stripe Refunds Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -513,7 +454,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeTokens,
+            name: "Stripe Confirmation Token Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -526,7 +467,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripePaymentMethods,
+            name: "Stripe Tokens Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -539,7 +480,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeProducts,
+            name: "Stripe Payment Methods Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -552,7 +493,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeCheckout,
+            name: "Stripe Products Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -565,7 +506,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripePaymentLink,
+            name: "Stripe Checkout Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -578,7 +519,20 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeBilling,
+            name: "Stripe Payment Link Types",
+            dependencies: [
+                .either,
+                .asyncLifecycle,
+                .witnesses,
+                .stripeTypesModels,
+                .stripeTypesShared,
+                .dependencies,
+                .htmlFormCoder,
+                .tagged,
+            ]
+        ),
+        .target(
+            name: "Stripe Billing Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -599,7 +553,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeCapital,
+            name: "Stripe Capital Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -612,7 +566,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeConnect,
+            name: "Stripe Connect Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -625,7 +579,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeFraud,
+            name: "Stripe Fraud Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -638,7 +592,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeIssuing,
+            name: "Stripe Issuing Types",
             dependencies: [
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -648,70 +602,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeTerminal,
-            dependencies: [
-                .either,
-                .asyncLifecycle,
-                .witnesses,
-                .stripeTypesModels,
-                .stripeTypesShared,
-                .dependencies,
-                .htmlFormCoder,
-                .tagged,
-            ]
-        ),
-        .target(
-            name: .stripeTreasury,
-            dependencies: [
-                .stripeTypesModels,
-                .stripeTypesShared,
-                .dependencies,
-                .htmlFormCoder,
-                .tagged,
-            ]
-        ),
-        .target(
-            name: .stripeEntitlements,
-            dependencies: [
-                .stripeTypesModels,
-                .stripeTypesShared,
-                .dependencies,
-                .htmlFormCoder,
-                .tagged,
-            ]
-        ),
-        .target(
-            name: .stripeSigma,
-            dependencies: [
-                .stripeTypesModels,
-                .stripeTypesShared,
-                .dependencies,
-                .htmlFormCoder,
-                .tagged,
-            ]
-        ),
-        .target(
-            name: .stripeReporting,
-            dependencies: [
-                .stripeTypesModels,
-                .stripeTypesShared,
-                .dependencies,
-                .htmlFormCoder,
-                .tagged,
-            ]
-        ),
-        .target(
-            name: .stripeFinancialConnections,
-            dependencies: [
-                .stripeTypesModels,
-                .stripeTypesShared,
-                .dependencies,
-                .htmlFormCoder,
-                .tagged,
-            ]
-        ),
-        .target(
-            name: .stripeTax,
+            name: "Stripe Terminal Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -724,7 +615,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeIdentity,
+            name: "Stripe Treasury Types",
             dependencies: [
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -734,7 +625,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeCrypto,
+            name: "Stripe Entitlements Types",
             dependencies: [
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -744,7 +635,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeClimate,
+            name: "Stripe Sigma Types",
             dependencies: [
                 .stripeTypesModels,
                 .stripeTypesShared,
@@ -754,7 +645,27 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeForwarding,
+            name: "Stripe Reporting Types",
+            dependencies: [
+                .stripeTypesModels,
+                .stripeTypesShared,
+                .dependencies,
+                .htmlFormCoder,
+                .tagged,
+            ]
+        ),
+        .target(
+            name: "Stripe Financial Connections Types",
+            dependencies: [
+                .stripeTypesModels,
+                .stripeTypesShared,
+                .dependencies,
+                .htmlFormCoder,
+                .tagged,
+            ]
+        ),
+        .target(
+            name: "Stripe Tax Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -767,7 +678,37 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeWebhooks,
+            name: "Stripe Identity Types",
+            dependencies: [
+                .stripeTypesModels,
+                .stripeTypesShared,
+                .dependencies,
+                .htmlFormCoder,
+                .tagged,
+            ]
+        ),
+        .target(
+            name: "Stripe Crypto Types",
+            dependencies: [
+                .stripeTypesModels,
+                .stripeTypesShared,
+                .dependencies,
+                .htmlFormCoder,
+                .tagged,
+            ]
+        ),
+        .target(
+            name: "Stripe Climate Types",
+            dependencies: [
+                .stripeTypesModels,
+                .stripeTypesShared,
+                .dependencies,
+                .htmlFormCoder,
+                .tagged,
+            ]
+        ),
+        .target(
+            name: "Stripe Forwarding Types",
             dependencies: [
                 .either,
                 .asyncLifecycle,
@@ -780,7 +721,20 @@ let package = Package(
             ]
         ),
         .target(
-            name: .stripeWebElements,
+            name: "Stripe Webhooks Types",
+            dependencies: [
+                .either,
+                .asyncLifecycle,
+                .witnesses,
+                .stripeTypesModels,
+                .stripeTypesShared,
+                .dependencies,
+                .htmlFormCoder,
+                .tagged,
+            ]
+        ),
+        .target(
+            name: "Stripe Web Elements Types",
             dependencies: [
                 .stripeTypesModels,
                 .stripeTypesShared,
