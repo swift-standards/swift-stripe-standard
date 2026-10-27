@@ -140,7 +140,7 @@ let package = Package(
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-compositions/swift-html-form-coder",
+            url: "https://github.com/coenttb/swift-html-form-coder",
             branch: "main"
         ),
         .package(url: "https://github.com/swift-standards/swift-html-standard", branch: "main"),
